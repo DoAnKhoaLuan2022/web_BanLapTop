@@ -1,0 +1,94 @@
+﻿@model PagedList.IPagedList<DoAnAdmin.Models.PromotionsGift>
+@using PagedList.Mvc;
+@using PagedList;
+
+@{ ViewBag.Title = "PromotionGiftPrice";
+    Layout = "~/Views/Shared/_LayoutPageAdmin.cshtml"; }
+
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-header">
+            <center class=""><h5 style="text-transform:uppercase;font-weight:bold">GIÁ KHUYẾN MÃI</h5></center>
+        </div>
+        <div class="card-body">
+            @using (Html.BeginForm())
+            {
+<div class="row container mt-2">
+    <div class="col-5">
+        <input type="text" class="form-control" placeholder="Search" name="txtSearch" />
+    </div>
+    <div class="col-1">
+        <button type="submit" class="btn" value="&#xf002">
+            <img style="width:30px; height:30px" src="https://cdn-icons-png.flaticon.com/512/2839/2839117.png" />
+        </button>
+    </div>
+    <div class="col-6 add_sp">
+        <a href="@Url.Action("AddPromotionGiftPrice", "PromotionGift")">
+            Thêm khuyến mãi
+            <input type="button" class="btn btn-link" value="" />
+        </a>
+
+    </div>
+    @*<div class="col-2">
+            <a href="@Url.Action("AddPromotionGiftPrice", "PromotionGift")"><input type="button" class="btn btn-primary btn-link" value="Thêm quà khuyến mãi" style="font-size:13px;color:white;text-decoration:none" /></a>
+        </div>*@
+</div>      }
+            <table class="table table-bordered table-hover mt-3" style="text-align:center;font-size:14px">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Mã sản phẩm</th>
+                        <th>Quà 1</th>
+                        <th>Quà 2</th>
+                        <th>Quà 3</th>
+                        <th>Quà 4</th>
+                        <th>Ngày bắt đầu</th>
+                        <th>Ngày kết thúc</th>
+                        <th>Giảm giá</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                @foreach (var item in Model)
+                {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.product_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.gift1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.gift2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.gift3)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.gift4)
+        </td>
+        <td>
+            @string.Format("{0:G}", item.date_start)
+        </td>
+        <td>
+            @if (DateTime.Now > item.date_end)
+            {
+<i class="badge badge-danger">@string.Format("{0:G}", item.date_end) </i>
+                    <i class="badge badge-danger">(hết hạn)</i>}
+                else
+                {
+<i class="badge badge-success">@string.Format("{0:G}", item.date_end)</i>}
+        </td>
+        <td>
+            @string.Format("{0:0,0}", item.priceSum)<sup>đ</sup>
+        </td>
+        <td>
+            @*<a href="@Url.Action("UpdateGift", "PromotionGift", new { @id = item.product_id})" style="text-decoration:none;color:black"><i class="fas fa-edit"></i>&nbsp;Edit</a>&nbsp;|*@
+            <a href="@Url.Action("DeleteGift", "PromotionGift", new { @id = item.product_id})" style="text-decoration:none;color:red"><i class="far fa-trash-alt"></i>&nbsp;Delete</a>
+            @*<a href="@Url.Action("UpdatePromotionPrice", "Promotion", new { @maSP = item.product_id, @dateS = item.date_start,@dateE = item.date_end,@price = item.price })" style="text-decoration:none;color:black"><i class="fas fa-edit"></i>&nbsp;Edit</a>&nbsp;|
+                <a href="@Url.Action("DeletePromotionPrice", "Promotion", new { @maSP = item.product_id, @dateS = item.date_start })" style="text-decoration:none;color:red"><i class="far fa-trash-alt"></i>&nbsp;Delete</a>*@
+        </td>
+    </tr>}
+            </table>
+            @Html.PagedListPager(Model, Page => Url.Action("PromotionPrice", new { Page }))
+        </div>
+    </div>
+</div>

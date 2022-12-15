@@ -1,0 +1,82 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>RequestCodeMail</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js">
+
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+@{
+    var registerInfo = Session["regisInfo"] as DoAnAdmin.Models.Customer;
+}
+<body>
+    @using (Html.BeginForm())
+    {
+        <div class="d-flex justify-content-center align-items-center container">
+            <div class="card py-5 px-3">
+                <h5 class="m-0">Mail verification</h5><span class="mobile-text">Enter the code we just send on your mail <b class="text-danger">@registerInfo.cusEmail</b></span>
+                <div class="d-flex flex-row mt-5">
+                    <input type="text" name="mx1" class="form-control" autofocus="">
+                    <input type="text" name="mx2" class="form-control">
+                    <input type="text" name="mx3" class="form-control">
+                    <input type="text" name="mx4" class="form-control">
+                    <input type="text" name="mx5" class="form-control">
+                    <input type="text" name="mx6" class="form-control">
+                </div>
+                @ViewBag.maxacnhan
+                <div> <button type="submit" class="btn btn-blue text-center">Đăng kí</button> </div>
+                <div><span class="d-block mobile-text">Don't receive the code?</span><span class="font-weight-bold text-danger cursor">Resend</span></div>
+                <a href="@Url.Action("ShowAllProducts","Product")">Thoát</a>
+            </div>
+        </div>
+    }
+</body>
+</html>
+<style>
+    .card {
+        width: 350px;
+        padding: 10px;
+        border-radius: 20px;
+        background: #fff;
+        border: none;
+        height: 350px;
+        position: relative
+    }
+
+    .container {
+        height: 100vh
+    }
+
+    body {
+        background: #eee
+    }
+
+    .mobile-text {
+        color: #989696b8;
+        font-size: 15px
+    }
+
+    .form-control {
+        margin-right: 12px
+    }
+
+        .form-control:focus {
+            color: #495057;
+            background-color: #fff;
+            border-color: #ff8880;
+            outline: 0;
+            box-shadow: none
+        }
+
+    .cursor {
+        cursor: pointer
+    }
+</style>

@@ -1,0 +1,94 @@
+﻿@model IEnumerable<DoAnAdmin.Models.Employee>
+
+@{
+    ViewBag.Title = "Employees";
+    Layout = "~/Views/Shared/_LayoutPageAdmin.cshtml";
+}
+
+<h2>Quản lý nhân viên</h2>
+
+<p>
+    @Html.ActionLink("Thêm mới", "CreateEmployees")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Tên nhân viên
+        </th>
+        <th>
+            Ngày vào làm
+        </th>
+        <th>
+            Hình ảnh
+        </th>
+        <th>
+            Địa chỉ
+        </th>
+        <th>
+            Lương
+        </th>
+        <th>
+            Thưởng thêm
+        </th>
+        <th>
+            Ngày bắt đầu
+        </th>
+        <th>
+            Email
+        </th>
+        <th>
+            Số điện thoại
+        </th>
+        <th>
+            Mật khẩu
+        </th>
+        <th>
+            Loại nhân viên
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.empName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.empDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.empPhoto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.empAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.empSalary)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.empBonus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.empStartTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.empEmail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.empPhone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.empPassword)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmployeesRole.empRoleName)
+            </td>
+            <td>
+                @Html.ActionLink("Sửa", "UpdateEmployees", new { id = item.empID }) |
+                @Html.ActionLink("Xóa", "DeleteEmployees", new { id = item.empID })
+            </td>
+        </tr>
+    }
+
+</table>

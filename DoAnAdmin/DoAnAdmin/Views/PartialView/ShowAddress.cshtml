@@ -1,0 +1,52 @@
+﻿@using DoAnAdmin.Models
+@model List<CustomerAddress>
+<section class="pt-5 pb-5">
+    <div class="container">
+        <div class="row w-100">
+            <div class="col-lg-12 col-md-12 col-12">
+                <h3 class="display-5 mb-2 text-center">Danh sách địa chỉ</h3>
+                <p class="mb-5 text-center">
+                    <i class="text-info font-weight-bold">@Model.Count</i> địa chỉ trong danh sách
+                </p>
+                <table id="shoppingCart" class="table table-condensed table-responsive">
+                    <thead>
+                        <tr>
+                            <th style="width:60%">Product</th>
+                            <th style="width:16%"></th>
+                            <th style="width:16%"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            using (Html.BeginForm())
+                            {
+                        <tr>
+                            <td>
+                                <input type="text" min="1" name="txt" class="form-control form-control-lg text-center" value="@item.Name_Address">
+                            </td>
+                            <td class="actions" data-th="">
+                                    <a data-original-title="Save to Wishlist" title="" href="" class="btn btn-light" data-toggle="tooltip" data-abc="true"></a> <a href="@Url.Action("UpdateAddress", "Customers", new {add=item.Name_Address})" class="btn btn-outline-success" data-abc="true"> Đặt làm mặc định</a>
+                            </td>
+                            <td class="actions" data-th="">
+                                    <a data-original-title="Save to Wishlist" title="" href="" class="btn btn-light" data-toggle="tooltip" data-abc="true"></a> <a href="@Url.Action("DeleteAddress", "Customers", new {id=item.ID_address})" class="btn btn-outline-secondary" data-abc="true"> Xóa địa chỉ</a>
+                            </td>
+
+                        </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />

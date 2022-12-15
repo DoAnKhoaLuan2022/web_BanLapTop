@@ -1,0 +1,178 @@
+﻿@model IEnumerable<DoAnAdmin.Models.Product>
+@using DoAnAdmin.Models;
+@{ var dem = 0;
+    QL_LaptopEntities db = new QL_LaptopEntities();
+    int count = db.Products.Where(det => det.trademark_id == 5 && det.quanlity > 0).Count(); }
+
+<style>
+    .logo_acer {
+        height: 70px !important;
+        width: 77px;
+    }
+    .carousel-inner {
+        position: relative;
+        width: 100%;
+        overflow: visible;
+    }
+    .card:hover {
+        box-shadow: 9px 9px 16px rgb(0 0 0 / 44%), -9px -9px 16px rgb(83 83 86 / 80%);
+        transform: translateY(-6px);
+    }
+</style>
+<div class="nsx">
+    <img class="logo_acer" src="~/Assets/Image/ImageLogo/acer.png" />
+</div>
+<div class="sp">
+    <div id="carouselExampleControls2" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            @for (int i = 0; i < count; i = i + 4)
+            {
+                if (i >= 0 && i < 4)
+                {
+<div class="carousel-item active">
+    <div class="cards-wrapper d-flex">
+        @{ foreach (var item in Model)
+            {
+                int tienKK = 0;
+                promotion promotion = db.promotions.Where(n => n.product_id == item.id && n.date_end >= DateTime.Now).FirstOrDefault();
+                if (promotion != null)
+                {
+                    tienKK = (int)promotion.price_after;
+                }
+                if (dem == 4) { break; }
+<a style="text-decoration: none" href="@Url.Action("DetailProduct", "Product", new { @maSP = @item.id })">
+    <div class="card ">
+        <img class="card-img-top" src="~/Assets/Image/ImageProduct/@item.avatar" alt="..." />
+        <div class="card-body" style="background-color: #323232;">
+
+            @{ if (item.Name.Length <= 50)
+                {
+<h5 class="card-title">
+    @item.Name
+</h5> }
+else
+{
+<h5 class="card-title">
+    @item.Name.Substring(0, 50).ToString()
+</h5> } }
+            <div class="parameter_ram_ssd">
+                <p class="">RAM: 4GB - SSD: 200GB</p>
+                @*<p>SSD: 200GB</p>*@
+            </div>
+            <div class="d-flex pirce_asus_home">
+                <p class="card-text">
+                    @{@item.price}₫ &nbsp;&nbsp;&nbsp;
+                </p>
+                @{ if (tienKK != 0)
+                    {
+            <p class="card-text_discout">@tienKK ₫</p> } }
+            </div>
+            <div>
+                @{
+                    int ptGiam = 0;
+                    if (promotion == null)
+                    {
+                        ptGiam = 0;
+                    }
+                    else
+                    {
+                        ptGiam = (int)promotion.price * 100 / (int)@item.price;
+                    } 
+                 }
+                <span class="discout_asushome">@ptGiam%</span>
+            </div>
+        </div>
+    </div>
+</a> dem++;
+} }
+    </div>
+</div> }
+else
+{
+
+<div class="carousel-item">
+    <div class="cards-wrapper d-flex">
+        @{ foreach (var item in Model.Skip(dem))
+            {
+                int tienKK = 0;
+                promotion promotion = db.promotions.Where(n => n.product_id == item.id && n.date_end >= DateTime.Now).FirstOrDefault();
+                if (promotion != null)
+                {
+                    tienKK = (int)promotion.price_after;
+                }
+<a style="text-decoration: none" href="@Url.Action("DetailProduct", "Product", new {@maSP = @item.id })">
+    <div class="card ">
+        <img class="card-img-top" src="~/Assets/Image/ImageProduct/@item.avatar" alt="..." />
+        <div class="card-body" style="background-color: #323232;">
+
+            @{ if (item.Name.Length <= 50)
+                {
+                    <h5 class="card-title">@item.Name</h5> 
+                }
+                else
+                {
+                    <h5 class="card-title">@item.Name.Substring(0, 50).ToString()</h5> 
+                } 
+              }
+            <div class="parameter_ram_ssd">
+                <p class="">RAM: 4GB - SSD: 200GB</p>
+                @*<p>SSD: 200GB</p>*@
+            </div>
+            <div class="d-flex pirce_asus_home">
+                <p class="card-text">
+                    @{@item.price}₫ &nbsp;&nbsp;&nbsp;
+                </p>
+                @{ if (tienKK != 0)
+                    {<p class="card-text_discout">@tienKK ₫</p> }
+                  }
+            </div>
+            <div>
+                @{ 
+                    int ptGiam = 0;
+                    if (promotion == null)
+                    {
+                        ptGiam = 0;
+                    }
+                    else
+                    {
+                        ptGiam = (int)promotion.price * 100 / (int)@item.price;
+                    }
+                }
+                <span class="discout_asushome">@ptGiam%</span>
+            </div>
+        </div>
+    </div>
+</a> 
+                        dem++;
+                        if (dem % 4 == 0)
+                        {
+                            break;
+                        }
+                    }
+}
+    </div>
+</div>}
+}
+        </div>
+        <button class="prev carousel-control-prev"
+                type="button"
+                data-bs-target="#carouselExampleControls2"
+                data-bs-slide="prev"
+                style="width:50px">
+            <span class="carousel-control-prev-icon" aria-hidden="true" style="background-image:none">
+                <img style="width:30px; height:30px" src="https://cdn-icons-png.flaticon.com/512/8890/8890026.png" />
+            </span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="next carousel-control-next"
+                type="button"
+                data-bs-target="#carouselExampleControls2"
+                data-bs-slide="next"
+                style="width:50px">
+            <span class="carousel-control-next-icon" aria-hidden="true" style="background-image: none">
+                <img style="width:30px; height:30px" src="https://cdn-icons-png.flaticon.com/512/8890/8890065.png" />
+            </span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>

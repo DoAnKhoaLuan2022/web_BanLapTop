@@ -1,0 +1,181 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    @*<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">*@
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://cdn.rawgit.com/PascaleBeier/bootstrap-validate/v2.2.0/dist/bootstrap-validate.js"></script>
+
+    <link href="~/Assets/Admin/css/Style2.css" rel="stylesheet" type="text/css">
+    @*<link rel="stylesheet" href="~/Assets/Admin/css/main.css" />*@
+    <link rel="stylesheet" href="~/Assets/Admin/css/Home.css" />
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" />
+
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <style>
+        nav div ul li a:hover {
+            color: #090;
+        }
+    </style>
+    @RenderSection("Scripts", false)
+</head>
+<body>
+    <div id="menu" class="row sticky-top" style="top:0">
+        <form action="/Product/SearchProduct" id="header" method="get">
+            @*-------Hearder đầu tiên chạy quảng cáo---------*@
+            @*@Html.Action("BannerTopPartial", "Banner")*@
+
+            @*---------Logo , thanh tìm kiếm , giỏ hàng , đăng nhâp ,...*@
+            @*<nav class="navbar navbar-expand navbar-light" style="background-color:black;">
+                <div class="container">
+                    @Html.Action("LogoPartial", "Logo")*@
+            @*<input class="form-control mx-auto w-50" type="text" id="txt_Search" name="txt_Search" placeholder="Bạn tìm gì..." aria-label="Search">*@
+
+            @*<div class="col-lg-6">
+                    <div class="input-group">
+                        <input name="txtSearch" type="text" class="form-control" placeholder="Bạn tìm gì..." aria-label="Search" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button class="btn" type="submit">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="15" height="16">
+                                    <path fill-rule="evenodd" d="M11.5 7a4.499 4.499 0 11-8.998 0A4.499 4.499 0 0111.5 7zm-.82 4.74a6 6 0 111.06-1.06l3.04 3.04a.75.75 0 11-1.06 1.06l-3.04-3.04z"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>*@
+            @* Hiển thị giỏ hàng *@
+            @*<button class="header_cart btn btn-outline-light mx-5 p-0 position-relative" type="submit">
+                    @Html.Action("CartPartial", "Cart")
+                </button>*@
+            @* Hiển thị khu vực account *@
+            @*@if (Session["user"] == null)
+                            {
+                @RenderPage("_LoginLogoutPartial.cshtml") }
+                            else
+                            {
+                @Html.Action("LoginSuccessPartial", "User")}
+                        </div>
+                    </nav>*@
+
+            <div class="header" style="top:0">
+                @Html.Action("LogoPartial", "Logo")
+                <div class="nav">
+                    <ul class="header__nav-list">
+                        <li class="header__nav-item">
+                            <button class="header_drop-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                Laptop
+                            </button>
+                            <ul class="header_drop_menu dropdown-menu">
+                                <li><a class="header_drop_item dropdown-item" href="@Url.Action("ShowProductsMacbook", "Product")">MacBook</a></li>
+                                <li><a class="header_drop_item dropdown-item" href="@Url.Action("ShowProductsAsus", "Product")">Asus</a></li>
+                                <li><a class="header_drop_item dropdown-item" href="@Url.Action("ShowProductsHP", "Product")">HP</a></li>
+                                <li><a class="header_drop_item dropdown-item" href="@Url.Action("ShowProductsLenovo", "Product")">Lenovo</a></li>
+                                <li><a class="header_drop_item dropdown-item" href="@Url.Action("ShowProductsDELL", "Product")">Dell</a></li>
+                                <li><a class="header_drop_item dropdown-item" href="@Url.Action("ShowProductsLG", "Product")">LG</a></li>
+                            </ul>
+                        </li>
+                        <li class="header__nav-item">
+                            <button class="header_drop-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                Phụ kiện
+                            </button>
+                            <ul class="header_drop_menu dropdown-menu">
+                                <li><a class="header_drop_item dropdown-item" href="@Url.Action("ShowProductsTaiNghe", "Product")">Tai nghe</a></li>
+                                <li><a class="header_drop_item dropdown-item" href="@Url.Action("ShowProductsChuot", "Product")">Chuột</a></li>
+                                <li><a class="header_drop_item dropdown-item" href="@Url.Action("ShowProductsBanPhim", "Product")">Bàn phím</a></li>
+                                <li><a class="header_drop_item dropdown-item" href="@Url.Action("ShowProductsCucSac", "Product")">Cáp sạc</a></li>
+                                <li><a class="header_drop_item dropdown-item" href="@Url.Action("ShowProductsPhuKienKhac", "Product")">Phụ kiện khác</a></li>
+                            </ul>
+                        </li>
+                        <li class="header__nav-item">Hỏi đáp</li>
+                        <li class="header__nav-item">Liên hệ</li>
+                        <li class="header__nav-item">
+
+                            <div class="header_right_wrap">
+
+                                @{ var info = Session["user"] as DoAnAdmin.Models.Customer;
+                                    if (info == null)
+                                    {
+                        <button class="header_drop-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="header_right_icon far fa-user"></i>
+                        </button>
+                                        <ul class="header_drop_menu dropdown-menu">
+                                            <li><a class="header_drop_item dropdown-item" href="@Url.Action("Register", "Customers")">Đăng kí</a></li>
+                                            <li><a class="header_drop_item dropdown-item" href="@Url.Action("Login", "Customers")">Đăng nhập</a></li>
+                                        </ul> }
+                                    else
+                                    {
+                        <button class="header_drop-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="header_right_icon far fa-user">&nbsp;&nbsp;@info.cusName</i>
+                        </button>
+                                        <ul class="header_drop_menu dropdown-menu">
+                                            <li><a class="header_drop_item dropdown-item" href="@Url.Action("Profile", "Customers")"> Trang cá nhân</a></li>
+                                            <li><a class="header_drop_item dropdown-item" href="@Url.Action("Login", "Customers")"> Đăng xuất</a></li>
+                                        </ul> }
+                                    info = null; }
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="header_right me-4">
+                        <div class="search-btn" style="display: flex">
+                            <div class="wrap">
+                                <input type="text" class="search-box-input form-control" placeholder="Bạn muốn tìm gì?" />
+                            </div>
+                            <button class="search-icon btn btn-dark"><i class="fas fa-search"></i></button>
+                        </div>
+                        <div class="header_right_wrap">
+                            @Html.Action("Cart", "PartialView")
+                            @*<i class="header_right_icon fa-shopping-cart bg-white"></i>*@
+                        </div>
+                        <div class="header_right_wrap">
+                            @Html.Action("Order", "PartialView")
+                            @*<i class="header_right_icon fas fa-bags-shopping bg-white"></i>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    @*--------------HIển thị san phẩm----------------*@
+    @*@RenderPage("_TrademarkPartial.cshtml")*@
+
+    @*--------------HIển thị san phẩm----------------*@
+    <div class="w-100" id="wrapper" style="z-index:2; margin-top:41px">
+        @RenderBody()
+    </div>
+    <div id="Footer" class="row" style="background-color:black">
+        <div class="col text-light mt-3 mb-3" style="text-align:center;">
+            <span class="text-muted">Copyright by sinh viên HUFI® Since 2021</span><br />
+            <span class="text-muted">Góp ý và Khiếu nại: quyen.12177@gmail.com</span>
+        </div>
+    </div>
+    @*<div class="cta">
+            <div class="ctaitem">
+                <div class="ctabg" style="background: #dd3333"></div>
+                <div class="ctacontent" style="background: #dd3333">0941679927</div>
+                <div class="ctaimg" style="background: #dd3333"><a href="tel:0941679927"><img src="/Assets/Image/call.png" alt="Gọi điện" /></a></div>
+            </div>
+            <div class="ctaitem">
+                <div class="ctabg" style="background: #2196F3"></div>
+                <div class="ctacontent" style="background: #2196F3">Messenger</div>
+                <div class="ctaimg" style="background: #2196F3"><a href="https://m.me/100039053493163"><img src="/Assets/Image/mess.png" alt="Messenger" /></a></div>
+            </div>
+            <div class="ctaitem">
+                <div class="ctabg" style="background: #2196F3"></div>
+                <div class="ctacontent" style="background: #2196F3">Chat Zalo</div>
+                <div class="ctaimg" style="background: #2196F3"><a href="https://zalo.me/0941679927"><img src="/Assets/Image/zalo.png" alt="Chat Zalo" /></a></div>
+            </div>
+            <div class="ctaitem">
+                <div class="ctabg" style="background: #ffd800"></div>
+                <div class="ctacontent" style="background: #ffd800">Liên Hệ</div>
+                <div class="ctaimg" style="background: #ffd800"><a href="https://forms.gle/UZ3BT4LU12NSsxaSA"><img src="/Assets/Image/letter.png" alt="Liên hệ" /></a></div>
+            </div>
+        </div>*@
+</body>
+</html>
+
+

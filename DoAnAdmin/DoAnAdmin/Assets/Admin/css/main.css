@@ -1,0 +1,28 @@
+﻿body {
+}
+
+.navbar {
+    height: 60px;
+}
+
+.input-group-append {
+    background-color: #3C4048;
+    color: white;
+    border: 0;
+    border-radius: 5px;
+}
+
+    .input-group-append:hover {
+        background-color: #F0A500;
+    }
+
+.form-control {
+    background-color: #3C4048;
+    border: 0px solid #ced4da;
+    border-radius: 5px;
+}
+
+.header_cart {
+    border: 0;
+}
+/*card*/

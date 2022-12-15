@@ -1,0 +1,70 @@
+﻿@model IEnumerable<DoAnAdmin.Models.DetailsOrder>
+@using DoAnAdmin.Models
+@{
+    ViewBag.Title = "AdminDetailsOrder";
+    Layout = "~/Views/Shared/_LayoutPageAdmin.cshtml";
+    QL_LaptopEntities db = new QL_LaptopEntities();
+
+}
+
+<h2>Chi tiết đơn đặt hàng</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Hình sản phẩm
+        </th>
+        <th>
+            Địa chỉ giao hàng
+        </th>
+        <th>
+            Giá sản phẩm
+        </th>
+        <th>
+            Số lượng
+        </th>
+        <th>
+            Tiền hàng
+        </th>
+        <th>
+            Tên người nhận
+        </th>
+        <th>
+            Tên sản phẩm giao
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        var product = db.Products.Where(n => n.id == item.proID).FirstOrDefault();
+        <tr>
+            <td>
+                <img src="~/Assets/Image/ImageProduct/@product.avatar" style="width:100px;height:100px" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.orderAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.proPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.orderQuantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.orderMoney)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Customer.cusName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.Name)
+            </td>
+
+        </tr>
+    }
+
+</table>Tổng tiền tất cả
+<h3 style="color:red">
+    @String.Format("{0:0,0}", @Model.Sum(n => n.orderMoney)) VND
+</h3>

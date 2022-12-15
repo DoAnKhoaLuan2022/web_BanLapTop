@@ -1,0 +1,187 @@
+﻿@using DoAnAdmin.Models
+@using PagedList.Mvc
+@model PagedList.IPagedList<Comment>
+    @{ 
+        Comment CM = Model.ToList().FirstOrDefault();
+        string idPro = CM.proID;
+
+    }
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+<h1>@ViewBag.csError</h1>
+<div class="row" style="background-color:black;width:1200px">
+    <div class="col">
+        <h1 style="color:white">Comments</h1>
+        @foreach (var item in Model)
+        {
+            <div class="comment mt-4 text-justify">
+                <img src="~/Assets/Image/ImageAvatar/messages-3.jpg" alt="" class="rounded-circle" width="40" height="40">
+                <h4>@item.cusName</h4> <span>@item.comDate</span> <br>
+                <p>@item.comMessage</p>
+            </div>
+        }
+    </div>
+</div>
+<div class="pagination" style="margin-left: 400px">
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+    of @Model.PageCount   @Html.PagedListPager(Model, page => Url.Action("Index", new { @id = idPro, page }))
+</div>
+
+<style>
+    .ul.pagination {
+        display: inline-block;
+        padding: 0;
+        margin: 0;
+    }
+
+    ul.pagination li {
+        display: inline;
+    }
+
+        ul.pagination li a {
+            color: black;
+            float: left;
+            padding: 8px 16px;
+            text-decoration: none;
+            transition: background-color .3s;
+        }
+
+            ul.pagination li a.active {
+                background-color: #4CAF50;
+                color: white;
+            }
+
+            ul.pagination li a:hover:not(.active) {
+                background-color: #ddd;
+            }
+</style>
+<style>
+    .navbar-nav {
+        width: 100%
+    }
+
+
+
+    #clicked {
+        padding-top: 1px;
+        padding-bottom: 1px;
+        text-align: center;
+        width: 100%;
+        background-color: #ecb21f;
+        border-color: #a88734 #9c7e31 #846a29;
+        color: black;
+        border-width: 1px;
+        border-style: solid;
+        border-radius: 13px
+    }
+
+    #profile {
+        background-color: unset
+    }
+
+    #post {
+        margin: 10px;
+        padding: 6px;
+        padding-top: 2px;
+        padding-bottom: 2px;
+        text-align: center;
+        background-color: #ecb21f;
+        border-color: #a88734 #9c7e31 #846a29;
+        color: black;
+        border-width: 1px;
+        border-style: solid;
+        border-radius: 13px;
+        width: 50%
+    }
+
+
+    #nav-items li a,
+    #profile {
+        text-decoration: none;
+        color: rgb(224, 219, 219);
+        background-color: black
+    }
+
+    .comments {
+        margin-top: 5%;
+        margin-left: 20px
+    }
+
+    .darker {
+        border: 1px solid #ecb21f;
+        background-color: black;
+        float: right;
+        border-radius: 5px;
+        padding-left: 40px;
+        padding-right: 30px;
+        padding-top: 10px
+    }
+
+    .comment {
+        border: 1px solid rgba(16, 46, 46, 1);
+        background-color: rgba(16, 46, 46, 0.973);
+        float: left;
+        border-radius: 5px;
+        padding-left: 40px;
+        padding-right: 30px;
+        padding-top: 10px
+    }
+
+        .comment h4,
+        .comment span,
+        .darker h4,
+        .darker span {
+            display: inline
+        }
+
+        .comment p,
+        .comment span,
+        .darker p,
+        .darker span {
+            color: rgb(184, 183, 183)
+        }
+
+    h1,
+    h4 {
+        color: white;
+        font-weight: bold;
+    }
+
+    label {
+        color: rgb(212, 208, 208)
+    }
+
+    #align-form {
+        margin-top: 20px
+    }
+
+    .form-group p a {
+        color: white
+    }
+
+    #checkbx {
+        background-color: black
+    }
+
+    #darker img {
+        margin-right: 15px;
+        position: static
+    }
+
+    .form-group input,
+    .form-group textarea {
+        background-color: black;
+        border: 1px solid rgba(16, 46, 46, 1);
+        border-radius: 12px
+    }
+
+    form1 {
+        border: 1px solid rgba(16, 46, 46, 1);
+        background-color: rgba(16, 46, 46, 0.973);
+        border-radius: 5px;
+        padding: 20px
+    }
+</style>
+

@@ -1,0 +1,526 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    @*<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">*@
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://cdn.rawgit.com/PascaleBeier/bootstrap-validate/v2.2.0/dist/bootstrap-validate.js"></script>
+
+    @*Animation*@
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+    <link href="~/Assets/Admin/css/styleOld.css" rel="stylesheet" type="text/css">
+    <link href="~/Assets/Admin/css/trgChu.css" rel="stylesheet" />
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" />
+
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <style>
+        nav div ul li a:hover {
+            color: #090;
+        }
+    </style>
+    @RenderSection("Scripts", false)
+</head>
+<body>
+    <div id="menu" class="row sticky-top" style="top:0;right:0">
+        <div>
+            <div class="header" style="top:0">
+                @Html.Action("LogoPartial", "Logo")
+                <div class="nav">
+                    <ul class="header__nav-list">
+                        <li class="header__nav-item">
+                            <button class="header_drop-btn dropdown-toggle " data-bs-toggle="dropdown" aria-expanded="false">
+                                Laptop
+                            </button>
+                            <ul class="header_drop_menu dropdown-menu ">
+                                <li><a class="header_drop_item dropdown-item" href="@Url.Action("ShowProductsMacbook", "Product")">MacBook</a></li>
+                                <li><a class="header_drop_item dropdown-item" href="@Url.Action("ShowProductsAsus", "Product")">Asus</a></li>
+                                <li><a class="header_drop_item dropdown-item" href="@Url.Action("ShowProductsHP", "Product")">HP</a></li>
+                                <li><a class="header_drop_item dropdown-item" href="@Url.Action("ShowProductsLenovo", "Product")">Lenovo</a></li>
+                                <li><a class="header_drop_item dropdown-item" href="@Url.Action("ShowProductsDELL", "Product")">Dell</a></li>
+                                <li><a class="header_drop_item dropdown-item" href="@Url.Action("ShowProductsLG", "Product")">LG</a></li>
+                                <li><a class="header_drop_item dropdown-item" href="@Url.Action("ShowProductsAcer", "Product")">Acer</a></li>
+                                <li><a class="header_drop_item dropdown-item" href="@Url.Action("ShowProductsMSI", "Product")">MSI</a></li>
+                            </ul>
+                        </li>
+                        <li class="header__nav-item">
+                            <button class="header_drop-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                Phụ kiện
+                            </button>
+                            <ul class="header_drop_menu dropdown-menu">
+                                <li><a class="header_drop_item dropdown-item" href="@Url.Action("ShowProductsTaiNghe", "Product")">Tai nghe</a></li>
+                                <li><a class="header_drop_item dropdown-item" href="@Url.Action("ShowProductsChuot", "Product")">Chuột</a></li>
+                                <li><a class="header_drop_item dropdown-item" href="@Url.Action("ShowProductsBanPhim", "Product")">Bàn phím</a></li>
+                                <li><a class="header_drop_item dropdown-item" href="@Url.Action("ShowProductsCucSac", "Product")">Cáp sạc</a></li>
+                                <li><a class="header_drop_item dropdown-item" href="@Url.Action("ShowProductsPhuKienKhac", "Product")">Phụ kiện khác</a></li>
+                            </ul>
+                        </li>
+                        <li class="header__nav-item"><a class="header_drop_item" style="text-decoration:none" href="@Url.Action("TakeCare","TakeCare")">Hỏi đáp</a></li>
+                        <li class="header__nav-item">
+
+                            <div class="header_right_wrap">
+
+                                @{ var info = Session["user"] as DoAnAdmin.Models.Customer;
+                                    if (info == null)
+                                    {
+                        <button class="header_drop-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="header_right_icon far fa-user"></i>
+                        </button>
+                                        <ul class="header_drop_menu dropdown-menu">
+                                            <li><a class="header_drop_item dropdown-item" href="@Url.Action("Register", "Customers")">Đăng kí</a></li>
+                                            <li><a class="header_drop_item dropdown-item" href="@Url.Action("Login", "Customers")">Đăng nhập</a></li>
+                                        </ul> }
+                                    else
+                                    {
+                        <button class="header_drop-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="header_right_icon far fa-user">&nbsp;&nbsp;@info.cusName</i>
+                        </button>
+                                        <ul class="header_drop_menu dropdown-menu">
+                                            <li><a class="header_drop_item dropdown-item" href="@Url.Action("Profile", "Customers")"> Trang cá nhân</a></li>
+                                            <li><a class="header_drop_item dropdown-item" href="@Url.Action("Login", "Customers")"> Đăng xuất</a></li>
+                                        </ul> }
+                                    info = null; }
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="header_right me-4">
+                        @*search*@
+                        @*<div class="search-btn" style="display: flex">
+                                <div class="wrap">
+
+                                    <input type="text" class="search-box-input form-control" placeholder="Bạn muốn tìm gì?" />
+                                </div>
+                                <button class="search-icon btn btn-dark"><i class="fas fa-search"></i></button>
+                            </div>*@
+                        <div class="search-btn" style="display: flex">
+                            <div class="wrap">
+                                <form action="Product/SearchProducts" method="get">
+                                    <input id="txtSearch"
+                                           name="txt_search"
+                                           type="text"
+                                           onclick="clickMe()"
+                                           class="search-box-input"
+                                           placeholder="Bạn muốn tìm gì?" />
+                                </form>
+                                <button class="searchButton">
+                                    @*<i class="fas fa-search"></i>*@
+                                    <img class="searchButton_img" src="https://cdn-icons-png.flaticon.com/512/9102/9102470.png" />
+                                </button>
+                            </div>
+                            <button class="search-icon"><i class="fas fa-search"></i></button>
+                        </div>
+                        @*///////*@
+                        <div class="header_right_wrap">
+                            @Html.Action("Cart", "PartialView")
+                            @*<i class="header_right_icon fa-shopping-cart bg-white"></i>*@
+                        </div>
+                        <div class="header_right_wrap">
+                            @Html.Action("Order", "PartialView")
+                            @*<i class="header_right_icon fas fa-bags-shopping bg-white"></i>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @*-------------------Chạy banner , Quảng cáo--------------------*@
+    @*@Html.Action("BannerMidPartial", "Banner")*@
+    <div class="banner">
+
+        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="https://cdn.tgdd.vn/2022/09/banner/mac-2880-800-1920x533.png" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://cdn.tgdd.vn/2022/10/banner/ws8-2880-800-1920x533-2.png" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://cdn.tgdd.vn/2022/10/banner/Banner-Big---Desk-1920x450-3.png" class="d-block w-100" alt="...">
+                </div>
+                @*<div class="carousel-item">
+                    <img src="https://laptoplongan.com/wp-content/uploads/2022/03/illume-in1.jpg" class="d-block w-100" alt="...">
+                </div>*@
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+        <div class="policy">
+            <ul class="pr-policy">
+                <li>
+                    @*<i class="far fa-check-circle"></i>*@
+                    <img class="pr-policy_img" src="https://cdn-icons-png.flaticon.com/512/1218/1218125.png" />
+                    <span>Mẫu mã đa dạng, <br>chính hãng</span>
+                </li>
+                <li>
+                    <img class="pr-policy_img" src="https://cdn-icons-png.flaticon.com/512/4521/4521321.png" />
+                    <span>Giao hàng toàn quốc</span>
+                </li>
+                <li>
+                    <img class="pr-policy_img" src="https://cdn-icons-png.flaticon.com/512/3076/3076677.png" />
+                    <span>Bảo hành có cam kết <br>tới 12 tháng</span>
+                </li>
+                <li>
+                    <img class="pr-policy_img" src="https://cdn-icons-png.flaticon.com/512/4989/4989821.png" />
+                    <span>Có thể đổi trả tại <br>các cơ sở gần nhất</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    @*----------------HIển thị thương hiệu sản phẩm------------*@
+    <div class="trademake">
+        <ul class="choose-cate">
+            <li>
+                <a href="@Url.Action("ShowProductsMacbook", "Product")">
+                    <div class="img-catesp catemac">
+                        <img src="//cdn.tgdd.vn/mwgcart/topzone/images/desktop/img-catemac-1.png" alt="" width="150" height="60">
+                    </div>
+                    <span>Mac</span>
+                </a>
+            </li>
+            <li>
+                <a href="@Url.Action("ShowProductsAsus", "Product")">
+                    <div class="img-catesp catemac">
+                        <img src="~/Assets/Image/ImageTradekmark/asus.png" alt="" width="150" height="60">
+                    </div>
+                    <span>Asus</span>
+                </a>
+            </li>
+            <li>
+                <a href="@Url.Action("ShowProductsAcer", "Product")">
+                    <div class="img-catesp catemac">
+                        <img src="~/Assets/Image/ImageTradekmark/acer.png" alt="" width="150" height="60">
+                    </div>
+                    <span>Acer</span>
+                </a>
+            </li>
+            @*<li>
+                <a href="@Url.Action("ShowProductsGIGABYTE", "Product")">
+                    <div class="img-catesp catemac">
+                        <img src="~/Assets/Image/ImageTradekmark/gigatebyte.png" alt="" width="150" height="60">
+                    </div>
+                    <span>GIGABYTE</span>
+                </a>
+            </li>*@
+            <li>
+                <a href="@Url.Action("ShowProductsHP", "Product")">
+                    <div class="img-catesp cateipad">
+                        <img src="~/Assets/Image/ImageTradekmark/hp.png" alt="" width="116" height="60">
+                    </div>
+                    <span>HP</span>
+                </a>
+            </li>
+            <li>
+                <a href="@Url.Action("ShowProductsLenovo", "Product")">
+                    <div class="img-catesp catewatch">
+                        <img src="~/Assets/Image/ImageTradekmark/lenovo.png" alt="" width="169" height="60">
+                    </div>
+                    <span>Lenovo</span>
+                </a>
+            </li>
+            <li>
+                <a href="@Url.Action("ShowProductsMSI", "Product")">
+                    <div class="img-catesp cateisound">
+                        <img src="~/Assets/Image/ImageTradekmark/msi.png" alt="" width="169" height="60">
+                    </div>
+                    <span>MSI</span>
+                </a>
+            </li>
+            <li>
+                <a href="@Url.Action("ShowProductsDELL", "Product")">
+                    <div class="img-catesp cateisound">
+                        <img src="~/Assets/Image/ImageTradekmark/dell.png" alt="" width="169" height="60">
+                    </div>
+                    <span>Dell</span>
+                </a>
+            </li>
+            <li>
+                <a href="@Url.Action("ShowProductsLG", "Product")">
+                    <div class="img-catesp catephukien">
+                        <img src="~/Assets/Image/ImageTradekmark/lg.png" alt="" width="96" height="60">
+                    </div>
+                    <span>LG</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    @*--------------San phẩm----------------*@
+    <div class="w-100" id="wrapper" style="position:absolute;z-index:2; margin-top:0;overflow:hidden">
+        @RenderBody()
+        <div id="Footer" class="row w-100" style="min-width:1256px">
+            <div class="">
+                <ul class="list_foot">
+                    <li class="list_foot_li">
+                        <span>Tổng đài</span>
+                        <a href="tel:0397495029">
+                            <span>CSKH: </span>
+                            <b>0397.495.029 </b> (8:00 - 21:30)
+                        </a>
+                        <a href="https://www.google.com/intl/vi/gmail/about/">
+                            <span>Email: </span>
+                            <b>quyen.12177@gmail.com</b>
+                        </a>
+                    </li>
+                    <li class="list_foot_li">
+                        <span>Hỗ trợ khách hàng</span>
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+                            Điều kiện giao dịch chung
+                        </a>
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+                            Chính sách giao hàng
+                        </a>
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal3">
+                            Hướng dẫn thanh toán
+                        </a>
+                    </li>
+                    <li class="list_foot_li">
+                        <p class="txt">Kết nối với chúng tôi</p>
+                        <div class="d-flex">
+                            <a href="https://www.facebook.com/kim.quyen.12177" class="link-social">
+                                <img src="https://cdn-icons-png.flaticon.com/512/725/725289.png" />
+                            </a>
+                            <a href="https://forms.gle/Ms32wwgX5HvgGF1u8" target="_blank" class="link-social">
+                                <img src="https://cdn-icons-png.flaticon.com/512/2665/2665051.png" />
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="cta">
+        <div class="ctaitem">
+            <div class="ctabg" style="background: #ffd800"></div>
+            <div class="ctacontent" style="background: #ffd800">Liên Hệ</div>
+            <div class="ctaimg" style="background: #ffd800">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSf3QFgJXoRi27JApAvwEW6MtjvObz0hunRroqyvl9XY3WjbNA/viewform">
+                    <img style="width:30px;height:30px" src="https://cdn-icons-png.flaticon.com/512/3814/3814330.png" alt="Liên hệ" />
+                </a>
+            </div>
+        </div>
+    </div>
+    @*--------------HIển thị all san phẩm----------------*@
+    @*modal 1 *@
+    <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable" style="margin: 2% 23%;">
+            <div class="modal-content" style="width: 700px;">
+                <div class="modal-header">
+                    <h1 class="modal-title" id="staticBackdropLabel">ĐIỀU KIỆN GIAO DỊCH CHUNG WEBSITE NAM QUIN TECHNOLOGY</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    @*<div class="justify-content-center align-items-center m-auto">
+                        <h3 class="modal_header">ĐIỀU KIỆN GIAO DỊCH CHUNG WEBSITE NAM QUIN TECHNOLOGY</h3>
+                    </div>*@
+                    <div class="">
+                        <h5 class="modal_title ">1. Quy trình giao dịch & giao nhận vận chuyển</h5>
+                        <div class="modal_title_info">
+                            <p><strong>Bước 1:</strong>Tìm sản phẩm cần mua.</p>
+                            <p><strong>Bước 2:</strong>Xem giá và thông tin chi tiết sản phẩm đó, nếu quý khách đồng ý muốn đặt hàng, quý khách ấn vào 1 trong 3 nút mua hàng:</p>
+                            <p>- Đặt giữ hàng tại siêu thị.</p>
+                            <p>- Mua trả góp.</p>
+                            <p>- Mua ngay, giao hàng tận nơi.</p>
+                            <p><strong>Bước 3:</strong>Quý khách điền đầy đủ thông tin theo mua hàng theo mẫu:</p>
+                            <p>- Nếu quý khách có Mã giảm giá, bạn có thể nhập trực tiếp vào form Đặt mua để nhân viên giao hàng có thể phục vụ bạn tốt hơn với 1 mức giá chính xác sau khi đã giảm.</p>
+                            <p>- Quý khách hàng đang sử dụng thẻ ATM nội địa hoặc thẻ tín dụng Visa, Master quý khách có thể thanh toán đơn hàng bằng cách lick vào “Thanh toán trực tuyến (ATM, VISA, MASTER)” và làm theo hướng dẫn của ngân hàng.</p>
+                            <p><strong>Bước 4:</strong>Sau khi nhận đơn hàng của người mua, NamQuinTechnology sẽ liên lạc với khách hàng qua thông tin số điện quý khách hàng cung cấp bằng tổng đài 0397495029 để xác thực thông tin đơn hàng.</p>
+                            <p><strong>Bước 5:</strong>NamQuinTechnology giao hàng tận nhà đến cho khách hàng hoặc khách hàng đến trực tiếp các siêu thị NamQuinTechnology trên toàn quốc để nhận hàng.</p>
+                        </div>
+
+                        <p class="modal_title">Quy trình giao nhận vận chuyển</p>
+                        <p class="modal_title_info">NamQuinTechnology thực hiện giao hàng trên toàn quốc. Khi nhận đơn hàng từ người mua và sau khi đã xác thông tin mua hàng qua điện thoại, NamQuinTechnology sẽ tiến hành giao hàng theo yêu cầu của quý khách hàng</p>
+
+                        <h5 class="modal_title">2. Quy trình tiếp nhận & giải quyết khiếu nại</h5>
+                        <div class="modal_title_info">
+                            <p><strong>Bước 1:</strong>người mua hàng có thể gửi khiếu nại của mình đến NamQuinTechnology qua các phương tiện sau:</p>
+                            <p>- Qua tổng đài giải quyết khiếu nại: 0397.495.029 (8:00 - 21:30)</p>
+                            <p>- Qua email: quyen.12177@gmail.com</p>
+                            <p><strong>Bước 2:</strong>NamQuinTechnology sẽ liên lạc với khách hàng để tìm hiểu nguyên nhân để thoả thuận đền bù (khi cần).</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal_footer">
+                    <p>Chúc quý khách hàng có trải nghiệm mua hàng tốt nhất tại</p>
+                    <img src="~/Assets/Image/ImageLogo/Logo.png" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @*modal 2 *@
+    <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog " style="margin: 2% 23%;">
+            <div class="modal-content" style="width: 700px;">
+                <div class="modal-body">
+                    <div class="justify-content-center align-items-center m-auto">
+                        <h3 class="modal_header">CHÍNH SÁCH GIAO HÀNG NAM QUIN TECHNOLOGY</h3>
+                    </div>
+                    <div class="">
+                        <h5 class="modal_title ">Thời gian nhận hàng</h5>
+                        <div class="modal_title_info">
+                            <p>NamQuinTechnology nhận giao nhanh trong ngày với khoảng cách từ các siêu thị có hàng đến điểm giao là 20 km. Khoảng cách lớn hơn nhân viên của chúng tôi sẽ tư vấn cách thức giao hàng thuận tiện nhất cho khách hàng. Cụ thể:</p>
+                            <table border="1" cellpadding="10" cellspacing="0">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <p><strong>Khoảng cách đến nhà khách từ siêu thị gần nhất có hàng</strong></p>
+                                        </td>
+                                        <td>
+                                            <p><strong>TP. HCM</strong></p>
+                                        </td>
+                                        <td>
+                                            <p><strong>Tỉnh khác</strong></p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>Dưới 5 km</p>
+                                        </td>
+                                        <td>
+                                            <p>Giao trong 30 phút</p>
+                                        </td>
+                                        <td>
+                                            <p>Giao trong 30 phút</p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>5 - 10 km</p>
+                                        </td>
+                                        <td>
+                                            <p>Giao trong 1 tiếng</p>
+                                        </td>
+                                        <td>
+                                            <p>Giao trong 1 tiếng</p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>10 - 20 km</p>
+                                        </td>
+                                        <td>
+                                            <p>Giao trong 2 tiếng</p>
+                                        </td>
+                                        <td>
+                                            <p>Giao trong 2 tiếng</p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>Lưu ý</p>
+                                        </td>
+                                        <td>
+                                            <p>Thời gian giao hàng 9:00 đến 21:00</p>
+                                        </td>
+                                        <td>
+                                            <p>Thời gian giao hàng 9:00 đến 20:00</p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal_footer">
+                    <p>Chúc quý khách hàng có trải nghiệm mua hàng tốt nhất tại</p>
+                    <img src="~/Assets/Image/ImageLogo/Logo.png" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @*modal 3  *@
+    <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable" style="margin: 2% 23%;">
+            <div class="modal-content" style="width: 700px;">
+                <div class="modal-header">
+                    <h1 class="modal-title" id="staticBackdropLabel">CHÍNH SÁCH THANH TOÁN TẠI NAM QUIN TECHNOLOGY</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="">
+                        <h5 class="modal_title ">1. Quy trình thanh toán</h5>
+                        <p>Người mua và bên bán có thể tham khảo các phương thức thanh toán sau đây và lựa chọn áp dụng phương thức phù hợp:</p>
+                        <div class="modal_title_info">
+                            <p><strong>Cách  1:</strong>Thanh toán sau (COD – giao hàng và thu tiền tận nơi):</p>
+                            <p>- Bước 1: Người mua tìm hiểu thông tin về sản phẩm, dịch vụ được đăng tin.</p>
+                            <p>- Bước 2: Người mua xác thực đơn hàng (điện thoại, tin nhắn, email).</p>
+                            <p>- Bước 3: Người bán xác nhận thông tin Người mua.</p>
+                            <p>- Bước 4: Người bán chuyển hàng</p>
+                            <p>- Bước 5: Người mua nhận hàng và thanh toán bằng tiền mặt, thẻ ATM nội địa hoặc thẻ tín dụng.</p>
+                            <p><strong>Cách  2:</strong>Thanh toán online qua thẻ tín dụng, chuyển khoản:</p>
+                            <p>- Bước 1: Người mua tìm hiểu thông tin về sản phẩm, dịch vụ được đăng tin.</p>
+                            <p>- Bước 2: Người mua xác thực đơn hàng (điện thoại, tin nhắn, email).</p>
+                            <p>- Bước 3: Người bán xác nhận thông tin Người mua.</p>
+                            <p>- Bước 4: Người mua thanh toán.</p>
+                            <p>- Bước 5: Người bán chuyển hàng.</p>
+                            <p>- Bước 6: Người mua nhận hàng.</p>
+
+                        </div>
+
+                        <h5 class="modal_title">2. Quy định về hoàn trả tiền khi thanh toán trực tuyến</h5>
+                        <p>Trong trường hợp quý khách hàng đã mua hàng & thanh toán trực tuyến thành công nhưng dư tiền, hoặc trả sản phẩm, TopZone sẽ hoàn tiền vào thẻ quý khách đã dùng để thanh toán, theo thời hạn như sau:</p>
+                        <div class="modal_title_info">
+                            <p><strong>- Đối với thẻ ATM:</strong>Thời gian khách hàng nhận được tiền hoàn từ 7 - 10 ngày (trừ Thứ 7, Chủ Nhật và Ngày lễ) kể từ khi TopZone nhận được đề nghị của khách hàng. Nếu qua thời gian trên không nhận được tiền, TopZone sẽ hỗ trợ liên hệ ngân hàng của khách hàng để giải quyết.</p>
+                            <p><strong>- Đối với thẻ Visa/Master card/JCB:</strong>Thời gian khách hàng nhận được tiền hoàn từ 7 - 15 ngày làm việc kể từ khi TopZone nhận được đề nghị của khách hàng. Nếu qua thời gian trên không nhận được tiền, TopZone sẽ hỗ trợ liên hệ ngân hàng của khách hàng để giải quyết.</p>
+                            <p><strong>- Đối với thanh toán bằng hình thức VNPAY QR:</strong>Thời gian Khách hàng nhận được tiền hoàn 3 - 8 ngày. Nếu qua thời gian trên khách hàng không nhận được tiền, khách hàng liên hệ TopZone để được giải quyết.</p>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal_footer">
+                    <p>Chúc quý khách hàng có trải nghiệm mua hàng tốt nhất tại</p>
+                    <img src="~/Assets/Image/ImageLogo/Logo.png" />
+                </div>
+            </div>
+
+        </div>
+    </div>
+    @*script*@
+    <script>
+        const searchIcon = document.querySelector(".search-icon");
+        const searchBoxInput = document.querySelector(".search-box-input");
+        const searchButton = document.querySelector(".searchButton");
+
+        function removeOpen() {
+            searchIcon.classList.remove("open");
+            searchBoxInput.classList.remove("open");
+            searchButton.classList.remove("open");
+        }
+        var clicks = 0;
+        searchIcon.onclick = function () {
+            searchBoxInput.classList.add("open");
+            searchIcon.classList.add("open");
+            searchButton.classList.add("open");
+        };
+        searchButton.onclick = function () {
+            removeOpen();
+        };
+    </script>
+
+</body>
+</html>
+
+

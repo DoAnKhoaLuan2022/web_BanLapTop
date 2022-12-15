@@ -1,0 +1,50 @@
+﻿@using DoAnAdmin.Models
+@model Customer
+
+<style>
+    .header_right_icon {
+        color: white;
+        padding: 10px;
+    }
+</style>
+@{
+    var dem = 0;
+    if (ViewBag.tong == null)
+    {
+        dem = 0;
+    }
+    else
+    {
+        dem = dem + ViewBag.tong;
+    }
+}
+<span style="text-decoration-color:white;">
+    <a href="@Url.Action("DetailsCart","Cart")">
+        <i class="header_right_icon fas fa-shopping-cart"></i>
+        <span class="position-absolute top-0 start-80 translate-middle badge rounded-pill bg-danger" style="margin-top:3px;outline:none">
+            @dem
+        </span>
+    </a>
+</span>
+@*<div class="cart_content">
+    <div class="cart_text">
+        <a href="@Url.Action()">
+            <div class="cart_icon">
+                <i class="fal fa-shopping-cart" style="width:20px;height:20px;color:ư"></i>
+                <img src="https://img.fortawesome.com/1ce05b4b/ad-pro-visuals.svg" style="width:20px;height:20px" />
+                <div class="cart_count"><span>@ViewBag.tong</span></div>
+            </div>
+        </a>
+    </div>*@
+@*@if (@ViewBag.tongtien == null)
+    {
+        <div class="cart_price">@ViewBag.tongtien</div>
+    }
+    else
+    {
+        <div class="cart_price">@string.Format("{0:0,0}", @ViewBag.tongtien)</div>
+    }*@
+
+@*</div>*@
+
+

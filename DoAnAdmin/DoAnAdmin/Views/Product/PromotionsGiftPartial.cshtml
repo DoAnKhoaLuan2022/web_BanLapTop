@@ -1,0 +1,184 @@
+﻿@model DoAnAdmin.Models.PromotionsGift
+@using DoAnAdmin.Models;
+@{ int sum = 0;
+    var g1 = "";
+    var g2 = "";
+    var g3 = "";
+    var g4 = "";
+    if (Model == null)
+    {
+        sum = 0;
+    }
+    else
+    {
+        sum = (int)Model.priceSum;
+        g1 = Model.gift1;
+        g2 = Model.gift2;
+        g3 = Model.gift3;
+        g4 = Model.gift4;
+    } }
+<style>
+    .pro_title {
+        text-align: center;
+        background-color: #FF5959;
+        border-radius: 7px 7px 0 0;
+    }
+
+        .pro_title p {
+            font-size: 20px;
+            color: #fff;
+            font-weight: 700;
+        }
+
+    .pro_price {
+        background-color: #FEF9EF;
+        text-align: center;
+        height: 50px;
+        border-radius: 0 0 7px 7px;
+    }
+
+        .pro_price span {
+            font-size: 25px;
+            color: #ff5959;
+            font-weight: bold;
+            line-height: 50px;
+        }
+
+    .giftItem {
+        height: 150px;
+        width: 150px;
+        margin-right: 10px;
+    }
+
+        .giftItem span {
+            font-size: 10px;
+            color: #ff5959;
+            font-weight: bold;
+            line-height: 20px;
+        }
+
+    .gift {
+        display: flex;
+        background-color: #FEF9EF;
+        text-align: center;
+        height: 150px;
+        border-radius: 0 0 7px 7px;
+    }
+
+    .hidden {
+        display: none;
+    }
+</style>
+<div class="promotion">
+    <div class="pro_title">
+        <p>Quà khuyến mãi</p>
+    </div>
+
+    @*<div class="pro_title">
+            <p>Khuyến mãi giảm còn</p>
+        </div>*@
+    <div class="pro_price">
+        <span>@sum đ</span>
+    </div>
+    <div class="gift">
+        <div class="giftItem">
+            <span>@g1</span>
+        </div>
+        <div class="giftItem">
+            <span>@g2</span>
+        </div>
+        <div class="giftItem">
+            <span>@g3</span>
+        </div>
+        <div class="giftItem">
+            <span>@g4</span>
+        </div>
+    </div>
+</div>
+<script>
+const viewGift = document.querySelector(".gift");
+
+    if (@sum== 0) {
+        viewGift.classList.add("hidden");
+    }
+    else {
+        viewGift.classList.remove("hidden");
+    }
+</script>
+@*@if (ViewBag.prom == null)
+    {
+        <div class="card">
+            <div class="card-header">
+                <span style="font-weight:bold">Chưa có chương trình khuyến mãi</span><br />
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="promotion">
+            <div>
+                <p>Khuyến mãi giảm còn</p>
+            </div>
+            <div>
+                <span>@string.Format("{0:0,0}", Model.Product.price) <sup>đ</sup></span>
+            </div>
+        </div>*@
+@*<div class="card">
+        <div class="card-header" >
+            <span style="font-weight:bold">Khuyến mãi trị giá</span>&nbsp;@string.Format("{0:0,0}", Model.priceSum)
+            <sup>đ</sup><br />
+            <span class="text-muted">Khuyến mãi dự kiến áp dụng đến hết @string.Format("{0:d/M/yyyy}", Model.date_end) </span>
+        </div>
+        <div class="card-body">
+            <table class="table text-justify">
+                <tr>
+                    <td>
+                    @if(Model.gift1.Trim() != string.Empty)
+                    {
+                        <img src="/Assets/Image/ImageDescription/gift1.png" />
+                    }
+                    </td>
+                <td><span style="font-size:14px">@Model.gift1.Trim()</span> </td>
+            </tr>
+            <tr>
+                <td>
+                    @if(Model.gift2.Trim() != string.Empty)
+                    {
+                        <img src="/Assets/Image/ImageDescription/gift2.png" />
+                    }
+                </td>
+                <td><span style="font-size:14px">@Model.gift2.Trim()</span></td>
+            </tr>
+            <tr>
+                <td>
+                    @if(Model.gift3.Trim() != string.Empty)
+                    {
+                        <img src="/Assets/Image/ImageDescription/gift3.png" />
+                    }
+                </td>
+                <td><span style="font-size:14px">@Model.gift3.Trim()</span></td>
+            </tr>
+            <tr>
+                <td>
+                    @if(Model.gift4.Trim() != string.Empty)
+                    {
+                        <img src="/Assets/Image/ImageDescription/gift4.png" />
+                    }
+                </td>
+                <td><span style="font-size:14px">@Model.gift4.Trim()</span></td>
+            </tr>
+        </table>
+            <br />
+            <p><span style="color:red">(*)</span> Giá hoặc khuyến mãi không áp dụng trả góp lãi suất đặc biệt (0%, 0.5%, 1%)</p>
+            <br />
+            @if(Model.Product.quanlity == 0)
+            {
+                <h6 style="font-weight;color:red;text-transform:uppercase">Tạm hết hàng</h6>
+            }
+            else
+            {
+                <h6 style="font-weight;color:green;text-transform:uppercase">Còn hàng</h6>
+            }
+        </div>
+    </div>*@
+@*}*@

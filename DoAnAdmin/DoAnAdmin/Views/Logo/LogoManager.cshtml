@@ -1,0 +1,46 @@
+﻿@model IEnumerable<DoAnAdmin.Models.Banner>
+
+@{
+    ViewBag.Title = "LogoManager";
+    Layout = "~/Views/Shared/_LayoutPageAdmin.cshtml";
+}
+
+<div class="card container-fluid" style="border-radius:10px">
+    <div class="card-header bg-gradient-light">
+        <center class=""><h5 style="text-transform:uppercase;font-weight:bold">BANNER MIDDLE</h5></center>
+    </div>
+    <a href="@Url.Action("InsertLogo", "Logo")"><input type="button" class="btn btn-link" value="New" style="font-size: 13px; font-weight: bold" /></a>
+    <table class="table table-bordered" style="font-size: 13px; color: black;text-align:center">
+        <thead class="thead-dark">
+            <tr>
+                <th>ID#</th>
+                <th>Hình</th>
+                <th>Active</th>
+                <th>Ngày cập nhật</th>
+                <th>Loại</th>
+            </tr>
+        </thead>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.id)
+                </td>
+                <td width="200px" height="200px">
+                    <img src="/Assets/Image/ImageLogo/@item.image_" width="90%" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.active)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.dateUpdate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BannerType)
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

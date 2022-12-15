@@ -1,0 +1,183 @@
+﻿@model DoAnAdmin.Models.accessory
+@using DoAnAdmin.Models
+@{ ViewBag.Title = "DetailProduct";
+    Layout = "~/Views/Shared/_DetailLayoutPage.cshtml";
+    int kt = 0;
+    QL_LaptopEntities db = new QL_LaptopEntities();
+    List<TitleDetailAccessory> lst = new List<TitleDetailAccessory>();
+    List<TitleDetailAccessory> lstDet = db.TitleDetailAccessories.Where(n => n.tt_id == Model.parameter.tt_id).ToList();
+    foreach(var a in lstDet)
+    {
+        if(kt!=a.tt_id)
+        {
+            
+            lst.Add(a);
+        }
+        kt = a.tt_id;
+
+    }
+
+    List<accessory> lstAcc = db.accessories.Where(n => n.product_id == Model.product_id).ToList();
+    }
+
+<div class="container">
+    <div class="infomation d-flex">
+        <div class="slider_detail">
+            <div class="">
+                @Html.Action("ImageProductPartial", "Product", new { @maSP = @ViewBag.maSP })
+            </div>
+        </div>
+        <div class="info">
+            <h1 class="info_name">
+                @Model.Product.Name (@Model.product_id)
+            </h1>
+            <div>
+                <span style="color: #3e3e3f">Giá tại Hồ Chí Minh</span><br />
+                <span class="price h-1">
+                    @Html.Action("PromotionPricePartial", "Product", new { @maSP = @ViewBag.maSP }) &nbsp;&nbsp;
+                    @*Nếu có khuyến mãi thì gạch giá cũ đi*@
+                    @if (ViewBag.IsKhuyenMai == 1)
+                    {
+        <span class="text-muted" style="text-decoration:line-through">@string.Format("{0:0,0}", Model.Product.price) đ</span> }
+    else
+    {
+<span>@string.Format("{0:0,0}", Model.Product.price) <sup>đ</sup></span>}
+                </span>
+                @* Hiển thị khuyến mãi của sản phẩm *@
+                <div class="mt-4">
+                    @Html.Action("PromotionsGiftPartial", "Product", new { @maSP = @ViewBag.maSP })
+                </div>
+            </div>
+            <div style="margin-top:20px">
+                <p style="font-weight: bold; font-size: 18px; color: #3e3e3f">Ưu đãi khi thanh toán</p>
+
+                <div class="endow row">
+                    <div class="col-sm-6 col-md-6">
+                        <div class="card">
+                            <div class="card-header endow_card_header">
+                                <img class="endow_img" src="https://cdn.tgdd.vn/mwgcart/topzone/images/logo/vnpay.png" /><br />
+                                <span class="text-primary">Giảm &nbsp;</span><span style="font-weight:bold;" class="text-primary">300.000<sup>đ</sup></span>
+                                <p class="text-muted" style="font-size:14px">Sản phẩm Laptop</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-6">
+                        <div class="card">
+                            <div class="card-header endow_card_header">
+                                <img class="endow_img" src="https://cdn.tgdd.vn/mwgcart/topzone/images/logo/ocb-1.png" /><br />
+                                <span class="text-primary">Giảm &nbsp;</span><span style="font-weight:bold;" class="text-primary">500.000<sup>đ</sup></span>
+                                <p class="text-muted" style="font-size:14px">Sản phẩm từ 5Tr</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row d-flex" style="margin-bottom:20px">
+                <div class="col-sm-6 col-md-10">
+                    <a class="buy btn" href="@Url.Action("PaymentOne", "Payment", new {@id = Model.product_id})">
+                        MUA NGAY
+                    </a>
+                </div>
+                <div class="col-6 col-md-2">
+                    <a class="add_card btn" onclick="clickCart()" style="font-size:10px" href="@Url.Action("AddCart", "Cart", new { @id = Model.product_id})">
+                        <i class="fas fa-cart-plus" style="font-size:20px"></i><br />
+                        THÊM VÀO GIỎ HÀNG
+                    </a>
+                </div>
+            </div>
+            <div class="row pay">
+                <div class="col-sm-6 col-md-6">
+                    <a class="btn pay_taiChinh">
+                        MUA TRẢ GÓP<br />
+                        <span>Duyệt hồ sơ trong 5 phút</span>
+                    </a>
+                </div>
+                <div class="col-sm-6 col-md-6">
+                    <a class="btn pay_the">
+                        MUA TRẢ GÓP QUA THẺ<br />
+                        <span>Visa, Mastercard, JCB, Amex</span>
+                    </a>
+                </div>
+            </div>
+            <div>
+                <ul class="info-when-buy">
+                    <li>
+                        <span>
+                            <img src="https://cdn-icons-png.flaticon.com/512/679/679821.png" />
+                            Bộ sản phẩm gồm: Thùng máy, Cáp ( Type-C ), Sạc Laptop
+                        </span>
+                    </li>
+                    <li>
+                        <span>
+                            <img src="https://cdn-icons-png.flaticon.com/512/2279/2279755.png" />
+                            Hư gì đổi nấy <b>12 tháng</b> tại 3461 siêu thị trên toàn quốc
+                        </span>
+                    </li>
+                    <li>
+                        <span>
+                            <img src="https://cdn-icons-png.flaticon.com/512/1975/1975940.png" />
+                            Bảo hành chính hãng 1 năm
+                        </span>
+                    </li>
+                    <li>
+                        <span>
+                            <img src="https://cdn-icons-png.flaticon.com/512/1585/1585203.png" />
+                            Giao hàng nhanh toàn quốc
+                        </span>
+                    </li>
+                    <li>
+                        <span>
+                            <img src="https://cdn-icons-png.flaticon.com/512/3014/3014736.png" />
+                            Tổng đài: <a href="tel:0397495029" style="text-decoration:none">0397.495.029</a> (9h00 - 21h00 mỗi ngày)
+                        </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="parameter">
+        <h5 class="title">Thông số kỹ thuật</h5>
+        <div class="accordion" id="accordionPanelsStayOpenExample">
+            @foreach (var title in lst)
+            {
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                <button class="accordion-button collapsed btn_header" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                    @title.ttName
+                </button>
+            </h2>
+            <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+                <div class="accordion-body">
+                    @foreach (var item in lstAcc)
+                    {
+                        <ul class="para d-flex">
+                            <li class="para_name" style="width: 200px;">@item.parameter.paraName :</li>
+                            <li class="para_info">&nbsp;&nbsp;@item.content</li>
+                        </ul>
+                        }
+                </div>
+        </div>
+    </div>
+    }
+        </div>
+        <div class="describe">
+            @Html.Action("BaiVietPartial", "Product", new { @maSP = @ViewBag.maSP })
+        </div>
+        @*<div onclick="click()">
+            @Html.Action("LoadComment", "Comment", new { @id = Model.product_id })
+        </div>*@
+    </div>
+<script>
+    function click() {
+        location.reload();
+    }
+    function clickCart() {
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Thêm giỏ hàng thành công!',
+            showConfirmButton: false,
+            timer: 3500
+        })
+    }</script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

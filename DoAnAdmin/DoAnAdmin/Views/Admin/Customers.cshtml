@@ -1,0 +1,92 @@
+﻿@model IEnumerable<DoAnAdmin.Models.Customer>
+@using PagedList.Mvc;
+@using PagedList;
+@{
+    ViewBag.Title = "Customers";
+    Layout = "~/Views/Shared/_LayoutPageAdmin.cshtml";
+}
+
+<div class="card container-fluid" style="border-radius:10px">
+    <div class="card-header bg-gradient-light">
+        <center class=""><h5 style="text-transform:uppercase;font-weight:bold">QUẢN LÝ KHÁCH HÀNG</h5></center>
+    </div>
+    <div class="card-body">
+        <table class="table table-bordered table-hover mt-2" style="font-size: 12px; color: black; border-radius: 20px; text-align:center">
+            <thead class="thead-dark">
+                <tr>
+                    <th>
+                        Tên khách hàng
+                    </th>
+                    <th>
+                        Email
+                    </th>
+                    <th>
+                        Số điện thoại
+                    </th>
+                    <th>
+                        Mật khẩu
+                    </th>
+                    <th>
+                        Địa chỉ
+                    </th>
+                    <th>
+                        Loại khách hàng
+                    </th>
+                    <th>
+                        Trạng thái tài khoản
+                    </th>
+                    <th>
+                        Hình ảnh khách hàng
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            @foreach (var item in Model)
+            {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.cusID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cusName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cusEmail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cusPhone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cusPassword)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cusAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cusType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cusStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cusPhoto)
+            </td>
+            <td class="d-flex btn btn-secondary btn-sm text-light mr-1 border">
+                @Html.ActionLink("Sửa", "UpdateCustomers", new { id = item.cusID })|
+                @Html.ActionLink("Chi tiết", "Details", new { id = item.cusID })|
+                @Html.ActionLink("Xóa", "DeleteCustomers", new { id = item.cusID })
+             
+            </td>
+        </tr>
+
+            }
+        </table>
+        <div class="row">
+            <div>
+                <a href="@Url.Action("CreateCustomers", "Admin")"><input type="button" class="btn btn-link" value="Thêm khách hàng" style="font-size: 13px; font-weight: bold" /></a>
+            </div>
+        </div>
+    </div>
+</div>
+<br />

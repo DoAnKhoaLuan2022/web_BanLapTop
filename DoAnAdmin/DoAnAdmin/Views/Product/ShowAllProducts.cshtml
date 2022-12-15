@@ -1,0 +1,17 @@
+﻿@model PagedList.IPagedList<DoAnAdmin.Models.Detail>
+@using PagedList.Mvc;
+@using PagedList;
+@{ ViewBag.Title = "ShowAllSanPham";
+    Layout = "~/Views/Shared/_TrangChuLayout.cshtml"; }
+
+@Html.Action("ShowProductsMacbookHome", "Product")
+<video style="width:100%" src="~/Assets/Image/ImageDescription/yt1s.com - ASUS Zenbook 17 Fold OLED  Gập Giới Hạn Mở Tương Lai.mp4" controls></video>
+@Html.Action("ShowProductsAsusHome", "Product")
+
+@Html.Action("ShowProductsDellHome", "Product")
+@Html.Action("ShowProductsAcerHome", "Product")
+@Html.Action("ShowProductsHPHome", "Product")
+@Html.Action("ShowProductsLenovoHome", "Product")
+@Html.Action("ShowProductsLGHome", "Product")
+@Html.Action("ShowProductsMSIHome", "Product")
+@Html.Action("ShowProductsKhacHome", "Product")

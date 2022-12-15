@@ -1,0 +1,50 @@
+﻿@*@model IEnumerable<DoAnAdmin.Models.Banner>*@
+@model PagedList.IPagedList<DoAnAdmin.Models.Banner>
+@using PagedList.Mvc;
+@using PagedList;
+
+@{
+    ViewBag.Title = "BannerAdv";
+    Layout = "~/Views/Shared/_LayoutPageAdmin.cshtml";
+}
+
+<center class="border-bottom-primary"><h3 style="font-weight:bold;color:blue">BANNER QUẢNG CÁO</h3></center>
+
+<div>
+    <a style="font-size:13px" href="@Url.Action("InsertProduct", "Product")"><i class="fas fa-plus-square"></i>&nbsp;&nbsp;New</a>
+    <br />
+    <table class="table table-bordered table-info" style="font-size: 13px; color: black; text-align:center;">
+        <thead class="table-primary">
+            <tr>
+                <th>ID#</th>
+                <th>Hình</th>
+                <th>Active</th>
+                <th>Ngày cập nhật</th>
+                <th>Loại</th>
+            </tr>
+        </thead>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.id)
+                </td>
+                <td width="150px" height="130px">
+                    <img src="/Assets/Image/ImageAdvertise/@item.image_" width="100%" height="100%" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.active)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.dateUpdate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BannerType)
+                </td>
+            </tr>
+        }
+
+    </table>
+    @Html.PagedListPager(Model, Page => Url.Action("ProductsManager", new { Page }))
+</div>

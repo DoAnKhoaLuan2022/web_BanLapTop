@@ -1,0 +1,329 @@
+E:\Cong nghe web\DoAn_WebLaptop\DoAnAdmin\DoAnAdmin\obj\Debug\DoAnAdmin.dll
+E:\Cong nghe web\DoAn_WebLaptop\DoAnAdmin\DoAnAdmin\bin\DoAnAdmin.dll.config
+E:\Cong nghe web\DoAn_WebLaptop\DoAnAdmin\DoAnAdmin\bin\DoAnAdmin.dll
+E:\Cong nghe web\DoAn_WebLaptop\DoAnAdmin\DoAnAdmin\bin\DoAnAdmin.pdb
+E:\Cong nghe web\DoAn_WebLaptop\DoAnAdmin\DoAnAdmin\bin\EntityFramework.dll
+E:\Cong nghe web\DoAn_WebLaptop\DoAnAdmin\DoAnAdmin\bin\EntityFramework.SqlServer.dll
+E:\Cong nghe web\DoAn_WebLaptop\DoAnAdmin\DoAnAdmin\bin\Microsoft.Web.Infrastructure.dll
+E:\Cong nghe web\DoAn_WebLaptop\DoAnAdmin\DoAnAdmin\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+E:\Cong nghe web\DoAn_WebLaptop\DoAnAdmin\DoAnAdmin\bin\Newtonsoft.Json.dll
+E:\Cong nghe web\DoAn_WebLaptop\DoAnAdmin\DoAnAdmin\bin\PagedList.dll
+E:\Cong nghe web\DoAn_WebLaptop\DoAnAdmin\DoAnAdmin\bin\PagedList.Mvc.dll
+E:\Cong nghe web\DoAn_WebLaptop\DoAnAdmin\DoAnAdmin\bin\System.Net.Http.Formatting.dll
+E:\Cong nghe web\DoAn_WebLaptop\DoAnAdmin\DoAnAdmin\bin\System.Web.Helpers.dll
+E:\Cong nghe web\DoAn_WebLaptop\DoAnAdmin\DoAnAdmin\bin\System.Web.Http.dll
+E:\Cong nghe web\DoAn_WebLaptop\DoAnAdmin\DoAnAdmin\bin\System.Web.Http.WebHost.dll
+E:\Cong nghe web\DoAn_WebLaptop\DoAnAdmin\DoAnAdmin\bin\System.Web.Mvc.dll
+E:\Cong nghe web\DoAn_WebLaptop\DoAnAdmin\DoAnAdmin\bin\System.Web.Razor.dll
+E:\Cong nghe web\DoAn_WebLaptop\DoAnAdmin\DoAnAdmin\bin\System.Web.WebPages.Deployment.dll
+E:\Cong nghe web\DoAn_WebLaptop\DoAnAdmin\DoAnAdmin\bin\System.Web.WebPages.dll
+E:\Cong nghe web\DoAn_WebLaptop\DoAnAdmin\DoAnAdmin\bin\System.Web.WebPages.Razor.dll
+E:\Cong nghe web\DoAn_WebLaptop\DoAnAdmin\DoAnAdmin\bin\EntityFramework.xml
+E:\Cong nghe web\DoAn_WebLaptop\DoAnAdmin\DoAnAdmin\bin\EntityFramework.SqlServer.xml
+E:\Cong nghe web\DoAn_WebLaptop\DoAnAdmin\DoAnAdmin\bin\PagedList.xml
+E:\Cong nghe web\DoAn_WebLaptop\DoAnAdmin\DoAnAdmin\bin\PagedList.Mvc.xml
+E:\Cong nghe web\DoAn_WebLaptop\DoAnAdmin\DoAnAdmin\bin\Newtonsoft.Json.xml
+E:\Cong nghe web\DoAn_WebLaptop\DoAnAdmin\DoAnAdmin\bin\System.Net.Http.Formatting.xml
+E:\Cong nghe web\DoAn_WebLaptop\DoAnAdmin\DoAnAdmin\bin\System.Web.Helpers.xml
+E:\Cong nghe web\DoAn_WebLaptop\DoAnAdmin\DoAnAdmin\bin\System.Web.Http.xml
+E:\Cong nghe web\DoAn_WebLaptop\DoAnAdmin\DoAnAdmin\bin\System.Web.Http.WebHost.xml
+E:\Cong nghe web\DoAn_WebLaptop\DoAnAdmin\DoAnAdmin\bin\System.Web.Mvc.xml
+E:\Cong nghe web\DoAn_WebLaptop\DoAnAdmin\DoAnAdmin\bin\System.Web.Razor.xml
+E:\Cong nghe web\DoAn_WebLaptop\DoAnAdmin\DoAnAdmin\bin\System.Web.WebPages.xml
+E:\Cong nghe web\DoAn_WebLaptop\DoAnAdmin\DoAnAdmin\bin\System.Web.WebPages.Deployment.xml
+E:\Cong nghe web\DoAn_WebLaptop\DoAnAdmin\DoAnAdmin\bin\System.Web.WebPages.Razor.xml
+E:\Cong nghe web\DoAn_WebLaptop\DoAnAdmin\DoAnAdmin\obj\Debug\DoAnAdmin.pdb
+E:\Cong nghe web\DoAn_WebLaptop\DoAnAdmin\DoAnAdmin\obj\Debug\DoAn_WebBanLaptop.csprojResolveAssemblyReference.cache
+E:\Cong nghe web\9_WebsiteBanLapTop\DoAnAdmin\DoAnAdmin\obj\Debug\DoAnAdmin.dll
+E:\Cong nghe web\9_WebsiteBanLapTop\DoAnAdmin\DoAnAdmin\bin\DoAnAdmin.dll.config
+E:\Cong nghe web\9_WebsiteBanLapTop\DoAnAdmin\DoAnAdmin\bin\DoAnAdmin.dll
+E:\Cong nghe web\9_WebsiteBanLapTop\DoAnAdmin\DoAnAdmin\bin\DoAnAdmin.pdb
+E:\Cong nghe web\9_WebsiteBanLapTop\DoAnAdmin\DoAnAdmin\bin\EntityFramework.dll
+E:\Cong nghe web\9_WebsiteBanLapTop\DoAnAdmin\DoAnAdmin\bin\EntityFramework.SqlServer.dll
+E:\Cong nghe web\9_WebsiteBanLapTop\DoAnAdmin\DoAnAdmin\bin\Microsoft.Web.Infrastructure.dll
+E:\Cong nghe web\9_WebsiteBanLapTop\DoAnAdmin\DoAnAdmin\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+E:\Cong nghe web\9_WebsiteBanLapTop\DoAnAdmin\DoAnAdmin\bin\Newtonsoft.Json.dll
+E:\Cong nghe web\9_WebsiteBanLapTop\DoAnAdmin\DoAnAdmin\bin\PagedList.dll
+E:\Cong nghe web\9_WebsiteBanLapTop\DoAnAdmin\DoAnAdmin\bin\PagedList.Mvc.dll
+E:\Cong nghe web\9_WebsiteBanLapTop\DoAnAdmin\DoAnAdmin\bin\System.Web.Helpers.dll
+E:\Cong nghe web\9_WebsiteBanLapTop\DoAnAdmin\DoAnAdmin\bin\System.Web.Mvc.dll
+E:\Cong nghe web\9_WebsiteBanLapTop\DoAnAdmin\DoAnAdmin\bin\System.Web.Razor.dll
+E:\Cong nghe web\9_WebsiteBanLapTop\DoAnAdmin\DoAnAdmin\bin\System.Web.WebPages.Deployment.dll
+E:\Cong nghe web\9_WebsiteBanLapTop\DoAnAdmin\DoAnAdmin\bin\System.Web.WebPages.dll
+E:\Cong nghe web\9_WebsiteBanLapTop\DoAnAdmin\DoAnAdmin\bin\System.Web.WebPages.Razor.dll
+E:\Cong nghe web\9_WebsiteBanLapTop\DoAnAdmin\DoAnAdmin\bin\EntityFramework.xml
+E:\Cong nghe web\9_WebsiteBanLapTop\DoAnAdmin\DoAnAdmin\bin\EntityFramework.SqlServer.xml
+E:\Cong nghe web\9_WebsiteBanLapTop\DoAnAdmin\DoAnAdmin\bin\PagedList.xml
+E:\Cong nghe web\9_WebsiteBanLapTop\DoAnAdmin\DoAnAdmin\bin\PagedList.Mvc.xml
+E:\Cong nghe web\9_WebsiteBanLapTop\DoAnAdmin\DoAnAdmin\bin\Newtonsoft.Json.xml
+E:\Cong nghe web\9_WebsiteBanLapTop\DoAnAdmin\DoAnAdmin\bin\System.Web.Helpers.xml
+E:\Cong nghe web\9_WebsiteBanLapTop\DoAnAdmin\DoAnAdmin\bin\System.Web.Mvc.xml
+E:\Cong nghe web\9_WebsiteBanLapTop\DoAnAdmin\DoAnAdmin\bin\System.Web.Razor.xml
+E:\Cong nghe web\9_WebsiteBanLapTop\DoAnAdmin\DoAnAdmin\bin\System.Web.WebPages.xml
+E:\Cong nghe web\9_WebsiteBanLapTop\DoAnAdmin\DoAnAdmin\bin\System.Web.WebPages.Deployment.xml
+E:\Cong nghe web\9_WebsiteBanLapTop\DoAnAdmin\DoAnAdmin\bin\System.Web.WebPages.Razor.xml
+E:\Cong nghe web\9_WebsiteBanLapTop\DoAnAdmin\DoAnAdmin\obj\Debug\DoAnAdmin.pdb
+E:\Cong nghe web\9_WebsiteBanLapTop\DoAnAdmin\DoAnAdmin\obj\Debug\DoAn_WebBanLaptop.csprojResolveAssemblyReference.cache
+E:\Cong nghe web\9_WebsiteBanLapTop\DoAnAdmin\DoAnAdmin\bin\LinqToExcel.dll
+E:\Cong nghe web\9_WebsiteBanLapTop\DoAnAdmin\DoAnAdmin\bin\Remotion.Data.Linq.dll
+E:\Cong nghe web\9_WebsiteBanLapTop\DoAnAdmin\DoAnAdmin\bin\Remotion.dll
+E:\Cong nghe web\9_WebsiteBanLapTop\DoAnAdmin\DoAnAdmin\bin\Remotion.Interfaces.dll
+E:\Cong nghe web\9_WebsiteBanLapTop\DoAnAdmin\DoAnAdmin\bin\LinqToExcel.xml
+E:\Phan mem\KiemDinhWebsiteLaptop-main\DoAnAdmin\DoAnAdmin\bin\DoAnAdmin.dll.config
+E:\Phan mem\KiemDinhWebsiteLaptop-main\DoAnAdmin\DoAnAdmin\bin\DoAnAdmin.dll
+E:\Phan mem\KiemDinhWebsiteLaptop-main\DoAnAdmin\DoAnAdmin\bin\DoAnAdmin.pdb
+E:\Phan mem\KiemDinhWebsiteLaptop-main\DoAnAdmin\DoAnAdmin\bin\EntityFramework.dll
+E:\Phan mem\KiemDinhWebsiteLaptop-main\DoAnAdmin\DoAnAdmin\bin\EntityFramework.SqlServer.dll
+E:\Phan mem\KiemDinhWebsiteLaptop-main\DoAnAdmin\DoAnAdmin\bin\LinqToExcel.dll
+E:\Phan mem\KiemDinhWebsiteLaptop-main\DoAnAdmin\DoAnAdmin\bin\Microsoft.Web.Infrastructure.dll
+E:\Phan mem\KiemDinhWebsiteLaptop-main\DoAnAdmin\DoAnAdmin\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+E:\Phan mem\KiemDinhWebsiteLaptop-main\DoAnAdmin\DoAnAdmin\bin\Newtonsoft.Json.dll
+E:\Phan mem\KiemDinhWebsiteLaptop-main\DoAnAdmin\DoAnAdmin\bin\PagedList.dll
+E:\Phan mem\KiemDinhWebsiteLaptop-main\DoAnAdmin\DoAnAdmin\bin\PagedList.Mvc.dll
+E:\Phan mem\KiemDinhWebsiteLaptop-main\DoAnAdmin\DoAnAdmin\bin\Remotion.Data.Linq.dll
+E:\Phan mem\KiemDinhWebsiteLaptop-main\DoAnAdmin\DoAnAdmin\bin\Remotion.dll
+E:\Phan mem\KiemDinhWebsiteLaptop-main\DoAnAdmin\DoAnAdmin\bin\Remotion.Interfaces.dll
+E:\Phan mem\KiemDinhWebsiteLaptop-main\DoAnAdmin\DoAnAdmin\bin\System.Net.Http.Formatting.dll
+E:\Phan mem\KiemDinhWebsiteLaptop-main\DoAnAdmin\DoAnAdmin\bin\System.Web.Helpers.dll
+E:\Phan mem\KiemDinhWebsiteLaptop-main\DoAnAdmin\DoAnAdmin\bin\System.Web.Http.dll
+E:\Phan mem\KiemDinhWebsiteLaptop-main\DoAnAdmin\DoAnAdmin\bin\System.Web.Http.WebHost.dll
+E:\Phan mem\KiemDinhWebsiteLaptop-main\DoAnAdmin\DoAnAdmin\bin\System.Web.Mvc.dll
+E:\Phan mem\KiemDinhWebsiteLaptop-main\DoAnAdmin\DoAnAdmin\bin\System.Web.Razor.dll
+E:\Phan mem\KiemDinhWebsiteLaptop-main\DoAnAdmin\DoAnAdmin\bin\System.Web.WebPages.Deployment.dll
+E:\Phan mem\KiemDinhWebsiteLaptop-main\DoAnAdmin\DoAnAdmin\bin\System.Web.WebPages.dll
+E:\Phan mem\KiemDinhWebsiteLaptop-main\DoAnAdmin\DoAnAdmin\bin\System.Web.WebPages.Razor.dll
+E:\Phan mem\KiemDinhWebsiteLaptop-main\DoAnAdmin\DoAnAdmin\bin\EntityFramework.xml
+E:\Phan mem\KiemDinhWebsiteLaptop-main\DoAnAdmin\DoAnAdmin\bin\EntityFramework.SqlServer.xml
+E:\Phan mem\KiemDinhWebsiteLaptop-main\DoAnAdmin\DoAnAdmin\bin\LinqToExcel.xml
+E:\Phan mem\KiemDinhWebsiteLaptop-main\DoAnAdmin\DoAnAdmin\bin\PagedList.xml
+E:\Phan mem\KiemDinhWebsiteLaptop-main\DoAnAdmin\DoAnAdmin\bin\PagedList.Mvc.xml
+E:\Phan mem\KiemDinhWebsiteLaptop-main\DoAnAdmin\DoAnAdmin\bin\Newtonsoft.Json.xml
+E:\Phan mem\KiemDinhWebsiteLaptop-main\DoAnAdmin\DoAnAdmin\bin\System.Net.Http.Formatting.xml
+E:\Phan mem\KiemDinhWebsiteLaptop-main\DoAnAdmin\DoAnAdmin\bin\System.Web.Helpers.xml
+E:\Phan mem\KiemDinhWebsiteLaptop-main\DoAnAdmin\DoAnAdmin\bin\System.Web.Http.xml
+E:\Phan mem\KiemDinhWebsiteLaptop-main\DoAnAdmin\DoAnAdmin\bin\System.Web.Http.WebHost.xml
+E:\Phan mem\KiemDinhWebsiteLaptop-main\DoAnAdmin\DoAnAdmin\bin\System.Web.Mvc.xml
+E:\Phan mem\KiemDinhWebsiteLaptop-main\DoAnAdmin\DoAnAdmin\bin\System.Web.Razor.xml
+E:\Phan mem\KiemDinhWebsiteLaptop-main\DoAnAdmin\DoAnAdmin\bin\System.Web.WebPages.xml
+E:\Phan mem\KiemDinhWebsiteLaptop-main\DoAnAdmin\DoAnAdmin\bin\System.Web.WebPages.Deployment.xml
+E:\Phan mem\KiemDinhWebsiteLaptop-main\DoAnAdmin\DoAnAdmin\bin\System.Web.WebPages.Razor.xml
+E:\Phan mem\KiemDinhWebsiteLaptop-main\DoAnAdmin\DoAnAdmin\obj\Debug\DoAn_WebBanLaptop.csproj.AssemblyReference.cache
+E:\Phan mem\KiemDinhWebsiteLaptop-main\DoAnAdmin\DoAnAdmin\obj\Debug\DoAn_WebBanLaptop.csproj.CoreCompileInputs.cache
+E:\Phan mem\KiemDinhWebsiteLaptop-main\DoAnAdmin\DoAnAdmin\obj\Debug\DoAn_WebBanLaptop.csproj.CopyComplete
+E:\Phan mem\KiemDinhWebsiteLaptop-main\DoAnAdmin\DoAnAdmin\obj\Debug\DoAnAdmin.dll
+E:\Phan mem\KiemDinhWebsiteLaptop-main\DoAnAdmin\DoAnAdmin\obj\Debug\DoAnAdmin.pdb
+E:\OneDrive\Máy tính\DoAnAdmin\DoAnAdmin\obj\Debug\DoAn_WebBanLaptop.csproj.AssemblyReference.cache
+E:\OneDrive\Máy tính\DoAnAdmin\DoAnAdmin\obj\Debug\DoAn_WebBanLaptop.csproj.CoreCompileInputs.cache
+E:\OneDrive\Máy tính\DoAnAdmin\DoAnAdmin\obj\Debug\DoAnAdmin.dll
+E:\OneDrive\Máy tính\DoAnAdmin\DoAnAdmin\obj\Debug\DoAnAdmin.pdb
+E:\OneDrive\Máy tính\DoAnAdmin\DoAnAdmin\bin\DoAnAdmin.dll.config
+E:\OneDrive\Máy tính\DoAnAdmin\DoAnAdmin\bin\DoAnAdmin.dll
+E:\OneDrive\Máy tính\DoAnAdmin\DoAnAdmin\bin\DoAnAdmin.pdb
+E:\OneDrive\Máy tính\DoAnAdmin\DoAnAdmin\bin\EntityFramework.dll
+E:\OneDrive\Máy tính\DoAnAdmin\DoAnAdmin\bin\EntityFramework.SqlServer.dll
+E:\OneDrive\Máy tính\DoAnAdmin\DoAnAdmin\bin\LinqToExcel.dll
+E:\OneDrive\Máy tính\DoAnAdmin\DoAnAdmin\bin\Microsoft.Web.Infrastructure.dll
+E:\OneDrive\Máy tính\DoAnAdmin\DoAnAdmin\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+E:\OneDrive\Máy tính\DoAnAdmin\DoAnAdmin\bin\Newtonsoft.Json.dll
+E:\OneDrive\Máy tính\DoAnAdmin\DoAnAdmin\bin\PagedList.dll
+E:\OneDrive\Máy tính\DoAnAdmin\DoAnAdmin\bin\PagedList.Mvc.dll
+E:\OneDrive\Máy tính\DoAnAdmin\DoAnAdmin\bin\Remotion.Data.Linq.dll
+E:\OneDrive\Máy tính\DoAnAdmin\DoAnAdmin\bin\Remotion.dll
+E:\OneDrive\Máy tính\DoAnAdmin\DoAnAdmin\bin\Remotion.Interfaces.dll
+E:\OneDrive\Máy tính\DoAnAdmin\DoAnAdmin\bin\System.Net.Http.Formatting.dll
+E:\OneDrive\Máy tính\DoAnAdmin\DoAnAdmin\bin\System.Web.Helpers.dll
+E:\OneDrive\Máy tính\DoAnAdmin\DoAnAdmin\bin\System.Web.Http.dll
+E:\OneDrive\Máy tính\DoAnAdmin\DoAnAdmin\bin\System.Web.Http.WebHost.dll
+E:\OneDrive\Máy tính\DoAnAdmin\DoAnAdmin\bin\System.Web.Mvc.dll
+E:\OneDrive\Máy tính\DoAnAdmin\DoAnAdmin\bin\System.Web.Razor.dll
+E:\OneDrive\Máy tính\DoAnAdmin\DoAnAdmin\bin\System.Web.WebPages.Deployment.dll
+E:\OneDrive\Máy tính\DoAnAdmin\DoAnAdmin\bin\System.Web.WebPages.dll
+E:\OneDrive\Máy tính\DoAnAdmin\DoAnAdmin\bin\System.Web.WebPages.Razor.dll
+E:\OneDrive\Máy tính\DoAnAdmin\DoAnAdmin\bin\EntityFramework.xml
+E:\OneDrive\Máy tính\DoAnAdmin\DoAnAdmin\bin\EntityFramework.SqlServer.xml
+E:\OneDrive\Máy tính\DoAnAdmin\DoAnAdmin\bin\LinqToExcel.xml
+E:\OneDrive\Máy tính\DoAnAdmin\DoAnAdmin\bin\PagedList.xml
+E:\OneDrive\Máy tính\DoAnAdmin\DoAnAdmin\bin\PagedList.Mvc.xml
+E:\OneDrive\Máy tính\DoAnAdmin\DoAnAdmin\bin\Newtonsoft.Json.xml
+E:\OneDrive\Máy tính\DoAnAdmin\DoAnAdmin\bin\System.Net.Http.Formatting.xml
+E:\OneDrive\Máy tính\DoAnAdmin\DoAnAdmin\bin\System.Web.Helpers.xml
+E:\OneDrive\Máy tính\DoAnAdmin\DoAnAdmin\bin\System.Web.Http.xml
+E:\OneDrive\Máy tính\DoAnAdmin\DoAnAdmin\bin\System.Web.Http.WebHost.xml
+E:\OneDrive\Máy tính\DoAnAdmin\DoAnAdmin\bin\System.Web.Mvc.xml
+E:\OneDrive\Máy tính\DoAnAdmin\DoAnAdmin\bin\System.Web.Razor.xml
+E:\OneDrive\Máy tính\DoAnAdmin\DoAnAdmin\bin\System.Web.WebPages.xml
+E:\OneDrive\Máy tính\DoAnAdmin\DoAnAdmin\bin\System.Web.WebPages.Deployment.xml
+E:\OneDrive\Máy tính\DoAnAdmin\DoAnAdmin\bin\System.Web.WebPages.Razor.xml
+E:\OneDrive\Máy tính\DoAnAdmin\DoAnAdmin\obj\Debug\DoAn_WebBanLaptop.csproj.CopyComplete
+C:\Users\Admin\Desktop\DoAnAdmin\DoAnAdmin\bin\DoAnAdmin.dll.config
+C:\Users\Admin\Desktop\DoAnAdmin\DoAnAdmin\bin\DoAnAdmin.dll
+C:\Users\Admin\Desktop\DoAnAdmin\DoAnAdmin\bin\DoAnAdmin.pdb
+C:\Users\Admin\Desktop\DoAnAdmin\DoAnAdmin\bin\EntityFramework.dll
+C:\Users\Admin\Desktop\DoAnAdmin\DoAnAdmin\bin\EntityFramework.SqlServer.dll
+C:\Users\Admin\Desktop\DoAnAdmin\DoAnAdmin\bin\LinqToExcel.dll
+C:\Users\Admin\Desktop\DoAnAdmin\DoAnAdmin\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Admin\Desktop\DoAnAdmin\DoAnAdmin\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+C:\Users\Admin\Desktop\DoAnAdmin\DoAnAdmin\bin\Newtonsoft.Json.dll
+C:\Users\Admin\Desktop\DoAnAdmin\DoAnAdmin\bin\PagedList.dll
+C:\Users\Admin\Desktop\DoAnAdmin\DoAnAdmin\bin\PagedList.Mvc.dll
+C:\Users\Admin\Desktop\DoAnAdmin\DoAnAdmin\bin\Remotion.Data.Linq.dll
+C:\Users\Admin\Desktop\DoAnAdmin\DoAnAdmin\bin\Remotion.dll
+C:\Users\Admin\Desktop\DoAnAdmin\DoAnAdmin\bin\Remotion.Interfaces.dll
+C:\Users\Admin\Desktop\DoAnAdmin\DoAnAdmin\bin\System.Net.Http.Formatting.dll
+C:\Users\Admin\Desktop\DoAnAdmin\DoAnAdmin\bin\System.Web.Helpers.dll
+C:\Users\Admin\Desktop\DoAnAdmin\DoAnAdmin\bin\System.Web.Http.dll
+C:\Users\Admin\Desktop\DoAnAdmin\DoAnAdmin\bin\System.Web.Http.WebHost.dll
+C:\Users\Admin\Desktop\DoAnAdmin\DoAnAdmin\bin\System.Web.Mvc.dll
+C:\Users\Admin\Desktop\DoAnAdmin\DoAnAdmin\bin\System.Web.Razor.dll
+C:\Users\Admin\Desktop\DoAnAdmin\DoAnAdmin\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Admin\Desktop\DoAnAdmin\DoAnAdmin\bin\System.Web.WebPages.dll
+C:\Users\Admin\Desktop\DoAnAdmin\DoAnAdmin\bin\System.Web.WebPages.Razor.dll
+C:\Users\Admin\Desktop\DoAnAdmin\DoAnAdmin\bin\EntityFramework.xml
+C:\Users\Admin\Desktop\DoAnAdmin\DoAnAdmin\bin\EntityFramework.SqlServer.xml
+C:\Users\Admin\Desktop\DoAnAdmin\DoAnAdmin\bin\LinqToExcel.xml
+C:\Users\Admin\Desktop\DoAnAdmin\DoAnAdmin\bin\PagedList.xml
+C:\Users\Admin\Desktop\DoAnAdmin\DoAnAdmin\bin\PagedList.Mvc.xml
+C:\Users\Admin\Desktop\DoAnAdmin\DoAnAdmin\bin\Newtonsoft.Json.xml
+C:\Users\Admin\Desktop\DoAnAdmin\DoAnAdmin\bin\System.Net.Http.Formatting.xml
+C:\Users\Admin\Desktop\DoAnAdmin\DoAnAdmin\bin\System.Web.Helpers.xml
+C:\Users\Admin\Desktop\DoAnAdmin\DoAnAdmin\bin\System.Web.Http.xml
+C:\Users\Admin\Desktop\DoAnAdmin\DoAnAdmin\bin\System.Web.Http.WebHost.xml
+C:\Users\Admin\Desktop\DoAnAdmin\DoAnAdmin\bin\System.Web.Mvc.xml
+C:\Users\Admin\Desktop\DoAnAdmin\DoAnAdmin\bin\System.Web.Razor.xml
+C:\Users\Admin\Desktop\DoAnAdmin\DoAnAdmin\bin\System.Web.WebPages.xml
+C:\Users\Admin\Desktop\DoAnAdmin\DoAnAdmin\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Admin\Desktop\DoAnAdmin\DoAnAdmin\bin\System.Web.WebPages.Razor.xml
+C:\Users\Admin\Desktop\DoAnAdmin\DoAnAdmin\obj\Debug\DoAn_WebBanLaptop.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Desktop\DoAnAdmin\DoAnAdmin\obj\Debug\DoAn_WebBanLaptop.csproj.CopyComplete
+C:\Users\Admin\Desktop\DoAnAdmin\DoAnAdmin\obj\Debug\DoAnAdmin.dll
+C:\Users\Admin\Desktop\DoAnAdmin\DoAnAdmin\obj\Debug\DoAnAdmin.pdb
+C:\Users\Admin\Desktop\DoAnAdmin\DoAnAdmin\obj\Debug\DoAn_WebBanLaptop.csproj.AssemblyReference.cache
+E:\OneDrive\Máy tính\lalla\DoAnAdmin\DoAnAdmin\bin\DoAnAdmin.dll.config
+E:\OneDrive\Máy tính\lalla\DoAnAdmin\DoAnAdmin\bin\DoAnAdmin.dll
+E:\OneDrive\Máy tính\lalla\DoAnAdmin\DoAnAdmin\bin\DoAnAdmin.pdb
+E:\OneDrive\Máy tính\lalla\DoAnAdmin\DoAnAdmin\bin\EntityFramework.dll
+E:\OneDrive\Máy tính\lalla\DoAnAdmin\DoAnAdmin\bin\EntityFramework.SqlServer.dll
+E:\OneDrive\Máy tính\lalla\DoAnAdmin\DoAnAdmin\bin\LinqToExcel.dll
+E:\OneDrive\Máy tính\lalla\DoAnAdmin\DoAnAdmin\bin\Microsoft.Web.Infrastructure.dll
+E:\OneDrive\Máy tính\lalla\DoAnAdmin\DoAnAdmin\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+E:\OneDrive\Máy tính\lalla\DoAnAdmin\DoAnAdmin\bin\Newtonsoft.Json.dll
+E:\OneDrive\Máy tính\lalla\DoAnAdmin\DoAnAdmin\bin\PagedList.dll
+E:\OneDrive\Máy tính\lalla\DoAnAdmin\DoAnAdmin\bin\PagedList.Mvc.dll
+E:\OneDrive\Máy tính\lalla\DoAnAdmin\DoAnAdmin\bin\Remotion.Data.Linq.dll
+E:\OneDrive\Máy tính\lalla\DoAnAdmin\DoAnAdmin\bin\Remotion.dll
+E:\OneDrive\Máy tính\lalla\DoAnAdmin\DoAnAdmin\bin\Remotion.Interfaces.dll
+E:\OneDrive\Máy tính\lalla\DoAnAdmin\DoAnAdmin\bin\System.Net.Http.Formatting.dll
+E:\OneDrive\Máy tính\lalla\DoAnAdmin\DoAnAdmin\bin\System.Web.Helpers.dll
+E:\OneDrive\Máy tính\lalla\DoAnAdmin\DoAnAdmin\bin\System.Web.Http.dll
+E:\OneDrive\Máy tính\lalla\DoAnAdmin\DoAnAdmin\bin\System.Web.Http.WebHost.dll
+E:\OneDrive\Máy tính\lalla\DoAnAdmin\DoAnAdmin\bin\System.Web.Mvc.dll
+E:\OneDrive\Máy tính\lalla\DoAnAdmin\DoAnAdmin\bin\System.Web.Razor.dll
+E:\OneDrive\Máy tính\lalla\DoAnAdmin\DoAnAdmin\bin\System.Web.WebPages.Deployment.dll
+E:\OneDrive\Máy tính\lalla\DoAnAdmin\DoAnAdmin\bin\System.Web.WebPages.dll
+E:\OneDrive\Máy tính\lalla\DoAnAdmin\DoAnAdmin\bin\System.Web.WebPages.Razor.dll
+E:\OneDrive\Máy tính\lalla\DoAnAdmin\DoAnAdmin\bin\EntityFramework.xml
+E:\OneDrive\Máy tính\lalla\DoAnAdmin\DoAnAdmin\bin\EntityFramework.SqlServer.xml
+E:\OneDrive\Máy tính\lalla\DoAnAdmin\DoAnAdmin\bin\LinqToExcel.xml
+E:\OneDrive\Máy tính\lalla\DoAnAdmin\DoAnAdmin\bin\PagedList.xml
+E:\OneDrive\Máy tính\lalla\DoAnAdmin\DoAnAdmin\bin\PagedList.Mvc.xml
+E:\OneDrive\Máy tính\lalla\DoAnAdmin\DoAnAdmin\bin\Newtonsoft.Json.xml
+E:\OneDrive\Máy tính\lalla\DoAnAdmin\DoAnAdmin\bin\System.Net.Http.Formatting.xml
+E:\OneDrive\Máy tính\lalla\DoAnAdmin\DoAnAdmin\bin\System.Web.Helpers.xml
+E:\OneDrive\Máy tính\lalla\DoAnAdmin\DoAnAdmin\bin\System.Web.Http.xml
+E:\OneDrive\Máy tính\lalla\DoAnAdmin\DoAnAdmin\bin\System.Web.Http.WebHost.xml
+E:\OneDrive\Máy tính\lalla\DoAnAdmin\DoAnAdmin\bin\System.Web.Mvc.xml
+E:\OneDrive\Máy tính\lalla\DoAnAdmin\DoAnAdmin\bin\System.Web.Razor.xml
+E:\OneDrive\Máy tính\lalla\DoAnAdmin\DoAnAdmin\bin\System.Web.WebPages.xml
+E:\OneDrive\Máy tính\lalla\DoAnAdmin\DoAnAdmin\bin\System.Web.WebPages.Deployment.xml
+E:\OneDrive\Máy tính\lalla\DoAnAdmin\DoAnAdmin\bin\System.Web.WebPages.Razor.xml
+E:\OneDrive\Máy tính\lalla\DoAnAdmin\DoAnAdmin\obj\Debug\DoAn_WebBanLaptop.csproj.AssemblyReference.cache
+E:\OneDrive\Máy tính\lalla\DoAnAdmin\DoAnAdmin\obj\Debug\DoAn_WebBanLaptop.csproj.CoreCompileInputs.cache
+E:\OneDrive\Máy tính\lalla\DoAnAdmin\DoAnAdmin\obj\Debug\DoAn_WebBanLaptop.csproj.CopyComplete
+E:\OneDrive\Máy tính\lalla\DoAnAdmin\DoAnAdmin\obj\Debug\DoAnAdmin.dll
+E:\OneDrive\Máy tính\lalla\DoAnAdmin\DoAnAdmin\obj\Debug\DoAnAdmin.pdb
+C:\Users\Admin\Desktop\KhoaLuan\project3\DoAnAdmin\DoAnAdmin\bin\DoAnAdmin.dll.config
+C:\Users\Admin\Desktop\KhoaLuan\project3\DoAnAdmin\DoAnAdmin\bin\DoAnAdmin.dll
+C:\Users\Admin\Desktop\KhoaLuan\project3\DoAnAdmin\DoAnAdmin\bin\DoAnAdmin.pdb
+C:\Users\Admin\Desktop\KhoaLuan\project3\DoAnAdmin\DoAnAdmin\bin\EntityFramework.dll
+C:\Users\Admin\Desktop\KhoaLuan\project3\DoAnAdmin\DoAnAdmin\bin\EntityFramework.SqlServer.dll
+C:\Users\Admin\Desktop\KhoaLuan\project3\DoAnAdmin\DoAnAdmin\bin\LinqToExcel.dll
+C:\Users\Admin\Desktop\KhoaLuan\project3\DoAnAdmin\DoAnAdmin\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Admin\Desktop\KhoaLuan\project3\DoAnAdmin\DoAnAdmin\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+C:\Users\Admin\Desktop\KhoaLuan\project3\DoAnAdmin\DoAnAdmin\bin\Newtonsoft.Json.dll
+C:\Users\Admin\Desktop\KhoaLuan\project3\DoAnAdmin\DoAnAdmin\bin\PagedList.dll
+C:\Users\Admin\Desktop\KhoaLuan\project3\DoAnAdmin\DoAnAdmin\bin\PagedList.Mvc.dll
+C:\Users\Admin\Desktop\KhoaLuan\project3\DoAnAdmin\DoAnAdmin\bin\Remotion.Data.Linq.dll
+C:\Users\Admin\Desktop\KhoaLuan\project3\DoAnAdmin\DoAnAdmin\bin\Remotion.dll
+C:\Users\Admin\Desktop\KhoaLuan\project3\DoAnAdmin\DoAnAdmin\bin\Remotion.Interfaces.dll
+C:\Users\Admin\Desktop\KhoaLuan\project3\DoAnAdmin\DoAnAdmin\bin\System.Net.Http.Formatting.dll
+C:\Users\Admin\Desktop\KhoaLuan\project3\DoAnAdmin\DoAnAdmin\bin\System.Web.Helpers.dll
+C:\Users\Admin\Desktop\KhoaLuan\project3\DoAnAdmin\DoAnAdmin\bin\System.Web.Http.dll
+C:\Users\Admin\Desktop\KhoaLuan\project3\DoAnAdmin\DoAnAdmin\bin\System.Web.Http.WebHost.dll
+C:\Users\Admin\Desktop\KhoaLuan\project3\DoAnAdmin\DoAnAdmin\bin\System.Web.Mvc.dll
+C:\Users\Admin\Desktop\KhoaLuan\project3\DoAnAdmin\DoAnAdmin\bin\System.Web.Razor.dll
+C:\Users\Admin\Desktop\KhoaLuan\project3\DoAnAdmin\DoAnAdmin\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Admin\Desktop\KhoaLuan\project3\DoAnAdmin\DoAnAdmin\bin\System.Web.WebPages.dll
+C:\Users\Admin\Desktop\KhoaLuan\project3\DoAnAdmin\DoAnAdmin\bin\System.Web.WebPages.Razor.dll
+C:\Users\Admin\Desktop\KhoaLuan\project3\DoAnAdmin\DoAnAdmin\bin\EntityFramework.xml
+C:\Users\Admin\Desktop\KhoaLuan\project3\DoAnAdmin\DoAnAdmin\bin\EntityFramework.SqlServer.xml
+C:\Users\Admin\Desktop\KhoaLuan\project3\DoAnAdmin\DoAnAdmin\bin\LinqToExcel.xml
+C:\Users\Admin\Desktop\KhoaLuan\project3\DoAnAdmin\DoAnAdmin\bin\PagedList.xml
+C:\Users\Admin\Desktop\KhoaLuan\project3\DoAnAdmin\DoAnAdmin\bin\PagedList.Mvc.xml
+C:\Users\Admin\Desktop\KhoaLuan\project3\DoAnAdmin\DoAnAdmin\bin\Newtonsoft.Json.xml
+C:\Users\Admin\Desktop\KhoaLuan\project3\DoAnAdmin\DoAnAdmin\bin\System.Net.Http.Formatting.xml
+C:\Users\Admin\Desktop\KhoaLuan\project3\DoAnAdmin\DoAnAdmin\bin\System.Web.Helpers.xml
+C:\Users\Admin\Desktop\KhoaLuan\project3\DoAnAdmin\DoAnAdmin\bin\System.Web.Http.xml
+C:\Users\Admin\Desktop\KhoaLuan\project3\DoAnAdmin\DoAnAdmin\bin\System.Web.Http.WebHost.xml
+C:\Users\Admin\Desktop\KhoaLuan\project3\DoAnAdmin\DoAnAdmin\bin\System.Web.Mvc.xml
+C:\Users\Admin\Desktop\KhoaLuan\project3\DoAnAdmin\DoAnAdmin\bin\System.Web.Razor.xml
+C:\Users\Admin\Desktop\KhoaLuan\project3\DoAnAdmin\DoAnAdmin\bin\System.Web.WebPages.xml
+C:\Users\Admin\Desktop\KhoaLuan\project3\DoAnAdmin\DoAnAdmin\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Admin\Desktop\KhoaLuan\project3\DoAnAdmin\DoAnAdmin\bin\System.Web.WebPages.Razor.xml
+C:\Users\Admin\Desktop\KhoaLuan\project3\DoAnAdmin\DoAnAdmin\obj\Debug\DoAn_WebBanLaptop.csproj.AssemblyReference.cache
+C:\Users\Admin\Desktop\KhoaLuan\project3\DoAnAdmin\DoAnAdmin\obj\Debug\DoAn_WebBanLaptop.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Desktop\KhoaLuan\project3\DoAnAdmin\DoAnAdmin\obj\Debug\DoAn_WebBanLaptop.csproj.CopyComplete
+C:\Users\Admin\Desktop\KhoaLuan\project3\DoAnAdmin\DoAnAdmin\obj\Debug\DoAnAdmin.dll
+C:\Users\Admin\Desktop\KhoaLuan\project3\DoAnAdmin\DoAnAdmin\obj\Debug\DoAnAdmin.pdb
+E:\OneDrive\Máy tính\project3\DoAnAdmin\DoAnAdmin\bin\DoAnAdmin.dll.config
+E:\OneDrive\Máy tính\project3\DoAnAdmin\DoAnAdmin\bin\DoAnAdmin.dll
+E:\OneDrive\Máy tính\project3\DoAnAdmin\DoAnAdmin\bin\DoAnAdmin.pdb
+E:\OneDrive\Máy tính\project3\DoAnAdmin\DoAnAdmin\bin\EntityFramework.dll
+E:\OneDrive\Máy tính\project3\DoAnAdmin\DoAnAdmin\bin\EntityFramework.SqlServer.dll
+E:\OneDrive\Máy tính\project3\DoAnAdmin\DoAnAdmin\bin\LinqToExcel.dll
+E:\OneDrive\Máy tính\project3\DoAnAdmin\DoAnAdmin\bin\Microsoft.Web.Infrastructure.dll
+E:\OneDrive\Máy tính\project3\DoAnAdmin\DoAnAdmin\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+E:\OneDrive\Máy tính\project3\DoAnAdmin\DoAnAdmin\bin\Newtonsoft.Json.dll
+E:\OneDrive\Máy tính\project3\DoAnAdmin\DoAnAdmin\bin\PagedList.dll
+E:\OneDrive\Máy tính\project3\DoAnAdmin\DoAnAdmin\bin\PagedList.Mvc.dll
+E:\OneDrive\Máy tính\project3\DoAnAdmin\DoAnAdmin\bin\Remotion.Data.Linq.dll
+E:\OneDrive\Máy tính\project3\DoAnAdmin\DoAnAdmin\bin\Remotion.dll
+E:\OneDrive\Máy tính\project3\DoAnAdmin\DoAnAdmin\bin\Remotion.Interfaces.dll
+E:\OneDrive\Máy tính\project3\DoAnAdmin\DoAnAdmin\bin\System.Net.Http.Formatting.dll
+E:\OneDrive\Máy tính\project3\DoAnAdmin\DoAnAdmin\bin\System.Web.Helpers.dll
+E:\OneDrive\Máy tính\project3\DoAnAdmin\DoAnAdmin\bin\System.Web.Http.dll
+E:\OneDrive\Máy tính\project3\DoAnAdmin\DoAnAdmin\bin\System.Web.Http.WebHost.dll
+E:\OneDrive\Máy tính\project3\DoAnAdmin\DoAnAdmin\bin\System.Web.Mvc.dll
+E:\OneDrive\Máy tính\project3\DoAnAdmin\DoAnAdmin\bin\System.Web.Razor.dll
+E:\OneDrive\Máy tính\project3\DoAnAdmin\DoAnAdmin\bin\System.Web.WebPages.Deployment.dll
+E:\OneDrive\Máy tính\project3\DoAnAdmin\DoAnAdmin\bin\System.Web.WebPages.dll
+E:\OneDrive\Máy tính\project3\DoAnAdmin\DoAnAdmin\bin\System.Web.WebPages.Razor.dll
+E:\OneDrive\Máy tính\project3\DoAnAdmin\DoAnAdmin\bin\EntityFramework.xml
+E:\OneDrive\Máy tính\project3\DoAnAdmin\DoAnAdmin\bin\EntityFramework.SqlServer.xml
+E:\OneDrive\Máy tính\project3\DoAnAdmin\DoAnAdmin\bin\LinqToExcel.xml
+E:\OneDrive\Máy tính\project3\DoAnAdmin\DoAnAdmin\bin\PagedList.xml
+E:\OneDrive\Máy tính\project3\DoAnAdmin\DoAnAdmin\bin\PagedList.Mvc.xml
+E:\OneDrive\Máy tính\project3\DoAnAdmin\DoAnAdmin\bin\Newtonsoft.Json.xml
+E:\OneDrive\Máy tính\project3\DoAnAdmin\DoAnAdmin\bin\System.Net.Http.Formatting.xml
+E:\OneDrive\Máy tính\project3\DoAnAdmin\DoAnAdmin\bin\System.Web.Helpers.xml
+E:\OneDrive\Máy tính\project3\DoAnAdmin\DoAnAdmin\bin\System.Web.Http.xml
+E:\OneDrive\Máy tính\project3\DoAnAdmin\DoAnAdmin\bin\System.Web.Http.WebHost.xml
+E:\OneDrive\Máy tính\project3\DoAnAdmin\DoAnAdmin\bin\System.Web.Mvc.xml
+E:\OneDrive\Máy tính\project3\DoAnAdmin\DoAnAdmin\bin\System.Web.Razor.xml
+E:\OneDrive\Máy tính\project3\DoAnAdmin\DoAnAdmin\bin\System.Web.WebPages.xml
+E:\OneDrive\Máy tính\project3\DoAnAdmin\DoAnAdmin\bin\System.Web.WebPages.Deployment.xml
+E:\OneDrive\Máy tính\project3\DoAnAdmin\DoAnAdmin\bin\System.Web.WebPages.Razor.xml
+E:\OneDrive\Máy tính\project3\DoAnAdmin\DoAnAdmin\obj\Debug\DoAn_WebBanLaptop.csproj.AssemblyReference.cache
+E:\OneDrive\Máy tính\project3\DoAnAdmin\DoAnAdmin\obj\Debug\DoAn_WebBanLaptop.csproj.CoreCompileInputs.cache
+E:\OneDrive\Máy tính\project3\DoAnAdmin\DoAnAdmin\obj\Debug\DoAn_WebBanLaptop.csproj.CopyComplete
+E:\OneDrive\Máy tính\project3\DoAnAdmin\DoAnAdmin\obj\Debug\DoAnAdmin.dll
+E:\OneDrive\Máy tính\project3\DoAnAdmin\DoAnAdmin\obj\Debug\DoAnAdmin.pdb

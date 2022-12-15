@@ -1,0 +1,222 @@
+﻿@model DoAnAdmin.Models.Detail
+<style>
+    .title {
+        text-align: center;
+        font-weight: 600;
+        margin-bottom: 20px;
+    }
+
+    .para {
+        border-bottom: 1px solid #e5e5e5;
+        padding-bottom: 5px;
+    }
+
+        .para li {
+            list-style: none;
+        }
+
+    .accordion-item {
+        border: 0 !important;
+    }
+
+    .para_name {
+        width: 300px;
+    }
+
+    .para_info {
+        width: 160px;
+    }
+
+    .btn_header {
+        outline: none;
+        box-shadow: 0 0 0 0 rgba(0, 123, 255, 0) !important;
+    }
+</style>
+<h5 class="title">Thông số kỹ thuật</h5>
+<div class="accordion" id="accordionPanelsStayOpenExample">
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+            <button class="accordion-button btn_header" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                Bộ xử lý
+            </button>
+        </h2>
+        <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+            <div class="accordion-body">
+                <ul class="para d-flex">
+                    <li class="para_name">Công nghệ CPU:</li>
+                    <li class="para_info">@Model.CPU</li>
+                </ul>
+                <ul class="para d-flex">
+                    <li class="para_name">Số nhân:</li>
+                    <li class="para_info">@Model.SoNhan</li>
+                </ul>
+                <ul class="para d-flex">
+                    <li class="para_name">Số luồng:</li>
+                    <li class="para_info">@Model.SoLuong</li>
+                </ul>
+                <ul class="para d-flex">
+                    <li class="para_name">Tốc độ CPU:</li>
+                    <li class="para_info">@Model.Speed</li>
+                </ul>
+                <ul class="para d-flex">
+                    <li class="para_name">Tốc độ tối đa:</li>
+                    <li class="para_info">@Model.MaxSpeed</li>
+                </ul>
+                <ul class="para d-flex">
+                    <li class="para_name">Bộ nhớ đệm:</li>
+                    <li class="para_info">@Model.Cache</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+            <button class="accordion-button collapsed btn_header" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                Bộ nhớ RAM, Ổ cứng
+            </button>
+        </h2>
+        <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+            <div class="accordion-body">
+                <ul class="para d-flex">
+                    <li class="para_name">RAM:</li>
+                    <li class="para_info">@Model.RAM</li>
+                </ul>
+                <ul class="para d-flex">
+                    <li class="para_name">Loại RAM:</li>
+                    <li class="para_info">@Model.RAM_type</li>
+                </ul>
+                <ul class="para d-flex">
+                    <li class="para_name">Tốc độ Bus RAM:</li>
+                    <li class="para_info">@Model.BusRAM</li>
+                </ul>
+                <ul class="para d-flex">
+                    <li class="para_name">Hỗ trợ RAM tối đa:</li>
+                    <li class="para_info">@Model.MaxRAM</li>
+                </ul>
+                <ul class="para d-flex">
+                    <li class="para_name">Ổ cứng:</li>
+                    <li class="para_info">@Model.OCung</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+            <button class="accordion-button collapsed btn_header" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+                Màn hình
+            </button>
+        </h2>
+        <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
+            <div class="accordion-body">
+                <ul class="para d-flex">
+                    <li class="para_name">Màn hình:</li>
+                    <li class="para_info">@Model.ManHinh</li>
+                </ul>
+                <ul class="para d-flex">
+                    <li class="para_name">Độ phân giải:</li>
+                    <li class="para_info">@Model.DoPhanGiai</li>
+                </ul>
+                <ul class="para d-flex">
+                    <li class="para_name">Tần số quét:</li>
+                    <li class="para_info">@Model.TanSoQuet</li>
+                </ul>
+                <ul class="para d-flex">
+                    <li class="para_name">Công nghệ màn hình:</li>
+                    <li class="para_info">@Model.CongNgheManHinh</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="panelsStayOpen-heading4">
+            <button class="accordion-button collapsed btn_header" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse4" aria-expanded="false" aria-controls="panelsStayOpen-collapse4">
+                Đồ họa & Âm thanh
+            </button>
+        </h2>
+        <div id="panelsStayOpen-collapse4" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-heading4">
+            <div class="accordion-body">
+                <ul class="para d-flex">
+                    <li class="para_name">Card màn hình:</li>
+                    <li class="para_info">@Model.VGA</li>
+                </ul>
+                <ul class="para d-flex">
+                    <li class="para_name">Công nghệ âm thanh:</li>
+                    <li class="para_info">@Model.AmThanh</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="panelsStayOpen-heading5">
+            <button class="accordion-button collapsed btn_header" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse5" aria-expanded="false" aria-controls="panelsStayOpen-collapse5">
+                Cổng kết nối & tính năng mở rộng
+            </button>
+        </h2>
+        <div id="panelsStayOpen-collapse5" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-heading5">
+            <div class="accordion-body">
+                <ul class="para d-flex">
+                    <li class="para_name">Cổng giao tiếp:</li>
+                    <li class="para_info">@Model.CongGiaoTiep</li>
+                </ul>
+                <ul class="para d-flex">
+                    <li class="para_name">Kết nối không dây:</li>
+                    <li class="para_info">@Model.KetNoiKhongDay</li>
+                </ul>
+                <ul class="para d-flex">
+                    <li class="para_name">Webcam:</li>
+                    <li class="para_info">@Model.Webcam</li>
+                </ul>
+                <ul class="para d-flex">
+                    <li class="para_name">Tính năng khác:</li>
+                    <li class="para_info">@Model.TinhNangKhac</li>
+                </ul>
+                <ul class="para d-flex">
+                    <li class="para_name">Đèn bàn phím:</li>
+                    <li class="para_info">@Model.DenBanPhim</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="panelsStayOpen-heading6">
+            <button class="accordion-button collapsed btn_header" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse6" aria-expanded="false" aria-controls="panelsStayOpen-collapse6">
+                Kích thước & trọng lượng
+            </button>
+        </h2>
+        <div id="panelsStayOpen-collapse6" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-heading6">
+            <div class="accordion-body">
+                <ul class="para d-flex">
+                    <li class="para_name">Kích thước, khối lượng:</li>
+                    <li class="para_info">@Model.SizeAndWeight</li>
+                </ul>
+                <ul class="para d-flex">
+                    <li class="para_name">Chất liệu:</li>
+                    <li class="para_info">@Model.ChatLieu</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="panelsStayOpen-heading7">
+            <button class="accordion-button collapsed btn_header" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse7" aria-expanded="false" aria-controls="panelsStayOpen-collapse7">
+                Thông tin khác
+            </button>
+        </h2>
+        <div id="panelsStayOpen-collapse7" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-heading7">
+            <div class="accordion-body">
+                <ul class="para d-flex">
+                    <li class="para_name">Thông tin Pin:</li>
+                    <li class="para_info">@Model.Pin</li>
+                </ul>
+                <ul class="para d-flex">
+                    <li class="para_name">Hệ điều hành:</li>
+                    <li class="para_info">@Model.HeDieuHanh</li>
+                </ul>
+                <ul class="para d-flex">
+                    <li class="para_name">Thời điểm ra mắt:</li>
+                    <li class="para_info">@Model.RaMat</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

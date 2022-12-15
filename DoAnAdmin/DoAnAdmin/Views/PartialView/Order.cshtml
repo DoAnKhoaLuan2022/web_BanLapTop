@@ -1,0 +1,37 @@
+﻿
+<style>
+    .header_right_icon {
+        color: white;
+        padding: 10px;
+    }
+</style>
+@{
+    var dem = 0;
+    if (ViewBag.tong1 == null)
+    {
+        dem = 0;
+    }
+    else
+    {
+        dem = dem + ViewBag.tong1;
+    }
+}
+<span style="text-decoration-color:white;">
+    <a href="@Url.Action("DetailsPay", "Payment")">
+        <i class="header_right_icon fas fa-shopping-basket"></i>
+        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="margin-top:3px;outline:none">
+            @dem
+        </span>
+    </a>
+</span>
+
+    @*@if (@ViewBag.tongtien1 == null)
+        {
+            <div class="cart_price">@ViewBag.tongtien1</div>
+        }
+        else
+        {
+            <div class="cart_price">@string.Format("{0:0,0}", @ViewBag.tongtien1)</div>
+        }*@
+
+

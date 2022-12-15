@@ -1,0 +1,293 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="QL_LaptopModelStoreContainer" CdmEntityContainer="QL_LaptopEntities">
+    <EntitySetMapping Name="accessories">
+      <EntityTypeMapping TypeName="QL_LaptopModel.accessory">
+        <MappingFragment StoreEntitySet="accessory">
+          <ScalarProperty Name="ac_ID" ColumnName="ac_ID" />
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="para_id" ColumnName="para_id" />
+          <ScalarProperty Name="content" ColumnName="content" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Banners">
+      <EntityTypeMapping TypeName="QL_LaptopModel.Banner">
+        <MappingFragment StoreEntitySet="Banner">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="image_" ColumnName="image_" />
+          <ScalarProperty Name="active" ColumnName="active" />
+          <ScalarProperty Name="dateUpdate" ColumnName="dateUpdate" />
+          <ScalarProperty Name="BannerType" ColumnName="BannerType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Carts">
+      <EntityTypeMapping TypeName="QL_LaptopModel.Cart">
+        <MappingFragment StoreEntitySet="Cart">
+          <ScalarProperty Name="cartID" ColumnName="cartID" />
+          <ScalarProperty Name="proID" ColumnName="proID" />
+          <ScalarProperty Name="proPrice" ColumnName="proPrice" />
+          <ScalarProperty Name="CartQuantity" ColumnName="CartQuantity" />
+          <ScalarProperty Name="CartMoney" ColumnName="CartMoney" />
+          <ScalarProperty Name="cusID" ColumnName="cusID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ChiTietPhieuNhaps">
+      <EntityTypeMapping TypeName="QL_LaptopModel.ChiTietPhieuNhap">
+        <MappingFragment StoreEntitySet="ChiTietPhieuNhap">
+          <ScalarProperty Name="PhieuNhap_id" ColumnName="PhieuNhap_id" />
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="quanlity" ColumnName="quanlity" />
+          <ScalarProperty Name="price_Import" ColumnName="price_Import" />
+          <ScalarProperty Name="ratio" ColumnName="ratio" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Comments">
+      <EntityTypeMapping TypeName="QL_LaptopModel.Comment">
+        <MappingFragment StoreEntitySet="Comments">
+          <ScalarProperty Name="comID" ColumnName="comID" />
+          <ScalarProperty Name="proID" ColumnName="proID" />
+          <ScalarProperty Name="cusID" ColumnName="cusID" />
+          <ScalarProperty Name="comMessage" ColumnName="comMessage" />
+          <ScalarProperty Name="comDate" ColumnName="comDate" />
+          <ScalarProperty Name="cusemail" ColumnName="cusemail" />
+          <ScalarProperty Name="cusName" ColumnName="cusName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CustomerAddresses">
+      <EntityTypeMapping TypeName="QL_LaptopModel.CustomerAddress">
+        <MappingFragment StoreEntitySet="CustomerAddress">
+          <ScalarProperty Name="ID_address" ColumnName="ID_address" />
+          <ScalarProperty Name="cusID" ColumnName="cusID" />
+          <ScalarProperty Name="Name_Address" ColumnName="Name_Address" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="QL_LaptopModel.Customer">
+        <MappingFragment StoreEntitySet="Customers">
+          <ScalarProperty Name="cusID" ColumnName="cusID" />
+          <ScalarProperty Name="cusName" ColumnName="cusName" />
+          <ScalarProperty Name="cusEmail" ColumnName="cusEmail" />
+          <ScalarProperty Name="cusPhone" ColumnName="cusPhone" />
+          <ScalarProperty Name="cusPassword" ColumnName="cusPassword" />
+          <ScalarProperty Name="cusAddress" ColumnName="cusAddress" />
+          <ScalarProperty Name="cusType" ColumnName="cusType" />
+          <ScalarProperty Name="cusStatus" ColumnName="cusStatus" />
+          <ScalarProperty Name="cusPhoto" ColumnName="cusPhoto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Customertypes">
+      <EntityTypeMapping TypeName="QL_LaptopModel.Customertype">
+        <MappingFragment StoreEntitySet="Customertype">
+          <ScalarProperty Name="CusType" ColumnName="CusType" />
+          <ScalarProperty Name="CusTypeName" ColumnName="CusTypeName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Descriptions">
+      <EntityTypeMapping TypeName="QL_LaptopModel.Description">
+        <MappingFragment StoreEntitySet="Description">
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="content" ColumnName="content" />
+          <ScalarProperty Name="image_" ColumnName="image_" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Details">
+      <EntityTypeMapping TypeName="QL_LaptopModel.Detail">
+        <MappingFragment StoreEntitySet="Detail">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="CPU" ColumnName="CPU" />
+          <ScalarProperty Name="SoNhan" ColumnName="SoNhan" />
+          <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+          <ScalarProperty Name="Speed" ColumnName="Speed" />
+          <ScalarProperty Name="MaxSpeed" ColumnName="MaxSpeed" />
+          <ScalarProperty Name="Cache" ColumnName="Cache" />
+          <ScalarProperty Name="RAM" ColumnName="RAM" />
+          <ScalarProperty Name="RAM_type" ColumnName="RAM_type" />
+          <ScalarProperty Name="BusRAM" ColumnName="BusRAM" />
+          <ScalarProperty Name="MaxRAM" ColumnName="MaxRAM" />
+          <ScalarProperty Name="OCung" ColumnName="OCung" />
+          <ScalarProperty Name="ManHinh" ColumnName="ManHinh" />
+          <ScalarProperty Name="DoPhanGiai" ColumnName="DoPhanGiai" />
+          <ScalarProperty Name="TanSoQuet" ColumnName="TanSoQuet" />
+          <ScalarProperty Name="CongNgheManHinh" ColumnName="CongNgheManHinh" />
+          <ScalarProperty Name="VGA" ColumnName="VGA" />
+          <ScalarProperty Name="AmThanh" ColumnName="AmThanh" />
+          <ScalarProperty Name="CongGiaoTiep" ColumnName="CongGiaoTiep" />
+          <ScalarProperty Name="KetNoiKhongDay" ColumnName="KetNoiKhongDay" />
+          <ScalarProperty Name="Webcam" ColumnName="Webcam" />
+          <ScalarProperty Name="TinhNangKhac" ColumnName="TinhNangKhac" />
+          <ScalarProperty Name="DenBanPhim" ColumnName="DenBanPhim" />
+          <ScalarProperty Name="SizeAndWeight" ColumnName="SizeAndWeight" />
+          <ScalarProperty Name="ChatLieu" ColumnName="ChatLieu" />
+          <ScalarProperty Name="Pin" ColumnName="Pin" />
+          <ScalarProperty Name="HeDieuHanh" ColumnName="HeDieuHanh" />
+          <ScalarProperty Name="RaMat" ColumnName="RaMat" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DetailsOrders">
+      <EntityTypeMapping TypeName="QL_LaptopModel.DetailsOrder">
+        <MappingFragment StoreEntitySet="DetailsOrders">
+          <ScalarProperty Name="DeOrderID" ColumnName="DeOrderID" />
+          <ScalarProperty Name="orderID" ColumnName="orderID" />
+          <ScalarProperty Name="proID" ColumnName="proID" />
+          <ScalarProperty Name="orderAddress" ColumnName="orderAddress" />
+          <ScalarProperty Name="proPrice" ColumnName="proPrice" />
+          <ScalarProperty Name="orderQuantity" ColumnName="orderQuantity" />
+          <ScalarProperty Name="orderMoney" ColumnName="orderMoney" />
+          <ScalarProperty Name="cusID" ColumnName="cusID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employees">
+      <EntityTypeMapping TypeName="QL_LaptopModel.Employee">
+        <MappingFragment StoreEntitySet="Employees">
+          <ScalarProperty Name="empID" ColumnName="empID" />
+          <ScalarProperty Name="empName" ColumnName="empName" />
+          <ScalarProperty Name="empDate" ColumnName="empDate" />
+          <ScalarProperty Name="empPhoto" ColumnName="empPhoto" />
+          <ScalarProperty Name="empAddress" ColumnName="empAddress" />
+          <ScalarProperty Name="empSalary" ColumnName="empSalary" />
+          <ScalarProperty Name="empBonus" ColumnName="empBonus" />
+          <ScalarProperty Name="empStartTime" ColumnName="empStartTime" />
+          <ScalarProperty Name="empEmail" ColumnName="empEmail" />
+          <ScalarProperty Name="empPhone" ColumnName="empPhone" />
+          <ScalarProperty Name="empPassword" ColumnName="empPassword" />
+          <ScalarProperty Name="empRole" ColumnName="empRole" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EmployeesRoles">
+      <EntityTypeMapping TypeName="QL_LaptopModel.EmployeesRole">
+        <MappingFragment StoreEntitySet="EmployeesRole">
+          <ScalarProperty Name="empRole" ColumnName="empRole" />
+          <ScalarProperty Name="empRoleName" ColumnName="empRoleName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Images">
+      <EntityTypeMapping TypeName="QL_LaptopModel.Image">
+        <MappingFragment StoreEntitySet="Image">
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="image_" ColumnName="image_" />
+          <ScalarProperty Name="active" ColumnName="active" />
+          <ScalarProperty Name="dateUpdate" ColumnName="dateUpdate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NameOrderStatus">
+      <EntityTypeMapping TypeName="QL_LaptopModel.NameOrderStatu">
+        <MappingFragment StoreEntitySet="NameOrderStatus">
+          <ScalarProperty Name="IDStatus" ColumnName="IDStatus" />
+          <ScalarProperty Name="NameOrderStatus" ColumnName="NameOrderStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Orders">
+      <EntityTypeMapping TypeName="QL_LaptopModel.Order">
+        <MappingFragment StoreEntitySet="Orders">
+          <ScalarProperty Name="orderID" ColumnName="orderID" />
+          <ScalarProperty Name="orderDate" ColumnName="orderDate" />
+          <ScalarProperty Name="orderStatus" ColumnName="orderStatus" />
+          <ScalarProperty Name="empID" ColumnName="empID" />
+          <ScalarProperty Name="cusID" ColumnName="cusID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="parameters">
+      <EntityTypeMapping TypeName="QL_LaptopModel.parameter">
+        <MappingFragment StoreEntitySet="parameter">
+          <ScalarProperty Name="paraID" ColumnName="paraID" />
+          <ScalarProperty Name="paraName" ColumnName="paraName" />
+          <ScalarProperty Name="tt_id" ColumnName="tt_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PhieuNhaps">
+      <EntityTypeMapping TypeName="QL_LaptopModel.PhieuNhap">
+        <MappingFragment StoreEntitySet="PhieuNhap">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+          <ScalarProperty Name="date_" ColumnName="date_" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Products">
+      <EntityTypeMapping TypeName="QL_LaptopModel.Product">
+        <MappingFragment StoreEntitySet="Products">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="quanlity" ColumnName="quanlity" />
+          <ScalarProperty Name="purchase" ColumnName="purchase" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="trademark_id" ColumnName="trademark_id" />
+          <ScalarProperty Name="avatar" ColumnName="avatar" />
+          <ScalarProperty Name="productType_id" ColumnName="productType_id" />
+          <ScalarProperty Name="view_" ColumnName="view_" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductTypes">
+      <EntityTypeMapping TypeName="QL_LaptopModel.ProductType">
+        <MappingFragment StoreEntitySet="ProductType">
+          <ScalarProperty Name="productType_id" ColumnName="productType_id" />
+          <ScalarProperty Name="Name_ProductType" ColumnName="Name_ProductType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="promotions">
+      <EntityTypeMapping TypeName="QL_LaptopModel.promotion">
+        <MappingFragment StoreEntitySet="promotions">
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="date_start" ColumnName="date_start" />
+          <ScalarProperty Name="date_end" ColumnName="date_end" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="price_after" ColumnName="price_after" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PromotionsGifts">
+      <EntityTypeMapping TypeName="QL_LaptopModel.PromotionsGift">
+        <MappingFragment StoreEntitySet="PromotionsGift">
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="gift1" ColumnName="gift1" />
+          <ScalarProperty Name="gift2" ColumnName="gift2" />
+          <ScalarProperty Name="gift3" ColumnName="gift3" />
+          <ScalarProperty Name="gift4" ColumnName="gift4" />
+          <ScalarProperty Name="priceSum" ColumnName="priceSum" />
+          <ScalarProperty Name="date_start" ColumnName="date_start" />
+          <ScalarProperty Name="date_end" ColumnName="date_end" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TitleDetailAccessories">
+      <EntityTypeMapping TypeName="QL_LaptopModel.TitleDetailAccessory">
+        <MappingFragment StoreEntitySet="TitleDetailAccessory">
+          <ScalarProperty Name="tt_id" ColumnName="tt_id" />
+          <ScalarProperty Name="ttName" ColumnName="ttName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Trademarks">
+      <EntityTypeMapping TypeName="QL_LaptopModel.Trademark">
+        <MappingFragment StoreEntitySet="Trademark">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="auto_idAccessory" FunctionName="QL_LaptopModel.Store.auto_idAccessory" />
+    <FunctionImportMapping FunctionImportName="auto_idProducts" FunctionName="QL_LaptopModel.Store.auto_idProducts" />
+    <FunctionImportMapping FunctionImportName="LayMa" FunctionName="QL_LaptopModel.Store.LayMa" />
+  </EntityContainerMapping>
+</Mapping>
