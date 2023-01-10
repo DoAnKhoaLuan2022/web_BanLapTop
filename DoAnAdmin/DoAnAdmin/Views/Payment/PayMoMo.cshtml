@@ -1,0 +1,157 @@
+﻿@{
+    ViewBag.Title = "PayMoMo";
+}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" />
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js" integrity="sha512-bPh3uwgU5qEMipS/VOmRqynnMXGGSRv+72H/N260MQeXZIK4PG48401Bsby9Nq5P5fz7hy5UGNmC/W1Z51h2GQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<style>
+    .headerMoMo {
+        padding: 15px 100px;
+        align-items: center;
+        box-shadow: 0px -1px 5px 3px #999;
+        z-index: 1;
+    }
+
+    .content_pay {
+        width: 800px;
+        height: 475px;
+        position: absolute;
+        top: 10%;
+        left: 20%;
+        background-color: white;
+        border-radius: 15px;
+        overflow: hidden;
+    }
+
+    .GoOnShopping {
+        position: absolute;
+        background-color: white;
+        border-radius: 50%;
+        right: 0;
+        bottom: 0;
+        font-size: 10px;
+        padding: 10px;
+        margin: 0 20px 50px 0;
+    }
+    [data-c-tooltip] {
+        position: relative;
+        cursor: pointer;
+    }
+        /* Base styles for the entire c-tooltip */
+        [data-c-tooltip]:before,
+        [data-c-tooltip]:after {
+            position: absolute;
+            visibility: hidden;
+            -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+            filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+            opacity: 0;
+            -webkit-transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out, -webkit-transform 0.2s cubic-bezier(0.71, 1.7, 0.77, 1.24);
+            -moz-transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out, -moz-transform 0.2s cubic-bezier(0.71, 1.7, 0.77, 1.24);
+            transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out, transform 0.2s cubic-bezier(0.71, 1.7, 0.77, 1.24);
+            -webkit-transform: translate3d(0, 0, 0);
+            -moz-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+            pointer-events: none;
+        }
+        /* Show the entire c-tooltip on hover and focus */
+        [data-c-tooltip]:hover:before,
+        [data-c-tooltip]:hover:after,
+        [data-c-tooltip]:focus:before,
+        [data-c-tooltip]:focus:after {
+            visibility: visible;
+            -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+            filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+            opacity: 1;
+        }
+        /* Base styles for the c-tooltip's directional arrow */
+        [data-c-tooltip]:before {
+            z-index: 1001;
+            border: 6px solid transparent;
+            background: transparent;
+            content: "";
+        }
+        /* Base styles for the c-tooltip's content area */
+        [data-c-tooltip]:after {
+            z-index: 1000;
+            padding: 8px;
+            width: 160px;
+            background-color: #000;
+            background-color: rgba(51, 51, 51, 0.9);
+            color: #fff;
+            content: attr(data-c-tooltip);
+            font-size: 14px;
+            line-height: 1.2;
+        }
+        /* Directions */
+        /* Top (default) */
+        [data-c-tooltip]:before,
+        [data-c-tooltip]:after {
+            bottom: 40%;
+            left: 20%;
+        }
+
+        [data-c-tooltip]:before {
+            margin-left: -6px;
+            margin-bottom: -12px;
+            border-top-color: #000;
+            border-top-color: rgba(51, 51, 51, 0.9);
+        }
+        /* Horizontally align top/bottom c-tooltips */
+        [data-c-tooltip]:after {
+            margin-left: -140px;
+        }
+
+        [data-c-tooltip]:hover:before,
+        [data-c-tooltip]:hover:after,
+        [data-c-tooltip]:focus:before,
+        [data-c-tooltip]:focus:after {
+            -webkit-transform: translateY(-12px);
+            -moz-transform: translateY(-12px);
+            transform: translateY(-12px);
+        }
+</style>
+<div class="d-flex headerMoMo">
+    <img style="width:35px;height:35px; margin-right:10px" src="https://hstatic.net/0/0/global/design/seller/image/payment/momo.svg?v=4" />
+    <h5 style="">Cổng thanh toán MoMo</h5>
+</div>
+<div style="background-color: #FFE1E1; height:600px; position:relative">
+    <div class="row content_pay">
+        <div class="col-5">
+            <div>
+                <p style="font-size: 20px; font-weight: 500; padding-top: 15px; border-bottom: 1px solid #ccc;">Thông tin đơn hàng</p>
+                <p>Nhà cung cấp</p>
+                <img style="width:70px;height:40px" src="~/Assets/Image/ImageLogo/Logo.png" />
+                <p style=" border-bottom: 1px solid #ccc; font-weight: 500;">Nam Quin Technology</p>
+            </div>
+            <div>
+                <p>Mã đơn hàng</p>
+                <p style=" border-bottom: 1px solid #ccc; font-weight: 500;">@Session["maorder"]</p>
+            </div>
+            <div>
+                <p>Số tiền</p>
+                <p style=" border-bottom: 1px solid #ccc; font-weight: 500; font-size:25px">@Session["tongtien"]</p>
+            </div>
+            <div style="text-align:center">
+                <a href="#" style=" color: #a50164; font-size: 18px; font-weight: 500;">Hủy thanh toán</a>
+            </div>
+            <div style="padding:5px 0">
+                <p style="color:red">Lưu ý: Khi quý khách thanh toán xong vui lòng chụp màng hình và gửi về Zalo: 0397495029 để xác nhận đơn hàng</p>
+            </div>
+        </div>
+        <div class="col-7" style="padding:0 !important">
+            <img style="width:100%;height:100%;" src="~/Assets/Image/ImageLogo/momo.jpg" />
+        </div>
+    </div>
+    <button type="button" class="GoOnShopping btn" data-toggle="tooltip" data-bs-placement="left" data-bs-title="Trở về trang chủ">
+        <a style="text-decoration:none;color:white;" href="#">
+            <a href="@Url.Action("ShowAllProducts", "Product")" class="xd" data-html="true" tooltip-position='bottom' data-c-tooltip="Quay lại trang chủ">
+                <img style="width:30px;height:30px" src="https://cdn-icons-png.flaticon.com/512/5543/5543009.png" />
+            </a>
+        </a>
+    </button>
+</div>

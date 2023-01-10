@@ -61,6 +61,15 @@
                                 <li><a class="header_drop_item dropdown-item" href="@Url.Action("ShowProductsPhuKienKhac", "Product")">Phụ kiện khác</a></li>
                             </ul>
                         </li>
+                        <li class="header__nav-item">
+                            <button class="header_drop-btn dropdown-toggle " data-bs-toggle="dropdown" aria-expanded="false">
+                                Hot
+                            </button>
+                            <ul class="header_drop_menu dropdown-menu ">
+                                <li><a class="header_drop_item dropdown-item" href="@Url.Action("ShowProductsKhuyenMai", "Product")">Khuyến mãi</a></li>
+                                <li><a class="header_drop_item dropdown-item" href="@Url.Action("ShowProductsKhuyenMai", "Product")">Bán chạy</a></li>
+                            </ul>
+                        </li>
                         <li class="header__nav-item"><a class="header_drop_item" style="text-decoration:none" href="@Url.Action("TakeCare","TakeCare")">Hỏi đáp</a></li>
                         <li class="header__nav-item">
 
@@ -72,10 +81,11 @@
                         <button class="header_drop-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="header_right_icon far fa-user"></i>
                         </button>
-                                        <ul class="header_drop_menu dropdown-menu">
-                                            <li><a class="header_drop_item dropdown-item" href="@Url.Action("Register", "Customers")">Đăng kí</a></li>
-                                            <li><a class="header_drop_item dropdown-item" href="@Url.Action("Login", "Customers")">Đăng nhập</a></li>
-                                        </ul> }
+                        <ul class="header_drop_menu dropdown-menu">
+                            <li><a class="header_drop_item dropdown-item" href="@Url.Action("orderPhone", "Payment")">Tìm kiếm đơn hàng</a></li>
+                            <li><a class="header_drop_item dropdown-item" href="@Url.Action("Register", "Customers")">Đăng kí</a></li>
+                            <li><a class="header_drop_item dropdown-item" href="@Url.Action("Login", "Customers")">Đăng nhập</a></li>
+                        </ul> }
                                     else
                                     {
                         <button class="header_drop-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -83,6 +93,7 @@
                         </button>
                                         <ul class="header_drop_menu dropdown-menu">
                                             <li><a class="header_drop_item dropdown-item" href="@Url.Action("Profile", "Customers")"> Trang cá nhân</a></li>
+                                            <li><a class="header_drop_item dropdown-item" href="@Url.Action("DetailsPay", "Payment")"> Đơn hàng</a></li>
                                             <li><a class="header_drop_item dropdown-item" href="@Url.Action("Login", "Customers")"> Đăng xuất</a></li>
                                         </ul> }
                                     info = null; }
@@ -100,7 +111,7 @@
                             </div>*@
                         <div class="search-btn" style="display: flex">
                             <div class="wrap">
-                                <form action="SearchProducts" method="get">
+                                <form action="@Url.Action("SearchProducts","Product")" method="get">
                                     <input id="txtSearch"
                                            name="txt_search"
                                            type="text"
@@ -121,7 +132,7 @@
                             @*<i class="header_right_icon fa-shopping-cart bg-white"></i>*@
                         </div>
                         <div class="header_right_wrap">
-                            @Html.Action("Order", "PartialView")
+                            
                             @*<i class="header_right_icon fas fa-bags-shopping bg-white"></i>*@
                         </div>
                     </div>
@@ -133,7 +144,7 @@
     <div class="w-100">
         @RenderBody()
     </div>
-    <div id="Footer" class="row w-100">
+    <div id="Footer" class="row w-100" style="position:relative;bottom:0">
         <div class="">
             <ul class="list_foot">
                 <li class="list_foot_li">

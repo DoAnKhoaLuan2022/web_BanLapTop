@@ -19,6 +19,14 @@
     <Property Name="dateUpdate" Type="datetime" />
     <Property Name="BannerType" Type="nvarchar" MaxLength="100" />
   </EntityType>
+  <EntityType Name="CancelOrder">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_order" Type="int" />
+    <Property Name="reason" Type="nvarchar" MaxLength="500" />
+  </EntityType>
   <EntityType Name="Cart">
     <Key>
       <PropertyRef Name="cartID" />
@@ -29,6 +37,7 @@
     <Property Name="CartQuantity" Type="int" />
     <Property Name="CartMoney" Type="int" />
     <Property Name="cusID" Type="int" />
+    <Property Name="tt" Type="int" />
   </EntityType>
   <EntityType Name="ChiTietPhieuNhap">
     <Key>
@@ -49,7 +58,7 @@
     <Property Name="proID" Type="char" MaxLength="9" />
     <Property Name="cusID" Type="int" />
     <Property Name="comMessage" Type="nvarchar(max)" />
-    <Property Name="comDate" Type="date" />
+    <Property Name="comDate" Type="datetime" />
     <Property Name="cusemail" Type="nchar" MaxLength="500" />
     <Property Name="cusName" Type="nvarchar" MaxLength="50" />
   </EntityType>
@@ -67,11 +76,14 @@
     </Key>
     <Property Name="cusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="cusName" Type="nvarchar(max)" />
+    <Property Name="cusGender" Type="nvarchar" MaxLength="100" />
     <Property Name="cusEmail" Type="nvarchar" MaxLength="100" />
     <Property Name="cusPhone" Type="nchar" MaxLength="11" />
     <Property Name="cusPassword" Type="nchar" MaxLength="10" />
     <Property Name="cusAddress" Type="nvarchar(max)" />
     <Property Name="cusType" Type="int" />
+    <Property Name="cusTotal" Type="int" />
+    <Property Name="cusQuantityBuy" Type="int" />
     <Property Name="cusStatus" Type="int" />
     <Property Name="cusPhoto" Type="char" MaxLength="100" />
   </EntityType>
@@ -265,7 +277,9 @@
     <Property Name="name" Type="nvarchar" MaxLength="1000" />
   </EntityType>
   <Association Name="fk_ac">
-    <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
+    <End Role="Products" Type="Self.Products" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="accessory" Type="Self.accessory" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Products">
@@ -313,7 +327,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="fk_CartproID">
-    <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
+    <End Role="Products" Type="Self.Products" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Products">
@@ -324,8 +340,22 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="fk_Co_Or">
+    <End Role="Orders" Type="Self.Orders" Multiplicity="0..1" />
+    <End Role="CancelOrder" Type="Self.CancelOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Orders">
+        <PropertyRef Name="orderID" />
+      </Principal>
+      <Dependent Role="CancelOrder">
+        <PropertyRef Name="id_order" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="fk_ComPr">
-    <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
+    <End Role="Products" Type="Self.Products" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Products">
@@ -349,7 +379,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_CTPN_Products">
-    <End Role="Products" Type="Self.Products" Multiplicity="1" />
+    <End Role="Products" Type="Self.Products" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="ChiTietPhieuNhap" Type="Self.ChiTietPhieuNhap" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Products">
@@ -397,7 +429,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="fk_DeOrderProID">
-    <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
+    <End Role="Products" Type="Self.Products" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="DetailsOrders" Type="Self.DetailsOrders" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Products">
@@ -409,7 +443,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Description_Prod">
-    <End Role="Products" Type="Self.Products" Multiplicity="1" />
+    <End Role="Products" Type="Self.Products" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Description" Type="Self.Description" Multiplicity="0..1" />
     <ReferentialConstraint>
       <Principal Role="Products">
@@ -421,7 +457,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Detail_Products">
-    <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
+    <End Role="Products" Type="Self.Products" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Detail" Type="Self.Detail" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Products">
@@ -445,7 +483,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Image_Products">
-    <End Role="Products" Type="Self.Products" Multiplicity="1" />
+    <End Role="Products" Type="Self.Products" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Image" Type="Self.Image" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Products">
@@ -465,18 +505,6 @@
       </Principal>
       <Dependent Role="Orders">
         <PropertyRef Name="cusID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="fk_OrderEmID">
-    <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
-    <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Employees">
-        <PropertyRef Name="empID" />
-      </Principal>
-      <Dependent Role="Orders">
-        <PropertyRef Name="empID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -529,7 +557,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_promotions_Products">
-    <End Role="Products" Type="Self.Products" Multiplicity="1" />
+    <End Role="Products" Type="Self.Products" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="promotions" Type="Self.promotions" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Products">
@@ -541,7 +571,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_PromotionsGift_Prod">
-    <End Role="Products" Type="Self.Products" Multiplicity="1" />
+    <End Role="Products" Type="Self.Products" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="PromotionsGift" Type="Self.PromotionsGift" Multiplicity="0..1" />
     <ReferentialConstraint>
       <Principal Role="Products">
@@ -565,6 +597,7 @@
   <EntityContainer Name="QL_LaptopModelStoreContainer">
     <EntitySet Name="accessory" EntityType="Self.accessory" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Banner" EntityType="Self.Banner" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CancelOrder" EntityType="Self.CancelOrder" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Cart" EntityType="Self.Cart" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ChiTietPhieuNhap" EntityType="Self.ChiTietPhieuNhap" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Comments" EntityType="Self.Comments" Schema="dbo" store:Type="Tables" />
@@ -606,6 +639,10 @@
     <AssociationSet Name="fk_CartproID" Association="Self.fk_CartproID">
       <End Role="Products" EntitySet="Products" />
       <End Role="Cart" EntitySet="Cart" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Co_Or" Association="Self.fk_Co_Or">
+      <End Role="Orders" EntitySet="Orders" />
+      <End Role="CancelOrder" EntitySet="CancelOrder" />
     </AssociationSet>
     <AssociationSet Name="fk_ComPr" Association="Self.fk_ComPr">
       <End Role="Products" EntitySet="Products" />
@@ -653,10 +690,6 @@
     </AssociationSet>
     <AssociationSet Name="fk_OrderCus" Association="Self.fk_OrderCus">
       <End Role="Customers" EntitySet="Customers" />
-      <End Role="Orders" EntitySet="Orders" />
-    </AssociationSet>
-    <AssociationSet Name="fk_OrderEmID" Association="Self.fk_OrderEmID">
-      <End Role="Employees" EntitySet="Employees" />
       <End Role="Orders" EntitySet="Orders" />
     </AssociationSet>
     <AssociationSet Name="fk_para1" Association="Self.fk_para1">

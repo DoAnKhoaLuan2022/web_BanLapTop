@@ -164,12 +164,16 @@
     <Compile Include="Models\Banner.cs">
       <DependentUpon>QL_Laptop.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CancelOrder.cs">
+      <DependentUpon>QL_Laptop.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Cart.cs">
       <DependentUpon>QL_Laptop.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ChiTietPhieuNhap.cs">
       <DependentUpon>QL_Laptop.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ChonLoc.cs" />
     <Compile Include="Models\Comment.cs">
       <DependentUpon>QL_Laptop.tt</DependentUpon>
     </Compile>
@@ -197,6 +201,7 @@
     <Compile Include="Models\EmployeesRole.cs">
       <DependentUpon>QL_Laptop.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\GioHang.cs" />
     <Compile Include="Models\HamXuLy.cs" />
     <Compile Include="Models\Image.cs">
       <DependentUpon>QL_Laptop.tt</DependentUpon>
@@ -2898,6 +2903,7 @@
     <Content Include="Assets\Image\ImageAdvertise\linhKien.png" />
     <Content Include="Assets\Image\ImageAdvertise\title-desktop.png" />
     <Content Include="Assets\Image\ImageAvatar\admin.jpg" />
+    <Content Include="Assets\Image\ImageAvatar\beQuin.jpg" />
     <Content Include="Assets\Image\ImageAvatar\messages-1.jpg" />
     <Content Include="Assets\Image\ImageAvatar\messages-2.jpg" />
     <Content Include="Assets\Image\ImageAvatar\messages-3.jpg" />
@@ -2917,6 +2923,7 @@
     <Content Include="Assets\Image\ImageDescription\yt1s.com - ASUS Zenbook 17 Fold OLED  Gập Giới Hạn Mở Tương Lai.mp4" />
     <Content Include="Assets\Image\ImageLogo\lap_Acer.png" />
     <Content Include="Assets\Image\ImageLogo\Logo.png" />
+    <Content Include="Assets\Image\ImageLogo\momo.jpg" />
     <Content Include="Assets\Image\ImageProduct\banphim-mk2c3.png" />
     <Content Include="Assets\Image\ImageProduct\banphim-mk2c3_2.png" />
     <Content Include="Assets\Image\ImageProduct\banphim-mk2c3_3.jpg" />
@@ -4385,7 +4392,6 @@
     <Content Include="Views\Product\ShowProductsPhuKienKhac.cshtml" />
     <Content Include="Views\Product\ShowProductsTaiNghe.cshtml" />
     <Content Include="Views\Shared\_ProductTydeLayout.cshtml" />
-    <Content Include="Views\Product\ShowProductsMacbookHome.cshtml" />
     <Content Include="Views\PromotionGift\PromotionGiftPrice.cshtml" />
     <Content Include="Views\PromotionGift\AddPromotionGiftPrice.cshtml" />
     <Content Include="Views\Product\ShowProductsAsusHome.cshtml" />
@@ -4408,6 +4414,22 @@
     <Content Include="Views\Product\InsertParameter.cshtml" />
     <Content Include="Views\Product\TitleAccessory.cshtml" />
     <Content Include="Views\Product\InsertTitleAccessory.cshtml" />
+    <Content Include="Views\Customers\UpdateProfile.cshtml" />
+    <Content Include="Views\Payment\PayMoMo.cshtml" />
+    <Content Include="Views\Product\ShowProductsMacbookHome.cshtml" />
+    <Content Include="Views\Payment\DetailsProOrders.cshtml" />
+    <Content Include="Views\Image\AddImageIDPro.cshtml" />
+    <Content Include="Views\PhieuNhapXuat\ThemCTPhieuNhapIDPro.cshtml" />
+    <Content Include="Views\Product\InsertDescriptionIDPro.cshtml" />
+    <Content Include="Views\Product\allListProduct.cshtml" />
+    <Content Include="Views\Product\ShowProductsKhuyenMaiHome.cshtml" />
+    <Content Include="Views\Product\ShowProductsSPbanChayHome.cshtml" />
+    <Content Include="Views\PartialView\loc.cshtml" />
+    <Content Include="Views\Product\ShowProductsKhuyenMai.cshtml" />
+    <Content Include="Views\Payment\SearchPhone.cshtml" />
+    <Content Include="Views\Payment\orderPhone.cshtml" />
+    <Content Include="Views\Product\allListProductEmpty.cshtml" />
+    <Content Include="Views\Payment\cancelOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

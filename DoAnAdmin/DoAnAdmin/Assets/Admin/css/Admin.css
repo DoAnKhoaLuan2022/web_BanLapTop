@@ -1229,3 +1229,57 @@ h1, h2, h3, h4, h5, h6 {
         font-size: 13px;
         color: #012970;
     }
+
+/*Product Manager*/
+.utilities a {
+    width: 80px;
+    height: 40px;
+    font-size: 12px;
+    margin-right: 10px;
+    padding: 10px 0;
+}
+
+.add_sp {
+    text-align: right;
+}
+
+    .add_sp a {
+        text-decoration: none;
+    }
+
+        .add_sp a:hover {
+            border: 1px solid #69779B;
+            padding: 8px 0px 8px 30px;
+            border-radius: 40px;
+        }
+
+.manipulation a {
+    text-decoration: none;
+}
+
+    .manipulation a:hover {
+        border: 1px solid #69779B;
+    }
+
+.manipulation img {
+    width: 30px;
+    height: 30px;
+}
+
+.badge {
+    color: black;
+}
+
+.table {
+    --bs-table-hover-bg: #F3F8FF;
+}
+
+.pagination li {
+    padding-right: 10px;
+    color: black;
+}
+
+.pagination .active {
+    font-size: 22px;
+    margin-top: -6px;
+}

@@ -10,21 +10,46 @@
     {
         if(kt!=a.tt_id)
         {
-            
+
             lst.Add(a);
         }
         kt = a.tt_id;
 
     }
-
+    var us = Session["user"] as DoAnAdmin.Models.Customer;
+    int i = 0;
+    if (us != null)
+    {
+        i = 1;
+    }
     List<accessory> lstAcc = db.accessories.Where(n => n.product_id == Model.product_id).ToList();
     }
 
-<div class="container">
+<div class="container_detailPro">
     <div class="infomation d-flex">
-        <div class="slider_detail">
-            <div class="">
+        <div class="slider_detail row">
+            <div>
                 @Html.Action("ImageProductPartial", "Product", new { @maSP = @ViewBag.maSP })
+            </div>
+            <div class="slider_detail_link d-flex" style="justify-content:center">
+                <div class="sl_detail_link_info">
+                    <a href="#">
+                        <img src="/Assets/Image/ImageProduct/@Model.Product.avatar" class="d-block" alt="Ảnh" />
+                        <p>Hình ảnh</p>
+                    </a>
+                </div>
+                <div class="sl_detail_link_info another">
+                    <a href="#thongSo">
+                        <img src="https://cdn-icons-png.flaticon.com/512/2002/2002066.png" class="d-block" alt="Ảnh" />
+                        <p>Thông số kỹ thuật</p>
+                    </a>
+                </div>
+                <div class="sl_detail_link_info another">
+                    <a href="#thongTin">
+                        <img src="https://cdn-icons-png.flaticon.com/512/4412/4412500.png" class="d-block" alt="Ảnh" />
+                        <p>Thông tin sản phẩm</p>
+                    </a>
+                </div>
             </div>
         </div>
         <div class="info">
@@ -36,19 +61,19 @@
                 <span class="price h-1">
                     @Html.Action("PromotionPricePartial", "Product", new { @maSP = @ViewBag.maSP }) &nbsp;&nbsp;
                     @*Nếu có khuyến mãi thì gạch giá cũ đi*@
-                    @if (ViewBag.IsKhuyenMai == 1)
-                    {
-        <span class="text-muted" style="text-decoration:line-through">@string.Format("{0:0,0}", Model.Product.price) đ</span> }
-    else
-    {
-<span>@string.Format("{0:0,0}", Model.Product.price) <sup>đ</sup></span>}
+                    @*@if (ViewBag.IsKhuyenMai == 1)
+                                        {
+                            <span class="text-muted" style="text-decoration:line-through">@string.Format("{0:0,0}", Model.Product.price) đ</span> }
+                        else
+                        {
+                    <span>@string.Format("{0:0,0}", Model.Product.price) <sup>đ</sup></span>}*@
                 </span>
                 @* Hiển thị khuyến mãi của sản phẩm *@
-                <div class="mt-4">
+                <div style="margin-top:20px">
                     @Html.Action("PromotionsGiftPartial", "Product", new { @maSP = @ViewBag.maSP })
                 </div>
             </div>
-            <div style="margin-top:20px">
+            <div style="margin-top:15px">
                 <p style="font-weight: bold; font-size: 18px; color: #3e3e3f">Ưu đãi khi thanh toán</p>
 
                 <div class="endow row">
@@ -72,14 +97,14 @@
                     </div>
                 </div>
             </div>
-            <div class="row d-flex" style="margin-bottom:20px">
+            <div class="row d-flex" style="margin-bottom:15px">
                 <div class="col-sm-6 col-md-10">
                     <a class="buy btn" href="@Url.Action("PaymentOne", "Payment", new {@id = Model.product_id})">
                         MUA NGAY
                     </a>
                 </div>
                 <div class="col-6 col-md-2">
-                    <a class="add_card btn" onclick="clickCart()" style="font-size:10px" href="@Url.Action("AddCart", "Cart", new { @id = Model.product_id})">
+                    <a class="add_card btn" onclick="clickCart(@i)" style="font-size:10px" href="@Url.Action("AddCart", "Cart", new { @id = Model.product_id})">
                         <i class="fas fa-cart-plus" style="font-size:20px"></i><br />
                         THÊM VÀO GIỎ HÀNG
                     </a>
@@ -140,44 +165,236 @@
         <div class="accordion" id="accordionPanelsStayOpenExample">
             @foreach (var title in lst)
             {
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
-                <button class="accordion-button collapsed btn_header" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
-                    @title.ttName
-                </button>
-            </h2>
-            <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
-                <div class="accordion-body">
-                    @foreach (var item in lstAcc)
-                    {
-                        <ul class="para d-flex">
-                            <li class="para_name" style="width: 200px;">@item.parameter.paraName :</li>
-                            <li class="para_info">&nbsp;&nbsp;@item.content</li>
-                        </ul>
-                        }
+<div class="accordion-item">
+    <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+        <button class="accordion-button collapsed btn_header" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+            @title.ttName
+        </button>
+    </h2>
+    <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+        <div class="accordion-body">
+            @foreach (var item in lstAcc)
+            {
+<ul class="para d-flex">
+    <li class="para_name" style="width: 200px;">@item.parameter.paraName :</li>
+    <li class="para_info">&nbsp;&nbsp;@item.content</li>
+</ul>}
+        </div>
+    </div>
+</div>}
+        </div>
+    </div>
+    <div class="describe pb-3">
+        <div class="row gx-5">
+            <div class="col-7" id="thongTin">
+                <div class="">
+                    @Html.Action("BaiVietPartial", "Product", new { @maSP = @ViewBag.maSP })
                 </div>
+            </div>
+            <div class="col-5">
+                <div class="">
+                    <div>
+                        @Html.Action("LoadComment", "Comment", new { @id = Model.product_id })
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    }
+    @*//scroll*@
+
+    <div class="sp">
+        <div class="row suggestions">
+            <h5 class="col-8" style="font-weight:600">Phụ kiện mua cùng</h5>
+            <a class="col-4" href="#">
+                Xem tất cả
+                <img src="https://cdn-icons-png.flaticon.com/512/9115/9115666.png" />
+            </a>
         </div>
-        <div class="describe">
-            @Html.Action("BaiVietPartial", "Product", new { @maSP = @ViewBag.maSP })
+        <div id="carouselExampleControls2" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item">
+                    <div class="cards-wrapper d-flex">
+                        <a style="text-decoration: none" href="/Product/DetailProduct?maSP=LAP000001">
+                            <div class="card de_pro">
+                                <img class="card-img-top" style="height:60%" src="/Assets/Image/ImageProduct/lap000001.jpg" alt="...">
+                                <div class="card-body">
+
+                                    <h5 class="card-title">
+                                        Laptop Asus ZenBook UX325EA i5 1135G7/8GB/512GB/OL
+                                    </h5>
+                                    <div class="pirce_asus_home row" style="padding:0 20px">
+                                        <p class="card-text col-6 de_pro_p de_pro_pirce">
+                                            24700000₫
+                                        </p>
+                                        <p class="card-text_discout col-4 de_pro_p" style="color: #3e3e3f; text-indent: 0">24700000₫</p>
+                                        <p class="col-2 de_pro_p de_pro_pesent_dis">- 10%</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a style="text-decoration: none" href="/Product/DetailProduct?maSP=LAP000002">
+                            <div class="card de_pro">
+                                <img class="card-img-top" style="height:60%" src="/Assets/Image/ImageProduct/lap000001.jpg" alt="...">
+                                <div class="card-body">
+
+                                    <h5 class="card-title">
+                                        Laptop Asus ZenBook UX325EA i5 1135G7/8GB/512GB/OL
+                                    </h5>
+                                    <div class="pirce_asus_home row" style="padding:0 20px">
+                                        <p class="card-text col-6 de_pro_p de_pro_pirce">
+                                            24700000₫
+                                        </p>
+                                        <p class="card-text_discout col-4 de_pro_p" style="color: #3e3e3f; text-indent: 0">24700000₫</p>
+                                        <p class="col-2 de_pro_p de_pro_pesent_dis">- 10%</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a style="text-decoration: none" href="/Product/DetailProduct?maSP=LAP000003">
+                            <div class="card de_pro">
+                                <img class="card-img-top" style="height:60%" src="/Assets/Image/ImageProduct/lap000001.jpg" alt="...">
+                                <div class="card-body">
+
+                                    <h5 class="card-title">
+                                        Laptop Asus ZenBook UX325EA i5 1135G7/8GB/512GB/OL
+                                    </h5>
+                                    <div class="pirce_asus_home row" style="padding:0 20px">
+                                        <p class="card-text col-6 de_pro_p de_pro_pirce">
+                                            24700000₫
+                                        </p>
+                                        <p class="card-text_discout col-4 de_pro_p" style="color: #3e3e3f; text-indent: 0">24700000₫</p>
+                                        <p class="col-2 de_pro_p de_pro_pesent_dis">- 10%</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a style="text-decoration: none" href="/Product/DetailProduct?maSP=LAP000004">
+                            <div class="card de_pro">
+                                <img class="card-img-top" style="height:60%" src="/Assets/Image/ImageProduct/lap000001.jpg" alt="...">
+                                <div class="card-body">
+
+                                    <h5 class="card-title">
+                                        Laptop Asus ZenBook UX325EA i5 1135G7/8GB/512GB/OL
+                                    </h5>
+                                    <div class="pirce_asus_home row" style="padding:0 20px">
+                                        <p class="card-text col-6 de_pro_p de_pro_pirce">
+                                            24700000₫
+                                        </p>
+                                        <p class="card-text_discout col-4 de_pro_p" style="color: #3e3e3f; text-indent: 0">24700000₫</p>
+                                        <p class="col-2 de_pro_p de_pro_pesent_dis">- 10%</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="carousel-item active">
+                    <div class="cards-wrapper d-flex">
+                        <a style="text-decoration: none" href="/Product/DetailProduct?maSP=LAP000005">
+                            <div class="card de_pro">
+                                <img class="card-img-top" style="height:60%" src="/Assets/Image/ImageProduct/lap000001.jpg" alt="...">
+                                <div class="card-body">
+
+                                    <h5 class="card-title">
+                                        Laptop Asus ZenBook UX325EA i5 1135G7/8GB/512GB/OL
+                                    </h5>
+                                    <div class="pirce_asus_home row" style="padding:0 20px">
+                                        <p class="card-text col-6 de_pro_p de_pro_pirce">
+                                            24700000₫
+                                        </p>
+                                        <p class="card-text_discout col-4 de_pro_p" style="color: #3e3e3f; text-indent: 0">24700000₫</p>
+                                        <p class="col-2 de_pro_p de_pro_pesent_dis">- 10%</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a style="text-decoration: none" href="/Product/DetailProduct?maSP=LAP000006">
+                            <div class="card de_pro">
+                                <img class="card-img-top" style="height:60%" src="/Assets/Image/ImageProduct/lap000001.jpg" alt="...">
+                                <div class="card-body">
+
+                                    <h5 class="card-title">
+                                        Laptop Asus ZenBook UX325EA i5 1135G7/8GB/512GB/OL
+                                    </h5>
+                                    <div class="pirce_asus_home row" style="padding:0 20px">
+                                        <p class="card-text col-6 de_pro_p de_pro_pirce">
+                                            24700000₫
+                                        </p>
+                                        <p class="card-text_discout col-4 de_pro_p" style="color: #3e3e3f; text-indent: 0">24700000₫</p>
+                                        <p class="col-2 de_pro_p de_pro_pesent_dis">- 10%</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a style="text-decoration: none" href="/Product/DetailProduct?maSP=LAP000007">
+                            <div class="card de_pro">
+                                <img class="card-img-top" style="height:60%" src="/Assets/Image/ImageProduct/lap000001.jpg" alt="...">
+                                <div class="card-body">
+
+                                    <h5 class="card-title">
+                                        Laptop Asus ZenBook UX325EA i5 1135G7/8GB/512GB/OL
+                                    </h5>
+                                    <div class="pirce_asus_home row" style="padding:0 20px">
+                                        <p class="card-text col-6 de_pro_p de_pro_pirce">
+                                            24700000₫
+                                        </p>
+                                        <p class="card-text_discout col-4 de_pro_p" style="color: #3e3e3f; text-indent: 0">24700000₫</p>
+                                        <p class="col-2 de_pro_p de_pro_pesent_dis">- 10%</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a style="text-decoration: none" href="/Product/DetailProduct?maSP=LAP000008">
+                            <div class="card de_pro">
+                                <img class="card-img-top" style="height:60%" src="/Assets/Image/ImageProduct/lap000001.jpg" alt="...">
+                                <div class="card-body">
+
+                                    <h5 class="card-title">
+                                        Laptop Asus ZenBook UX325EA i5 1135G7/8GB/512GB/OL
+                                    </h5>
+                                    <div class="pirce_asus_home row" style="padding:0 20px">
+                                        <p class="card-text col-6 de_pro_p de_pro_pirce">
+                                            24700000₫
+                                        </p>
+                                        <p class="card-text_discout col-4 de_pro_p" style="color: #3e3e3f; text-indent: 0">24700000₫</p>
+                                        <p class="col-2 de_pro_p de_pro_pesent_dis">- 10%</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+            <button class="prev carousel-control-prev dePro_next_prev" type="button" data-bs-target="#carouselExampleControls2" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true" style="background-image: none">
+                    <img class="prev_img" src="https://cdn-icons-png.flaticon.com/512/130/130882.png">
+                </span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="next carousel-control-next dePro_next_prev" type="button" data-bs-target="#carouselExampleControls2" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true" style="background-image: none">
+                    <img class="next_img" src="https://cdn-icons-png.flaticon.com/512/130/130884.png">
+                </span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
-        @*<div onclick="click()">
-            @Html.Action("LoadComment", "Comment", new { @id = Model.product_id })
-        </div>*@
     </div>
+ </div>
 <script>
     function click() {
         location.reload();
     }
-    function clickCart() {
-        Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Thêm giỏ hàng thành công!',
-            showConfirmButton: false,
-            timer: 3500
-        })
-    }</script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    function clickCart(i) {
+        if (i == 1) {
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Thêm giỏ hàng thành công!',
+                showConfirmButton: false,
+                timer: 3500
+            })
+        }
+    }
+</script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

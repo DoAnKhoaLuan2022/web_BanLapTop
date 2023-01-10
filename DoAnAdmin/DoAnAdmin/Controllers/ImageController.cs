@@ -59,6 +59,27 @@ namespace DoAnAdmin.Controllers
             ViewBag.tb = 0;
             return RedirectToAction("ImagesProduct", "Image");
         }
+        public ActionResult AddImageIDPro(string idPro)
+        {
+            ViewBag.idAdd = new SelectList(db.Products.Where(n=>n.id.Equals(idPro)), "id", "id");
+            return View();
+        }
+        [HttpPost]
+        public ActionResult AddImageIDPro(string idPro,Image img)
+        {
+            ViewBag.idAdd = new SelectList(db.Products.Where(n => n.id.Equals(idPro)), "id", "id");
+            img.dateUpdate = DateTime.Now;
+            if (ModelState.IsValid)
+            {
+                db.Images.Add(img);
+                db.SaveChanges();
+                ViewBag.tb = 1;
+                //return RedirectToAction("Images", "Image");
+                return RedirectToAction("ImagesProduct", "Image");
+            }
+            ViewBag.tb = 0;
+            return RedirectToAction("ImagesProduct", "Image");
+        }
 
         public ActionResult UpdateImage(string prodID, string Url)
         {

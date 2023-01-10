@@ -1,22 +1,29 @@
 ﻿@model DoAnAdmin.Models.PromotionsGift
 @using DoAnAdmin.Models;
-@{ int sum = 0;
+@{ 
+    QL_LaptopEntities db = new QL_LaptopEntities();
+    int sum = 0;
     var g1 = "";
     var g2 = "";
     var g3 = "";
     var g4 = "";
+    string tt = "";
     if (Model == null)
     {
         sum = 0;
+        tt = string.Format("{0:0,0}", Session["price"]);
+
     }
     else
     {
         sum = (int)Model.priceSum;
+        tt = string.Format("{0:0,0}", (int)Model.priceSum);
         g1 = Model.gift1;
         g2 = Model.gift2;
         g3 = Model.gift3;
         g4 = Model.gift4;
-    } }
+    }
+}
 <style>
     .pro_title {
         text-align: center;
@@ -38,35 +45,35 @@
     }
 
         .pro_price span {
-            font-size: 25px;
-            color: #ff5959;
+        font-size: 25px;
+        color: #ff5959;
             font-weight: bold;
-            line-height: 50px;
-        }
+        line-height: 50px;
+    }
 
     .giftItem {
-        height: 150px;
-        width: 150px;
+    height: 150px;
+    width: 150px;
         margin-right: 10px;
     }
 
         .giftItem span {
-            font-size: 10px;
-            color: #ff5959;
+        font-size: 10px;
+        color: #ff5959;
             font-weight: bold;
-            line-height: 20px;
-        }
+        line-height: 20px;
+    }
 
     .gift {
-        display: flex;
+    display: flex;
         background-color: #FEF9EF;
         text-align: center;
-        height: 150px;
+    height: 150px;
         border-radius: 0 0 7px 7px;
     }
 
     .hidden {
-        display: none;
+    display: none;
     }
 </style>
 <div class="promotion">
@@ -78,7 +85,7 @@
             <p>Khuyến mãi giảm còn</p>
         </div>*@
     <div class="pro_price">
-        <span>@sum đ</span>
+        <span>@tt đ</span>
     </div>
     <div class="gift">
         <div class="giftItem">

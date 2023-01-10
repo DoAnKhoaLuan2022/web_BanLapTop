@@ -29,6 +29,7 @@ namespace DoAnAdmin.Models
     
         public virtual DbSet<accessory> accessories { get; set; }
         public virtual DbSet<Banner> Banners { get; set; }
+        public virtual DbSet<CancelOrder> CancelOrders { get; set; }
         public virtual DbSet<Cart> Carts { get; set; }
         public virtual DbSet<ChiTietPhieuNhap> ChiTietPhieuNhaps { get; set; }
         public virtual DbSet<Comment> Comments { get; set; }

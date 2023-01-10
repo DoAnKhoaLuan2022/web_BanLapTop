@@ -1,53 +1,67 @@
 ﻿@using DoAnAdmin.Models;
 
-@{
-    ViewBag.Title = "Cart";
-    Layout = "~/Views/Shared/_DetailLayoutPage.cshtml";
-}
+@{ ViewBag.Title = "Cart";
+    Layout = "~/Views/Shared/_DetailLayoutPage.cshtml"; }
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-<div class="container card border-dark">
+<style>
+    .cart_tr td {
+        border: 0;
+    }
+</style>
+<h5 style="text-align: center; font-size: 30px; color: #ee4d2d;">Giỏ hàng</h5>
+<div class="container card" style="margin-bottom:30px; border:0">
     <table class="table">
-        <tr style="background-color:lavender">
-            <th>Mã Sản Phẩm</th>
+        <tr style="background-color: lavender; text-align: center;">
             <th>Tên Sản Phẩm</th>
-            <th>ẢNH</th>
+            <th>Hình ảnh</th>
             <th>Số lượng</th>
-            <th>Đưn giá</th>
+            <th>Đơn giá</th>
             <th>Thành tiền</th>
-            @*<th>@Html.ActionLink("Xóa All", "XoaGioHang_All", "GioHang")</th>*@
-            <th></th>
             <th></th>
         </tr>
         @foreach (var item in Model)
         {
-            <tr>
-                <td width="12%">@item.sIdSP</td>
-                <td width="26%">@item.sNameSP</td>
-                <td width="22%"><img src="/Assets/Image/ImageProduct/@item.sImageSP" width="60%" /></td>
-                @using (Html.BeginForm("CapNhatGioHang", "Cart", new { @MaSP = item.sIdSP }))
-                {
-                    <td width="12%"><input type="number" min="1" class="form-control" name="txtSoLuong" value="@item.iSoLuong" size="2" /></td>
-                    <td width="12%">@String.Format("{0:0,0}", item.dDetailPrice)<sup>đ</sup></td>
-                    <td width="16%">@String.Format("{0:0,0}", item.dThanhTien)<sup>đ</sup></td>
-                    @*<td><a href="@Url.Action("XemChiTiet", "SanPham", new { @ms=item.sIdSP})">Details</a></td>*@
-                    <td>
-                        <input type="submit" value="Cập nhật" class="btn btn-sm btn-primary" style="font-size:13px" />
-                    </td>
-                    <td>
-                        <a href="@Url.Action("XoaGioHang", "Cart", new { @MaSP = item.sIdSP })" class="text-danger">
-                            <i class="far fa-trash-alt"></i>
-                        </a>
-                    </td>
-                }
-            </tr>
-        }
-        <tr style="background-color: lavender">
+            string masp = item.sIdSP;
+            QL_LaptopEntities db = new QL_LaptopEntities();
+            var pro = db.Products.FirstOrDefault(n => n.id == masp);
+<tr class="cart_tr">
+    <td width="30%">@item.sNameSP</td>
+    <td width="25%">
+        <img src="/Assets/Image/ImageProduct/@item.sImageSP" width="60%" />
+    </td>
+    <td width="15%">
+        <div class="h-100 w-100 d-flex">
+            <a href="@Url.Action("updateGiamNotAc","Cart",new { id=item.sIdSP})" id="giam" onclick="stepper(this)" class="btn" data-abc="true">
+                <img style="width:20px; height:20px" src="https://cdn-icons-png.flaticon.com/512/1665/1665714.png" />
+            </a>
+            @*<button id="giam" class="btn" onclick="stepper(this,@sl,@gia)"><img style="width:20px; height:20px" src="https://cdn-icons-png.flaticon.com/512/1665/1665714.png" /></button>*@
+            <input min="1" max="@pro.quanlity" step="1" name="quantity" id="txt_quantity" class="form-control form-control-lg text-center" value="@item.iSoLuong" width="50px">
+            @*<button id="tang" class="btn" onclick="stepper(this,@sl,@gia)"><img style="width:20px; height:20px" src="https://cdn-icons-png.flaticon.com/512/1665/1665680.png" /></button>*@
+            <a href="@Url.Action("updateTangNotAc","Cart",new { id=item.sIdSP})" id="tang" onclick="stepper(this)" class="btn" data-abc="true">
+                <img style="width:20px; height:20px" src="https://cdn-icons-png.flaticon.com/512/1665/1665680.png" />
+            </a>
+        </div>
+    </td>
+    <td width="12%">
+        @String.Format("{0:0,0}", item.dDetailPrice)<sup>đ</sup>
+    </td>
+    <td width="16%">
+        @String.Format("{0:0,0}", item.dThanhTien)<sup>đ</sup>
+    </td>
+    <td width="5%">
+        <a href="@Url.Action("XoaGioHang", "Cart", new { @MaSP = item.sIdSP })" class="text-danger">
+            <i class="far fa-trash-alt"></i>
+        </a>
+    </td>
+</tr>
+}
+        <tr class="cart_tr" style="background-color: lavender">
             <td colspan="2" style="color:blue;font-weight:bold;">Total:</td>
-            <td></td>
             <td style="color:red;font-weight:bold;text-align:center">@ViewBag.TongSoLuong</td>
             <td></td>
             <td style="color:red;font-weight:bold;">@String.Format("{0:0,0}", ViewBag.TongThanhTien)<sup>đ</sup></td>
-            <td colspan="2"></td>
+            <td></td>
         </tr>
     </table>
 
@@ -67,104 +81,204 @@
                         </div>
                         @using (Html.BeginForm())
                         {
-                            @Html.AntiForgeryToken()
-                            @Html.ValidationSummary(true)
-                            <table class="table">
-                                <tr>
-                                    <td>
-                                        <input type="radio" name="optRadioGender" id="optionsRadiosNam" value="Nam" checked>&nbsp;Anh &nbsp;&nbsp;
-                                        <input type="radio" name="optRadioGender" id="optionsRadiosNu" value="Nữ">&nbsp;Chị
-                                    </td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input type="text" class="form-control" name="txtHoTen" placeholder="Họ và Tên" />
-                                        <span class="text-danger" style="font-size:13px">@ViewBag.tbHoTen</span>
-                                    </td>
-                                    <td>
-                                        <input type="number" class="form-control" name="txtSdt" placeholder="Số điện thoại" />
-                                        <span class="text-danger" style="font-size:13px">@ViewBag.tbSDT</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><span style="text-transform:uppercase;font-size:15px">Chọn cách thức nhận hàng:</span></td>
-                                    <td>
-                                        <input type="radio" name="optRadios" id="optionsRadios3" value="1" checked>&nbsp;Giao tận nơi &nbsp;&nbsp;
-                                        <input type="radio" name="optRadios" id="optionsRadios4" value="2">&nbsp;Nhận tại cửa hàng
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2">
-                                        <textarea class="form-control" name="txtAddress" placeholder="Số nhà, tên đường, Phường/Xã, Quận/Huyện, Tỉnh/Thành Phố"></textarea>
-                                        <span class="text-danger" style="font-size:13px">@ViewBag.tbDiaChi</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2">
-                                        <input type="text" class="form-control" name="txtYeuCau" placeholder="Yêu cầu khác (Không bắt buộc)" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2">
-                                        <input type="checkbox" value="Television" name="Chk1">&nbsp;Gọi người khác nhận hàng (nếu có)<br />
-                                        <input type="checkbox" value="Website" name="Chk2">&nbsp;Hướng dẫn sử dụng, giải đáp thắc mắc sản phẩm<br />
-                                        <input type="checkbox" value="NewsPaper" name="Chk3">&nbsp;Xuất hóa đơn công ty<br />
-                                    </td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2">
-                                        <div class="card">
-                                            <div class="card-header">
-                                                <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebarGG">
-                                                    <li class="nav-item">
-                                                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilitiesGG"
-                                                           aria-expanded="true" aria-controls="collapseUtilitiesGG">
-                                                            &nbsp;&nbsp;<i class="fas fa-gift"></i>
-                                                            <span>Dùng mã giảm giá</span>
-                                                        </a>
-                                                        <div id="collapseUtilitiesGG" class="collapse" aria-labelledby="headingUtilitiesGG"
-                                                             data-parent="#accordionSidebarGG">
-                                                            <div class="bg-white py-2 collapse-inner rounded row">
-                                                                <div class="col-9">
-                                                                    @*<h6 class="collapse-header">Custom Utilities:</h6>*@
-                                                                    <input type="text" class="form-control" name="txtMaGiamGia" placeholder="Nhập mã giảm giá" />
-                                                                </div>
-                                                                <div class="col-3">
-                                                                    <a class="btn btn-primary" href="#">Áp dụng</a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                </ul>
+            <table class="table">
+                <tr>
+                    <td>
+                        <input type="radio" name="optRadioGender" id="optionsRadiosNam" value="Nam" checked>&nbsp;Anh &nbsp;&nbsp;
+                        <input type="radio" name="optRadioGender" id="optionsRadiosNu" value="Nữ">&nbsp;Chị
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" class="form-control" name="txtHoTen" placeholder="Họ và Tên" />
+                        <span class="text-danger" style="font-size:13px">@ViewBag.tbHoTen</span>
+                    </td>
+                    <td>
+                        <input type="number" class="form-control" name="txtSdt" placeholder="Số điện thoại" />
+                        <span class="text-danger" style="font-size:13px">@ViewBag.tbSDT</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span style="text-transform:uppercase;font-size:15px">Chọn cách thức nhận hàng:</span></td>
+                    <td>
+                        <input type="radio" name="optRadios" id="optionsRadios3" value="1" checked>&nbsp;Giao tận nơi &nbsp;&nbsp;
+                        <input type="radio" name="optRadios" id="optionsRadios4" value="2">&nbsp;Nhận tại cửa hàng
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+                        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js" integrity="sha512-bPh3uwgU5qEMipS/VOmRqynnMXGGSRv+72H/N260MQeXZIK4PG48401Bsby9Nq5P5fz7hy5UGNmC/W1Z51h2GQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+                        <form>
+                            <div class="form-group">
+                                <label>Nhập vào địa chỉ giao hàng</label>
+
+                                <select name="" id="province" class="form-control coupon">
+                                    <option value="">Chọn Thành Phố</option>
+                                </select>
+                                <br />
+                                <select name="" id="district" class="form-control coupon">
+                                    <option value="">Chọn quận</option>
+                                </select>
+                                <br />
+                                <select name="" id="ward" class="form-control coupon">
+                                    <option value="">Chọn phường</option>
+                                </select>
+                                <br />
+                                Địa chỉ cụ thể
+                                <input oninput="setAddress()" type="text" id="txtDiaChi" class="form-control coupon mt-3" name="txtDiaChi">
+                            </div>
+                        </form>
+                        <input type="text" id="txtAddress" class="form-control coupon" name="txtAddress">
+                        <span class="text-danger" style="font-size:13px">@ViewBag.tbDiaChi</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="text" class="form-control" name="txtYeuCau" placeholder="Yêu cầu khác (Không bắt buộc)" />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="checkbox" value="Television" name="Chk1">&nbsp;Gọi người khác nhận hàng (nếu có)<br />
+                        <input type="checkbox" value="Website" name="Chk2">&nbsp;Hướng dẫn sử dụng, giải đáp thắc mắc sản phẩm<br />
+                        <input type="checkbox" value="NewsPaper" name="Chk3">&nbsp;Xuất hóa đơn công ty<br />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <div class="card">
+                            <div class="card-header">
+                                <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebarGG">
+                                    <li class="nav-item">
+                                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilitiesGG"
+                                           aria-expanded="true" aria-controls="collapseUtilitiesGG">
+                                            &nbsp;&nbsp;<i class="fas fa-gift"></i>
+                                            <span>Dùng mã giảm giá</span>
+                                        </a>
+                                        <div id="collapseUtilitiesGG" class="collapse" aria-labelledby="headingUtilitiesGG"
+                                             data-parent="#accordionSidebarGG">
+                                            <div class="bg-white py-2 collapse-inner rounded row">
+                                                <div class="col-9">
+                                                    @*<h6 class="collapse-header">Custom Utilities:</h6>*@
+                                                    <input type="text" class="form-control" name="txtMaGiamGia" placeholder="Nhập mã giảm giá" />
+                                                </div>
+                                                <div class="col-3">
+                                                    <a class="btn btn-primary" href="#">Áp dụng</a>
+                                                </div>
                                             </div>
                                         </div>
-                                    </td>
-                                </tr>
-                                @*<tr>
-                                    <td><span style="font-weight:bold">Tổng tiền:</span></td>
-                                    <td class="text-danger " style="font-weight: bold;text-align:right">@string.Format("{0:0,0}", ViewBag.IsKhuyenMai)<sup>đ</sup></td>
-                                </tr>*@
-                                <tr>
-                                    <td colspan="2" style="text-align:center">
-                                        <input class="btn btn-warning text-light" type="submit" value="ĐẶT HÀNG" style="font-weight:bold; width:720px" />
-                                        <center class="text-muted mt-1" style="font-size:13px">Anh/Chị có thể chọn hình thức thanh toán sau khi đặt hàng</center>
-                                    </td>
-                                </tr>
-                            </table>
-                        }
-                    </div>  
-                    @*<div class="bg-white py-2 collapse-inner rounded row">
-                        <div class="col-9">
-                            <input type="text" class="form-control" name="txtMaGiamGia" placeholder="Nhập mã giảm giá" />
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="col-3">
-                            <a class="btn btn-primary" href="#">Áp dụng</a>
-                        </div>
-                    </div>*@
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan="2" style="text-align:center">
+                        <input class="btn btn-warning text-light" type="submit" value="ĐẶT HÀNG" style="font-weight:bold; width:720px" />
+                        <center class="text-muted mt-1" style="font-size:13px">Anh/Chị có thể chọn hình thức thanh toán sau khi đặt hàng</center>
+                    </td>
+                </tr>
+            </table>}
+                    </div>
+
                 </div>
             </li>
         </ul>
     </div>
 </div>
+
+<script>
+    const quantity = document.getElementById("txt_quantity");
+
+
+    //function stepper(btn) {
+    //    let id = btn.getAttribute("id");
+    //    let min = quantity.getAttribute("min");
+    //    let max = quantity.getAttribute("max");
+    //    let step = quantity.getAttribute("step");
+    //    let val = quantity.getAttribute("value");
+    //    let calcStep = (id == "tang") ? (step * 1) : (step * -1);
+    //    let newVal = parseInt(val) + calcStep;
+    //    if (newVal >= min && newVal <= max) {
+    //        quantity.setAttribute("value", newVal);
+    //    }
+    //    console.log(newVal);
+    //}
+    function setAddress() {
+        const tp = document.getElementById("province");
+        var valueTP = tp.options[tp.selectedIndex].text;
+        const h = document.getElementById("district");
+        var valueH = h.options[h.selectedIndex].text;
+        const x = document.getElementById("ward");
+        var valueX = x.options[x.selectedIndex].text;
+        const dc = document.getElementById("txtDiaChi");
+        var valueDC = dc.value;
+        const ht = document.getElementById("txtAddress");
+
+        ht.value = (valueDC + ", " + valueX + ", " + valueH + ", " + valueTP + "");
+
+    }
+    const host = "https://provinces.open-api.vn/api/";
+    var callAPI = (api) => {
+        return axios.get(api)
+            .then((response) => {
+                renderData(response.data, "province");
+            });
+    }
+    callAPI('https://provinces.open-api.vn/api/?depth=1');
+    var callApiDistrict = (api) => {
+        return axios.get(api)
+            .then((response) => {
+                renderData(response.data.districts, "district");
+            });
+    }
+    var callApiWard = (api) => {
+        return axios.get(api)
+            .then((response) => {
+                renderData(response.data.wards, "ward");
+            });
+    }
+
+    var renderData = (array, select) => {
+        let row = ' <option disable value="">chọn</option>';
+        array.forEach(element => {
+            row += `<option value="${element.code}">${element.name}</option>`
+        });
+        document.querySelector("#" + select).innerHTML = row
+    }
+
+    $("#province").change(() => {
+        callApiDistrict(host + "p/" + $("#province").val() + "?depth=2");
+        printResult();
+    });
+    $("#district").change(() => {
+        callApiWard(host + "d/" + $("#district").val() + "?depth=2");
+        printResult();
+    });
+    $("#ward").change(() => {
+        printResult();
+    })
+
+    var printResult = () => {
+        if ($("#district").val() != "" && $("#province").val() != "" &&
+            $("#ward").val() != "") {
+            let result = $("#province option:selected").text() +
+                " | " + $("#district option:selected").text() + " | " +
+                $("#ward option:selected").text();
+
+            $("#result").text(result)
+
+            var diachi = result;
+            document.getElementById("txt").value = $("#ward option:selected").text() + "," + $("#district option:selected").text() + "," + $("#province option:selected").text();
+
+
+
+        }
+
+    }
+</script>
+

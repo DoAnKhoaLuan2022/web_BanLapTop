@@ -25,11 +25,14 @@ namespace DoAnAdmin.Models
     
         public int cusID { get; set; }
         public string cusName { get; set; }
+        public string cusGender { get; set; }
         public string cusEmail { get; set; }
         public string cusPhone { get; set; }
         public string cusPassword { get; set; }
         public string cusAddress { get; set; }
         public Nullable<int> cusType { get; set; }
+        public Nullable<int> cusTotal { get; set; }
+        public Nullable<int> cusQuantityBuy { get; set; }
         public Nullable<int> cusStatus { get; set; }
         public string cusPhoto { get; set; }
     

@@ -24,10 +24,10 @@
         }
     </div>
 </div>
-<div class="pagination" style="margin-left: 400px">
+@*<div class="pagination" style="margin-left: 400px">
     Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
     of @Model.PageCount   @Html.PagedListPager(Model, page => Url.Action("Index", new { @id = idPro, page }))
-</div>
+</div>*@
 
 <style>
     .ul.pagination {

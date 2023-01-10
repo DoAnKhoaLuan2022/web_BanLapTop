@@ -1,4 +1,4 @@
-﻿@model IEnumerable<DoAnAdmin.Models.ChiTietPhieuXuat>
+﻿@model IEnumerable<DoAnAdmin.Models.DetailsOrder>
 @{
     ViewBag.Title = "ThanhToan";
     Layout = "~/Views/Shared/_DetailLayoutPage.cshtml";
@@ -38,10 +38,10 @@
                             <img src="/Assets/Image/ImageProduct/@item.Product.avatar" width="50%" />
                         </td>
                         <td style="width:100px">
-                            @item.quanlity
+                            @item.orderQuantity
                         </td>
                         <td>
-                            @string.Format("{0:0,0}", item.price)<sup>đ</sup>
+                            @string.Format("{0:0,0}", item.proPrice)<sup>đ</sup>
                         </td>
                     </tr>
                 }

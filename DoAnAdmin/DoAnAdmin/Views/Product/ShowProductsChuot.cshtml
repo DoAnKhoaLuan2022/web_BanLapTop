@@ -65,62 +65,62 @@
                 {
                     ptGiam = (int)Promotion.price * 100 / (int)@item.price;
                 }
-<div class="card1 border-0 col-3">
-    <div class="home-product-item__favourite">
-        <span>Trả góp 0%</span>
-    </div>
-    <div class="home-product-item__sale-off">
-        <span class="home-product-item__sale-off-percent">@{@ptGiam}%</span>
-        <span class="home-product-item__sale-off-label">GIẢM</span>
-    </div>
-    <div class="backgroundEffect"></div>
-    <div class="pic">
-        <br />
-        <a href="@Url.Action("DetailProduct", "Product", new {@maSP = @item.id })">
-            <img class="" src="/Assets/Image/ImageProduct/@item.avatar" alt="">
-        </a>
-        @*<div class="promotion">
+            <div class="card1 border-0 col-3">
+                <div class="home-product-item__favourite">
+                    <span>Trả góp 0%</span>
+                </div>
+                <div class="home-product-item__sale-off">
+                    <span class="home-product-item__sale-off-percent">@{@ptGiam}%</span>
+                    <span class="home-product-item__sale-off-label">GIẢM</span>
+                </div>
+                <div class="backgroundEffect"></div>
+                <div class="pic">
+                    <br />
+                    <a href="@Url.Action("DetailAccessory", "Product", new {@maSP = @item.id })">
+                        <img class="" src="/Assets/Image/ImageProduct/@item.avatar" alt="">
+                    </a>
+                    @*<div class="promotion">
                 <span class="tragop">Trả góp 0%</span>
                 <span class="giamgia">Giảm 1.000.000đ</span>
             </div>*@
-    </div>
-    <div class="content d-block">
-        <br />
-        <a class="content_info mt-4 mb-2" href="@Url.Action("DetailProduct", "Product", new { @maSP = @item.id })">
-            @if (@item.Name.Trim().Length > 50)
-            {
-@item.Name.Substring(0, 50) }
-else
-{
-@item.Name}
-        </a>
-        <br />
-        <span class="h-1 mt-4 price" style="font-weight:bold;">
-            @Html.Action("PromotionPricePartial", "Product", new { @maSP = item.id, style = "color:red" })
-            &nbsp;&nbsp;
-            @*Nếu có khuyến mãi thì gạch giá cũ đi*@
-            @{ promotion kk = db.promotions.Where(n => n.product_id == item.id && n.date_end >= DateTime.Now).FirstOrDefault();
-                if (kk != null)
-                {
-<span class="text-muted" style="text-decoration:line-through;font-size:15px">@string.Format("{0:0,0}", item.price) đ</span> }
-else
-{
+                </div>
+                <div class="content d-block">
+                    <br />
+                    <a class="content_info mt-4 mb-2" href="@Url.Action("DetailAccessory", "Product", new { @maSP = @item.id })">
+                        @if (@item.Name.Trim().Length > 50)
+                        {
+            @item.Name.Substring(0, 50) }
+        else
+        {
+            @item.Name}
+                    </a>
+                    <br />
+                    <span class="h-1 mt-4 price" style="font-weight:bold;">
+                        @Html.Action("PromotionPricePartial", "Product", new { @maSP = item.id, style = "color:red" })
+                        &nbsp;&nbsp;
+                        @*Nếu có khuyến mãi thì gạch giá cũ đi*@
+                        @{ promotion kk = db.promotions.Where(n => n.product_id == item.id && n.date_end >= DateTime.Now).FirstOrDefault();
+                            if (kk != null)
+                            {
+            <span class="text-muted" style="text-decoration:line-through;font-size:15px">@string.Format("{0:0,0}", item.price) đ</span> }
+        else
+        {
 
-} }
-        </span>
-        <div class="d-flex align-items-center justify-content-between mt-3 pb-3">
-            <button type="button" class="add_card btn" data-toggle="tooltip" data-bs-placement="right" data-bs-title="Add to cart">
-                <a style="text-decoration:none;color:white;" href="@Url.Action("AddCart", "Cart", new { @id = item.id})">
-                    <img style="width:30px;height:30px" src="https://cdn-icons-png.flaticon.com/512/4064/4064928.png" />
-                </a>
-            </button>
-            <div class="d-flex ">
-                <span class="far fa-eye pe-1"></span>
-                <p class=" icon text-muted">@item.view_</p>
-            </div>
-        </div>
-    </div>
-</div>}
+        } }
+                    </span>
+                    <div class="d-flex align-items-center justify-content-between mt-3 pb-3">
+                        <button type="button" class="add_card btn" data-toggle="tooltip" data-bs-placement="right" data-bs-title="Add to cart">
+                            <a style="text-decoration:none;color:white;" href="@Url.Action("AddCart", "Cart", new { @id = item.id, @strURL = Request.Url.ToString() })">
+                                <img style="width:30px;height:30px" src="https://cdn-icons-png.flaticon.com/512/4064/4064928.png" />
+                            </a>
+                        </button>
+                        <div class="d-flex ">
+                            <span class="far fa-eye pe-1"></span>
+                            <p class=" icon text-muted">@item.view_</p>
+                        </div>
+                    </div>
+                </div>
+            </div>}
         </div>
         <nav aria-label="Page navigation example mt-3" style="padding: 0 0 20px; ">
             <ul class="pagination justify-content-center m-0">

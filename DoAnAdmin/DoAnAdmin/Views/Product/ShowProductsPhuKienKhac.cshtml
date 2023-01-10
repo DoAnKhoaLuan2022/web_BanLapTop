@@ -2,9 +2,11 @@
 @using PagedList.Mvc;
 @using PagedList;
 @using DoAnAdmin.Models;
-@{ ViewBag.Title = "ShowProductsAsus";
+@{ 
+    ViewBag.Title = "Hiện thi phụ kiện";
     Layout = "~/Views/Shared/_ProductTydeLayout.cshtml";
-    QL_LaptopEntities db = new QL_LaptopEntities(); }
+    QL_LaptopEntities db = new QL_LaptopEntities(); 
+}
 <style>
     .nsx > img {
         height: 70px;
@@ -27,28 +29,6 @@
 
 <div class="w-100" style="background-color: black; margin-top: 60px">
     <div style="height:30px"></div>
-    @*<div class="nsx">
-            <img src="https://st2.depositphotos.com/1046686/8500/i/450/depositphotos_85000232-stock-photo-asus.jpg" />
-        </div>
-        <div id="carouselExampleControlsNoTouching" class="carousel slide" data-bs-touch="false" style="margin:0 50px;">
-            <div class="carousel-inner banner_mac" style="border-radius:20px; height:300px">
-                <div class="carousel-item active" data-bs-interval="3000">
-                    <img src="https://dlcdnwebimgs.asus.com/gain/28FB9B8F-E45F-412C-B767-02A4B5961874" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item" data-bs-interval="3000">
-                    <img src="https://laptopworld.vn/media/news/0912_Promotion_Campaign_KV_1900x684.jpg" class="d-block w-100" alt="...">
-                </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>*@
-
     <div class="container mt-5 row">
         <div></div>
         <div class="contai d-lg-flex row">
@@ -76,7 +56,7 @@
     <div class="backgroundEffect"></div>
     <div class="pic">
         <br />
-        <a href="@Url.Action("DetailProduct", "Product", new {@maSP = @item.id })">
+        <a href="@Url.Action("DetailAccessory", "Product", new {@maSP = @item.id })">
             <img class="" src="/Assets/Image/ImageProduct/@item.avatar" alt="">
         </a>
         @*<div class="promotion">
@@ -86,7 +66,7 @@
     </div>
     <div class="content d-block">
         <br />
-        <a class="content_info mt-4 mb-2" href="@Url.Action("DetailProduct", "Product", new { @maSP = @item.id })">
+        <a class="content_info mt-4 mb-2" href="@Url.Action("DetailAccessory", "Product", new { @maSP = @item.id })">
             @if (@item.Name.Trim().Length > 50)
             {
 @item.Name.Substring(0, 50) }
@@ -110,7 +90,7 @@ else
         </span>
         <div class="d-flex align-items-center justify-content-between mt-3 pb-3">
             <button type="button" class="add_card btn" data-toggle="tooltip" data-bs-placement="right" data-bs-title="Add to cart">
-                <a style="text-decoration:none;color:white;" href="@Url.Action("AddCart", "Cart", new { @id = item.id})">
+                <a style="text-decoration:none;color:white;" href="@Url.Action("AddCart", "Cart", new { @id = item.id, @strURL = Request.Url.ToString() })">
                     <img style="width:30px;height:30px" src="https://cdn-icons-png.flaticon.com/512/4064/4064928.png" />
                 </a>
             </button>

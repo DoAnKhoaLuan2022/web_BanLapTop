@@ -1,8 +1,9 @@
 ﻿@using DoAnAdmin.Models
 @using PagedList.Mvc
-@model PagedList.IPagedList<Comment>
+@model List<Comment>
 @{
     int i = 0;
+    string avatar;
     var us = Session["user"] as DoAnAdmin.Models.Customer;
     if (us == null)
     {
@@ -11,7 +12,12 @@
     else
     {
         i = 0;
+        if( us.cusPhoto == null)
+        {
+            avatar = "messages-1.jpg";
+        }
     }
+    QL_LaptopEntities db = new QL_LaptopEntities();
     var cm = Session["cm"] as DoAnAdmin.Models.Comment;
     Comment CM = Model.ToList().FirstOrDefault();
     string idPro = "";
@@ -20,38 +26,52 @@
         idPro = CM.proID;
     }
 }
-<div onclick="clickMe(@i)">
     @using (Html.BeginForm())
     {
-        <h1>@ViewBag.baoloi</h1>
         <div class="w-100">
             <div>
                 <h1>Comments</h1>
-                @foreach (var item in Model)
-                {
-                    <div class="comment mt-4 text-justify">
-                        <img src="~/Assets/Image/ImageAvatar/messages-3.jpg" alt=""
-                             class="rounded-circle" width="40" height="40">
-                        <h4>@item.cusName</h4> <span>@item.comDate</span> <br>
-                        <p>@item.comMessage</p>
-                    </div>
-                }
-                @if (cm != null)
-                {
-                    <div class="comment mt-4 text-justify">
-                        <img src="~/Assets/Image/ImageAvatar/messages-3.jpg" alt=""
-                             class="rounded-circle" width="40" height="40">
-                        <h4>@cm.cusName</h4> <span>@cm.comDate</span> <br>
-                        <p>@cm.comMessage</p>
-                    </div>
-                }
+                <div style="max-height:400px;overflow:scroll;overflow-x:hidden">
+                    @foreach (var item in Model)
+                    {
+                        var av = db.Customers.Where(n => n.cusID == item.cusID).ToList().FirstOrDefault();
+                        avatar = av.cusPhoto;
+                        <div class="comment mt-4 text-justify">
+                            <img src="~/Assets/Image/ImageAvatar/@avatar" alt=""
+                                 class="rounded-circle" width="30" height="30">
+                            <h4>@item.cusName</h4> <span>@item.comDate</span> <br>
+                            <label style="margin:0">@item.comMessage</label>
+                        </div>
+                    }
+
+
+                    @if (cm != null)
+                    {
+                        
+                        var av = db.Customers.Where(n => n.cusID == cm.cusID).ToList().FirstOrDefault();
+                        avatar = av.cusPhoto;
+                        <div class="comment mt-4 text-justify">
+                            <img src="~/Assets/Image/ImageAvatar/@avatar" alt=""
+                                 class="rounded-circle" width="40" height="40">
+                            <h4>@cm.cusName</h4> <span>@cm.comDate</span> <br>
+                            <label style="margin:0">@cm.comMessage</label>
+                        </div>
+                    }
+                </div>
 
             </div>
             <div>
                 <div class="form-group">
                     <label for="message">Message</label>
-                    <textarea name="msg" id="msg" cols="30" rows="5" class="form-control"
+                    <textarea onclick="clickMe(@i)" name="msg" id="msg" cols="30" rows="5" class="form-control"
                               style="background-color: white;"></textarea>
+                    <script>
+                        function clickMe(i) {
+                            if (i == 1) {
+                                window.location = "../Customers/Login";
+                            }
+                        }
+                    </script>
                 </div>
                 <div class="form-group" style="text-align:center">
 
@@ -59,19 +79,8 @@
                 </div>
             </div>
         </div>
-        <div class="pagination" style="margin-left: 390px">
-            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
-            of @Model.PageCount   @Html.PagedListPager(Model, page => Url.Action("Index", new { @id = idPro, page }))
-        </div>
     }
-</div>
-<script>
-    function clickMe(i) {
-        if (i == 1) {
-            window.location = "../Customers/Login";
-        }
-    }
-</script>
+
 
 <style>
     .ul.pagination {

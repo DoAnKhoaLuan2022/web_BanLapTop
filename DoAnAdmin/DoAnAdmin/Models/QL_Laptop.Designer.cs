@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\Admin\Desktop\KhoaLuan\project3\DoAnAdmin\DoAnAdmin\Models\QL_Laptop.edmx'. 
+﻿// T4 code generation is enabled for model 'E:\OneDrive\Máy tính\API\project3\DoAnAdmin\DoAnAdmin\Models\QL_Laptop.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

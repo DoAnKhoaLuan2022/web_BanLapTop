@@ -17,6 +17,7 @@ namespace DoAnAdmin.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Order()
         {
+            this.CancelOrders = new HashSet<CancelOrder>();
             this.DetailsOrders = new HashSet<DetailsOrder>();
         }
     
@@ -26,9 +27,10 @@ namespace DoAnAdmin.Models
         public Nullable<int> empID { get; set; }
         public Nullable<int> cusID { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CancelOrder> CancelOrders { get; set; }
         public virtual Customer Customer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DetailsOrder> DetailsOrders { get; set; }
-        public virtual Employee Employee { get; set; }
     }
 }

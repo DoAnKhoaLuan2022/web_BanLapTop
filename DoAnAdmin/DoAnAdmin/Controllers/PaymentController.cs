@@ -21,6 +21,10 @@ namespace DoAnAdmin.Controllers
         {
             return View();
         }
+        public ActionResult PayMoMo()
+        {
+            return View();
+        }
         public ActionResult DetailsPay()
         {
             var info = Session["user"] as DoAnAdmin.Models.Customer;
@@ -31,10 +35,16 @@ namespace DoAnAdmin.Controllers
             }
             else
             {
-                return RedirectToAction("Login", "Customers");
+               
+                return RedirectToAction("orderPhone", "Payment");
             }
 
 
+        }
+        public ActionResult DetailsProOrders(int idOrder)
+        {
+                var item = mydb.DetailsOrders.Where(n => n.orderID == idOrder).ToList();
+                return View(item);
         }
         public ActionResult PaymentOne(string id)
         {
@@ -99,21 +109,25 @@ namespace DoAnAdmin.Controllers
             }
         }
         [HttpPost]
-        public ActionResult Payment(string txt)
+        public ActionResult Payment(string txt,FormCollection f)
         {
             var item = Session["user"] as DoAnAdmin.Models.Customer;
             var cart = mydb.Carts.Where(n => n.cusID == item.cusID).ToList();
             if (item != null)
             {
+                Session["tongtien"] = "";
+                Session["maorder"] = "";
                 Order d = new Order();
                 d.orderDate = DateTime.Now;
-                d.orderStatus = "Đang đặt hàng";
+                d.orderStatus = "Đang chờ xác nhận";
                 d.empID = null;
                 d.cusID = item.cusID;
                 mydb.Orders.Add(d);
                 mydb.SaveChanges();
                 var last = mydb.Orders.ToList().LastOrDefault();
                 int maorder = last.orderID;
+                Session["maorder"] = maorder;
+                int tong = 0;
                 foreach (var a in cart)
                 {
                     DetailsOrder det = new DetailsOrder();
@@ -125,6 +139,7 @@ namespace DoAnAdmin.Controllers
                     det.orderQuantity = a.CartQuantity;
                     det.orderMoney = a.CartMoney;
 
+                    tong = tong + (int)(a.CartQuantity * a.proPrice);
                     mydb.DetailsOrders.Add(det);
 
                     Product product = mydb.Products.Where(n => n.id == a.proID).FirstOrDefault();
@@ -134,15 +149,72 @@ namespace DoAnAdmin.Controllers
 
                     mydb.SaveChanges();
                 }
+                Session["tongtien"] = tong; 
                 mydb.Carts.RemoveRange(cart);
                 mydb.SaveChanges();
-                return RedirectToAction("ShowAllProducts", "Product");
+                string tt = f["txtTT"];
+                if(tt.Equals("MoMo"))
+                {
+                    return RedirectToAction("PayMoMo");
+                }    
+                else
+                {
+                    return RedirectToAction("DetailsPay");
+                }    
+               
             }
             else
             {
-                return RedirectToAction("ShowAllProducts", "Product");
+                return RedirectToAction("DetailsPay");
             }
         }
 
+        public ActionResult deletePay(int idOr, string strURL)
+        {
+
+            Order or = mydb.Orders.Where(n => n.orderID == idOr).FirstOrDefault();
+            or.orderStatus = "Đã hủy";
+            mydb.SaveChanges();
+            return Redirect(strURL);
+        }
+        [HttpPost]
+        public ActionResult deletePay(int idOr,string strURL,FormCollection f)
+        {
+
+            Order or = mydb.Orders.Where(n => n.orderID == idOr).FirstOrDefault();
+            or.orderStatus = "Đã hủy";
+            mydb.SaveChanges();
+            string lido = f["txtLiDo"];
+            if(lido != null)
+            {
+                CancelOrder co = new CancelOrder();
+                co.id_order = or.orderID;
+                co.reason = lido;
+                mydb.CancelOrders.Add(co);
+                mydb.SaveChanges();
+                return Redirect(strURL);
+            } 
+            else
+            {
+                return Redirect(strURL);
+            }    
+        }
+        public ActionResult orderPhone()
+        {
+            return View();
+
+        }
+        public ActionResult SearchPhone(FormCollection f)
+        {
+            string txt_sdt = "";
+            txt_sdt = f["txt_sdt"];
+            var item = mydb.DetailsOrders.Where(n => n.Customer.cusPhone.Equals(txt_sdt)).ToList();
+            return View(item);
+        }
+        public ActionResult cancelOrder(int idOr)
+        {
+            Order or = mydb.Orders.Where(n => n.orderID == idOr).FirstOrDefault();
+            return View(or);
+        }
     }
 }

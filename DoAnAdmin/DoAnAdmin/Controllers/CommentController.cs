@@ -30,17 +30,17 @@ namespace DoAnAdmin.Controllers
 
             return PartialView();
         }
-        public ActionResult LoadComment(string id, int page = 1, int size = 4)
+        public ActionResult LoadComment(string id)
         {
             
-            var item = mydb.Comments.Where(n => n.proID == id).ToList().ToPagedList(page, size);
+            var item = mydb.Comments.Where(n => n.proID == id).ToList();
             return PartialView(item);
         }
         [HttpPost]
-        public ActionResult LoadComment(string id, string msg, int page = 1, int size = 4)
+        public ActionResult LoadComment(string id, string msg)
         {
             var cs = HttpContext.Session["user"] as DoAnAdmin.Models.Customer;
-            var item = mydb.Comments.Where(n => n.proID == id).ToList().ToPagedList(page, size);
+            var item = mydb.Comments.Where(n => n.proID == id).ToList();
                 if (msg != ""&& cs!= null)
                 {
                 Comment c = new Comment();

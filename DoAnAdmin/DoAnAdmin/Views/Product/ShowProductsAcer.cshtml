@@ -2,7 +2,7 @@
 @using PagedList.Mvc;
 @using PagedList;
 @using DoAnAdmin.Models;
-@{ ViewBag.Title = "ShowProductsAsus";
+@{ ViewBag.Title = "Sản phẩm Acer";
     Layout = "~/Views/Shared/_ProductTydeLayout.cshtml";
     QL_LaptopEntities db = new QL_LaptopEntities(); }
 <style>
@@ -23,6 +23,14 @@
         .card1:hover {
             box-shadow: 9px 9px 16px rgb(0 0 0 / 44%), -9px -9px 16px rgb(83 83 86 / 80%);
         }
+    .card-title-pro {
+        font-size: 0.8rem !important;
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        font-weight: 100 !important;
+        line-height: 1 !important;
+        text-align: center;
+    }
 </style>
 
 <div class="w-100" style="background-color: black; margin-top: 60px">
@@ -31,7 +39,7 @@
     </div>
     <div id="carouselExampleControlsNoTouching" class="carousel slide" data-bs-touch="false" style="margin:0 50px;">
         <div class="carousel-inner banner_mac" style="border-radius:20px; height:300px">
-            <div class="carousel-item active" data-bs-interval="3000">                
+            <div class="carousel-item active" data-bs-interval="3000">
                 <img src="https://shop.tti.com.ph/pub/media/rokanthemes/brand/ACER-BANNER.jpg" class="d-block w-100" alt="...">
             </div>
             <div class="carousel-item" data-bs-interval="3000">
@@ -91,10 +99,14 @@
         <a class="content_info mt-4 mb-2" href="@Url.Action("DetailProduct", "Product", new { @maSP = @item.product_id })">
             @if (@item.Product.Name.Trim().Length > 50)
             {
-@item.Product.Name.Substring(0, 50) }
+<h5 class="card-title-pro">
+    @item.Product.Name.Substring(0, 40)
+</h5> }
 else
 {
-@item.Product.Name}
+<h5 class="card-title-pro">
+    @item.Product.Name
+</h5>}
         </a>
         <br />
         <span class="h-1 mt-4 price" style="font-weight:bold;">
@@ -123,8 +135,15 @@ else
 @item.DoPhanGiai;
 }
             </span><br>
+
             <i style="width: 20px;" class="icon text-muted fas fa-microchip pe-1 mb-2"></i><span>&nbsp;&nbsp;@item.CPU<br></span>
-            <i style="width: 20px;" class="icon text-muted fas fa-sd-card pe-1 mb-2"></i><span>&nbsp;&nbsp;@item.RAM, @item.RAM_type.Split(' ')[0]<br></span>
+            @if ((@item.RAM.Length + item.RAM_type.Split(' ')[0].Length + item.BusRAM.Length) > 20)
+            {
+<i style="width: 20px;" class="icon text-muted fas fa-sd-card pe-1 mb-2"></i><span>&nbsp;&nbsp;@item.RAM, @item.RAM_type.Split(' ')[0]<br></span> }
+else
+{
+<i style="width: 20px;" class="icon text-muted fas fa-sd-card pe-1 mb-2"></i><span>&nbsp;&nbsp;@item.RAM, @item.RAM_type.Split(' ')[0], @item.BusRAM<br></span>}
+
             @if (@item.OCung.Length > 20)
             {
 <i style="width: 20px;" class="icon text-muted fas fa-hdd pe-1 mb-2"></i><span>&nbsp;&nbsp;@item.OCung.Substring(0, 20) ...<br></span> }
@@ -138,13 +157,23 @@ else
 {
 <i style="width: 20px;" class="icon text-muted fas fa-digital-tachograph pe-1"></i><span>&nbsp;&nbsp;@item.VGA</span>}
         </p>
-        <div class="d-flex align-items-center justify-content-between mt-3 pb-3">
-            <button type="button" class="add_card btn" data-toggle="tooltip" data-bs-placement="right" data-bs-title="Add to cart">
-                <a style="text-decoration:none;color:white;" href="@Url.Action("AddCart", "Cart", new { @id = item.product_id})">
+        <div class="d-flex align-items-center justify-content-between mt-3 pb-3 row" style="padding:0 10px">
+            <button type="button" class="add_card btn col-3" data-toggle="tooltip" data-bs-placement="right" data-bs-title="Add to cart">
+                <a style="text-decoration:none;color:white;" href="@Url.Action("AddCart", "Cart", new { @id = item.product_id, @strURL = Request.Url.ToString() })">
                     <img style="width:30px;height:30px" src="https://cdn-icons-png.flaticon.com/512/4064/4064928.png" />
                 </a>
             </button>
-            <div class="d-flex ">
+            <div class="star d-flex col-6" style="padding:0">
+                <div class="col-3" style="padding:0"></div>
+                <div class="col-9" style="padding:0; text-align:right">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                </div>
+            </div>
+            <div class="d-flex col-2" style="padding:0">
                 <span class="far fa-eye pe-1"></span>
                 <p class=" icon text-muted">@item.Product.view_</p>
             </div>
@@ -154,7 +183,7 @@ else
         </div>
         <nav aria-label="Page navigation example mt-3" style="padding: 0 0 20px; ">
             <ul class="pagination justify-content-center m-0">
-                <li class="page-item">@Html.PagedListPager(Model, Page => Url.Action("ShowProductsAsus", new { Page }))</li>
+                <li class="page-item">@Html.PagedListPager(Model, Page => Url.Action("ShowProductsAcer", new { Page }))</li>
             </ul>
         </nav>
 

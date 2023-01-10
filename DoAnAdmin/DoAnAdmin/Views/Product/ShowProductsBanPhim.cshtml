@@ -76,7 +76,7 @@
     <div class="backgroundEffect"></div>
     <div class="pic">
         <br />
-        <a href="@Url.Action("DetailProduct", "Product", new {@maSP = @item.id })">
+        <a href="@Url.Action("DetailAccessory", "Product", new {@maSP = @item.id })">
             <img class="" src="/Assets/Image/ImageProduct/@item.avatar" alt="">
         </a>
         @*<div class="promotion">
@@ -86,7 +86,7 @@
     </div>
     <div class="content d-block">
         <br />
-        <a class="content_info mt-4 mb-2" href="@Url.Action("DetailProduct", "Product", new { @maSP = @item.id })">
+        <a class="content_info mt-4 mb-2" href="@Url.Action("DetailAccessory", "Product", new { @maSP = @item.id })">
             @if (@item.Name.Trim().Length > 50)
             {
 @item.Name.Substring(0, 50) }
@@ -110,7 +110,7 @@ else
         </span>
         <div class="d-flex align-items-center justify-content-between mt-3 pb-3">
             <button type="button" class="add_card btn" data-toggle="tooltip" data-bs-placement="right" data-bs-title="Add to cart">
-                <a style="text-decoration:none;color:white;" href="@Url.Action("AddCart", "Cart", new { @id = item.id})">
+                <a style="text-decoration:none;color:white;" href="@Url.Action("AddCart", "Cart", new { @id = item.id, @strURL = Request.Url.ToString() })">
                     <img style="width:30px;height:30px" src="https://cdn-icons-png.flaticon.com/512/4064/4064928.png" />
                 </a>
             </button>

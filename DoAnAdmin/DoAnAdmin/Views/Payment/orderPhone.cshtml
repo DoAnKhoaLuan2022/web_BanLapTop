@@ -1,0 +1,57 @@
+﻿@{
+    ViewBag.Title = "Tìm kiếm số điện thoại";
+    Layout = "~/Views/Shared/_DetailLayoutPage.cshtml";
+
+}
+@using DoAnAdmin.Models
+<style>
+    .search_phone {
+        height: 200px;
+        background-color: black;
+        border-radius: 20px;
+        text-align: center;
+        padding: 35px;
+    }
+</style>
+@{ 
+    QL_LaptopEntities db = new QL_LaptopEntities();
+}
+<body class="theme-tet theme-tet_phone">
+    @using (Html.BeginForm("SearchPhone", "Payment"))
+    {
+
+        <div class="w-100" style="padding: 8% 20%; ">
+            <div class="search_phone">
+                <h5 style="color: white; font-weight: 600; margin-bottom: 35px;">Kiểm tra đơn hàng của bạn</h5>
+                <input id="txt_sdt"
+                       name="txt_sdt"
+                       type="text"
+                       class="search-box-input orderPhone_input"
+                       placeholder="Nhập số điện thoại" />
+                <button class="button_85 button_85_w" type="submit" onclick="kt(2)">Tìm kiếm</button>
+            </div>
+        </div>
+        <script>
+            function click() {
+                location.reload();
+            }
+            function kt(i) {
+                if (i == 2) {
+                    Swal.fire({
+                        title: 'Tìm kiếm thành công!',
+                        showClass: {
+                            popup: 'animate__animated animate__fadeInDown'
+                        },
+                        hideClass: {
+                            popup: 'animate__animated animate__fadeOutUp'
+                        }
+                    })
+                }
+            }
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    }
+
+</body>
+
+

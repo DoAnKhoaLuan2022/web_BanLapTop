@@ -1,76 +1,137 @@
-﻿@using DoAnAdmin.Models
+﻿
+@using DoAnAdmin.Models
 @model List<Cart>
 @{
-    ViewBag.Title = "DetailsCart";
+    ViewBag.Title = "DetailsCar1t";
     Layout = "~/Views/Shared/_DetailLayoutPage.cshtml";
+    int sl = 0;
+    int tt = 0;
+
 }
-<section class="pt-5 pb-5">
+<style>
+    a {
+        text-decoration: none !important;
+    }
+
+    .orderLookup {
+        display: block;
+        text-align: right;
+        background-image: linear-gradient(to right, rgba(88,37,123,0), rgb(75 175 254));
+        color: white;
+        margin: 20px 0 10px;
+        font-size: 18px;
+    }
+
+        .orderLookup:hover {
+            color: white;
+            background-image: linear-gradient(to right, rgba(88,37,123,0), rgb(53 159 244));
+        }
+
+    .table_header {
+        border-top: 0 !important;
+    }
+
+    .detailsCart_tr {
+        border-bottom: 1px solid #ccc;
+    }
+
+        .detailsCart_tr td {
+            border: 0;
+        }
+</style>
+<section class="" style="margin:60px auto">
     <div class="container">
         <div class="row w-100">
             <div class="col-lg-12 col-md-12 col-12">
-                <h3 class="display-5 mb-2 text-center">Shopping Cart</h3>
-                <p class="mb-5 text-center">
-                    <i class="text-info font-weight-bold"></i>
-                </p>
+                <h3 class=" mb-2 text-center mb-3" style="letter-spacing: 5px;">Giỏ Hàng</h3>
+                <a class="orderLookup" href="@Url.Action("DetailsPay", "Payment")">Tra cứu đơn hàng <i class="fas fa-arrow-right mr-2"></i></a>
+                @*<p class="mb-5 text-center">
+                        <i class="text-info font-weight-bold"></i>
+                    </p>*@
                 <table id="shoppingCart" class="table table-condensed table-responsive">
                     <thead>
-                        <tr>
-                            <th style="width:60%">Product</th>
-                            <th style="width:12%">Price</th>
-                            <th style="width:10%">Quantity</th>
-                            <th style="width:16%"></th>
+                        <tr style="text-align:center">
+                            <th class="table_header" style="width:60%">Product</th>
+                            <th class="table_header" style="width:15%">Quantity</th>
+                            <th class="table_header" style="width:18%">Price</th>
+                            <th class="table_header" style="width:5%"></th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (var item in Model)
                         {
                             QL_LaptopEntities mydb = new QL_LaptopEntities();
+                            int gia;
+                            gia = (int)item.proPrice;
+                            if (sl != 0)
+                            {
+
+                                tt = sl * (int)item.proPrice;
+                            }
+                            else
+                            {
+                                tt = (int)item.CartQuantity * (int)item.proPrice;
+                            }
                             var pro = mydb.Products.Where(n => n.id == item.proID).FirstOrDefault();
 
-                            using (Html.BeginForm("Update","Cart",FormMethod.Post))
-                            {
-                                <tr>
-                                    <td data-th="Product">
-                                        <div class="row">
-                               
-                                            <div class="col-md-3 text-left">
-                                                <img src="~/Assets/Image/ImageProduct/@pro.avatar" height="100px" width="100px" alt="" class="img-fluid d-none d-md-block rounded mb-2 shadow ">
-                                            </div>
-                                            <div class="col-md-9 text-left mt-sm-2">
-                                                <h4>@pro.Name</h4>
-                                                <p class="font-weight-light">Brand &amp; Name</p>
-                                            </div>
+                            //using (Html.BeginForm("Update", "Cart", new { @id = item.proID, @quantity = item.CartQuantity }))
+                            //{
+                            <tr class="detailsCart_tr">
+                                <td data-th="Product">
+                                    <div class="row">
+                                        <input type="number" name="id" value="@pro.id" hidden="hidden" />
+                                        <div class="col-md-3 text-left">
+                                            <img src="~/Assets/Image/ImageProduct/@pro.avatar" style="height:100px;width:150px" alt="" class="img-fluid d-none d-md-block rounded mb-2 shadow ">
                                         </div>
-                                    </td>
-                                    <td data-th="Price">@pro.price</td>
-                                    <td data-th="Quantity">
-                                        <input hidden="hidden" type="number" name="idcart" id="txt_idcart" class="form-control form-control-lg text-center" value="@item.cartID">
-                                        <input type="number" min="1" name="quantity" id="txt_quantity" class="form-control form-control-lg text-center" value="@item.CartQuantity">
-                                    </td>
-                                    <td class="actions" data-th="">
-                                        <div class="text-right">
-                                            <a data-original-title="Save to Wishlist" title="" href="" class="btn btn-light" data-toggle="tooltip" data-abc="true"> <i class="fa fa-heart"></i></a> <a href="@Url.Action("Delete","Cart",new { id=item.proID})" class="btn btn-light btn-round" data-abc="true"> Remove</a>
-                                            <button type="submit" value="Update" class="btn btn-outline-secondary">Update</button>
+                                        <div class="col-md-9 text-left mt-sm-2">
+                                            <h4 style="font-weight: 400; font-size: 17px;">@pro.Name</h4>
                                         </div>
-                                    </td>
-                                </tr>
-                            }
+                                    </div>
+                                </td>
+                                <td data-th="Quantity" style="text-align:center;">
+                                    <div class="h-100 w-100 d-flex">
+                                        <a href="@Url.Action("updateGiam","Cart",new { id=item.proID})" id="giam" onclick="stepper(this,@sl,@gia)" class="btn searchPhone_btnHuy" data-abc="true">
+                                            <img style="width:20px; height:20px" src="https://cdn-icons-png.flaticon.com/512/1665/1665714.png" />
+                                        </a>
+                                        <input min="1" max="@item.Product.quanlity" step="1" name="quantity" id="txt_quantity" class="form-control form-control-lg text-center searchPhone_btnHuy" value="@item.CartQuantity" width="50px">
+                                        <a href="@Url.Action("updateTang","Cart",new { id=item.proID})" id="tang" onclick="stepper(this,@sl,@gia)" class="btn searchPhone_btnHuy" data-abc="true">
+                                            <img style="width:20px; height:20px" src="https://cdn-icons-png.flaticon.com/512/1665/1665680.png" />
+                                        </a>
+                                    </div>
+
+                                    @*<input type="number" min="1" name="quantity" id="txt_quantity" class="form-control form-control-lg text-center" value="@item.CartQuantity">*@
+                                </td>
+                                <td data-th="Price" style=" font-size: 20px; font-weight: 500; text-align:center">@String.Format("{0:0,0}", pro.price)<sup>đ</sup></td>
+
+                                @*<td class="actions" data-th="">*@
+                                <td>
+                                    <div class="text-right">
+                                        <a href="@Url.Action("Delete","Cart",new { id=item.proID})" class="btn" data-abc="true">
+                                            <img style="width:25px;height:25px" src="https://cdn-icons-png.flaticon.com/512/1721/1721578.png" />
+                                        </a>
+                                        @*<button type="submit" class="btn btn-outline-secondary">Update</button>*@
+                                    </div>
+                                </td>
+
+
+                            </tr>
+                            @*}*@
                         }
                     </tbody>
                 </table>
                 <div class="float-right text-right">
                     <h4>Tổng thành tiền:</h4>
-                    <h1>@String.Format("{0:0,0}", @Model.Sum(n => n.CartMoney)) VND</h1>
+                    <h1 style="color:red">@String.Format("{0:0,0}", Model.Sum(n => n.CartMoney))<sup>đ</sup></h1>
                 </div>
             </div>
         </div>
-        <div class="row mt-4 d-flex align-items-center">
+        <div class="row mt-4 d-flex align-items-center" style="margin:0 15px">
             <div class="col-sm-6 order-md-2 text-right">
-                <a href="@Url.Action("Payment","Payment")" class="btn btn-primary mb-4 btn-lg pl-5 pr-5">Mua ngay</a>
+                <a href="@Url.Action("Payment","Payment")" class=" button_85">Mua ngay</a>
             </div>
             <div class="col-sm-6 mb-3 mb-m-1 order-md-1 text-md-left">
                 <a href="@Url.Action("ShowAllProducts","Product")">
-                    <i class="fas fa-arrow-left mr-2"></i> Continue Shopping
+                    <i class="fas fa-arrow-left mr-2"></i> Tiếp tục mua sắm
                 </a>
             </div>
         </div>
@@ -78,7 +139,35 @@
 </section>
 
 
+<script>
+    const quantity = document.getElementById("txt_quantity");
 
+
+    function stepper(btn, sl, gia) {
+        let id = btn.getAttribute("id");
+        let min = quantity.getAttribute("min");
+        let max = quantity.getAttribute("max");
+        let step = quantity.getAttribute("step");
+        let val = quantity.getAttribute("value");
+        let giaCu = parseInt(val) * gia;
+        let calcStep = (id == "tang") ? (step * 1) : (step * -1);
+        let newVal = parseInt(val) + calcStep;
+        let giaMoi = tong - giaCu + (newVal * gia);
+        if (newVal >= min && newVal <= max) {
+            quantity.setAttribute("value", newVal);
+            /*tt.setAttribute("value", giaMoi);*/
+
+        }
+        sl = parseInt(newVal);
+        console.log(newVal, sl, giaCu, giaMoi, tong);
+
+
+    }
+    var tong = 0;
+    function clickMe(tt) {
+        tong = tt;
+    }
+</script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>

@@ -19,6 +19,104 @@
         box-shadow: 9px 9px 16px rgb(0 0 0 / 44%), -9px -9px 16px rgb(83 83 86 / 80%);
         transform: translateY(-6px);
     }
+    .xd {
+        white-space: pre-wrap;
+    }
+    .card-body {
+        padding: 0 1rem !important;
+        position: relative;
+    }
+
+    .card-title {
+        margin: 0 0 10px !important;
+        position: absolute;
+        top: -20px;
+    }
+
+    .sp .card .card-body {
+        line-height: 6px !important;
+    }
+    /**
+ * c-tooltip Styles
+ */
+    /* Base styles for the element that has a c-tooltip */
+    [data-c-tooltip] {
+        position: relative;
+        cursor: pointer;
+    }
+        /* Base styles for the entire c-tooltip */
+        [data-c-tooltip]:before,
+        [data-c-tooltip]:after {
+            position: absolute;
+            visibility: hidden;
+            -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+            filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+            opacity: 0;
+            -webkit-transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out, -webkit-transform 0.2s cubic-bezier(0.71, 1.7, 0.77, 1.24);
+            -moz-transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out, -moz-transform 0.2s cubic-bezier(0.71, 1.7, 0.77, 1.24);
+            transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out, transform 0.2s cubic-bezier(0.71, 1.7, 0.77, 1.24);
+            -webkit-transform: translate3d(0, 0, 0);
+            -moz-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+            pointer-events: none;
+        }
+        /* Show the entire c-tooltip on hover and focus */
+        [data-c-tooltip]:hover:before,
+        [data-c-tooltip]:hover:after,
+        [data-c-tooltip]:focus:before,
+        [data-c-tooltip]:focus:after {
+            visibility: visible;
+            -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+            filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+            opacity: 1;
+        }
+        /* Base styles for the c-tooltip's directional arrow */
+        [data-c-tooltip]:before {
+            z-index: 1001;
+            border: 6px solid transparent;
+            background: transparent;
+            content: "";
+        }
+        /* Base styles for the c-tooltip's content area */
+        [data-c-tooltip]:after {
+            z-index: 1000;
+            padding: 8px;
+            width: 290px;
+            background-color: #000;
+            background-color: rgba(51, 51, 51, 0.9);
+            color: #fff;
+            content: attr(data-c-tooltip);
+            font-size: 14px;
+            line-height: 1.2;
+        }
+        /* Directions */
+        /* Top (default) */
+        [data-c-tooltip]:before,
+        [data-c-tooltip]:after {
+            bottom: 40%;
+            left: 50%;
+        }
+
+        [data-c-tooltip]:before {
+            margin-left: -6px;
+            margin-bottom: -12px;
+            border-top-color: #000;
+            border-top-color: rgba(51, 51, 51, 0.9);
+        }
+        /* Horizontally align top/bottom c-tooltips */
+        [data-c-tooltip]:after {
+            margin-left: -140px;
+        }
+
+        [data-c-tooltip]:hover:before,
+        [data-c-tooltip]:hover:after,
+        [data-c-tooltip]:focus:before,
+        [data-c-tooltip]:focus:after {
+            -webkit-transform: translateY(-12px);
+            -moz-transform: translateY(-12px);
+            transform: translateY(-12px);
+        }
+   
 </style>
 <div class="nsx">
     <img class="logo_mac" src="https://cdn.tgdd.vn/Category/10199/WMac-120x50-1.png" />
@@ -34,101 +132,129 @@
                         <div class="cards-wrapper d-flex">
                                 @{ foreach (var item in Model)
                                     {
+                                        String box="";
                                         int tienKK = 0;
                                         promotion promotion = db.promotions.Where(n => n.product_id == item.id).FirstOrDefault();
-                                        if(promotion!=null)
+                                        Detail det = db.Details.Where(n => n.product_id == item.id).FirstOrDefault();
+                                        if (det != null)
+                                        {
+                                            box = "CPU : " + det.CPU + "\n" +
+                                                    "RAM : " + det.RAM + "\n" +
+                                                    "Bộ nhớ đệm : " + det.Cache + "\n" +
+                                                    "Tốc độ CPU : " + det.Speed + "\n" +
+                                                    "Tần số quét : " + det.TanSoQuet + "\n" +
+                                                    "Số luồng : " + det.SoLuong + "\n" +
+                                                    "Số nhân : " + det.SoNhan + "\n" +
+                                                    "Ổ cứng : " + det.OCung + "\n";
+                                        }
+                                        if (promotion!=null)
                                         {
                                             tienKK = (int)promotion.price_after;
                                         }
 
                                         if (dem == 4) { break; }
-                                            <a style="text-decoration: none" href="@Url.Action("DetailProduct", "Product", new { @maSP = @item.id })">
+                                            <a style="text-decoration: none" href="@Url.Action("DetailProduct", "Product", new { @maSP = @item.id })" class="xd" tooltip-position='bottom' data-c-tooltip="@box">
                                                 <div class="card ">
                                                     <img style="height: 65%;" class="card-img-top" src="~/Assets/Image/ImageProduct/@item.avatar" alt="..." />
                                                     <div class="card-body" style="background-color: #323232;">
 
-                                                @{ if (item.Name.Length <= 50)
-                                                    {
-                                                        <h5 class="card-title">
-                                                            @item.Name
-                                                        </h5> 
-                                                    }
-                                                    else
-                                                    {
+                                                        @{ if (item.Name.Length <= 50)
+                                                            {
+                                                                <h5 class="card-title">
+                                                                    @item.Name
+                                                                </h5> 
+                                                            }
+                                                            else
+                                                            {
                                                                 <h5 class="card-title">
                                                                     @item.Name.Substring(0, 50).ToString()
                                                                 </h5> 
-                                                    }
-                                                    }
+                                                             } 
+                                                         }
 
-                                                    <div class="d-flex">
+                                                    <div class="d-flex" style="margin-top:45px;">
                                                         <p class="card-text">
-                                                            @{@item.price}₫ &nbsp;&nbsp;&nbsp;
+                                                            @{ @String.Format("{0:0,0}", item.price)}₫
                                                         </p>
                                                         @{ if (tienKK != 0)
                                                             {
-                                                                   <p class="card-text_discout">@tienKK ₫</p>
-                                                                }
-                                                            }
+                                                    <p class="card-text_discout"> @{ @String.Format("{0:0,0}", tienKK)}₫</p> } }
                                                     </div>
-                                            </div>
-                                        </div>
-                                                </a> dem++;
-                                                        }
+                                                    </div>
+                                                </div>
+                                                </a> 
+                                                dem++;
+                                             }
                                         }
                                                     </div>
-                                                </div> }
+                                                </div> 
+                                  }
                 else
                 {
 
         <div class="carousel-item">
             <div class="cards-wrapper d-flex">
-        @{ foreach (var item in Model.Skip(dem))
-            {
-                int tienKK = 0;
-                promotion promotion = db.promotions.Where(n => n.product_id == item.id).FirstOrDefault();
-                if (promotion != null)
-                {
-                    tienKK = (int)promotion.price_after;
-                }
-                <a style="text-decoration: none" href="@Url.Action("DetailProduct", "Product", new {@maSP = @item.id })">
-                    <div class="card ">
-                        <img style="height: 65%;" class="card-img-top" src="~/Assets/Image/ImageProduct/@item.avatar" alt="..." />
-                        <div class="card-body" style="background-color: #323232;">
-
-            @{ if (item.Name.Length <= 50)
-                {
-                    <h5 class="card-title">
-                        @item.Name
-                    </h5> 
-                 }
-
-                else
-                 {
-                        <h5 class="card-title">
-                            @item.Name.Substring(0, 50).ToString()
-                        </h5> } }
-
-                        <div class="d-flex">
-                            <p class="card-text">
-                                @{@item.price}₫ &nbsp;&nbsp;&nbsp;
-                            </p>
-                            @{ if (tienKK != 0)
-                                {
-                        <p class="card-text_discout">@tienKK ₫</p> }
-                            }
-                        </div>
-                                </div>
-                            </div>
-                        </a>
-                        dem++;
-                        if (dem % 4 == 0)
+                @{ foreach (var item in Model.Skip(dem))
+                    {
+                        String box = "";
+                        int tienKK = 0;
+                        promotion promotion = db.promotions.Where(n => n.product_id == item.id).FirstOrDefault();
+                        Detail det = db.Details.Where(n => n.product_id == item.id).FirstOrDefault();
+                        if (det != null)
                         {
-                            break;
+                            box = "CPU : " + det.CPU + "\n" +
+                                    "RAM : " + det.RAM + "\n" +
+                                    "Bộ nhớ đệm : " + det.Cache + "\n" +
+                                    "Tốc độ CPU : " + det.Speed + "\n" +
+                                    "Tần số quét : " + det.TanSoQuet + "\n" +
+                                    "Số luồng : " + det.SoLuong + "\n" +
+                                    "Số nhân : " + det.SoNhan + "\n" +
+                                    "Ổ cứng : " + det.OCung + "\n";
                         }
-                    } }
-    </div>
-</div>}
+
+                        if (promotion != null)
+                        {
+                            tienKK = (int)promotion.price_after;
+                        }
+                                <a style="text-decoration: none" href="@Url.Action("DetailProduct", "Product", new { @maSP = @item.id })" class="xd" tooltip-position='bottom' data-c-tooltip="@box">
+                                    <div class="card ">
+                                        <img style="height: 65%;" class="card-img-top" src="~/Assets/Image/ImageProduct/@item.avatar" alt="..." />
+                                        <div class="card-body" style="background-color: #323232;">
+
+                                            @{ if (item.Name.Length <= 50)
+                                                {
+                                                <h5 class="card-title">
+                                                    @item.Name
+                                                </h5> 
+                                                }
+                                                else
+                                                {
+                                                    <h5 class="card-title">
+                                                        @item.Name.Substring(0, 50).ToString()
+                                                    </h5> 
+                                                 } 
+                                             }
+
+                                        <div class="d-flex" style="margin-top:45px;">
+                                            <p class="card-text">
+                                                @{ @String.Format("{0:0,0}", item.price)}₫
+                                            </p>
+                                            @{ if (tienKK != 0)
+                                                {
+                                        <p class="card-text_discout"> @{ @String.Format("{0:0,0}", tienKK)}₫</p> } }
+                                        </div>
+                                        </div>
+                                    </div>
+                                </a> dem++;
+                                    if (dem % 4 == 0)
+                                    {
+                                        break;
+                                    }
+                                }
+                           }
+                     </div>
+                 </div>
+             }
             }
         </div>
         <button class="prev carousel-control-prev"

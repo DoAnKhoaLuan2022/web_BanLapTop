@@ -41,7 +41,7 @@ namespace DoAnAdmin.Controllers
                 page = 1;
             int pageSize = 10;
             int pageNumber = (page ?? 1);
-            var listProd = db.Products.Where(det => det.productType_id == 3 && det.quanlity > 0).ToList();
+            var listProd = db.Products.Where(det => det.productType_id == 3 && det.quanlity > 0);
 
             return View(listProd.OrderBy(p => p.id).ToPagedList(pageNumber, pageSize));
         }
@@ -53,7 +53,7 @@ namespace DoAnAdmin.Controllers
                 page = 1;
             int pageSize = 10;
             int pageNumber = (page ?? 1);
-            var listProd = db.Products.Where(det => det.productType_id == 4 && det.quanlity > 0).ToList();
+            var listProd = db.Products.Where(det => det.productType_id == 4 && det.quanlity > 0);
 
             return View(listProd.OrderBy(p => p.id).ToPagedList(pageNumber, pageSize));
         }
@@ -64,7 +64,7 @@ namespace DoAnAdmin.Controllers
                 page = 1;
             int pageSize = 10;
             int pageNumber = (page ?? 1);
-            var listProd = db.Products.Where(det => det.productType_id == 5 && det.quanlity > 0).ToList();
+            var listProd = db.Products.Where(det => det.productType_id == 5 && det.quanlity > 0);
 
             return View(listProd.OrderBy(p => p.id).ToPagedList(pageNumber, pageSize));
         }
@@ -75,7 +75,7 @@ namespace DoAnAdmin.Controllers
                 page = 1;
             int pageSize = 10;
             int pageNumber = (page ?? 1);
-            var listProd = db.Products.Where(det => det.productType_id == 6 && det.quanlity > 0).ToList();
+            var listProd = db.Products.Where(det => det.productType_id == 6 && det.quanlity > 0);
 
             return View(listProd.OrderBy(p => p.id).ToPagedList(pageNumber, pageSize));
         }        
@@ -86,7 +86,7 @@ namespace DoAnAdmin.Controllers
                 page = 1;
             int pageSize = 10;
             int pageNumber = (page ?? 1);
-            var listProd = db.Products.Where(det => det.productType_id == 7 && det.quanlity > 0).ToList();
+            var listProd = db.Products.Where(det => det.productType_id == 7 && det.quanlity > 0);
 
             return View(listProd.OrderBy(p => p.id).ToPagedList(pageNumber, pageSize));
         }
@@ -97,9 +97,54 @@ namespace DoAnAdmin.Controllers
                 page = 1;
             int pageSize = 10;
             int pageNumber = (page ?? 1);
-            var listProd = db.Details.Where(det => det.Product.trademark_id == 1 && det.Product.quanlity > 0).ToList();
+            var listProd = db.Details.Where(det => det.Product.trademark_id == 1 && det.Product.quanlity > 0);
 
             return View(listProd.OrderBy(p => p.product_id).ToPagedList(pageNumber, pageSize));
+        }
+
+
+        public ActionResult ShowProductsKhuyenMaiHome()
+        {
+            var lstKK = db.promotions;
+            
+            List<Product> lstProd = new List<Product>();
+            foreach(var item in lstKK)
+            {
+                Product pro = db.Products.Where(det => det.quanlity > 0 && item.product_id == det.id && item.date_end >= DateTime.Now).FirstOrDefault();
+                if(pro!=null)
+                    lstProd.Add(pro);
+
+            }
+            
+            return PartialView(lstProd);
+        }
+        public ActionResult ShowProductsKhuyenMai(int? page)
+        {
+            var lstKK = db.promotions;
+            if (page == null)
+                page = 1;
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            List<Detail> lstProd = new List<Detail>();
+            foreach (var item in lstKK)
+            {
+                Detail deta= db.Details.Where(det => det.Product.quanlity > 0 && item.product_id == det.product_id && item.date_end>=DateTime.Now).FirstOrDefault();
+                if(deta!=null)
+                    lstProd.Add(deta);
+            }
+            return View(lstProd.ToPagedList(pageNumber, pageSize));
+        }
+        public ActionResult ShowProductsSPbanChayHome()
+        {
+            var listProd = db.Products.Where(det => det.trademark_id == 1 && det.quanlity > 0).ToList();
+
+            return PartialView(listProd.ToList());
+        }
+        public ActionResult ShowProductsSPbanChay()
+        {
+            var listProd = db.Products.Where(det => det.trademark_id == 1 && det.quanlity > 0).ToList();
+
+            return PartialView(listProd.ToList());
         }
         //Trang hiển thị sản phẩm Macbook
         public ActionResult ShowProductsMacbookHome()
@@ -290,6 +335,8 @@ namespace DoAnAdmin.Controllers
         //Quà khuyến mãi
         public ActionResult PromotionsGiftPartial(string maSP)
         {
+            Product p = db.Products.Single(t => t.id == maSP);
+            Session["price"] = p.price;
             var prom = db.PromotionsGifts.SingleOrDefault(t => t.product_id == maSP && (DateTime.Now >= t.date_start && DateTime.Now <= t.date_end));
             if (prom == null)
             {
@@ -406,7 +453,6 @@ namespace DoAnAdmin.Controllers
                 page = 1;
             int pageSize = 10;
             int pageNumber = (page ?? 1);
-
             return View(db.Descriptions.OrderBy(t => t.product_id).ToPagedList(pageNumber, pageSize));
         }
         //Thêm mô tả sản phẩm
@@ -430,6 +476,30 @@ namespace DoAnAdmin.Controllers
                 db.Descriptions.Add(d);
                 db.SaveChanges();
                 return RedirectToAction("ProductDescription", "Product");
+            }
+
+            return View();
+        }
+        public ActionResult InsertDescriptionIDPro(string idPro)
+        {
+            ViewBag.ProdID = new SelectList(db.Products.Where(n => n.id == idPro), "id", "id");
+            return View();
+        }
+        [HttpPost]
+        public ActionResult InsertDescriptionIDPro(string idPro,Description d)
+        {
+            ViewBag.ProdID = new SelectList(db.Products.Where(n=>n.id==idPro), "id", "id");
+            var descr = db.Descriptions.SingleOrDefault(t => t.product_id == d.product_id);
+            if (descr != null)
+            {
+                ViewBag.tb = "Sản phẩm này đã có mô tả!";
+                return View();
+            }
+            if (ModelState.IsValid)
+            {
+                db.Descriptions.Add(d);
+                db.SaveChanges();
+                return RedirectToAction("AddImageIDPro", "Image",new {idPro});
             }
 
             return View();
@@ -606,7 +676,8 @@ namespace DoAnAdmin.Controllers
             {
                 db.Products.Add(p);
                 db.SaveChanges();
-                return RedirectToAction("ProductsManager", "Product");
+                //return RedirectToAction("AddImageIDPro", "Image",new {idPro});
+                return RedirectToAction("ThemCTPhieuNhapIDPro", "PhieuNhapXuat", new { idPro });
             }
             return View(p);
         }
@@ -738,16 +809,295 @@ namespace DoAnAdmin.Controllers
             }
             return View();
         }
-        public ActionResult SearchProducts(string txt_search, int page = 1, int size = 8)
+        public ActionResult SearchProducts(string txt_search, int? page)
         {
+            Session["search"] = "";
+            if (page == null)
+                page = 1;
+            int pageSize = 8;
+            int pageNumber = (page ?? 1);
+            
             txt_search = txt_search.ToLower();
-            var item = db.Details.Where(n => n.Product.Name.ToLower().Contains(txt_search)).ToList().ToPagedList(page, size);
+            Session["search"] = txt_search;
+            var item = db.Details.Where(n => n.Product.Name.ToLower().Contains(txt_search)).ToList().ToPagedList(pageNumber, pageSize);
             if(item==null)
             {
                 return View("Không tìm thấy kết quả");
             }    
             return View(item);
         }
+        public ActionResult locProcduct()
+        {
+            var lst = db.Details.ToList();
+            //return RedirectToAction("allListProduct",new {lst});
+            return View(lst);
+        }
+        [HttpPost]
+        public ActionResult locProcduct(FormCollection f)
+        {
+            
+            string hang = f["txtHang"].ToString();
+            string mh = f["txtManHinh"].ToString();
+            string sn = f["txtSoNhan"].ToString();
+            string ram = f["txtRam"].ToString();
+            string rom = f["txtRom"].ToString();
+            string gia = f["txtGia"].ToString();
 
+            List<Detail> lst = new List<Detail>();
+            List<string> lstHang = new List<string>();
+            List<string> lstRam = new List<string>();
+            List<string> lstRom = new List<string>();
+            List<string> lstMH = new List<string>();
+            List<string> lstSN = new List<string>();
+            List<string> lstGia = new List<string>();
+            Session["loc"] = "";
+            string chuoi ="";
+            List<Detail> lstLuu = db.Details.ToList();
+            if (!hang.Equals(""))
+            {
+                chuoi = chuoi + hang ;
+                string[] ArrHang = hang.Split(',');
+               
+                for(int i=0; i<ArrHang.Count()-1;i++)
+                {
+                    lstHang.Add(ArrHang[i].ToString());
+                }
+                int t = 1;
+                foreach (string item in lstHang)
+                {
+                    
+                    if(lst.Count()!=0 && t == 1)
+                    {
+                        lst = lst.Where(n => n.Product.Trademark.name.Equals(item.ToString())).ToList();
+                    }
+                    else if(t == 0|| lst.Count() == 0)
+                    {
+                        lst = lst.Union(lstLuu.Where(n => n.Product.Trademark.name.Equals(item.ToString()))).ToList();
+                        t = 0;
+                    }
+                }    
+            }
+            if (!mh.Equals(""))
+            {
+                chuoi = chuoi + mh ;
+                string[] ArrMH = mh.Split(',');
+
+                for (int i = 0; i < ArrMH.Count() - 1; i++)
+                {
+                    lstMH.Add(ArrMH[i].ToString());
+                }
+                int t = 1;
+                foreach (string item in lstMH)
+                {
+                    if (lst.Count() != 0 && t == 1)
+                    {
+                        lst = lst.Where(n => n.ManHinh.Equals(item)).ToList();
+                    }
+                    else if (t == 0 || lst.Count() == 0)
+                    {
+                        lst = lst.Union(lstLuu.Where(n => n.ManHinh.Equals(item))).ToList();
+                        t = 0;
+                    }
+                    
+                }
+            }
+            if (!gia.Equals(""))
+            {
+                chuoi = chuoi + gia ;
+                string[] ArrGia = gia.Split(',');
+
+                for (int i = 0; i < ArrGia.Count() - 1; i++)
+                {
+                    lstGia.Add(ArrGia[i].ToString());
+                }
+                int t = 1;
+                int t2 = 1;
+                foreach (string item in lstGia)
+                {
+                    if (item.Equals("Dưới 15 triệu"))
+                    {
+                        
+                        if(lst.Count()!=0 && t == 1)
+                        {
+                            lst = lst.Where(n => n.Product.price < 15000000).ToList();
+                        }
+                        else if (t == 0 || lst.Count() == 0)
+                        {
+                            lst = lst.Union(lstLuu.Where(n => n.Product.price < 15000000)).ToList();
+                            t = 0;
+                        }
+                    }
+                    else if (item.Equals("Từ 15 - 20 triệu"))
+                    {
+                        if (lst.Count() != 0 && t == 1|| t2 == 1)
+                        {
+                            lst = lst.Where(n => n.Product.price >= 15000000 && n.Product.price < 20000000).ToList();
+                        }
+                        else if (t == 0 || lst.Count() == 0|| t2 != 1)
+                        {
+                            lst = lst.Union(lstLuu.Where(n => n.Product.price >= 15000000 && n.Product.price < 20000000)).ToList();
+                            t = 0;
+                        }    
+                    }
+                    else if (item.Equals("Từ 20 - 30 triệu"))
+                    {
+
+                        if (lst.Count() != 0 && t == 1)
+                        {
+                            lst = lst.Where(n => n.Product.price >= 20000000 && n.Product.price < 30000000).ToList();
+                        }
+                        else if (t == 0 || lst.Count() == 0)
+                        {
+                            lst = lst.Union(lstLuu.Where(n => n.Product.price >= 20000000 && n.Product.price < 30000000)).ToList();
+                            t = 0;
+                        }
+                    }
+                    else if (item.Equals("Từ 30 - 40 triệu"))
+                    {
+
+                        if (lst.Count() != 0 && t == 1)
+                        {
+                            lst = lst.Where(n => n.Product.price >= 30000000 && n.Product.price <= 40000000).ToList();
+                        }
+                        else if (t == 0 || lst.Count() == 0)
+                        {
+                            lst = lst.Union(lstLuu.Where(n => n.Product.price >= 30000000 && n.Product.price <= 40000000)).ToList();
+                            t = 0;
+                        }
+                    }
+                    else
+                    {
+
+                        if (lst.Count() != 0 && t == 1)
+                        {
+                            lst = lst.Where(n => n.Product.price > 40000000).ToList();
+                        }
+                        else if (t == 0 || lst.Count() == 0)
+                        {
+                            lst = lst.Union(lstLuu.Where(n => n.Product.price > 40000000)).ToList();
+                            t = 0;
+                        }
+                    }
+                }
+
+            }
+            if (!sn.Equals(""))
+            {
+                chuoi = chuoi + sn;
+                string[] ArrSN = sn.Split(',');
+
+                for (int i = 0; i < ArrSN.Count() - 1; i++)
+                {
+                    lstSN.Add(ArrSN[i].ToString());
+                }
+                int t = 1;
+                foreach (string item in lstSN)
+                {
+                   
+                    if (lst.Count() != 0 && t == 1)
+                    {
+                        lst = lst.Where(n => n.SoNhan.Equals(item)).ToList();
+                    }
+                    else if (t == 0 || lst.Count() == 0)
+                    {
+                        lst = lst.Union(lstLuu.Where(n => n.SoNhan.Equals(item))).ToList();
+                        t = 0;
+                    }
+                }
+            }
+            if (!ram.Equals(""))
+            {
+                chuoi = chuoi + ram;
+                string[] ArrRam = ram.Split(',');
+
+                for (int i = 0; i < ArrRam.Count() - 1; i++)
+                {
+                    lstRam.Add(ArrRam[i].ToString());
+                }
+                int t = 1;
+                foreach (string item in lstRam)
+                {
+                    if (lst.Count() != 0 && t == 1)
+                    {
+                        lst = lst.Where(n => n.RAM.Equals(item)).ToList();
+                    }
+                    else if (t == 0 || lst.Count() == 0)
+                    {
+                        lst = lst.Union(lstLuu.Where(n => n.RAM.Equals(item))).ToList();
+                        t = 0;
+                    }
+                }
+            }
+            if (!rom.Equals(""))
+            {
+                chuoi = chuoi + rom;
+                string[] ArrRom = rom.Split(',');
+
+                for (int i = 0; i < ArrRom.Count() - 1; i++)
+                {
+                    lstRom.Add(ArrRom[i].ToString());
+                }
+                int t = 1;
+                foreach (string item in lstRom)
+                {
+                    if (lst.Count() != 0 && t == 1)
+                    {
+                        lst = lst.Where(n => n.OCung.Contains(item)).ToList();
+                    }
+                    else if (t == 0 || lst.Count() == 0)
+                    {
+                        lst = lst.Union(lstLuu.Where(n => n.OCung.Contains(item))).ToList();
+                        t = 0;
+                    }
+                }
+            }
+            foreach(var item in lst)
+            {
+                lst.Distinct().ToList();
+            }    
+            if(chuoi != null)
+            {
+                if (chuoi[chuoi.Length - 1].Equals(","))
+                {
+                    chuoi = chuoi.Substring(0, chuoi.Length - 2);
+                }
+                else
+                {
+                    chuoi = chuoi.Substring(0, chuoi.Length - 1);
+                }
+            }
+            else
+            {
+                chuoi =",";
+            }
+            Session["loc"] = chuoi;
+            string[] mang = chuoi.Split(',');
+            List<ChonLoc> lstCL = new List<ChonLoc>();
+            for(int i = 0; i < mang.Count(); i++)
+            {
+                ChonLoc c = new ChonLoc(mang[i], true);
+                lstCL.Add(c);
+            }
+            Session["chonloc"] = lstCL;
+            Session["ProductLoc"] = lst;
+            return RedirectToAction("allListProduct");
+        }
+        public ActionResult allListProduct(int? page)
+        {
+            if (page == null)
+                page = 1;
+            int pageSize = 8;
+            int pageNumber = (page ?? 1);
+            List<Detail> lst = Session["ProductLoc"] as List<Detail>;
+            if(lst.Count() == 0)
+            {
+                return RedirectToAction("allListProductEmpty");
+            }    
+            return View(lst.ToPagedList(pageNumber, pageSize));
+        }
+        public ActionResult allListProductEmpty()
+        {
+            return View();
+        }
     }
 }

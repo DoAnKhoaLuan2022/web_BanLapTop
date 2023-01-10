@@ -22,6 +22,15 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="CancelOrders">
+      <EntityTypeMapping TypeName="QL_LaptopModel.CancelOrder">
+        <MappingFragment StoreEntitySet="CancelOrder">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_order" ColumnName="id_order" />
+          <ScalarProperty Name="reason" ColumnName="reason" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Carts">
       <EntityTypeMapping TypeName="QL_LaptopModel.Cart">
         <MappingFragment StoreEntitySet="Cart">
@@ -31,6 +40,7 @@
           <ScalarProperty Name="CartQuantity" ColumnName="CartQuantity" />
           <ScalarProperty Name="CartMoney" ColumnName="CartMoney" />
           <ScalarProperty Name="cusID" ColumnName="cusID" />
+          <ScalarProperty Name="tt" ColumnName="tt" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -72,11 +82,14 @@
         <MappingFragment StoreEntitySet="Customers">
           <ScalarProperty Name="cusID" ColumnName="cusID" />
           <ScalarProperty Name="cusName" ColumnName="cusName" />
+          <ScalarProperty Name="cusGender" ColumnName="cusGender" />
           <ScalarProperty Name="cusEmail" ColumnName="cusEmail" />
           <ScalarProperty Name="cusPhone" ColumnName="cusPhone" />
           <ScalarProperty Name="cusPassword" ColumnName="cusPassword" />
           <ScalarProperty Name="cusAddress" ColumnName="cusAddress" />
           <ScalarProperty Name="cusType" ColumnName="cusType" />
+          <ScalarProperty Name="cusTotal" ColumnName="cusTotal" />
+          <ScalarProperty Name="cusQuantityBuy" ColumnName="cusQuantityBuy" />
           <ScalarProperty Name="cusStatus" ColumnName="cusStatus" />
           <ScalarProperty Name="cusPhoto" ColumnName="cusPhoto" />
         </MappingFragment>

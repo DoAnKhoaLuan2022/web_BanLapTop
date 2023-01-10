@@ -1,8 +1,118 @@
 ﻿@model DoAnAdmin.Models.Detail
 
 @{ ViewBag.Title = "DetailProduct";
-    Layout = "~/Views/Shared/_DetailLayoutPage.cshtml"; }
+    Layout = "~/Views/Shared/_DetailLayoutPage.cshtml";
+    var us = Session["user"] as DoAnAdmin.Models.Customer;
+    int i = 0;
+    if (us != null)
+    {
+        i = 1;
+    } }
+<style>
+    .rating {
+        height: 50px;
+        display: block;
+        overflow: hidden;
+        unicode-bidi: bidi-override;
+        direction: rtl;
+    }
 
+        .rating:not(:checked) > input {
+            display: none;
+        }
+
+    /* - - - - - RATE */
+    #rate:not(:checked) > label {
+        cursor: pointer;
+        float: right;
+        /* width: 50px; */
+        /* height: 50px; */
+        display: block;
+        color: #FFE15D;
+        line-height: 33px;
+        text-align: center;
+        font-size: 30px;
+        padding-right: 5px;
+    }
+
+        #rate:not(:checked) > label:hover,
+        #rate:not(:checked) > label:hover ~ label {
+            color: #F49D1A;
+        }
+
+    #rate > input:checked + label:hover,
+    #rate > input:checked + label:hover ~ label,
+    #rate > input:checked ~ label:hover,
+    #rate > input:checked ~ label:hover ~ label,
+    #rate > label:hover ~ input:checked ~ label {
+        color: #F49D1A;
+    }
+
+    #rate > input:checked ~ label {
+        color: #F49D1A;
+    }
+
+    .rate_num {
+        font-size: 25px;
+        color: #fe8c23;
+        font-weight: 600;
+        padding: 0 20px 0 65px;
+    }
+</style>
+<style>
+    .rating-list li {
+        align-items: center;
+        display: flex;
+        margin-bottom: 7px;
+    }
+
+    .rating-list .number-star {
+        font-size: 12px;
+        line-height: 14px;
+        text-align: left;
+        width: 25px;
+    }
+
+        .rating-list .number-star i {
+            margin-top: -4px;
+            font-size: 9px;
+        }
+
+    .rating-list .timeline-star {
+        background-color: #eee;
+        height: 4px;
+        position: relative;
+        width: calc(100% - 120px);
+    }
+
+    .rating-list .timing {
+        background-color: #fe8c23;
+        left: 0;
+        height: 4px;
+        position: absolute;
+        top: 0;
+    }
+
+    .rating-list .number-percent {
+        color: #2f80ed;
+        font-size: 12px;
+        font-weight: bold;
+        line-height: 15px;
+        padding-left: 10px;
+        text-align: left;
+        width: 35px;
+        cursor: pointer;
+        text-indent: 0;
+    }
+
+    .rating-list li:last-child {
+        margin-bottom: 0;
+    }
+
+    .rating-list .number-percent.dsp {
+        color: #666;
+    }
+</style>
 <div class="container_detailPro">
     <div class="infomationn d-flex">
         <div class="slider_detail row">
@@ -39,12 +149,12 @@
                 <span class="price h-1">
                     @Html.Action("PromotionPricePartial", "Product", new { @maSP = @ViewBag.maSP }) &nbsp;&nbsp;
                     @*Nếu có khuyến mãi thì gạch giá cũ đi*@
-                    @if (ViewBag.IsKhuyenMai == 1)
-                    {
-        <span class="text-muted" style="text-decoration:line-through">@string.Format("{0:0,0}", Model.Product.price) đ</span> }
-    else
-    {
-<span>@string.Format("{0:0,0}", Model.Product.price) <sup>đ</sup></span>}
+                    @*@if (ViewBag.IsKhuyenMai == 1)
+                                            {
+                                <span class="text-muted" style="text-decoration:line-through">@string.Format("{0:0,0}", Model.Product.price) đ</span> }
+                            else
+                            {
+                        <span>@string.Format("{0:0,0}", Model.Product.price) <sup>đ</sup></span>}*@
                 </span>
                 @* Hiển thị khuyến mãi của sản phẩm *@
                 <div style="margin-top:20px">
@@ -77,12 +187,12 @@
             </div>
             <div class="row d-flex" style="margin-bottom:15px">
                 <div class="col-sm-6 col-md-10">
-                    <a class="buy btn" href="@Url.Action("PaymentOne", "Payment", new {@id = Model.product_id})">
+                    <a class="buy btn" href="@Url.Action("PaymentOne", "Payment", new { @id = Model.product_id })">
                         MUA NGAY
                     </a>
                 </div>
                 <div class="col-6 col-md-2">
-                    <a class="add_card btn" onclick="clickCart()" style="font-size:10px" href="@Url.Action("AddCart", "Cart", new { @id = Model.product_id})">
+                    <a class="add_card btn" onclick="clickCart()" style="font-size:10px" href="@Url.Action("AddCart", "Cart", new { @id = Model.product_id, @strURL = Request.Url.ToString() })">
                         <i class="fas fa-cart-plus" style="font-size:20px"></i><br />
                         THÊM VÀO GIỎ HÀNG
                     </a>
@@ -148,15 +258,92 @@
                     @Html.Action("BaiVietPartial", "Product", new { @maSP = @ViewBag.maSP })
                 </div>
             </div>
-            <div class="col-5">
-                <div class="">
-                    <div onclick="click()">
-                        @Html.Action("LoadComment", "Comment", new { @id = Model.product_id })
-                    </div>
+            <div class="col-5 pt-3">
+                <div class="d-flex" style="margin-top:25px">
+                    <h5 style="font-size:20px;padding-top:9px">Đánh giá</h5>
+                    <p class="rate_num">4.8</p>
+                    <!-- RATE -->
+                    <section id="rate" class="rating">
+                        <!-- FIFTH STAR -->
+                        <input type="radio" id="star_5" name="rate" value="5" />
+                        <label for="star_5" title="Five">&#9733;</label>
+                        <!-- FOURTH STAR -->
+                        <input type="radio" id="star_4" name="rate" value="4" />
+                        <label for="star_4" title="Four">&#9733;</label>
+                        <!-- THIRD STAR -->
+                        <input type="radio" id="star_3" name="rate" value="3" />
+                        <label for="star_3" title="Three">&#9733;</label>
+                        <!-- SECOND STAR -->
+                        <input type="radio" id="star_2" name="rate" value="2" />
+                        <label for="star_2" title="Two">&#9733;</label>
+                        <!-- FIRST STAR -->
+                        <input type="radio" id="star_1" name="rate" value="1" />
+                        <label for="star_1" title="One">&#9733;</label>
+                    </section>
                 </div>
+                <div>
+                    <ul class="rating-list">
+                        <li>
+                            <div class="number-star">
+                                5
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="timeline-star">
+                                <p class="timing" style="width: 55%"></p>
+                            </div>
+                            <p class="number-percent">55%</p>
+                        </li>
+                        <li>
+                            <div class="number-star">
+                                4
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="timeline-star">
+                                <p class="timing" style="width: 35%"></p>
+                            </div>
+                            <p class="number-percent">35%</p>
+                        </li>
+                        <li>
+                            <div class="number-star">
+                                3
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="timeline-star">
+                                <p class="timing" style="width: 5%"></p>
+                            </div>
+                            <p class="number-percent">5%</p>
+                        </li>
+                        <li>
+                            <div class="number-star">
+                                2
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="timeline-star">
+                                <p class="timing" style="width: 5%"></p>
+                            </div>
+                            <p class="number-percent">5%</p>
+                        </li>
+                        <li>
+                            <div class="number-star">
+                                1
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="timeline-star">
+                                <p class="timing" style="width: 0%"></p>
+                            </div>
+                            <p class="number-percent dsp">0%</p>
+                        </li>
+                    </ul>
+                </div>
+               
+                    <div class="w-100">
+                        <div>
+                            @Html.Action("LoadComment", "Comment", new { @id = Model.product_id })
+                        </div>
+                    </div>
+               
             </div>
         </div>
-    </div>
     @*//scroll*@
 
     <div class="sp">
@@ -344,12 +531,21 @@
     }
     function clickCart() {
         Swal.fire({
-            position: 'center',
+            position:'center',
             icon: 'success',
             title: 'Thêm giỏ hàng thành công!',
             showConfirmButton: false,
-            timer: 3500
+            timer: 3000
         })
+        //Swal.fire({
+        //    title: 'Thêm giỏ hàng thành công!',
+        //    showClass: {
+        //        popup: 'animate__animated animate__fadeInDown'
+        //    },
+        //    hideClass: {
+        //        popup: 'animate__animated animate__fadeOutUp'
+        //    }
+        //})
     }
 </script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

@@ -20,6 +20,7 @@ namespace DoAnAdmin.Models
         public Nullable<int> CartQuantity { get; set; }
         public Nullable<int> CartMoney { get; set; }
         public Nullable<int> cusID { get; set; }
+        public Nullable<int> tt { get; set; }
     
         public virtual Customer Customer { get; set; }
         public virtual Product Product { get; set; }

@@ -63,8 +63,21 @@ namespace DoAnAdmin.Controllers
         {
             return View();
         }
+        public ActionResult UpdateProfile(int id)
+        {
+            return View(db.Customers.FirstOrDefault(n => n.cusID == id));
+        }
+        [HttpPost]
+        public ActionResult UpdateProfile(Customer e)
+        {
+            db.Customers.Attach(e);
+            db.Entry(e).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Profile");
+        }
         public ActionResult Login()
         {
+
             return View();
         }
         public ActionResult CustomersManager(int? page)
@@ -104,7 +117,8 @@ namespace DoAnAdmin.Controllers
         public ActionResult Login(string txt_email, string txt_password)
         {
             var item = db.Customers.Where(n => n.cusEmail.Equals(txt_email) && n.cusPassword.Equals(txt_password)).FirstOrDefault();
-            if (txt_email.Equals("admin@gmail.com") && txt_password.Equals("123"))
+            var admin = db.Employees.Where(n => n.empEmail.Equals(txt_email) && n.empPassword.Equals(txt_password)).FirstOrDefault();
+            if (txt_email.Equals("admin@gmail.com") && txt_password.Equals("123")||admin != null)
             {
                 return RedirectToAction("pageAdmin", "Admin");
             }
@@ -128,7 +142,25 @@ namespace DoAnAdmin.Controllers
                     cusStatus = item.cusStatus
 
                 };
+                var info = Session["user"] as DoAnAdmin.Models.Customer;
+                var lstCart = Session["GioHang"] as List<DoAnAdmin.Models.GioHang> ;
+                if (lstCart != null)
+                {
+                    foreach(var gh in lstCart)
+                    {
+                        Cart c = new Cart();
+                        c.cusID = info.cusID;
+                        c.proID = gh.sIdSP;
+                        c.CartQuantity = gh.iSoLuong;
+                        c.proPrice = (int)gh.dDetailPrice;
+                        c.CartMoney = (int)gh.dThanhTien;
+                        c.tt = 1;
+                        db.Carts.Add(c);
+                        db.SaveChanges();
+                    }    
+                   
 
+                }    
                 return RedirectToAction("ShowAllProducts", "Product");
             }
 
@@ -148,8 +180,12 @@ namespace DoAnAdmin.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Register(string firstname, string lastname, string email, string phone, string password, string passwordConfirmation)
+        public ActionResult Register(string firstname, string lastname, string email,string gender, string phone, string password, string passwordConfirmation)
         {
+            if(gender.Equals("Giới tính"))
+            {
+                gender = null;
+            }    
             if (password.Equals(passwordConfirmation) == false)
             {
                 ViewBag.ErrorcomfirmPass = "Lỗi nhập password ! Vui lòng kiểm tra lại !";
@@ -169,17 +205,21 @@ namespace DoAnAdmin.Controllers
                         cusAddress = null,
                         cusStatus = 1,
                         cusType = 1,
+                        cusGender ="Nam",
+                        cusQuantityBuy = 0,
+                        cusTotal = 0,
                         cusName = firstname + "" + lastname,
                         cusEmail = email,
                         cusPhone = phone,
                         cusPassword = password
                     };
-                    Session["regisInfo"] = c;
-                    //db.Customers.Add(c);
-                    //db.SaveChanges();
-                    guimail("nguyennhutnam112@gmail.com", c.cusEmail, "Mã xác nhận", ma);
+                    //Session["regisInfo"] = c;
+                    db.Customers.Add(c);
+                    db.SaveChanges();
+                    //guimail("nguyennhutnam112@gmail.com", c.cusEmail, "Mã xác nhận", ma);
                     //SendMailGoogleSmtp("nguyennhutnam112@gmail.com", c.cusEmail, "Mã xác nhận", ma, "nguyennhutnam112@gmail.com", "nnnnnn16122001");
-                    return RedirectToAction("RequestCodeMail");
+                    //return RedirectToAction("RequestCodeMail");
+                    return RedirectToAction("Login");
                 }
             }
 

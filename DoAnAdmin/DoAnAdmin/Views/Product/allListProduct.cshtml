@@ -1,0 +1,597 @@
+﻿@using DoAnAdmin.Models
+@using PagedList.Mvc
+@model PagedList.IPagedList<DoAnAdmin.Models.Detail>
+@{ ViewBag.Title = "Tìm kiếm sản phẩm";
+    Layout = "~/Views/Shared/_ProductTydeLayout.cshtml";
+    QL_LaptopEntities db = new QL_LaptopEntities();
+    List<ChonLoc> lstCL = Session["chonloc"] as List<ChonLoc>;
+    string mb = "";
+    string lnv = "";
+    string acer = "";
+    string asus = "";
+    string dell = "";
+    string msi = "";
+    string hp = "";
+    foreach(ChonLoc item in lstCL)
+    {
+        if(item.daChon=="MacBook")
+        {
+            mb = "checked";
+        }
+        if (item.daChon== "DELL")
+        {
+            dell = "checked";
+        }
+        if (item.daChon.Equals("MSI"))
+        {
+            msi = "checked";
+        }
+        if (item.daChon.Equals("Acer"))
+        {
+            acer = "checked";
+
+        }
+        if (item.daChon.Equals("Asus"))
+        {
+            asus = "checked";
+        }
+        if (item.daChon.Equals("Lenovo"))
+        {
+            lnv = "checked";
+        }
+        if (item.daChon.Equals("HP"))
+        {
+            hp = "checked";
+        }
+    }
+
+    }
+<style>
+    .nsx > img {
+        height: 70px;
+        width: 102px;
+    }
+
+    .card1 {
+        background-color: white;
+        /*        border-radius: 24px;*/
+        box-shadow: 2px 3px 7px #b2b2b2;
+        height: 500px;
+        margin: 0 0 40px 60px;
+        width: 310px
+    }
+
+        .card1:hover {
+            box-shadow: 9px 9px 16px rgb(0 0 0 / 44%), -9px -9px 16px rgb(83 83 86 / 80%);
+        }
+
+    .filter {
+        background-color: black;
+        padding: 0 45px 10px;
+        /*     margin-top: 60px;*/
+        /*        box-shadow: 0px -1px 5px 3px #999;*/
+    }
+
+    .card-title-pro {
+        font-size: 0.9rem !important;
+        margin-top: 10px !important;
+        margin-bottom: 0 !important;
+        font-weight: 100 !important;
+        line-height: 1 !important;
+        text-align: left;
+    }
+
+    .filter .row {
+        padding: 10px 80px;
+    }
+
+    .filter_icon {
+        height: 25px;
+        width: 25px;
+    }
+
+    .form-select {
+        outline: none;
+        box-shadow: 0 0 0 0 rgb(0 123 255 / 0%) !important;
+    }
+
+    .hang_img {
+        width: 90px;
+        height: 34px;
+    }
+</style>
+
+<style>
+    .accordion {
+        background-color: white;
+        color: #444;
+        cursor: pointer;
+        padding: 15px 20px;
+        width: 100%;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 15px;
+        transition: 0.4s;
+    }
+
+        .active, .accordion:hover {
+            background-color: #171717;
+            color: white;
+        }
+
+        .accordion:after {
+            content: '\002B';
+            color: #777;
+            font-weight: bold;
+            float: right;
+            margin-left: 5px;
+        }
+
+    .active:after {
+        content: "\2212";
+    }
+
+    .panel {
+        padding: 0 25px;
+        background-color: white;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.2s ease-out;
+    }
+
+    .form-check {
+        margin: 5px 0;
+    }
+
+    .card_search {
+        margin: 0 0 20px 20px;
+        width: 236px;
+    }
+
+    .card_search_pic img {
+        width: 100%;
+        height: 140px;
+        object-fit: cover;
+    }
+
+    .card_search_content {
+        padding: 0px 12px !important;
+    }
+</style>
+<div class="w-100" style="background-color: black; padding-top: 80px">
+    <div class="row w-100">
+        <div class="col-2" style="padding-right:0">
+            <div class="filter">
+                <div class="d-flex">
+                    <img class="filter_icon" src="https://cdn-icons-png.flaticon.com/512/9244/9244232.png" />
+                    @using (Html.BeginForm("locProcduct", "Product"))
+                    {
+
+                        <div class="form-group">
+                            <input class="form-control" type="hidden" id="txtHang" name="txtHang" value="" />
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="hidden" id="txtManHinh" name="txtManHinh" value="" />
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="hidden" id="txtRam" name="txtRam" value="" />
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="hidden" id="txtRom" name="txtRom" value="" />
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="hidden" id="txtSoNhan" name="txtSoNhan" value="" />
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="hidden" id="txtGia" name="txtGia" value="" />
+                        </div>
+                        @*<div class="form-group">
+                                <input id="btnKK" type="submit" class="form-control" value="Lọc" style=" color: white; border: 1px solid; padding: 5px 12px; margin-left: 10px;" />
+                            </div>*@
+                        <button class="btn" id="btnLoc" style=" color: white; border: 1px solid; padding: 5px 12px; margin-left: 10px;">Lọc</button>
+                    }
+
+                </div>
+            </div>
+            <button class="accordion w-100">Hãng</button>
+            <div class="panel">
+                
+                <div class="form-check">
+                    <input class="form-check-input" name="lstTradeMark" type="checkbox" value="MacBook" id="idMB">
+                    <img class="hang_img" src="https://cdn.tgdd.vn/Brand/1/logo-macbook-149x40.png" />
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" name="lstTradeMark" type="checkbox" value="Asus" id="idASUS">
+                    <img class="hang_img" src="https://cdn.tgdd.vn/Brand/1/logo-asus-149x40.png" />
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" name="lstTradeMark" type="checkbox" value="HP" id="idHP">
+                    <img class="hang_img" src="https://cdn.tgdd.vn/Brand/1/logo-hp-149x40-1.png" />
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" name="lstTradeMark" type="checkbox" value="Lenovo" id="idLENOVO">
+                    <img class="hang_img" src="https://cdn.tgdd.vn/Brand/1/logo-lenovo-149x40.png" />
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" name="lstTradeMark" type="checkbox" value="Acer" id="idACER">
+                    <img class="hang_img" src="https://cdn.tgdd.vn/Brand/1/logo-acer-149x40.png" />
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" name="lstTradeMark" type="checkbox" value="DELL" id="idDELL">
+                    <img class="hang_img" src="https://cdn.tgdd.vn/Brand/1/logo-dell-149x40.png" />
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" name="lstTradeMark" type="checkbox" value="MSI" id="idMSI">
+                    <img class="hang_img" src="https://cdn.tgdd.vn/Brand/1/logo-msi-149x40.png" />
+                </div>
+            </div>
+
+            <button class="accordion">Giá</button>
+            <div class="panel">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="lstPrice" value="Dưới 15 triệu" id="flexCheckDefault">
+                    <p>Dưới 15 triệu</p>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="lstPrice" value="Từ 15 - 20 triệu" id="flexCheckDefault">
+                    <p>Từ 15 - 20 triệu</p>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="lstPrice" value="Từ 20 - 30 triệu" id="flexCheckDefault">
+                    <p>Từ 20 - 30 triệu</p>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="lstPrice" value="Từ 30 - 40 triệu" id="flexCheckDefault">
+                    <p>Từ 30 - 40 triệu</p>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="lstPrice" value="Trên 40 triệu" id="flexCheckDefault">
+                    <p>Trên 40 triệu</p>
+                </div>
+            </div>
+
+            <button class="accordion">Màn hình</button>
+            <div class="panel">
+                <div class="form-check">
+                    <input class="form-check-input" name="lstCreens" type="checkbox" value="" id="flexCheckDefault">
+                    <p>13 inch</p>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" name="lstCreens" type="checkbox" value="13.6 inch" id="flexCheckDefault">
+                    <p>13.6 inch</p>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" name="lstCreens" type="checkbox" value="14 inch" id="flexCheckDefault">
+                    <p>14 inch</p>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" name="lstCreens" type="checkbox" value="14.1 inch" id="flexCheckDefault">
+                    <p>14.1 inch</p>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" name="lstCreens" type="checkbox" value="14.5 inch" id="flexCheckDefault">
+                    <p>14.5 inch</p>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" name="lstCreens" type="checkbox" value="15.6 inch" id="flexCheckDefault">
+                    <p>15.6 inch</p>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" name="lstCreens" type="checkbox" value="16 inch" id="flexCheckDefault">
+                    <p>16 inch</p>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" name="lstCreens" type="checkbox" value="16.2 inch" id="flexCheckDefault">
+                    <p>16.2 inch</p>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" name="lstCreens" type="checkbox" value="17 inch" id="flexCheckDefault">
+                    <p>17 inch</p>
+                </div>
+            </div>
+
+            <button class="accordion">Số nhân</button>
+            <div class="panel">
+                <div class="form-check">
+                    <input class="form-check-input" name="lstSN" type="checkbox" value="2" id="flexCheckDefault">
+                    <p>2</p>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" name="lstSN" type="checkbox" value="4" id="flexCheckDefault">
+                    <p>4</p>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" name="lstSN" type="checkbox" value="6" id="flexCheckDefault">
+                    <p>6</p>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" name="lstSN" type="checkbox" value="8" id="flexCheckDefault">
+                    <p>8</p>
+                </div>
+            </div>
+
+            <button class="accordion">RAM</button>
+            <div class="panel">
+                <div class="form-check">
+                    <input class="form-check-input" name="lstRam" type="checkbox" value="4 GB" id="flexCheckDefault">
+                    <p>4 GB</p>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" name="lstRam" type="checkbox" value="8 GB" id="flexCheckDefault">
+                    <p>8 GB</p>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" name="lstRam" type="checkbox" value="16 GB" id="flexCheckDefault">
+                    <p>16 GB</p>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" name="lstRam" type="checkbox" value="32 GB" id="flexCheckDefault">
+                    <p>32 GB</p>
+                </div>
+            </div>
+
+            <button class="accordion">Ổ cứng</button>
+            <div class="panel">
+                <div class="form-check">
+                    <input class="form-check-input" name="lstRom" type="checkbox" value="SSD 128 GB" id="flexCheckDefault">
+                    <p>SSD 128 GB</p>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" name="lstRom" type="checkbox" value="SSD 256 GB" id="flexCheckDefault">
+                    <p>SSD 256 GB</p>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" name="lstRom" type="checkbox" value="SSD 512 GB" id="flexCheckDefault">
+                    <p>SSD 512 GB</p>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" name="lstRom" type="checkbox" value="SSD 1TB" id="flexCheckDefault">
+                    <p>SSD 1TB</p>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" name="lstRom" type="checkbox" value="SSD 2TB" id="flexCheckDefault">
+                    <p>SSD 2TB</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-10">
+            <div class="w-100">
+                <div class=" row">
+                    <div style="color:white; margin-bottom:30px">Kết quả : @Session["loc"] </div>
+                    <div class="contai d-lg-flex row">
+                        @foreach (var item in Model)
+                        {
+
+                            var Promotion = db.promotions.Where(n => n.product_id == item.product_id && n.date_end >= DateTime.Now).FirstOrDefault();
+                            int ptGiam = 0;
+                            if (Promotion == null)
+                            {
+                                ptGiam = 0;
+                            }
+                            else
+                            {
+                                ptGiam = (int)Promotion.price * 100 / (int)@item.Product.price;
+                            }
+                            <div class="card1 card_search border-0 col-3">
+                                <div class="home-product-item__favourite">
+                                    <span>Trả góp 0%</span>
+                                </div>
+                                <div class="home-product-item__sale-off">
+                                    <span class="home-product-item__sale-off-percent">@{@ptGiam}%</span>
+                                    <span class="home-product-item__sale-off-label">GIẢM</span>
+                                </div>
+                                <div class="backgroundEffect"></div>
+                                <div class="card_search_pic">
+                                    <br />
+                                    <a href="@Url.Action("DetailProduct", "Product", new {@maSP = @item.product_id })">
+                                        <img class="" src="/Assets/Image/ImageProduct/@item.Product.avatar" alt="">
+                                    </a>
+                                    @*<div class="promotion">
+                                            <span class="tragop">Trả góp 0%</span>
+                                            <span class="giamgia">Giảm 1.000.000đ</span>
+                                        </div>*@
+                                </div>
+                                <div class="card_search_content content d-block">
+                                    <br />
+                                    <a class="content_info mt-4 mb-2" href="@Url.Action("DetailProduct", "Product", new { @maSP = @item.product_id })">
+                                        @if (@item.Product.Name.Trim().Length > 50)
+                                        {
+                                            <p class="card-title-pro">
+                                                @{ string a = item.Product.Name.Substring(0, 40).ToString() + "...";}
+                                                @a
+                                            </p> }
+                                        else
+                                        {
+                                            <p class="card-title-pro">
+                                                @item.Product.Name
+                                            </p>}
+                                    </a>
+                                    <span class="h-1 mt-4 price" style="font-weight:bold;">
+                                        @Html.Action("PromotionPricePartial", "Product", new { @maSP = item.product_id, style = "color:red" })
+
+                                        @*Nếu có khuyến mãi thì gạch giá cũ đi*@
+                                        @*@{ promotion kk = db.promotions.Where(n => n.product_id == item.product_id && n.date_end >= DateTime.Now).FirstOrDefault();
+                                            if (kk != null)
+                                            {
+                                                <span class="text-muted" style="text-decoration:line-through;font-size:15px">@string.Format("{0:0,0}", item.Product.price) đ</span> }
+                                            else
+                                            {
+
+                                            } }*@
+                                    </span>
+                                    <p class="text-muted mt-3" style="height:155px">
+                                        <i style="width: 20px;" class="icon text-muted fas fa-desktop pe-1 mb-2"></i>
+                                        <span>
+                                            &nbsp;&nbsp;@item.ManHinh
+                                            @if (@item.DoPhanGiai.Trim().Length > 21)
+                                            {
+                                                @item.DoPhanGiai.Substring(0, 21);
+                                            }
+                                            else
+                                            {
+                                                @item.DoPhanGiai;
+                                            }
+                                        </span><br>
+                                        <i style="width: 20px;" class="icon text-muted fas fa-microchip pe-1 mb-2"></i><span>&nbsp;&nbsp;@item.CPU<br></span>
+                                        @if ((@item.RAM.Length + item.RAM_type.Split(' ')[0].Length + item.BusRAM.Length) > 20)
+                                        {
+                                            <i style="width: 20px;" class="icon text-muted fas fa-sd-card pe-1 mb-2"></i><span>&nbsp;&nbsp;@item.RAM, @item.RAM_type.Split(' ')[0]<br></span> }
+                                        else
+                                        {
+                                            <i style="width: 20px;" class="icon text-muted fas fa-sd-card pe-1 mb-2"></i><span>&nbsp;&nbsp;@item.RAM, @item.RAM_type.Split(' ')[0], @item.BusRAM<br></span>}
+
+                                        @if (@item.OCung.Length > 20)
+                                        {
+                                            <i style="width: 20px;" class="icon text-muted fas fa-hdd pe-1 mb-2"></i><span>&nbsp;&nbsp;@item.OCung.Substring(0, 20) ...<br></span> }
+                                        else
+                                        {
+                                            <i style="width: 20px;" class="icon text-muted fas fa-hdd pe-1 mb-2"></i><span>&nbsp;&nbsp;@item.OCung<br></span>}
+                                        @if (@item.VGA.Length > 25)
+                                        {
+                                            <i style="width: 20px;" class="icon text-muted fas fa-digital-tachograph pe-1"></i><span>&nbsp;&nbsp;@item.VGA.Substring(0, 25) ...</span> }
+                                        else
+                                        {
+                                            <i style="width: 20px;" class="icon text-muted fas fa-digital-tachograph pe-1"></i><span>&nbsp;&nbsp;@item.VGA</span>}
+                                    </p>
+                                    <div class="d-flex align-items-center justify-content-between mt-1 pb-3">
+                                        <button type="button" class="add_card btn" data-toggle="tooltip" data-bs-placement="right" data-bs-title="Add to cart">
+                                            <a style="text-decoration:none;color:white;" href="@Url.Action("AddCart", "Cart", new { @idsp = item.product_id, @strURL = Request.Url.ToString() })">
+                                                <img style="width:30px;height:30px" src="https://cdn-icons-png.flaticon.com/512/4064/4064928.png" />
+                                            </a>
+                                        </button>
+                                        <div class="d-flex ">
+                                            <span class="far fa-eye pe-1"></span>
+                                            <p class=" icon text-muted">@item.Product.view_</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>}
+                    </div>
+                    <nav aria-label="Page navigation example mt-3" style="padding: 0 0 20px; ">
+                        <ul class="pagination justify-content-center m-0">
+                            <li class="page-item">@Html.PagedListPager(Model, Page => Url.Action("allListProduct", new { Page }))</li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+    var acc = document.getElementsByClassName("accordion");
+    var i;
+    const txtHang = document.getElementById("txtHang");
+    const txtSoNhan = document.getElementById("txtSoNhan");
+    const txtManHinh = document.getElementById("txtManHinh");
+    const txtGia = document.getElementById("txtGia");
+    const txtRam = document.getElementById("txtRam");
+    const txtRom = document.getElementById("txtRom");
+
+    const Rom = document.getElementsByName("lstRom");
+    const Ram = document.getElementsByName("lstRam");
+    const SN = document.getElementsByName("lstSN");
+    const MH = document.getElementsByName("lstCreens");
+    const Hang = document.getElementsByName("lstTradeMark");
+    const Gia = document.getElementsByName("lstPrice");
+
+
+    const idmb = document.getElementById("idMB");
+    if (@mb.Length!= 0) {
+        idmb.setAttribute('checked', 'checked');
+    }
+    const idmsi = document.getElementById("idMSI");
+    if (@msi.Length!= 0) {
+        idmsi.setAttribute('checked', 'checked');
+    }
+    const iddell = document.getElementById("idDELL");
+    if (@dell.Length!= 0) {
+        iddell.setAttribute('checked', 'checked');
+    }
+    const idasus = document.getElementById("idASUS");
+    if (@asus.Length!= 0) {
+        idasus.setAttribute('checked', 'checked');
+    }
+    const idacer = document.getElementById("idACER");
+    if (@acer.Length!= 0) {
+        idacer.setAttribute('checked', 'checked');
+    }
+     const idhp = document.getElementById("idHP");
+    if (@hp.Length!= 0) {
+        idhp.setAttribute('checked', 'checked');
+    }
+    const idlnv = document.getElementById("idLENOVO");
+    if (@lnv.Length!= 0) {
+        idlnv.setAttribute('checked', 'checked');
+    }
+    var valueRom = "", valueRam = "", valueSN = "", valueMH = "", valuePrice = "", valueMadeTrark = "";
+    document.getElementById('btnLoc').onclick = function () {
+
+        for (var i = 0; i < Hang.length; i++) {
+            if (Hang[i].checked === true) {
+                valueMadeTrark = valueMadeTrark + Hang[i].value + ",";
+            }
+        }
+        txtHang.setAttribute("value", valueMadeTrark);
+        console.log(valueMadeTrark);
+
+        for (var i = 0; i < Rom.length; i++) {
+            if (Rom[i].checked === true) {
+                valueRom += Rom[i].value + ",";
+            }
+        }
+        txtRom.setAttribute("value", valueRom);
+        console.log(valueRom);
+
+        for (var i = 0; i < Ram.length; i++) {
+            if (Ram[i].checked === true) {
+                valueRam += Ram[i].value + ",";
+            }
+        }
+        txtRam.setAttribute("value", valueRam);
+        console.log(valueRam);
+
+        for (var i = 0; i < SN.length; i++) {
+            if (SN[i].checked === true) {
+                valueSN += SN[i].value + ",";
+            }
+        }
+        txtSoNhan.setAttribute("value", valueSN);
+        console.log(valueSN);
+
+        for (var i = 0; i < MH.length; i++) {
+            if (MH[i].checked === true) {
+                valueMH += MH[i].value + ",";
+            }
+        }
+        txtManHinh.setAttribute("value", valueMH);
+        console.log(valueMH);
+
+        for (var i = 0; i < Gia.length; i++) {
+            if (Gia[i].checked === true) {
+                valuePrice += Gia[i].value + ",";
+            }
+        }
+        txtGia.setAttribute("value", valuePrice);
+        console.log(valuePrice);
+
+    }
+
+
+    for (i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            if (panel.style.maxHeight) {
+                panel.style.maxHeight = null;
+            } else {
+                panel.style.maxHeight = panel.scrollHeight + "px";
+            }
+        });
+    }
+
+</script>
+

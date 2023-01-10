@@ -149,7 +149,7 @@ else
         </p>
         <div class="d-flex align-items-center justify-content-between mt-3 pb-3">
             <button type="button" class="add_card btn" data-toggle="tooltip" data-bs-placement="right" data-bs-title="Add to cart">
-                <a style="text-decoration:none;color:white;" href="@Url.Action("AddCart", "Cart", new { @id = item.product_id})">
+                <a style="text-decoration:none;color:white;" href="@Url.Action("AddCart", "Cart", new { @id = item.product_id, @strURL = Request.Url.ToString() })">
                     <img style="width:30px;height:30px" src="https://cdn-icons-png.flaticon.com/512/4064/4064928.png" />
                 </a>
             </button>

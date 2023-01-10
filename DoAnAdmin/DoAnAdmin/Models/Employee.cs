@@ -17,7 +17,6 @@ namespace DoAnAdmin.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Employee()
         {
-            this.Orders = new HashSet<Order>();
             this.PhieuNhaps = new HashSet<PhieuNhap>();
         }
     
@@ -35,8 +34,6 @@ namespace DoAnAdmin.Models
         public Nullable<int> empRole { get; set; }
     
         public virtual EmployeesRole EmployeesRole { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Order> Orders { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PhieuNhap> PhieuNhaps { get; set; }
     }

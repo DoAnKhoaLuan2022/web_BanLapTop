@@ -25,7 +25,10 @@ namespace DoAnAdmin.Controllers
         {
             return View();
         }
-
+        public ActionResult loc()
+        {
+            return View();
+        }
         public ActionResult Cart()
         {
             var info = Session["user"] as DoAnAdmin.Models.Customer;

@@ -7,25 +7,53 @@
         padding: 10px;
     }
 </style>
+
 @{
+    var info = Session["user"] as DoAnAdmin.Models.Customer;
+    var gh = Session["GioHang"] as List<DoAnAdmin.Models.GioHang>;
     var dem = 0;
-    if (ViewBag.tong == null)
+    if (ViewBag.tong == null && gh == null)
     {
         dem = 0;
     }
     else
     {
-        dem = dem + ViewBag.tong;
+        if(info!=null)
+        {
+            dem = dem + ViewBag.tong;
+        }
+        else
+        {
+            dem = dem + gh.Count();
+        }
+
     }
 }
-<span style="text-decoration-color:white;">
-    <a href="@Url.Action("DetailsCart","Cart")">
-        <i class="header_right_icon fas fa-shopping-cart"></i>
-        <span class="position-absolute top-0 start-80 translate-middle badge rounded-pill bg-danger" style="margin-top:3px;outline:none">
-            @dem
-        </span>
-    </a>
-</span>
+@if (info == null)
+{
+    <span style=" text-decoration-color:white">
+        <a href="@Url.Action("Cart","Cart")">
+            <i class="header_right_icon fas fa-shopping-cart"></i>
+            <span class="position-absolute top-0 start-80 translate-middle badge rounded-pill bg-danger" style="margin-top:3px;outline:none">
+                @dem
+            </span>
+        </a>
+    </span>
+}
+else
+{
+    <span style="text-decoration-color:white;">
+        <a href="@Url.Action("DetailsCart","Cart")">
+            <i class="header_right_icon fas fa-shopping-cart"></i>
+            <span class="position-absolute top-0 start-80 translate-middle badge rounded-pill bg-danger" style="margin-top:3px;outline:none">
+                @dem
+            </span>
+        </a>
+    </span>
+}
+
+
+
 @*<div class="cart_content">
     <div class="cart_text">
         <a href="@Url.Action()">

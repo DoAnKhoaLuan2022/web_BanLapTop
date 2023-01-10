@@ -4,6 +4,8 @@
 @{ ViewBag.Title = "ShowAllSanPham";
     Layout = "~/Views/Shared/_TrangChuLayout.cshtml"; }
 
+@Html.Action("ShowProductsKhuyenMaiHome", "Product")
+@Html.Action("ShowProductsSPbanChayHome", "Product")
 @Html.Action("ShowProductsMacbookHome", "Product")
 <video style="width:100%" src="~/Assets/Image/ImageDescription/yt1s.com - ASUS Zenbook 17 Fold OLED  Gập Giới Hạn Mở Tương Lai.mp4" controls></video>
 @Html.Action("ShowProductsAsusHome", "Product")

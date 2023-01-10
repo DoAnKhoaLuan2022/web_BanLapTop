@@ -76,15 +76,24 @@ namespace DoAnAdmin.Models
         public string createIDPhieuNhap()
         {
             string PNIDLast;
+            string PNIDMAX;
             string dateNow = DateTime.Now.ToShortDateString(); //lấy theo định dạng DD/MM/YYYY
             dateNow = dateNow.Replace("/", "");
             string ID = "";
             try
             {
+                List<int> lst = new List<int>();
+                var lstPN = db.PhieuNhaps.Select(p => p.id.Substring(10, 6).Trim()).ToList();
+                foreach(var item in lstPN)
+                {
+                    lst.Add(int.Parse(item));
+                }
+
+                PNIDMAX = (lst.Max()).ToString();
                 //Lấy mã cuối cùng
                 PNIDLast = db.PhieuNhaps.OrderByDescending(p => p.id.Substring(10,6)).Select(p => p.id).First().ToString();
                 //Ép thành Int
-                int IDInt = int.Parse(PNIDLast.Substring(10, 6));
+                int IDInt = int.Parse(PNIDMAX);
                 //Thực hiện tăng dần
                 ID = dateNow + "PN";
                 if (IDInt >= 0 && IDInt < 9)

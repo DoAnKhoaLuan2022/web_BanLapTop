@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "Hủy đơn hàng";
+    Layout = "~/Views/Shared/_DetailLayoutPage.cshtml";
+}
+@model DoAnAdmin.Models.Order
+
+@using (Html.BeginForm("DeletePay", "Payment", new { idOr = Model.orderID }))
+{
+    <input id="txtLiDo"
+           name="txtLiDo"
+           type="text"
+           class="search-box-input"
+           placeholder="Bạn muốn tìm gì?" />
+    <button type="submit">Hủy</button>
+}

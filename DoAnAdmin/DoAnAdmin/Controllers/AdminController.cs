@@ -30,13 +30,34 @@ namespace DoAnAdmin.Controllers
 
             }
             else
-            if (or.Equals("today"))
+            if (or.Equals("month"))
             {
-                ViewBag.TongDonHang = db.Orders.Where(n => n.orderDate == DateTime.Today).Count();
-                ViewBag.TongDonHang = db.Orders.Count();
+                ViewBag.TongDonHang = db.Orders.Where(n => n.orderDate.Value.Month == DateTime.Now.Month && n.orderDate.Value.Year == DateTime.Now.Year).Count();
+                ViewBag.TongDoanhThu = db.DetailsOrders.Where(n => n.Order.orderDate.Value.Month == DateTime.Now.Month && n.Order.orderDate.Value.Year == DateTime.Now.Year).Sum(n => n.orderMoney);
                 ViewBag.TongCustomer = db.Customers.Count();
             }
+            else
+            if (or.Equals("year"))
+            {
+                ViewBag.TongDonHang = db.Orders.Where(n => n.orderDate.Value.Year == DateTime.Now.Year).Count();
+                ViewBag.TongDoanhThu = db.DetailsOrders.Where(n => n.Order.orderDate.Value.Year == DateTime.Now.Year).Sum(n => n.orderMoney);
+                ViewBag.TongCustomer = db.Customers.Count();
+            }
+            else
+            if (or.Equals("today"))
+            {
+                ViewBag.TongDonHang = db.Orders.Where(n => n.orderDate.Value.Day == DateTime.Now.Day && n.orderDate.Value.Year == DateTime.Now.Year && n.orderDate.Value.Month == DateTime.Now.Month).Count();
+                ViewBag.TongDoanhThu = db.DetailsOrders.Where(n => n.Order.orderDate.Value.Day == DateTime.Now.Day && n.Order.orderDate.Value.Year == DateTime.Now.Year && n.Order.orderDate.Value.Month == DateTime.Now.Month).Sum(n => n.orderMoney);
+                ViewBag.TongCustomer = db.Customers.Count();
+            }
+            else
+            if (or.Equals("all"))
+            {
+                ViewBag.TongDoanhThu = db.DetailsOrders.Sum(n => n.orderMoney);
+                ViewBag.TongDonHang = db.Orders.Count();
+                ViewBag.TongCustomer = db.Customers.Count();
 
+            }
             return View();
 
         }
@@ -66,6 +87,12 @@ namespace DoAnAdmin.Controllers
                 var newor = db.Orders.Where(n => n.orderStatus.Equals("Giao hàng thành công")).ToList();
                 return View(newor);
             }
+            else
+                if (or.Equals("huy"))
+            {
+                var newor = db.Orders.Where(n => n.orderStatus.Equals("Đã hủy")).ToList();
+                return View(newor);
+            }
             return View();
         }
         public ActionResult AdminDetailsOrder(int id)
@@ -73,9 +100,36 @@ namespace DoAnAdmin.Controllers
             var item = db.DetailsOrders.Where(n => n.orderID == id).ToList();
             return View(item);
         }
-        public ActionResult AdminUpdateStatusOrder(int id)
+        public ActionResult AdminUpdateStatusOrder(int id,string tt)
         {
-            ViewBag.orderStatus = new SelectList(db.NameOrderStatus, "NameOrderStatus", "NameOrderStatus");
+            string tt2 = "";
+            if(tt.Equals("Đang chờ xác nhận"))
+            {
+                tt = "Đang giao hàng";
+                tt2 = "Đã hủy";
+            }
+            else if(tt.Equals("Đang giao hàng"))
+            {
+                tt = "Giao hàng thành công";
+            }
+            else if (tt.Equals("Đã hủy"))
+            {
+                tt = "Đang chờ xác nhận";
+            }
+            else if (tt.Equals("Giao hàng thành công"))
+            {
+                tt = "Đang chờ xác nhận";
+            }
+            if (tt.Length != 0 || tt2.Length != 0)
+            {
+                ViewBag.orderStatus = new SelectList(db.NameOrderStatus.Where(n => n.NameOrderStatus.Equals(tt)||n.NameOrderStatus.Equals(tt2)), "NameOrderStatus", "NameOrderStatus");
+            }
+            else
+            {
+                ViewBag.orderStatus = new SelectList(db.NameOrderStatus, "NameOrderStatus", "NameOrderStatus");
+            }
+                
+            
             ViewBag.cusID = new SelectList(db.Customers, "cusID", "cusName");
             var item = db.Orders.FirstOrDefault(n => n.orderID == id);
             return View(item);
@@ -83,6 +137,7 @@ namespace DoAnAdmin.Controllers
         [HttpPost]
         public ActionResult AdminUpdateStatusOrder(Order d)
         {
+
             db.Orders.Attach(d);
             db.Entry(d).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();

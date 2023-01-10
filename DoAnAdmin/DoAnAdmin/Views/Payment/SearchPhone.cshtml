@@ -1,0 +1,413 @@
+﻿
+@using DoAnAdmin.Models
+@model List<DetailsOrder>
+@{
+    ViewBag.Title = "Đơn hàng";
+    Layout = "~/Views/Shared/_DetailLayoutPage.cshtml";
+    QL_LaptopEntities mydb = new QL_LaptopEntities();
+    string sdt = "";
+    int i = 0;
+    if (Model.Count != 0)
+    {
+        sdt = Model.FirstOrDefault().Customer.cusPhone.Trim().ToString();
+    }
+    else
+    {
+        i = 1;
+    }
+    var lstDHXN = mydb.Orders.Where(n => n.Customer.cusPhone.Equals(sdt) && n.orderStatus.Equals("Đang chờ xác nhận"));
+    int ttDHXN = 0;
+    var lstDHDG = mydb.Orders.Where(n => n.Customer.cusPhone.Equals(sdt) && n.orderStatus.Equals("Đang giao hàng"));
+    int ttDHDG = 0;
+    int ttDHHT = 0;
+    int ttDHDH = 0;
+    var lstHT = mydb.Orders.Where(n => n.Customer.cusPhone.Equals(sdt) && n.orderStatus.Equals("Giao hàng thành công"));
+    var lstDHDH = mydb.Orders.Where(n => n.Customer.cusPhone.Equals(sdt) && n.orderStatus.Equals("Đã hủy"));
+}
+<style>
+    .searchPhone_title {
+        margin-right: 22px;
+        width: 23%;
+        text-align: center;
+    }
+
+        .searchPhone_title a {
+            color: black;
+            padding: 14px 32px;
+            line-height: 50px;
+            font-size: 18px;
+        }
+
+            .searchPhone_title a:focus {
+                border-bottom: 2px solid #FF7B54;
+                color: #FF7B54;
+            }
+
+    .searchPhone_name {
+        margin-top: 30px;
+        font-size: 22px !important;
+        text-align: center;
+        color: #FF7B54;
+    }
+</style>
+
+<div style="margin-left:30px">
+    <p>Tìm kiếm đơn hàng :</p>
+    @using (Html.BeginForm("SearchPhone", "Payment"))
+    {
+        <input id="txt_sdt"
+               name="txt_sdt"
+               type="text"
+               class="search-box-input orderPhone_input"
+               placeholder="Nhập số điện thoại" />
+        <button class="button-35" type="submit">Tìm kiếm</button>
+    }
+</div>
+
+<div class="container" style="margin: 15px 50px;">
+    <ul class="nav" style="height: 50px; box-shadow: 6px 9px 18px 6px #f5f5f5;">
+        <li class="active searchPhone_title"><a data-toggle="tab" href="#dangXN">Đang chờ xác nhận</a></li>
+        <li class="searchPhone_title"><a data-toggle="tab" href="#dangGH">Đang giao hàng</a></li>
+        <li class="searchPhone_title"><a data-toggle="tab" href="#giaoTC">Giao hàng thành công</a></li>
+        <li class="searchPhone_title"><a data-toggle="tab" href="#donHuy">Đơn hàng đã hủy</a></li>
+    </ul>
+    <div class="tab-content" style="margin-bottom:108px">
+        <div id="dangXN" class="tab-pane fade in active">
+            <p class="searchPhone_name">Đơn hàng đang xác nhận</p>
+            <div>
+                @foreach (var or in lstDHXN)
+                {
+                    var det = mydb.DetailsOrders.Where(n => n.orderID == or.orderID).FirstOrDefault();
+                    int tt = (int)det.orderQuantity * (int)det.proPrice;
+                    ttDHXN = ttDHXN + (int)det.orderQuantity * (int)det.proPrice;
+                    var lstDetOrder = mydb.DetailsOrders.Where(n => n.orderID == or.orderID);
+                    <div class="SP_order">
+                        <div class="d-flex SP_order_header row">
+                            <div class="d-flex SP_order_header_ma col-2">
+                                <h5 style="margin-right:7px">Mã đơn hàng:</h5>
+                                <h5>@or.orderID</h5>
+                            </div>
+                            <div class="col-4" style=" margin: 7px;">Ngày mua: @or.orderDate</div>
+                            <div class="col-5" style="text-align: end;">
+                                <a class="btn searchPhone_btnHuy" data-abc="true"
+                                   data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    <img style="width:20px;height:20px" src="https://cdn-icons-png.flaticon.com/512/1721/1721578.png" />
+                                </a>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Nhập lý do hủy</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            @using (Html.BeginForm("DeletePay", "Payment", new { idOr = or.orderID, strURL = Request.Url.ToString() }))
+                                            {
+                                                <div class="modal-body">
+
+                                                    <input id="txtLiDo"
+                                                           name="txtLiDo"
+                                                           type="text"
+                                                           class="search-box-input input_huy"
+                                                           placeholder="Lý do hủy đơn hàng ?" />
+                                                    @*<button class="btn btn-dark searchPhone_btnHuy">Gửi</button>*@
+
+                                                </div>
+                                                <div class="modal-footer">
+
+                                                    <button class="btn btn-dark searchPhone_btnHuy">Gửi</button>
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            @foreach (var item in lstDetOrder)
+                            {
+                                mydb = new QL_LaptopEntities();
+                                var cus = mydb.Customers.Where(n => n.cusID == item.cusID).FirstOrDefault();
+                                var cusAdr = mydb.CustomerAddresses.Where(n => n.cusID == cus.cusID).FirstOrDefault();
+                                var pro = mydb.Products.Where(n => n.id == item.proID).FirstOrDefault();
+                                var orr = mydb.Orders.Where(n => n.cusID == cus.cusID).FirstOrDefault();
+
+                                using (Html.BeginForm("Update", "Cart"))
+                                {
+                                    <div class="row SP_order_main">
+                                        <div class="col-2">
+                                            <img src="~/Assets/Image/ImageProduct/@pro.avatar" alt="" class="img-fluid d-none d-md-block rounded mb-2 shadow ">
+                                        </div>
+                                        <div class="col-8">
+                                            <p class="SP_order_name">@pro.Name</p>
+                                            <p class="SP_order_quantity">Số lượng: @item.orderQuantity</p>
+                                        </div>
+                                        <div class="col-2">
+                                            <p class="SP_order_price">@String.Format("{0:0,0}", @pro.price) VND</p>
+                                        </div>
+                                    </div>
+
+                                }
+                            }
+
+                        </div>
+                        <div class="SP_order_totalMoney">
+                            <img style="width:25px;height:25px" src="https://cdn-icons-png.flaticon.com/512/543/543135.png" />
+                            <p style="padding:0 10px">Thành tiền: </p>
+                            <p style=" font-size: 22px; padding: 0 10px; color: #ee4d2d;">@String.Format("{0:0,0}", @tt) VND</p>
+
+                        </div>
+                    </div>
+
+                }
+            </div>
+            <div class="row mt-4 d-flex align-items-center" style="margin-left:20px;margin-bottom:20px">
+
+                <div class="col-sm-6 mb-3 mb-m-1 order-md-1 text-md-left">
+                    <a href="@Url.Action("ShowAllProducts","Product")">
+                        <i class="fas fa-arrow-left mr-2"></i> Continue Shopping
+                    </a>
+                </div>
+            </div>
+            </p>
+
+
+
+        </div>
+        <div id="dangGH" class="tab-pane fade">
+            <p class="searchPhone_name">Đơn hàng đang giao hàng</p>
+            <div class="">
+                @foreach (var or in lstDHDG)
+                {
+                    var det = mydb.DetailsOrders.Where(n => n.orderID == or.orderID).FirstOrDefault();
+                    int tt = (int)det.orderQuantity * (int)det.proPrice;
+                    ttDHDG = ttDHDG + (int)det.orderQuantity * (int)det.proPrice;
+                    var lstDetOrder = mydb.DetailsOrders.Where(n => n.orderID == or.orderID);
+
+                    <div class="SP_order">
+                        <div class="d-flex SP_order_header">
+                            <div class="d-flex SP_order_header_ma">
+                                <h5 style="margin-right:7px">Mã đơn hàng:</h5>
+                                <h5>@or.orderID</h5>
+                            </div>
+                            <div style=" margin: 7px;">Ngày mua: @or.orderDate</div>
+                        </div>
+                        <div>
+                            @foreach (var item in lstDetOrder)
+                            {
+                                mydb = new QL_LaptopEntities();
+                                var cus = mydb.Customers.Where(n => n.cusID == item.cusID).FirstOrDefault();
+                                var cusAdr = mydb.CustomerAddresses.Where(n => n.cusID == cus.cusID).FirstOrDefault();
+                                var pro = mydb.Products.Where(n => n.id == item.proID).FirstOrDefault();
+                                var orr = mydb.Orders.Where(n => n.cusID == cus.cusID).FirstOrDefault();
+
+                                using (Html.BeginForm("Update", "Cart"))
+                                {
+                                    <div class="row SP_order_main">
+                                        <div class="col-2">
+                                            <img src="~/Assets/Image/ImageProduct/@pro.avatar" alt="" class="img-fluid d-none d-md-block rounded mb-2 shadow ">
+                                        </div>
+                                        <div class="col-8">
+                                            <p class="SP_order_name">@pro.Name</p>
+                                            <p class="SP_order_quantity">Số lượng: @item.orderQuantity</p>
+                                        </div>
+                                        <div class="col-2">
+                                            <p class="SP_order_price">@String.Format("{0:0,0}", @pro.price) VND</p>
+                                        </div>
+                                    </div>
+
+                                }
+                            }
+
+                        </div>
+                        <div class="SP_order_totalMoney">
+                            <img style="width:25px;height:25px" src="https://cdn-icons-png.flaticon.com/512/543/543135.png" />
+                            <p style="padding:0 10px">Thành tiền: </p>
+                            <p style=" font-size: 22px; padding: 0 10px; color: #ee4d2d;">@String.Format("{0:0,0}", @tt) VND</p>
+
+                        </div>
+                    </div>
+
+                }
+            </div>
+            <div class="row mt-4 d-flex align-items-center" style="margin-left:20px;margin-bottom:20px">
+
+                <div class="col-sm-6 mb-3 mb-m-1 order-md-1 text-md-left">
+                    <a href="@Url.Action("ShowAllProducts","Product")">
+                        <i class="fas fa-arrow-left mr-2"></i> Continue Shopping
+                    </a>
+                </div>
+            </div>
+            </p>
+        </div>
+        <div id="giaoTC" class="tab-pane fade">
+            <p class="searchPhone_name">Đơn hàng giao thành công</p>
+            <div class="">
+                @foreach (var or in lstHT)
+                {
+                    var det = mydb.DetailsOrders.Where(n => n.orderID == or.orderID).FirstOrDefault();
+                    int tt = (int)det.orderQuantity * (int)det.proPrice;
+                    var lstDetOrder = mydb.DetailsOrders.Where(n => n.orderID == or.orderID);
+                    <div class="SP_order">
+                        <div class="d-flex SP_order_header">
+                            <div class="d-flex SP_order_header_ma">
+                                <h5 style="margin-right:7px">Mã đơn hàng:</h5>
+                                <h5>@or.orderID</h5>
+                            </div>
+                            <div style=" margin: 7px;">Ngày mua: @or.orderDate</div>
+                        </div>
+                        <div>
+                            @foreach (var item in lstDetOrder)
+                            {
+                                mydb = new QL_LaptopEntities();
+                                var cus = mydb.Customers.Where(n => n.cusID == item.cusID).FirstOrDefault();
+                                var cusAdr = mydb.CustomerAddresses.Where(n => n.cusID == cus.cusID).FirstOrDefault();
+                                var pro = mydb.Products.Where(n => n.id == item.proID).FirstOrDefault();
+                                var orr = mydb.Orders.Where(n => n.cusID == cus.cusID).FirstOrDefault();
+
+                                using (Html.BeginForm("Update", "Cart"))
+                                {
+                                    <div class="row SP_order_main">
+                                        <div class="col-2">
+                                            <img src="~/Assets/Image/ImageProduct/@pro.avatar" alt="" class="img-fluid d-none d-md-block rounded mb-2 shadow ">
+                                        </div>
+                                        <div class="col-8">
+                                            <p class="SP_order_name">@pro.Name</p>
+                                            <p class="SP_order_quantity">Số lượng: @item.orderQuantity</p>
+                                        </div>
+                                        <div class="col-2">
+                                            <p class="SP_order_price">@String.Format("{0:0,0}", @pro.price) VND</p>
+                                        </div>
+                                    </div>
+
+                                }
+                            }
+
+                        </div>
+                        <div class="SP_order_totalMoney">
+                            <img style="width:25px;height:25px" src="https://cdn-icons-png.flaticon.com/512/543/543135.png" />
+                            <p style="padding:0 10px">Thành tiền: </p>
+                            <p style=" font-size: 22px; padding: 0 10px; color: #ee4d2d;">@String.Format("{0:0,0}", @tt) VND</p>
+
+                        </div>
+                    </div>
+
+                }
+            </div>
+            <div class="row mt-4 d-flex align-items-center" style="margin-left:20px;margin-bottom:20px">
+
+                <div class="col-sm-6 mb-3 mb-m-1 order-md-1 text-md-left">
+                    <a href="@Url.Action("ShowAllProducts","Product")">
+                        <i class="fas fa-arrow-left mr-2"></i> Continue Shopping
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div id="donHuy" class="tab-pane fade">
+            <p class="searchPhone_name">Đơn hàng đã hủy</p>
+            <div class="">
+                @foreach (var or in lstDHDH)
+                {
+
+                    var det = mydb.DetailsOrders.Where(n => n.orderID == or.orderID).FirstOrDefault();
+                    int tt = (int)det.orderQuantity * (int)det.proPrice;
+                    ttDHDH = ttDHDH + (int)det.orderQuantity * (int)det.proPrice;
+                    var lstDetOrder = mydb.DetailsOrders.Where(n => n.orderID == or.orderID);
+                    var orcan = mydb.CancelOrders.Where(n => n.id_order == or.orderID).FirstOrDefault();
+                    <div class="SP_order">
+                        <div class="d-flex SP_order_header">
+                            <div class="d-flex SP_order_header_ma">
+                                <h5 style="margin-right:7px">Mã đơn hàng:</h5>
+                                <h5>@or.orderID</h5>
+                            </div>
+                            <div style=" margin: 7px;">Ngày mua: @or.orderDate</div>
+                        </div>
+                        <div>
+                            @foreach (var item in lstDetOrder)
+                            {
+                                mydb = new QL_LaptopEntities();
+
+                                var cus = mydb.Customers.Where(n => n.cusID == item.cusID).FirstOrDefault();
+                                var cusAdr = mydb.CustomerAddresses.Where(n => n.cusID == cus.cusID).FirstOrDefault();
+                                var pro = mydb.Products.Where(n => n.id == item.proID).FirstOrDefault();
+                                var orr = mydb.Orders.Where(n => n.cusID == cus.cusID).FirstOrDefault();
+
+                                using (Html.BeginForm("Update", "Cart"))
+                                {
+                                    <div class="row SP_order_main">
+                                        <div class="col-2">
+                                            <img src="~/Assets/Image/ImageProduct/@pro.avatar" alt="" class="img-fluid d-none d-md-block rounded mb-2 shadow ">
+                                        </div>
+                                        <div class="col-8">
+                                            <p class="SP_order_name">@pro.Name</p>
+                                            <p class="SP_order_quantity">Số lượng: @item.orderQuantity</p>
+                                        </div>
+                                        <div class="col-2">
+                                            <p class="SP_order_price">@String.Format("{0:0,0}", @pro.price) VND</p>
+                                        </div>
+                                    </div>
+
+                                }
+                            }
+
+                        </div>
+                        <div class="d-flex reason">
+                            <p style="font-weight: 600; margin-right: 10px">Lý do hủy:</p>
+                            <p>@orcan.reason</p>
+                        </div>
+                        <div class="SP_order_totalMoney">
+                            <img style="width:25px;height:25px" src="https://cdn-icons-png.flaticon.com/512/543/543135.png" />
+                            <p style="padding:0 10px">Thành tiền: </p>
+                            <p style=" font-size: 22px; padding: 0 10px; color: #ee4d2d;">@String.Format("{0:0,0}", @tt) VND</p>
+
+                        </div>
+                    </div>
+
+                }
+            </div>
+            <div class="row mt-4 d-flex align-items-center" style="margin-left:20px;margin-bottom:20px">
+
+                <div class="col-sm-6 mb-3 mb-m-1 order-md-1 text-md-left">
+                    <a href="@Url.Action("ShowAllProducts","Product")">
+                        <i class="fas fa-arrow-left mr-2"></i> Continue Shopping
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function click() {
+        location.reload();
+    }
+    function kt(i) {
+        if (i == 2) {
+            Swal.fire({
+                title: 'Tìm kiếm thành công!',
+                showClass: {
+                    popup: 'animate__animated animate__fadeInDown'
+                },
+                hideClass: {
+                    popup: 'animate__animated animate__fadeOutUp'
+                }
+            })
+        }
+        else
+            if (i == 1) {
+                Swal.fire({
+                    title: 'Số điện thoại không có đơn hàng!',
+                    showClass: {
+                        popup: 'animate__animated animate__fadeInDown'
+                    },
+                    hideClass: {
+                        popup: 'animate__animated animate__fadeOutUp'
+                    }
+                })
+            }
+
+    }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
