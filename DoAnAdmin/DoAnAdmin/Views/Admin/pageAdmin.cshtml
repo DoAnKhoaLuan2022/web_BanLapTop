@@ -1,11 +1,175 @@
 ﻿@using DoAnAdmin.Models
-
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutPageAdmin.cshtml";
+    QL_LaptopEntities db = new QL_LaptopEntities();
+    List<top10SPBanChay> lstOr = Session["listTopSP"] as List<DoAnAdmin.Models.top10SPBanChay>;
+    string sp1 = "";
+    string sp2 = "";
+    string sp3 = "";
+    string sp4 = "";
+    string sp5 = "";
+    string sp6 = "";
+    string sp7 = "";
+    string sp8 = "";
+    string sp9 = "";
+    string sp10 = "";
+    int sl1 = 0;
+    int sl2 = 0;
+    int sl3 = 0;
+    int sl4 = 0;
+    int sl5 = 0;
+    int sl6 = 0;
+    int sl7 = 0;
+    int sl8 = 0;
+    int sl9 = 0;
+    int sl10 = 0;
+    int g1 = 0;
+    int g2 = 0;
+    int g3 = 0;
+    int g4 = 0;
+    int g5 = 0;
+    int g6 = 0;
+    int g7 = 0;
+    int g8 = 0;
+    int g9 = 0;
+    int g10 = 0;
+    int i = 1;
+    if (lstOr != null)
+    {
+        foreach (var item in lstOr)
+        {
+            if (i == 1)
+            {
+                sp1 = (item.tenSP.Length <= 31) ? item.tenSP : item.tenSP.Substring(0, 32);
+                sl1 = item.slSP;
+                g1 = item.tongGia;
+            }
+            if (i == 2)
+            {
+                sp2 = (item.tenSP.Length <= 31) ? item.tenSP : item.tenSP.Substring(0, 32);
+                sl2 = item.slSP;
+                g2 = item.tongGia;
+            }
+            if (i == 3)
+            {
+                sp3 = (item.tenSP.Length <= 31) ? item.tenSP : item.tenSP.Substring(0, 32);
+                sl3 = item.slSP;
+                g3 = item.tongGia;
+            }
+            if (i == 4)
+            {
+                sp4 = (item.tenSP.Length <= 31) ? item.tenSP : item.tenSP.Substring(0, 32);
+                sl4 = item.slSP;
+                g4 = item.tongGia;
+            }
+            if (i == 5)
+            {
+                sp5 = (item.tenSP.Length <= 31) ? item.tenSP : item.tenSP.Substring(0, 32);
+                sl5 = item.slSP;
+                g5 = item.tongGia;
+            }
+            if (i == 6)
+            {
+                sp6 = (item.tenSP.Length <= 31) ? item.tenSP : item.tenSP.Substring(0, 32);
+                sl6 = item.slSP;
+                g6 = item.tongGia;
+            }
+            if (i == 7)
+            {
+                sp7 = (item.tenSP.Length <= 31) ? item.tenSP : item.tenSP.Substring(0, 32);
+                sl7 = item.slSP;
+                g7 = item.tongGia;
+            }
+            if (i == 8)
+            {
+                sp8 = (item.tenSP.Length <= 31) ? item.tenSP : item.tenSP.Substring(0, 32);
+                sl8 = item.slSP;
+                g8 = item.tongGia;
+            }
+            if (i == 9)
+            {
+                sp9 = (item.tenSP.Length <= 31) ? item.tenSP : item.tenSP.Substring(0, 32);
+                sl9 = item.slSP;
+                g9 = item.tongGia;
+            }
+            i++;
+            if (i == 10)
+            {
+                sp10 = (item.tenSP.Length <= 31) ? item.tenSP : item.tenSP.Substring(0, 32);
+                sl10 = item.slSP;
+                g10 = item.tongGia;
+                break;
+            }
+
+        }
+    }
+    else
+    {
+        var lst = db.DetailsOrders;
+        foreach(var item in lst)
+        {
+            if (i == 1)
+            {
+                sp1 = (item.Product.Name.Length <= 31) ? item.Product.Name : item.Product.Name.Substring(0, 32);
+                sl1 = item.orderQuantity ?? 0;
+
+            }
+            if (i == 2)
+            {
+                sp2 = (item.Product.Name.Length <= 31) ? item.Product.Name : item.Product.Name.Substring(0, 32);
+                sl2 = item.orderQuantity ?? 0;
+            }
+            if (i == 3)
+            {
+                sp3 = (item.Product.Name.Length <= 31) ? item.Product.Name : item.Product.Name.Substring(0, 32);
+                sl3 = item.orderQuantity ?? 0;
+            }
+            if (i == 4)
+            {
+                sp4 = (item.Product.Name.Length <= 31) ? item.Product.Name : item.Product.Name.Substring(0, 32);
+                sl4 = item.orderQuantity ?? 0;
+            }
+            if (i == 5)
+            {
+                sp5 = (item.Product.Name.Length <= 31) ? item.Product.Name : item.Product.Name.Substring(0, 32);
+                sl5 = item.orderQuantity ?? 0;
+            }
+            if (i == 6)
+            {
+                sp6 = (item.Product.Name.Length <= 31) ? item.Product.Name : item.Product.Name.Substring(0, 32);
+                sl6 = item.orderQuantity ?? 0;
+            }
+            if (i == 7)
+            {
+                sp7 = (item.Product.Name.Length <= 31) ? item.Product.Name : item.Product.Name.Substring(0, 32);
+                sl7 = item.orderQuantity ?? 0;
+            }
+            if (i == 8)
+            {
+                sp8 = (item.Product.Name.Length <= 31) ? item.Product.Name : item.Product.Name.Substring(0, 32);
+                sl8 = item.orderQuantity ?? 0;
+            }
+            if (i == 9)
+            {
+                sp9 = (item.Product.Name.Length <= 31) ? item.Product.Name : item.Product.Name.Substring(0, 32);
+                sl9 = item.orderQuantity ?? 0;
+            }
+            i++;
+            if (i == 10)
+            {
+                sp10 = (item.Product.Name.Length <= 31) ? item.Product.Name : item.Product.Name.Substring(0, 32);
+                sl10 = item.orderQuantity ?? 0;
+                break;
+            }
+        }
+
+    }
+
 }
+
 <!-- Left side columns -->
-<div class="col-lg-8">
+<div class="col-lg-12">
     <div class="row">
         <!-- Sales Card -->
         <div class="col-xxl-4 col-md-6">
@@ -89,19 +253,541 @@
                             <i class="bi bi-currency-dollar"></i>
                         </div>
                         @{
-
+                            int k = 0;
+                            if(ViewBag.TongDoanhThu!= null)
+                            {
+                                k = ViewBag.TongDoanhThu;
+                            }
                         }
                         <div class="ps-3">
-                            <h6>@String.Format("{0:0,0}", ViewBag.TongDoanhThu)₫</h6>
+                            <h6>@String.Format("{0:0,0}", k)₫</h6>
                         </div>
                     </div>
                 </div>
 
             </div>
-            
-
         </div><!-- End Customers Card -->
         <!-- Reports -->
         <!-- Recent Sales -->
+        <div class="col-xxl-4 col-xl-12">
+            <div class="card info-card revenue-card">
+                <div class="card-body">
+                    <h5 class="card-title">Thống kê ngày chỉ định</h5>
+                    <div class="container1 px-1 mx-auto">
+                        @using (Html.BeginForm("thongKeTheoNgay", "Admin"))
+                        {
+                            <div class="flex-row d-flex">
+                                <div class="col-lg-6 col-11">
+                                    <div class="input-group input-daterange"> <input type="text" class="form-control input1 input0" placeholder="Ngày bắt đầu ?" id="txtBD" name="txtBD" readonly> <input type="text" id="txtKT" name="txtKT" class="form-control input2 input0" placeholder="Ngày kết thúc ?" readonly> </div>
+                                </div>
+                                <div class="col-4">
+                                    <a href="@Url.Action("", "")">
+                                        <input type="submit" class="btn btn-link" value="Thống kê" />
+                                    </a>
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+
+                    <div class="container1 px-1 mx-auto m-3">
+                        <div class="row">
+                            @*<div class="col-md-6 py-1">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <canvas id="chLine"></canvas>
+                                        </div>
+                                    </div>
+                                </div>*@
+                            <div class="col-md-12 py-2">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <canvas id="chBar"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            @*</div>*@
+                            @*<div class="row py-2">
+                                <div class="col-md-4 py-1">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <canvas id="chDonut1"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 py-1">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <canvas id="chDonut2"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 py-1">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <canvas id="chDonut3"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>*@
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
     </div>
+
 </div>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap-responsive.css">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.js"></script>
+<script>
+    /* chart.js chart examples */
+
+    // chart colors
+    var title = [`Số lượng bán`, `Tiền bán`];
+    var dataTen = [`@sp1`, `@sp2`, `@sp3`, `@sp4`, `@sp5`, `@sp6`, `@sp7`, `@sp8`, `@sp9`, `@sp10`];
+    var dataSl = [@sl1,@sl2,@sl3,@sl4,@sl5,@sl6,@sl7,@sl8,@sl9,@sl10];
+     var dataGia = [@g1,@g2,@g3,@g4,@g5,@g6,@g7,@g8,@g9,@g10];
+    var colors = ['#007bff', '#28a745', '#333333', '#c3e6cb', '#dc3545', '#6c757d'];
+
+    /* large line chart */
+    //var chartData = {
+    //    labels: ["S", "M", "T", "W", "T", "F", "S"],
+    //    datasets: [{
+    //        data: [589, 445, 483, 503, 689, 692, 634],
+    //        backgroundColor: 'transparent',
+    //        borderColor: colors[0],
+    //        borderWidth: 4,
+    //        pointBackgroundColor: colors[0]
+    //    }
+    //        //   {
+    //        //     data: [639, 465, 493, 478, 589, 632, 674],
+    //        //     backgroundColor: colors[3],
+    //        //     borderColor: colors[1],
+    //        //     borderWidth: 4,
+    //        //     pointBackgroundColor: colors[1]
+    //        //   }
+    //    ]
+    //};
+    //if (chLine) {
+    //    new Chart(chLine, {
+    //        type: 'line',
+    //        data: chartData,
+    //        options: {
+    //            scales: {
+    //                xAxes: [{
+    //                    ticks: {
+    //                        beginAtZero: false
+    //                    }
+    //                }]
+    //            },
+    //            legend: {
+    //                display: false
+    //            },
+    //            responsive: true
+    //        }
+    //    });
+    //}
+
+    /* large pie/donut chart */
+    var chPie = document.getElementById("chPie");
+    if (chPie) {
+        new Chart(chPie, {
+            type: 'pie',
+            data: {
+                labels: ['Desktop', 'Phone', 'Tablet', 'Unknown'],
+                datasets: [
+                    {
+                        backgroundColor: [colors[1], colors[0], colors[2], colors[5]],
+                        borderWidth: 0,
+                        data: [50, 40, 15, 5]
+                    }
+                ]
+            },
+            plugins: [{
+                beforeDraw: function (chart) {
+                    var width = chart.chart.width,
+                        height = chart.chart.height,
+                        ctx = chart.chart.ctx;
+                    ctx.restore();
+                    var fontSize = (height / 70).toFixed(2);
+                    ctx.font = fontSize + "em sans-serif";
+                    ctx.textBaseline = "middle";
+                    var text = chart.config.data.datasets[0].data[0] + "%",
+                        textX = Math.round((width - ctx.measureText(text).width) / 2),
+                        textY = height / 2;
+                    ctx.fillText(text, textX, textY);
+                    ctx.save();
+                }
+            }],
+            options: { layout: { padding: 0 }, legend: { display: false }, cutoutPercentage: 80 }
+        });
+    }
+
+    /* bar chart */
+    var chBar = document.getElementById("chBar");
+    if (chBar) {
+        new Chart(chBar, {
+            type: 'bar',
+            data: {
+                labels: dataTen,
+                datasets: [{
+                    label: `Số lượng bán`,
+                    data: dataSl,
+                    backgroundColor: colors[0],
+                    borderWidth: 1
+                },
+               {
+                   label: `Tiền bán`,
+                   data: dataGia,
+                   backgroundColor: colors[1],
+                   borderWidth: 1
+                }]
+            },
+            options: donutOptions1
+        });
+    }
+    var donutOptions1 = {
+        cutoutPercentage: 85,
+        legend: { position: 'bottom', padding: 5, labels: { pointStyle: 'circle', usePointStyle: true } }
+    };
+    /* 3 donut charts */
+    var donutOptions = {
+        cutoutPercentage: 85,
+        legend: { position: 'bottom', padding: 5, labels: { pointStyle: 'circle', usePointStyle: true } }
+    };
+
+    // donut 1
+    var chDonutData1 = {
+        labels: ['Bootstrap', 'Popper', 'Other'],
+        datasets: [
+            {
+                backgroundColor: colors.slice(0, 3),
+                borderWidth: 0,
+                data: [74, 11, 40]
+            }
+        ]
+    };
+
+    var chDonut1 = document.getElementById("chDonut1");
+    if (chDonut1) {
+        new Chart(chDonut1, {
+            type: 'pie',
+            data: chDonutData1,
+            options: donutOptions
+        });
+    }
+
+    // donut 2
+    var chDonutData2 = {
+        labels: ['Wips', 'Pops', 'Dags'],
+        datasets: [
+            {
+                backgroundColor: colors.slice(0, 3),
+                borderWidth: 0,
+                data: [40, 45, 30]
+            }
+        ]
+    };
+    var chDonut2 = document.getElementById("chDonut2");
+    if (chDonut2) {
+        new Chart(chDonut2, {
+            type: 'pie',
+            data: chDonutData2,
+            options: donutOptions
+        });
+    }
+
+    // donut 3
+    var chDonutData3 = {
+        labels: ['Angular', 'React', 'Other'],
+        datasets: [
+            {
+                backgroundColor: colors.slice(0, 3),
+                borderWidth: 0,
+                data: [21, 45, 55, 33]
+            }
+        ]
+    };
+    var chDonut3 = document.getElementById("chDonut3");
+    if (chDonut3) {
+        new Chart(chDonut3, {
+            type: 'pie',
+            data: chDonutData3,
+            options: donutOptions
+        });
+    }
+
+    /* 3 line charts */
+    var lineOptions = {
+        legend: { display: false },
+        tooltips: { interest: false, bodyFontSize: 11, titleFontSize: 11 },
+        scales: {
+            xAxes: [
+                {
+                    ticks: {
+                        display: false
+                    },
+                    gridLines: {
+                        display: false,
+                        drawBorder: false
+                    }
+                }
+            ],
+            yAxes: [{ display: false }]
+        },
+        layout: {
+            padding: {
+                left: 6,
+                right: 6,
+                top: 4,
+                bottom: 6
+            }
+        }
+    };
+
+    var chLine1 = document.getElementById("chLine1");
+    if (chLine1) {
+        new Chart(chLine1, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+                datasets: [
+                    {
+                        backgroundColor: '#ffffff',
+                        borderColor: '#ffffff',
+                        data: [10, 11, 4, 11, 4],
+                        fill: false
+                    }
+                ]
+            },
+            options: lineOptions
+        });
+    }
+    var chLine2 = document.getElementById("chLine2");
+    if (chLine2) {
+        new Chart(chLine2, {
+            type: 'line',
+            data: {
+                labels: ['A', 'B', 'C', 'D', 'E'],
+                datasets: [
+                    {
+                        backgroundColor: '#ffffff',
+                        borderColor: '#ffffff',
+                        data: [4, 5, 7, 13, 12],
+                        fill: false
+                    }
+                ]
+            },
+            options: lineOptions
+        });
+    }
+
+    var chLine3 = document.getElementById("chLine3");
+    if (chLine3) {
+        new Chart(chLine3, {
+            type: 'line',
+            data: {
+                labels: ['Pos', 'Neg', 'Nue', 'Other', 'Unknown'],
+                datasets: [
+                    {
+                        backgroundColor: '#ffffff',
+                        borderColor: '#ffffff',
+                        data: [13, 15, 10, 9, 14],
+                        fill: false
+                    }
+                ]
+            },
+            options: lineOptions
+        });
+    }
+
+</script>
+<script>
+    $(document).ready(function () {
+
+        $('.input-daterange').datepicker({
+            format: 'dd-mm-yyyy',
+            autoclose: true
+        });
+
+    });
+</script>
+<style>
+    /*    body {
+        color: #000;
+        overflow-x: hidden;
+        height: 100%;
+    }*/
+
+    .container1 {
+        /*padding-top: 10px;*/
+        padding-bottom: 10px
+    }
+
+    input0 {
+        border: 1px solid lightgrey !important;
+        border-radius: 10px;
+        box-sizing: border-box;
+        background-color: #fff !important;
+        color: #4CAF50 !important;
+        font-size: 18px !important;
+        letter-spacing: 1px;
+        position: relative;
+        font-weight: bold !important
+    }
+
+    .input1 {
+        text-align: left !important
+    }
+
+    .input2 {
+        text-align: right !important
+    }
+
+    input0:focus {
+        -moz-box-shadow: none !important;
+        -webkit-box-shadow: none !important;
+        box-shadow: none !important;
+        border: 1px solid #512DA8;
+        outline-width: 0
+    }
+
+    ::placeholder {
+        color: #BDBDBD;
+        opacity: 1
+    }
+
+    :-ms-input-placeholder {
+        color: #BDBDBD
+    }
+
+    ::-ms-input-placeholder {
+        color: #BDBDBD
+    }
+
+    button:focus {
+        -moz-box-shadow: none !important;
+        -webkit-box-shadow: none !important;
+        box-shadow: none !important;
+        outline-width: 0
+    }
+
+    .datepicker {
+        background-color: #fff;
+        border-radius: 0 !important;
+        padding: 15px 20px !important;
+        align-content: center !important
+    }
+
+    .datepicker-dropdown {
+        top: 0;
+        left: calc(50% - 161px) !important
+    }
+
+        .datepicker-dropdown.datepicker-orient-left:before {
+            left: calc(50% - 6px) !important
+        }
+
+        .datepicker-dropdown.datepicker-orient-left:after {
+            left: calc(50% - 5px) !important
+        }
+
+    .datepicker table tr td.today,
+    span.focused {
+        border-radius: 50% !important;
+        background-image: linear-gradient(#FFF3E0, #FFE0B2)
+    }
+
+        .datepicker table tr td.today.range {
+            background-image: linear-gradient(#eeeeee, #eeeeee) !important;
+            border-radius: 0 !important
+        }
+
+    thead tr:nth-child(3) th {
+        font-weight: bold !important;
+        padding-top: 10px;
+        padding-bottom: 10px
+    }
+
+    .old,
+    .day,
+    .new {
+        width: 40px !important;
+        height: 40px !important;
+        border-radius: 0px !important;
+        border: 1px solid lightgrey !important
+    }
+
+        .day.old,
+        .day.new {
+            background-color: #F5F5F5 !important;
+            color: #E0E0E0 !important
+        }
+
+            .day.old:hover,
+            .day.new:hover {
+                border-radius: 0px !important
+            }
+
+        .old-day:hover,
+        .day:hover,
+        .new-day:hover,
+        .month:hover,
+        .year:hover,
+        .decade:hover,
+        .century:hover {
+            border-radius: 50% !important;
+            background-color: #eee
+        }
+
+    .active1 {
+        border-radius: 50% !important;
+        background-image: linear-gradient(#90CAF9, #64B5F6) !important;
+        color: #fff !important
+    }
+
+    .range-start,
+    .range-end {
+        border-radius: 50% !important;
+        background-image: linear-gradient(#4CAF50, #4CAF50) !important
+    }
+
+    .range {
+        color: #4CAF50 !important
+    }
+
+    .prev,
+    .next,
+    .datepicker-switch {
+        border-radius: 0 !important;
+        padding: 10px 10px 10px 10px !important;
+        font-size: 18px;
+        opacity: 0.7;
+        color: #4CAF50
+    }
+
+        .prev:hover,
+        .next:hover,
+        .datepicker-switch:hover {
+            background-color: inherit !important;
+            opacity: 1
+        }
+
+    .datepicker-dropdown.datepicker-orient-right:before {
+        right: calc(50% - 6px) !important
+    }
+
+    .datepicker-dropdown.datepicker-orient-right:after {
+        right: calc(50% - 5px) !important
+    }
+</style>

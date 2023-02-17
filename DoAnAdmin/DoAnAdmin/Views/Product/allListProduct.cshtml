@@ -12,13 +12,45 @@
     string dell = "";
     string msi = "";
     string hp = "";
-    foreach(ChonLoc item in lstCL)
+    string duoi15 = "";
+    string tu1520= "" ;
+    string tu2030 = "";
+    string tu3040 = "";
+    string tren40 = "";
+
+    string mh13 = "";
+    string mh136 = "";
+    string mh14 = "";
+    string mh141 = "";
+    string mh145 = "";
+    string mh156 = "";
+    string mh16 = "";
+    string mh17 = "";
+    string mh162 = "";
+
+    string sn2 = "";
+    string sn4 = "";
+    string sn6 = "";
+    string sn8 = "";
+
+    string ram4 = "";
+    string ram8 = "";
+    string ram16 = "";
+    string ram32 = "";
+
+    string rom128 = "";
+    string rom256 = "";
+    string rom512 = "";
+    string rom1 = "";
+    string rom2 = "";
+    foreach (ChonLoc item in lstCL)
     {
-        if(item.daChon=="MacBook")
+
+        if (item.daChon=="MacBook")
         {
             mb = "checked";
         }
-        if (item.daChon== "DELL")
+        if(item.daChon== "DELL")
         {
             dell = "checked";
         }
@@ -43,6 +75,116 @@
         {
             hp = "checked";
         }
+        if(item.daChon.Equals("Dưới 15 triệu"))
+        {
+            duoi15 = "checked";
+        }
+        if (item.daChon.Equals("Từ 15 - 20 triệu"))
+        {
+            tu1520 = "checked";
+        }
+        if (item.daChon.Equals("Từ 20 - 30 triệu"))
+        {
+            tu2030 = "checked";
+        }
+        if (item.daChon.Equals("Từ 30 - 40 triệu"))
+        {
+            tu3040 = "checked";
+        }
+        if (item.daChon.Equals("Trên 40 triệu"))
+        {
+            tren40 = "checked";
+        }
+
+        if (item.daChon == "13 inch")
+        {
+            mh13 = "checked";
+        }
+        if (item.daChon == "13.6 inch")
+        {
+            mh136 = "checked";
+        }
+        if (item.daChon == "14 inch")
+        {
+            mh14 = "checked";
+        }
+        if (item.daChon == "14.1 inch")
+        {
+            mh141 = "checked";
+        }
+        if (item.daChon == "14.5 inch")
+        {
+            mh145 = "checked";
+        }
+        if (item.daChon == "15.6 inch")
+        {
+            mh156 = "checked";
+        }
+        if (item.daChon == "16 inch")
+        {
+            mh16 = "checked";
+        }
+        if (item.daChon == "16.2 inch")
+        {
+            mh162 = "checked";
+        }
+        if (item.daChon == "17 inch")
+        {
+            mh17 = "checked";
+        }
+        if (item.daChon == "2")
+        {
+            sn2 = "checked";
+        }
+        if (item.daChon == "4")
+        {
+            sn4 = "checked";
+        }
+        if (item.daChon == "6")
+        {
+            sn6 = "checked";
+        }
+        if (item.daChon == "8")
+        {
+            sn8 = "checked";
+        }
+        if (item.daChon == "4 GB")
+        {
+            ram4 = "checked";
+        }
+        if (item.daChon == "8 GB")
+        {
+            ram8 = "checked";
+        }
+        if (item.daChon == "16 GB")
+        {
+            ram16 = "checked";
+        }
+        if (item.daChon == "32 GB")
+        {
+            ram32 = "checked";
+        }
+        if (item.daChon == "SSD 128 GB")
+        {
+            rom128 = "checked";
+        }
+        if (item.daChon == "SSD 256 GB")
+        {
+            rom256 = "checked";
+        }
+        if (item.daChon == "SSD 512 GB")
+        {
+            rom512 = "checked";
+        }
+        if (item.daChon == "SSD 1TB")
+        {
+            rom1 = "checked";
+        }
+        if (item.daChon == "SSD 2TB")
+        {
+            rom2 = "checked";
+        }
+
     }
 
     }
@@ -230,23 +372,23 @@
             <button class="accordion">Giá</button>
             <div class="panel">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="lstPrice" value="Dưới 15 triệu" id="flexCheckDefault">
+                    <input class="form-check-input" type="checkbox" name="lstPrice" value="Dưới 15 triệu" id="id15">
                     <p>Dưới 15 triệu</p>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="lstPrice" value="Từ 15 - 20 triệu" id="flexCheckDefault">
+                    <input class="form-check-input" type="checkbox" name="lstPrice" value="Từ 15 - 20 triệu" id="id1520">
                     <p>Từ 15 - 20 triệu</p>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="lstPrice" value="Từ 20 - 30 triệu" id="flexCheckDefault">
+                    <input class="form-check-input" type="checkbox" name="lstPrice" value="Từ 20 - 30 triệu" id="id2030">
                     <p>Từ 20 - 30 triệu</p>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="lstPrice" value="Từ 30 - 40 triệu" id="flexCheckDefault">
+                    <input class="form-check-input" type="checkbox" name="lstPrice" value="Từ 30 - 40 triệu" id="id3040">
                     <p>Từ 30 - 40 triệu</p>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="lstPrice" value="Trên 40 triệu" id="flexCheckDefault">
+                    <input class="form-check-input" type="checkbox" name="lstPrice" value="Trên 40 triệu" id="id40">
                     <p>Trên 40 triệu</p>
                 </div>
             </div>
@@ -254,39 +396,39 @@
             <button class="accordion">Màn hình</button>
             <div class="panel">
                 <div class="form-check">
-                    <input class="form-check-input" name="lstCreens" type="checkbox" value="" id="flexCheckDefault">
+                    <input class="form-check-input" name="lstCreens" type="checkbox" value="" id="idMH13">
                     <p>13 inch</p>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" name="lstCreens" type="checkbox" value="13.6 inch" id="flexCheckDefault">
+                    <input class="form-check-input" name="lstCreens" type="checkbox" value="13.6 inch" id="idMH136">
                     <p>13.6 inch</p>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" name="lstCreens" type="checkbox" value="14 inch" id="flexCheckDefault">
+                    <input class="form-check-input" name="lstCreens" type="checkbox" value="14 inch" id="idMH14">
                     <p>14 inch</p>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" name="lstCreens" type="checkbox" value="14.1 inch" id="flexCheckDefault">
+                    <input class="form-check-input" name="lstCreens" type="checkbox" value="14.1 inch" id="idMH141">
                     <p>14.1 inch</p>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" name="lstCreens" type="checkbox" value="14.5 inch" id="flexCheckDefault">
+                    <input class="form-check-input" name="lstCreens" type="checkbox" value="14.5 inch" id="idMH145">
                     <p>14.5 inch</p>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" name="lstCreens" type="checkbox" value="15.6 inch" id="flexCheckDefault">
+                    <input class="form-check-input" name="lstCreens" type="checkbox" value="15.6 inch" id="idMH156">
                     <p>15.6 inch</p>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" name="lstCreens" type="checkbox" value="16 inch" id="flexCheckDefault">
+                    <input class="form-check-input" name="lstCreens" type="checkbox" value="16 inch" id="idMH16">
                     <p>16 inch</p>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" name="lstCreens" type="checkbox" value="16.2 inch" id="flexCheckDefault">
+                    <input class="form-check-input" name="lstCreens" type="checkbox" value="16.2 inch" id="idMH162">
                     <p>16.2 inch</p>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" name="lstCreens" type="checkbox" value="17 inch" id="flexCheckDefault">
+                    <input class="form-check-input" name="lstCreens" type="checkbox" value="17 inch" id="idMH17">
                     <p>17 inch</p>
                 </div>
             </div>
@@ -294,19 +436,19 @@
             <button class="accordion">Số nhân</button>
             <div class="panel">
                 <div class="form-check">
-                    <input class="form-check-input" name="lstSN" type="checkbox" value="2" id="flexCheckDefault">
+                    <input class="form-check-input" name="lstSN" type="checkbox" value="2" id="idSN2">
                     <p>2</p>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" name="lstSN" type="checkbox" value="4" id="flexCheckDefault">
+                    <input class="form-check-input" name="lstSN" type="checkbox" value="4" id="idSN4">
                     <p>4</p>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" name="lstSN" type="checkbox" value="6" id="flexCheckDefault">
+                    <input class="form-check-input" name="lstSN" type="checkbox" value="6" id="idSN6">
                     <p>6</p>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" name="lstSN" type="checkbox" value="8" id="flexCheckDefault">
+                    <input class="form-check-input" name="lstSN" type="checkbox" value="8" id="idSN8">
                     <p>8</p>
                 </div>
             </div>
@@ -314,19 +456,19 @@
             <button class="accordion">RAM</button>
             <div class="panel">
                 <div class="form-check">
-                    <input class="form-check-input" name="lstRam" type="checkbox" value="4 GB" id="flexCheckDefault">
+                    <input class="form-check-input" name="lstRam" type="checkbox" value="4 GB" id="id4GB">
                     <p>4 GB</p>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" name="lstRam" type="checkbox" value="8 GB" id="flexCheckDefault">
+                    <input class="form-check-input" name="lstRam" type="checkbox" value="8 GB" id="id8GB">
                     <p>8 GB</p>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" name="lstRam" type="checkbox" value="16 GB" id="flexCheckDefault">
+                    <input class="form-check-input" name="lstRam" type="checkbox" value="16 GB" id="id16GB">
                     <p>16 GB</p>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" name="lstRam" type="checkbox" value="32 GB" id="flexCheckDefault">
+                    <input class="form-check-input" name="lstRam" type="checkbox" value="32 GB" id="id32GB">
                     <p>32 GB</p>
                 </div>
             </div>
@@ -334,23 +476,23 @@
             <button class="accordion">Ổ cứng</button>
             <div class="panel">
                 <div class="form-check">
-                    <input class="form-check-input" name="lstRom" type="checkbox" value="SSD 128 GB" id="flexCheckDefault">
+                    <input class="form-check-input" name="lstRom" type="checkbox" value="SSD 128 GB" id="idSSD128">
                     <p>SSD 128 GB</p>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" name="lstRom" type="checkbox" value="SSD 256 GB" id="flexCheckDefault">
+                    <input class="form-check-input" name="lstRom" type="checkbox" value="SSD 256 GB" id="idSSD256">
                     <p>SSD 256 GB</p>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" name="lstRom" type="checkbox" value="SSD 512 GB" id="flexCheckDefault">
+                    <input class="form-check-input" name="lstRom" type="checkbox" value="SSD 512 GB" id="idSSD512">
                     <p>SSD 512 GB</p>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" name="lstRom" type="checkbox" value="SSD 1TB" id="flexCheckDefault">
+                    <input class="form-check-input" name="lstRom" type="checkbox" value="SSD 1TB" id="idSSD1">
                     <p>SSD 1TB</p>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" name="lstRom" type="checkbox" value="SSD 2TB" id="flexCheckDefault">
+                    <input class="form-check-input" name="lstRom" type="checkbox" value="SSD 2TB" id="idSSD2">
                     <p>SSD 2TB</p>
                 </div>
             </div>
@@ -526,6 +668,120 @@
     const idlnv = document.getElementById("idLENOVO");
     if (@lnv.Length!= 0) {
         idlnv.setAttribute('checked', 'checked');
+    }
+
+
+    const id15 = document.getElementById("id15");
+    if (@duoi15.Length!= 0) {
+        id15.setAttribute('checked', 'checked');
+    }
+    const id1520 = document.getElementById("id1520");
+    if (@tu1520.Length != 0) {
+        id1520.setAttribute('checked', 'checked');
+    }
+    const id2030 = document.getElementById("id2030");
+    if (@tu2030.Length != 0) {
+        id2030.setAttribute('checked', 'checked');
+    }
+    const id3040 = document.getElementById("id3040");
+    if (@tu3040.Length != 0) {
+        id3040.setAttribute('checked', 'checked');
+    }
+    const id40 = document.getElementById("id40");
+    if (@tren40.Length != 0) {
+        id40.setAttribute('checked', 'checked');
+    }
+
+    const idMH13 = document.getElementById("idMH13");
+    if (@mh13.Length != 0) {
+        idMH13.setAttribute('checked', 'checked');
+    }
+    const idMH136 = document.getElementById("idMH136");
+    if (@mh136.Length != 0) {
+        idMH136.setAttribute('checked', 'checked');
+    }
+    const idMH14 = document.getElementById("idMH14");
+    if (@mh14.Length != 0) {
+        idMH14.setAttribute('checked', 'checked');
+    }
+    const idMH141 = document.getElementById("idMH141");
+    if (@mh141.Length != 0) {
+        idMH141.setAttribute('checked', 'checked');
+    }
+    const idMH145 = document.getElementById("idMH145");
+    if (@mh145.Length != 0) {
+        idMH145.setAttribute('checked', 'checked');
+    }
+    const idMH156 = document.getElementById("idMH156");
+    if (@mh156.Length != 0) {
+        idMH156.setAttribute('checked', 'checked');
+    }
+    const idMH16 = document.getElementById("idMH16");
+    if (@mh16.Length != 0) {
+        idMH16.setAttribute('checked', 'checked');
+    }
+    const idMH162 = document.getElementById("idMH162");
+    if (@mh162.Length != 0) {
+        idMH162.setAttribute('checked', 'checked');
+    }
+    const idMH17 = document.getElementById("idMH17");
+    if (@mh17.Length != 0) {
+        idMH17.setAttribute('checked', 'checked');
+    }
+    const idSN2 = document.getElementById("idSN2");
+    if (@sn2.Length != 0) {
+        idSN2.setAttribute('checked', 'checked');
+    }
+    const idSN4 = document.getElementById("idSN4");
+    if (@sn4.Length != 0) {
+        idSN4.setAttribute('checked', 'checked');
+    }
+    const idSN6 = document.getElementById("idSN6");
+    if (@sn6.Length != 0) {
+        idSN6.setAttribute('checked', 'checked');
+    }
+    const idSN8 = document.getElementById("idSN8");
+    if (@sn8.Length != 0) {
+        idSN8.setAttribute('checked', 'checked');
+    }
+
+
+    const id4GB = document.getElementById("id4GB");
+    if (@ram4.Length != 0) {
+        id4GB.setAttribute('checked', 'checked');
+    }
+    const id8GB = document.getElementById("id8GB");
+    if (@ram8.Length != 0) {
+        id8GB.setAttribute('checked', 'checked');
+    }
+    const id16GB = document.getElementById("id16GB");
+    if (@ram16.Length != 0) {
+        id16GB.setAttribute('checked', 'checked');
+    }
+    const id32GB = document.getElementById("id32GB");
+    if (@ram32.Length != 0) {
+        id32GB.setAttribute('checked', 'checked');
+    }
+
+    const idSSD512 = document.getElementById("idSSD512");
+    if (@rom512.Length != 0) {
+        idSSD512.setAttribute('checked', 'checked');
+    }
+    const idSSD128 = document.getElementById("idSSD128");
+    if (@rom128.Length != 0) {
+        idSSD128.setAttribute('checked', 'checked');
+    }
+    const idSSD256 = document.getElementById("idSSD256");
+    if (@rom256.Length != 0) {
+        idSSD256.setAttribute('checked', 'checked');
+    }
+    const idSSD1 = document.getElementById("idSSD1");
+    if (@rom1.Length != 0) {
+        idSSD1.setAttribute('checked', 'checked');
+    }
+    const idSSD2 = document.getElementById("idSSD2");
+    if (@rom2.Length != 0) {
+        idSSD2.setAttribute('checked', 'checked');
     }
     var valueRom = "", valueRam = "", valueSN = "", valueMH = "", valuePrice = "", valueMadeTrark = "";
     document.getElementById('btnLoc').onclick = function () {

@@ -49,6 +49,15 @@ namespace DoAnAdmin.Controllers
         public ActionResult PaymentOne(string id)
         {
             var info = Session["user"] as DoAnAdmin.Models.Customer;
+            var ma = Session["maorder"];
+            if(ma != null)
+            {
+                var one = mydb.Orders.FirstOrDefault(n => n.orderID == (int)ma);
+                mydb.Orders.Remove(one);
+                mydb.SaveChanges();
+                var item = mydb.Products.FirstOrDefault(n => n.id == id);
+                return View(item);
+            }
             if (info == null)
             {
                 ViewBag.ErrM = "Vui lòng đăng nhập để tiếp tục mua hàng !";
@@ -56,42 +65,69 @@ namespace DoAnAdmin.Controllers
             }
             else
             {
-                var item = mydb.Products.FirstOrDefault(n => n.id == id);
+                var item = mydb.Products.FirstOrDefault(n => n.id== id);
                 return View(item);
             }
         }
         [HttpPost]
-        public ActionResult PaymentOne(string id, string txt, string txtsl)
+        public ActionResult PaymentOne(string id, FormCollection f)
         {
-            var item = mydb.Products.FirstOrDefault(n => n.id == id);
-            var info = Session["user"] as DoAnAdmin.Models.Customer;
-            Order d = new Order();
-            d.orderDate = DateTime.Now;
-            d.orderStatus = "Đang chờ xác nhận";
-            d.empID = null;
-            d.cusID = info.cusID;
-            mydb.Orders.Add(d);
-            mydb.SaveChanges();
-            var last = mydb.Orders.ToList().LastOrDefault();
-            int maorder = last.orderID;
-            DetailsOrder det = new DetailsOrder();
-            det.orderID = maorder;
-            det.cusID = info.cusID;
-            det.proID = id;
-            det.orderAddress = txt;
-            det.proPrice = (int)item.price;
-            det.orderQuantity = int.Parse(txtsl);
-            det.orderMoney = (int)item.price * int.Parse(txtsl);
+            var item = Session["user"] as DoAnAdmin.Models.Customer;
+            var pro = mydb.Products.Where(n => n.id == id).FirstOrDefault();
+            
+            string txt = f["txt"];
+            if (pro != null)
+            {
+                Session["tongtien"] = "";
+                Session["maorder"] = "";
+                Session["idPro"] = "";
+                Order d = new Order();
+                d.orderDate = DateTime.Now;
+                d.orderStatus = "Đang chờ xác nhận";
+                d.empID = null;
+                d.cusID = item.cusID;
+                mydb.Orders.Add(d);
+                mydb.SaveChanges();
+                var last = mydb.Orders.ToList().LastOrDefault();
+                int maorder = last.orderID;
+                Session["maorder"] = maorder;
+                int tong = 0;
+                DetailsOrder det = new DetailsOrder();
+                det.cusID = item.cusID;
+                det.orderID = maorder;
+                det.proID = pro.id;
+                det.orderAddress = txt;
+                det.proPrice = (int)pro.price;
+                det.orderQuantity = 1;
+                det.orderMoney = (int)pro.price*1;
 
-            mydb.DetailsOrders.Add(det);
+                tong = tong + (int)(pro.price * 1);
+                mydb.DetailsOrders.Add(det);
 
-            Product product = mydb.Products.Where(n => n.id == id).FirstOrDefault();
-            product.quanlity = product.quanlity - int.Parse(txtsl);
-            mydb.Products.Attach(product);
-            mydb.Entry(product).State = EntityState.Modified;
+                Product product = mydb.Products.Where(n => n.id == pro.id).FirstOrDefault();
+                product.quanlity = product.quanlity - 1;
+                mydb.Products.Attach(product);
+                mydb.Entry(product).State = EntityState.Modified;
 
-            mydb.SaveChanges();
-            return RedirectToAction("DetailsPay");
+                mydb.SaveChanges();
+                Session["tongtien"] = tong;
+                Session["idPro"] = pro.id;
+                mydb.SaveChanges();
+                string tt = f["txtTT"];
+                if (tt.Equals("MoMo"))
+                {
+                    return RedirectToAction("PayMoMo");
+                }
+                else
+                {
+                    return RedirectToAction("DetailsPay");
+                }
+
+            }
+            else
+            {
+                return RedirectToAction("DetailsPay");
+            }
         }
 
         public ActionResult Payment()
@@ -198,6 +234,48 @@ namespace DoAnAdmin.Controllers
             {
                 return Redirect(strURL);
             }    
+        }
+        public ActionResult completeOrder(int idOr, string strURL)
+        {
+
+            Order or = mydb.Orders.Where(n => n.orderID == idOr).FirstOrDefault();
+            or.orderStatus = "Giao hàng thành công";
+            mydb.SaveChanges();
+            return Redirect(strURL);
+        }
+        public ActionResult returnProduct(int idOr, string strURL)
+        {
+
+            Order or = mydb.Orders.Where(n => n.orderID == idOr).FirstOrDefault();
+            or.orderStatus = "Trả hàng";
+            mydb.SaveChanges();
+            return Redirect(strURL);
+        }
+        [HttpPost]
+        public ActionResult returnProduct(int idOr, string strURL, FormCollection f)
+        {
+
+            Order or = mydb.Orders.Where(n => n.orderID == idOr).FirstOrDefault();
+            or.orderStatus = "Trả hàng";
+            mydb.SaveChanges();
+            string lido = f["txtLiDoTraHang"];
+            string image = f["txtNameImage"];
+            string tt = "Đang chờ xác nhận";
+            if (lido != null)
+            {
+                returnProduct co = new returnProduct();
+                co.id_order = or.orderID;
+                co.reason = lido;
+                co.nameImage = image;
+                co.tt = tt;
+                mydb.returnProducts.Add(co);
+                mydb.SaveChanges();
+                return Redirect(strURL);
+            }
+            else
+            {
+                return Redirect(strURL);
+            }
         }
         public ActionResult orderPhone()
         {

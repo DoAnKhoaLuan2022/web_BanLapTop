@@ -10,7 +10,8 @@ body {
     box-sizing: border-box;
     /*    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif*/
     font-family: Helvetica Neue,Helvetica,Arial,SF Pro Display,sans-serif;
-    background-color: #3e3e3f;
+    /*background-color: #3e3e3f;*/
+    background-color: snow;
     min-width: 1024px;
 }
 
@@ -378,16 +379,16 @@ body {
 /*trangchuLayout
 trademake*/
 .trademake {
-    /*    margin-top: 43%;*/
+    margin-bottom: 35px;
     background-color: #3e3e3f;
-    padding: 20px 0;
+    padding: 10px 0;
 }
 
 .choose-cate {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 50px auto 50px;
+    margin: 30px auto;
     max-width: 1200px;
     min-width: 1024px;
     width: 100%;
@@ -414,7 +415,7 @@ trademake*/
 }
 
     .choose-cate_link img {
-        height: 35px;
+        height: 40px;
         width: 130px;
     }
 
@@ -462,12 +463,12 @@ trademake*/
     }
 
 .sp {
-    padding: 20px 60px;
+    padding: 0px 60px 20px;
     align-items: center;
     max-width: 1264px;
     min-width: 1024px;
     width: 100%;
-    margin: 0px auto 40px
+    margin: -28px auto 40px;
 }
 
 .cards-wrapper .card {
@@ -476,15 +477,25 @@ trademake*/
     margin-right: 20px;
     border-radius: 20px;
     border: 0;
-    background-color: #323232;
     text-decoration: none;
+    box-shadow: 4px 4px 7px #dfd7d7;
 }
 
-    .cards-wrapper .card img {
-        width: 100%;
-        height: 55%;
-        border-radius: 7px 7px 0 0;
-    }
+.card:hover {
+    box-shadow: 9px 9px 16px rgb(176 161 161 / 44%), -9px -9px 16px rgb(229 229 246 / 80%);
+    transform: translateY(-6px);
+}
+
+.cars_detail:hover {
+    box-shadow: 0 0 0 !important;
+    transform: translateY(0) !important;
+}
+
+.cards-wrapper .card img {
+    width: 100%;
+    height: 55%;
+    border-radius: 7px 7px 0 0;
+}
 
 .sp .card .card-body {
     color: white;
@@ -494,38 +505,54 @@ trademake*/
     position: relative;
 }
 
-.card-img-top {
-    background-color: #323232;
+.card-title_mac {
+    color: black;
+    font-size: 15px;
+    margin: -60px 0;
+    text-align: center;
+    height: 80px;
 }
 
+.card-title_name {
+    color: black;
+    font-size: 16px;
+    margin: 7px 0;
+    text-align: center;
+    height: 33px;
+}
+/*.card-img-top {
+    background-color: #323232;
+}*/
 .card-title {
     font-size: 16px;
     height: 44px;
     margin: 10px 0;
     text-align: center;
+    color: black
 }
 
 .pirce_asus_home {
-    margin: 20px 0 0;
+    color: black;
 }
 
 .card .card-body .card-text {
     font-size: 20px;
     font-weight: bold;
     padding: 0px 12px;
+    color: #d0021c;
 }
 
 .card-text_discout {
     text-decoration-line: line-through;
     font-size: 14px;
-    color: rgba(255, 255, 255, 0.6);
-    margin-top: 3px;
+    color: rgb(0 0 0 / 80%);
+    margin-top: 7px;
 }
 
 .parameter_ram_ssd {
     display: flex;
     padding: 0px 20px;
-    margin: 10px auto 10px;
+    /*    margin: 10px auto 10px;*/
     justify-content: space-around;
 }
 
@@ -535,11 +562,133 @@ trademake*/
         background-color: #222324;
         border-radius: 8px;
     }
+/*    ratingDetail*/
+.rating {
+    height: 50px;
+    display: block;
+    overflow: hidden;
+    unicode-bidi: bidi-override;
+    direction: rtl;
+}
 
+    .rating:not(:checked) > input {
+        display: none;
+    }
+
+/* - - - - - RATE */
+#rate:not(:checked) > label {
+    cursor: pointer;
+    float: right;
+    /* width: 50px; */
+    /* height: 50px; */
+    display: block;
+    color: #FFE15D;
+    line-height: 33px;
+    text-align: center;
+    font-size: 30px;
+    padding-right: 5px;
+}
+
+    #rate:not(:checked) > label:hover,
+    #rate:not(:checked) > label:hover ~ label {
+        color: #F49D1A;
+    }
+
+#rate > input:checked + label:hover,
+#rate > input:checked + label:hover ~ label,
+#rate > input:checked ~ label:hover,
+#rate > input:checked ~ label:hover ~ label,
+#rate > label:hover ~ input:checked ~ label {
+    color: #F49D1A;
+}
+
+#rate > input:checked ~ label {
+    color: #F49D1A;
+}
+
+.rate_num {
+    font-size: 25px;
+    color: #fe8c23;
+    font-weight: 600;
+    padding: 0 20px 0 65px;
+}
+/*          ****/
+.rating-list li {
+    align-items: center;
+    display: flex;
+    margin-bottom: 7px;
+}
+
+.rating-list .number-star {
+    font-size: 12px;
+    line-height: 14px;
+    text-align: left;
+    width: 25px;
+}
+
+    .rating-list .number-star i {
+        margin-top: -4px;
+        font-size: 9px;
+    }
+
+.rating-list .timeline-star {
+    background-color: #eee;
+    height: 4px;
+    position: relative;
+    width: calc(100% - 120px);
+}
+
+.rating-list .timing {
+    background-color: #fe8c23;
+    left: 0;
+    height: 4px;
+    position: absolute;
+    top: 0;
+}
+
+.rating-list .number-percent {
+    color: #2f80ed;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 15px;
+    padding-left: 10px;
+    text-align: left;
+    width: 35px;
+    cursor: pointer;
+    text-indent: 0;
+}
+
+.rating-list li:last-child {
+    margin-bottom: 0;
+}
+
+.rating-list .number-percent.dsp {
+    color: #666;
+}
+/*/////*/
+/*ratingHome*/
+.ratingStar_home {
+    position: absolute;
+    color: black;
+    left: 20px;
+}
+
+    .ratingStar_home span {
+        color: #fe8c23;
+        font-weight: 500;
+    }
+
+    .ratingStar_home i {
+        font-size: 11px;
+        padding: 0 3px;
+        color: #FCE22A;
+        margin-top: -2px;
+    }
+/*////*/
 .discout_asushome {
     border: 1px solid #ff9f00;
     color: #ff9f00;
-    font-size: 12px;
+    font-size: 14px;
     position: absolute;
     right: 0;
     bottom: 0;
@@ -564,6 +713,27 @@ trademake*/
     .star i {
         padding-right: 2px;
     }
+/*Phu Kien*/
+.card_PhuKien {
+    background-color: white;
+    box-shadow: 2px 3px 7px #b2b2b2;
+    height: 395px;
+    margin: 0 0 40px 18px;
+    width: 260px;
+}
+
+.card1:hover {
+    box-shadow: 9px 9px 16px rgb(0 0 0 / 44%), -9px -9px 16px rgb(83 83 86 / 80%);
+}
+
+.card-title-pro {
+    font-size: 16px !important;
+    text-align: center;
+}
+
+.ratingStar_home_i {
+    margin-top: 7px;
+}
 /*///Goi y mua hang*/
 a {
     text-decoration: none;
@@ -584,7 +754,7 @@ a {
     }
 
 .de_pro {
-    width: 285px !important;
+    width: 273px !important;
     background-color: white !important;
     border: 1px solid #ccc !important;
     padding: 10px;
@@ -627,8 +797,8 @@ a {
 }
 
     .dePro_next_prev span .prev_img {
-        width: 35px;
-        height: 60px;
+        width: 28px;
+        height: 50px;
         background-color: #fff;
         padding: 10px 0;
         border-radius: 0 5px 5px 0;
@@ -636,8 +806,8 @@ a {
     }
 
     .dePro_next_prev span .next_img {
-        width: 35px;
-        height: 60px;
+        width: 28px;
+        height: 50px;
         background-color: #fff;
         padding: 10px 0;
         border-radius: 5px 0px 0px 5px;
@@ -661,11 +831,11 @@ a {
 .slider_detail {
     width: 50%;
     margin-right: 20px;
-    padding-bottom: 110px;
+    padding-bottom: 20px;
 }
 
 .slider_detail_link {
-    margin-top: 100px;
+    /*    margin-top: 60px;*/
     z-index: 1;
 }
 
@@ -704,7 +874,7 @@ a {
     display: block;
     padding: 0 0 20px;
     color: #362222;
-    font-size: 32px;
+    font-size: 20px;
     font-weight: 700;
     padding-top: 5px;
     line-height: 1.2;
@@ -713,7 +883,7 @@ a {
 .price {
     font-weight: bold;
     color: black;
-    font-size: 22px;
+    font-size: 18px;
     margin: 10px 0;
 }
 
@@ -733,6 +903,11 @@ a {
     background-color: #fff;
     border: 0;
 }
+
+    .endow_card_header:hover {
+        box-shadow: 2px 2px 5px #ccc;
+        border-radius: 8px !important;
+    }
 
 .endow_img {
     height: 14px;
@@ -1087,7 +1262,7 @@ ul, ol {
 .queslist li {
     display: block;
     overflow: hidden;
-    border-bottom: 1px solid #4f4f4f;
+    border-bottom: 1px solid #cccaca;
     padding: 15px 0;
     position: relative;
 }
@@ -1116,12 +1291,12 @@ ul, ol {
         }
 
     .queslist li h3 {
-        line-height: 28px;
-        font-size: 20px;
-        color: #fbfbfb;
+        line-height: 27px;
+        font-size: 18px;
+        color: #5c220b;
         font-weight: 400;
         display: -webkit-box;
-        -webkit-line-clamp: 4;
+        /* -webkit-line-clamp: 4; */
         -webkit-box-orient: vertical;
         text-overflow: ellipsis;
         overflow: hidden;

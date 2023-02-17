@@ -188,6 +188,15 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="HUIs">
+      <EntityTypeMapping TypeName="QL_LaptopModel.HUI">
+        <MappingFragment StoreEntitySet="HUI">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="itemset" ColumnName="itemset" />
+          <ScalarProperty Name="Util" ColumnName="Util" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Images">
       <EntityTypeMapping TypeName="QL_LaptopModel.Image">
         <MappingFragment StoreEntitySet="Image">
@@ -283,6 +292,28 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="returnProducts">
+      <EntityTypeMapping TypeName="QL_LaptopModel.returnProduct">
+        <MappingFragment StoreEntitySet="returnProduct">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_order" ColumnName="id_order" />
+          <ScalarProperty Name="reason" ColumnName="reason" />
+          <ScalarProperty Name="nameImage" ColumnName="nameImage" />
+          <ScalarProperty Name="tt" ColumnName="tt" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="QL_LaptopModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="TitleDetailAccessories">
       <EntityTypeMapping TypeName="QL_LaptopModel.TitleDetailAccessory">
         <MappingFragment StoreEntitySet="TitleDetailAccessory">
@@ -302,5 +333,29 @@
     <FunctionImportMapping FunctionImportName="auto_idAccessory" FunctionName="QL_LaptopModel.Store.auto_idAccessory" />
     <FunctionImportMapping FunctionImportName="auto_idProducts" FunctionName="QL_LaptopModel.Store.auto_idProducts" />
     <FunctionImportMapping FunctionImportName="LayMa" FunctionName="QL_LaptopModel.Store.LayMa" />
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="QL_LaptopModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="QL_LaptopModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="QL_LaptopModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="QL_LaptopModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="QL_LaptopModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="QL_LaptopModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="QL_LaptopModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="QL_LaptopModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="QL_LaptopModel.Store.sp_upgraddiagrams" />
   </EntityContainerMapping>
 </Mapping>

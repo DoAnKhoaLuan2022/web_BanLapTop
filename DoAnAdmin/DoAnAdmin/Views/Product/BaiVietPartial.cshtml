@@ -19,9 +19,10 @@
         display: block;
         width: 100%;
     }
-    p{
-        text-indent:30px;
-        text-align:justify;
+
+    p {
+        text-indent: 30px;
+        text-align: justify;
     }
 </style>
 <div class="des mt-5">
@@ -35,15 +36,13 @@
         else
         {
             vs = @Model.content.Split('&');
-    }
-    <p class="des_title">@Model.title</p><br />
-    <img class="des_img" src="/Assets/Image/ImageDescription/@Model.image_" />
-    for (int i = 0; i < vs.Length-1; i++)
-    {
-        <p class="mt-5 text-justify">@vs[i]</p>
-    }
-    }
-    else
-    {
-    <p>@ViewBag.tb</p>}
+        }
+<p class="des_title">@Model.title</p><br />
+                <img class="des_img" src="/Assets/Image/ImageDescription/@Model.image_" /> for (int i = 0; i < vs.Length - 1; i++)
+                                {
+                <p class="text-justify" style="margin-top:10px">@vs[i]</p> }
+                            }
+                            else
+                            {
+                <p>@ViewBag.tb</p>}
 </div>

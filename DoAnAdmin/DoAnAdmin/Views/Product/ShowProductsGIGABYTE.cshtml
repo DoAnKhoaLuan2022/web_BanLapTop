@@ -46,34 +46,38 @@
                         </span>
                         <p class="text-muted mt-3">
                             <i style="width: 20px;" class="icon text-muted fas fa-desktop pe-1 mb-2"></i><span>
-                                &nbsp;&nbsp;@item.ManHinh
-                                @if (@item.DoPhanGiai.Trim().Length > 21)
+                                &nbsp;&nbsp;
+                                @item.ManHinh
+                                @if (@item.DoPhanGiai.Trim().Length > 15)
                                 {
-                                @item.DoPhanGiai.Substring(0, 21);
-                                }
-                                else
-                                {
-                                @item.DoPhanGiai;
-                                }
+                        @item.DoPhanGiai.Substring(0, 15);
+                    }
+                    else
+                    {
+                        @item.DoPhanGiai;
+                    }...
                             </span><br>
-                            <i style="width: 20px;" class="icon text-muted fas fa-microchip pe-1 mb-2"></i><span>&nbsp;&nbsp;@item.CPU<br></span>
-                            <i style="width: 20px;" class="icon text-muted fas fa-sd-card pe-1 mb-2"></i><span>&nbsp;&nbsp;@item.RAM, @item.RAM_type.Split(' ')[0], @item.BusRAM<br></span>
+
+                            <i style="width: 20px;" class="icon text-muted fas fa-microchip pe-1 mb-2"></i><span>&nbsp;&nbsp;@item.CPU.Substring(0, 25) ...<br></span>
+                            @if ((@item.RAM.Length + item.RAM_type.Split(' ')[0].Length + item.BusRAM.Length) > 20)
+                            {
+                        <i style="width: 20px;" class="icon text-muted fas fa-sd-card pe-1 mb-2"></i><span>&nbsp;&nbsp;@item.RAM, @item.RAM_type.Split(' ')[0]<br></span> }
+                    else
+                    {
+                        <i style="width: 20px;" class="icon text-muted fas fa-sd-card pe-1 mb-2"></i><span>&nbsp;&nbsp;@item.RAM, @item.RAM_type.Split(' ')[0], @item.BusRAM<br></span>}
+
                             @if (@item.OCung.Length > 20)
                             {
-                            <i style="width: 20px;" class="icon text-muted fas fa-hdd pe-1 mb-2"></i><span>&nbsp;&nbsp;@item.OCung.Substring(0, 20) ...<br></span>
-                            }
-                            else
-                            {
-                            <i style="width: 20px;" class="icon text-muted fas fa-hdd pe-1 mb-2"></i><span>&nbsp;&nbsp;@item.OCung<br></span>
-                            }
+                        <i style="width: 20px;" class="icon text-muted fas fa-hdd pe-1 mb-2"></i><span>&nbsp;&nbsp;@item.OCung.Substring(0, 20) ...<br></span> }
+                                        else
+                                        {
+                        <i style="width: 20px;" class="icon text-muted fas fa-hdd pe-1 mb-2"></i><span>&nbsp;&nbsp;@item.OCung<br></span>}
                             @if (@item.VGA.Length > 25)
                             {
-                            <i style="width: 20px;" class="icon text-muted fas fa-digital-tachograph pe-1"></i><span>&nbsp;&nbsp;@item.VGA.Substring(0, 25) ...</span>
-                            }
-                            else
-                            {
-                            <i style="width: 20px;" class="icon text-muted fas fa-digital-tachograph pe-1"></i><span>&nbsp;&nbsp;@item.VGA</span>
-                            }
+                        <i style="width: 20px;" class="icon text-muted fas fa-digital-tachograph pe-1"></i><span>&nbsp;&nbsp;@item.VGA.Substring(0, 25) ...</span> }
+                                        else
+                                        {
+                        <i style="width: 20px;" class="icon text-muted fas fa-digital-tachograph pe-1"></i><span>&nbsp;&nbsp;@item.VGA</span>}
                         </p>
                         <br />
                         <div class="d-flex align-items-center justify-content-between mt-3 pb-3">

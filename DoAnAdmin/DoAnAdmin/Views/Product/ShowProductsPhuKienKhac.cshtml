@@ -2,33 +2,34 @@
 @using PagedList.Mvc;
 @using PagedList;
 @using DoAnAdmin.Models;
-@{ 
-    ViewBag.Title = "Hiện thi phụ kiện";
+@{ ViewBag.Title = "ShowProductsAsus";
     Layout = "~/Views/Shared/_ProductTydeLayout.cshtml";
-    QL_LaptopEntities db = new QL_LaptopEntities(); 
-}
-<style>
-    .nsx > img {
-        height: 70px;
-        width: 138px;
-    }
-
-    .card1 {
-        background-color: white;
-        /*        border-radius: 24px;*/
-        box-shadow: 2px 3px 7px #b2b2b2;
-        height: 420px;
-        margin: 0 0 40px 60px;
-        width: 310px
-    }
-
-        .card1:hover {
-            box-shadow: 9px 9px 16px rgb(0 0 0 / 44%), -9px -9px 16px rgb(83 83 86 / 80%);
-        }
-</style>
+    QL_LaptopEntities db = new QL_LaptopEntities(); }
 
 <div class="w-100" style="background-color: black; margin-top: 60px">
     <div style="height:30px"></div>
+    @*<div class="nsx">
+            <img src="https://st2.depositphotos.com/1046686/8500/i/450/depositphotos_85000232-stock-photo-asus.jpg" />
+        </div>*@
+    <div id="carouselExampleControlsNoTouching" class="carousel slide" data-bs-touch="false" style="margin:0 50px;">
+        <div class="carousel-inner banner_mac" style="border-radius:20px; height:300px">
+            <div class="carousel-item active" data-bs-interval="3000">
+                <img src="https://img.tgdd.vn/imgt/f_webp,fit_outside,quality_75,s_1920x533/https://cdn.tgdd.vn/2023/01/banner/Airpods-Pro-2880-800-1920x533-1.png" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item" data-bs-interval="3000">
+                <img src="https://theme.hstatic.net/1000378690/1000750892/14/ms_banner_img2.jpg?v=68" class="d-block w-100" alt="...">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
     <div class="container mt-5 row">
         <div></div>
         <div class="contai d-lg-flex row">
@@ -45,7 +46,7 @@
                 {
                     ptGiam = (int)Promotion.price * 100 / (int)@item.price;
                 }
-<div class="card1 border-0 col-3">
+<div class="card1 card_PhuKien border-0 col-3">
     <div class="home-product-item__favourite">
         <span>Trả góp 0%</span>
     </div>
@@ -59,22 +60,21 @@
         <a href="@Url.Action("DetailAccessory", "Product", new {@maSP = @item.id })">
             <img class="" src="/Assets/Image/ImageProduct/@item.avatar" alt="">
         </a>
-        @*<div class="promotion">
-                <span class="tragop">Trả góp 0%</span>
-                <span class="giamgia">Giảm 1.000.000đ</span>
-            </div>*@
     </div>
     <div class="content d-block">
         <br />
         <a class="content_info mt-4 mb-2" href="@Url.Action("DetailAccessory", "Product", new { @maSP = @item.id })">
             @if (@item.Name.Trim().Length > 50)
             {
-@item.Name.Substring(0, 50) }
+<h5 class="card-title-pro" style="height: 38px;">
+    @item.Name.Substring(0, 50)
+</h5> }
 else
 {
-@item.Name}
+<h5 class="card-title-pro" style="height: 38px;">
+    @item.Name
+</h5>}
         </a>
-        <br />
         <span class="h-1 mt-4 price" style="font-weight:bold;">
             @Html.Action("PromotionPricePartial", "Product", new { @maSP = item.id, style = "color:red" })
             &nbsp;&nbsp;
@@ -88,9 +88,16 @@ else
 
 } }
         </span>
+        <div class="ratingStar_home d-flex" style="position:unset; margin-top:10px">
+            <i class="fas fa-star ratingStar_home_i"></i>
+            <i class="fas fa-star ratingStar_home_i"></i>
+            <i class="fas fa-star ratingStar_home_i"></i>
+            <i class="fas fa-star ratingStar_home_i"></i>
+            <i class="fas fa-star-half ratingStar_home_i"></i>
+        </div>
         <div class="d-flex align-items-center justify-content-between mt-3 pb-3">
             <button type="button" class="add_card btn" data-toggle="tooltip" data-bs-placement="right" data-bs-title="Add to cart">
-                <a style="text-decoration:none;color:white;" href="@Url.Action("AddCart", "Cart", new { @id = item.id, @strURL = Request.Url.ToString() })">
+                <a style="text-decoration:none;color:white;" href="@Url.Action("AddCart", "Cart", new { @id = item.id})">
                     <img style="width:30px;height:30px" src="https://cdn-icons-png.flaticon.com/512/4064/4064928.png" />
                 </a>
             </button>
@@ -100,11 +107,12 @@ else
             </div>
         </div>
     </div>
+
 </div>}
         </div>
         <nav aria-label="Page navigation example mt-3" style="padding: 0 0 20px; ">
             <ul class="pagination justify-content-center m-0">
-                <li class="page-item">@Html.PagedListPager(Model, Page => Url.Action("ShowProductsAsus", new { Page }))</li>
+                <li class="page-item">@Html.PagedListPager(Model, Page => Url.Action("ShowProductsPhuKienKhac", new { Page }))</li>
             </ul>
         </nav>
 

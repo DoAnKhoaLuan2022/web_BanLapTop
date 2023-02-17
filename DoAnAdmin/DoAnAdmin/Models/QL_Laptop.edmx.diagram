@@ -4,14 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c4f69e9a4d464c5f848fc467954960f4" Name="Diagram1" ZoomLevel="68">
+      <Diagram DiagramId="1988301af69e40499e14d3d7d11a4638" Name="Diagram1">
         <EntityTypeShape EntityType="QL_LaptopModel.accessory" Width="1.5" PointX="8.25" PointY="19.25" IsExpanded="true" />
         <EntityTypeShape EntityType="QL_LaptopModel.Banner" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QL_LaptopModel.CancelOrder" Width="1.5" PointX="8.25" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_LaptopModel.CancelOrder" Width="1.5" PointX="8.25" PointY="10" IsExpanded="true" />
         <EntityTypeShape EntityType="QL_LaptopModel.Cart" Width="1.5" PointX="5.25" PointY="14.875" IsExpanded="true" />
         <EntityTypeShape EntityType="QL_LaptopModel.ChiTietPhieuNhap" Width="1.5" PointX="8.25" PointY="16.125" IsExpanded="true" />
         <EntityTypeShape EntityType="QL_LaptopModel.Comment" Width="1.5" PointX="5.25" PointY="18.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="QL_LaptopModel.CustomerAddress" Width="1.5" PointX="5.25" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_LaptopModel.CustomerAddress" Width="1.5" PointX="5.25" PointY="3.625" IsExpanded="true" />
         <EntityTypeShape EntityType="QL_LaptopModel.Customer" Width="1.5" PointX="3" PointY="11.125" IsExpanded="true" />
         <EntityTypeShape EntityType="QL_LaptopModel.Customertype" Width="1.5" PointX="0.75" PointY="12.5" IsExpanded="true" />
         <EntityTypeShape EntityType="QL_LaptopModel.Description" Width="1.5" PointX="5.25" PointY="22.125" IsExpanded="true" />
@@ -19,15 +19,18 @@
         <EntityTypeShape EntityType="QL_LaptopModel.DetailsOrder" Width="1.5" PointX="8.25" PointY="22.75" IsExpanded="true" />
         <EntityTypeShape EntityType="QL_LaptopModel.Employee" Width="1.5" PointX="3.75" PointY="6.5" IsExpanded="true" />
         <EntityTypeShape EntityType="QL_LaptopModel.EmployeesRole" Width="1.5" PointX="1.5" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_LaptopModel.HUI" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="QL_LaptopModel.Image" Width="1.5" PointX="5.25" PointY="36.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="QL_LaptopModel.NameOrderStatu" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QL_LaptopModel.Order" Width="1.5" PointX="6" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_LaptopModel.NameOrderStatu" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_LaptopModel.Order" Width="1.5" PointX="6" PointY="10.875" IsExpanded="true" />
         <EntityTypeShape EntityType="QL_LaptopModel.parameter" Width="1.5" PointX="6" PointY="25.25" IsExpanded="true" />
         <EntityTypeShape EntityType="QL_LaptopModel.PhieuNhap" Width="1.5" PointX="6" PointY="7.25" IsExpanded="true" />
         <EntityTypeShape EntityType="QL_LaptopModel.Product" Width="1.5" PointX="3" PointY="17.75" IsExpanded="true" />
         <EntityTypeShape EntityType="QL_LaptopModel.ProductType" Width="1.5" PointX="0.75" PointY="19.5" IsExpanded="true" />
         <EntityTypeShape EntityType="QL_LaptopModel.promotion" Width="1.5" PointX="5.25" PointY="39" IsExpanded="true" />
         <EntityTypeShape EntityType="QL_LaptopModel.PromotionsGift" Width="1.5" PointX="5.25" PointY="42" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_LaptopModel.returnProduct" Width="1.5" PointX="8.25" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_LaptopModel.sysdiagram" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="QL_LaptopModel.TitleDetailAccessory" Width="1.5" PointX="3.75" PointY="25.5" IsExpanded="true" />
         <EntityTypeShape EntityType="QL_LaptopModel.Trademark" Width="1.5" PointX="0.75" PointY="16.5" IsExpanded="true" />
         <AssociationConnector Association="QL_LaptopModel.fk_ac" ManuallyRouted="false" />
@@ -38,7 +41,7 @@
         <AssociationConnector Association="QL_LaptopModel.FK_CTPN_PN" ManuallyRouted="false" />
         <AssociationConnector Association="QL_LaptopModel.FK_CTPN_Products" ManuallyRouted="false" />
         <AssociationConnector Association="QL_LaptopModel.fk_ComPr" ManuallyRouted="false" />
-        <AssociationConnector Association="QL_LaptopModel.fk_add" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_LaptopModel.fk_add_pro" ManuallyRouted="false" />
         <AssociationConnector Association="QL_LaptopModel.fk_cusType" ManuallyRouted="false" />
         <AssociationConnector Association="QL_LaptopModel.fk_DeOrderCus" ManuallyRouted="false" />
         <AssociationConnector Association="QL_LaptopModel.fk_OrderCus" ManuallyRouted="false" />
@@ -49,6 +52,7 @@
         <AssociationConnector Association="QL_LaptopModel.fk_EmRole" ManuallyRouted="false" />
         <AssociationConnector Association="QL_LaptopModel.FK_PN_Empl" ManuallyRouted="false" />
         <AssociationConnector Association="QL_LaptopModel.FK_Image_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_LaptopModel.fk_rePro_Or" ManuallyRouted="false" />
         <AssociationConnector Association="QL_LaptopModel.fk_para1" ManuallyRouted="false" />
         <AssociationConnector Association="QL_LaptopModel.FK_Products_trademark" ManuallyRouted="false" />
         <AssociationConnector Association="QL_LaptopModel.FK_ProductType" ManuallyRouted="false" />

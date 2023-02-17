@@ -370,3 +370,89 @@ E:\OneDrive\Máy tính\API\project3\DoAnAdmin\DoAnAdmin\obj\Debug\DoAn_WebBanLap
 E:\OneDrive\Máy tính\API\project3\DoAnAdmin\DoAnAdmin\obj\Debug\DoAn_WebBanLaptop.csproj.CopyComplete
 E:\OneDrive\Máy tính\API\project3\DoAnAdmin\DoAnAdmin\obj\Debug\DoAnAdmin.dll
 E:\OneDrive\Máy tính\API\project3\DoAnAdmin\DoAnAdmin\obj\Debug\DoAnAdmin.pdb
+C:\Users\Admin\Desktop\KhoaLuan\project6\DoAnAdmin\DoAnAdmin\bin\DoAnAdmin.dll.config
+C:\Users\Admin\Desktop\KhoaLuan\project6\DoAnAdmin\DoAnAdmin\bin\DoAnAdmin.dll
+C:\Users\Admin\Desktop\KhoaLuan\project6\DoAnAdmin\DoAnAdmin\bin\DoAnAdmin.pdb
+C:\Users\Admin\Desktop\KhoaLuan\project6\DoAnAdmin\DoAnAdmin\bin\EntityFramework.dll
+C:\Users\Admin\Desktop\KhoaLuan\project6\DoAnAdmin\DoAnAdmin\bin\EntityFramework.SqlServer.dll
+C:\Users\Admin\Desktop\KhoaLuan\project6\DoAnAdmin\DoAnAdmin\bin\LinqToExcel.dll
+C:\Users\Admin\Desktop\KhoaLuan\project6\DoAnAdmin\DoAnAdmin\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Admin\Desktop\KhoaLuan\project6\DoAnAdmin\DoAnAdmin\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+C:\Users\Admin\Desktop\KhoaLuan\project6\DoAnAdmin\DoAnAdmin\bin\Newtonsoft.Json.dll
+C:\Users\Admin\Desktop\KhoaLuan\project6\DoAnAdmin\DoAnAdmin\bin\PagedList.dll
+C:\Users\Admin\Desktop\KhoaLuan\project6\DoAnAdmin\DoAnAdmin\bin\PagedList.Mvc.dll
+C:\Users\Admin\Desktop\KhoaLuan\project6\DoAnAdmin\DoAnAdmin\bin\Remotion.Data.Linq.dll
+C:\Users\Admin\Desktop\KhoaLuan\project6\DoAnAdmin\DoAnAdmin\bin\Remotion.dll
+C:\Users\Admin\Desktop\KhoaLuan\project6\DoAnAdmin\DoAnAdmin\bin\Remotion.Interfaces.dll
+C:\Users\Admin\Desktop\KhoaLuan\project6\DoAnAdmin\DoAnAdmin\bin\System.Net.Http.Formatting.dll
+C:\Users\Admin\Desktop\KhoaLuan\project6\DoAnAdmin\DoAnAdmin\bin\System.Web.Helpers.dll
+C:\Users\Admin\Desktop\KhoaLuan\project6\DoAnAdmin\DoAnAdmin\bin\System.Web.Http.dll
+C:\Users\Admin\Desktop\KhoaLuan\project6\DoAnAdmin\DoAnAdmin\bin\System.Web.Http.WebHost.dll
+C:\Users\Admin\Desktop\KhoaLuan\project6\DoAnAdmin\DoAnAdmin\bin\System.Web.Mvc.dll
+C:\Users\Admin\Desktop\KhoaLuan\project6\DoAnAdmin\DoAnAdmin\bin\System.Web.Razor.dll
+C:\Users\Admin\Desktop\KhoaLuan\project6\DoAnAdmin\DoAnAdmin\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Admin\Desktop\KhoaLuan\project6\DoAnAdmin\DoAnAdmin\bin\System.Web.WebPages.dll
+C:\Users\Admin\Desktop\KhoaLuan\project6\DoAnAdmin\DoAnAdmin\bin\System.Web.WebPages.Razor.dll
+C:\Users\Admin\Desktop\KhoaLuan\project6\DoAnAdmin\DoAnAdmin\bin\EntityFramework.xml
+C:\Users\Admin\Desktop\KhoaLuan\project6\DoAnAdmin\DoAnAdmin\bin\EntityFramework.SqlServer.xml
+C:\Users\Admin\Desktop\KhoaLuan\project6\DoAnAdmin\DoAnAdmin\bin\LinqToExcel.xml
+C:\Users\Admin\Desktop\KhoaLuan\project6\DoAnAdmin\DoAnAdmin\bin\PagedList.xml
+C:\Users\Admin\Desktop\KhoaLuan\project6\DoAnAdmin\DoAnAdmin\bin\PagedList.Mvc.xml
+C:\Users\Admin\Desktop\KhoaLuan\project6\DoAnAdmin\DoAnAdmin\bin\Newtonsoft.Json.xml
+C:\Users\Admin\Desktop\KhoaLuan\project6\DoAnAdmin\DoAnAdmin\bin\System.Net.Http.Formatting.xml
+C:\Users\Admin\Desktop\KhoaLuan\project6\DoAnAdmin\DoAnAdmin\bin\System.Web.Helpers.xml
+C:\Users\Admin\Desktop\KhoaLuan\project6\DoAnAdmin\DoAnAdmin\bin\System.Web.Http.xml
+C:\Users\Admin\Desktop\KhoaLuan\project6\DoAnAdmin\DoAnAdmin\bin\System.Web.Http.WebHost.xml
+C:\Users\Admin\Desktop\KhoaLuan\project6\DoAnAdmin\DoAnAdmin\bin\System.Web.Mvc.xml
+C:\Users\Admin\Desktop\KhoaLuan\project6\DoAnAdmin\DoAnAdmin\bin\System.Web.Razor.xml
+C:\Users\Admin\Desktop\KhoaLuan\project6\DoAnAdmin\DoAnAdmin\bin\System.Web.WebPages.xml
+C:\Users\Admin\Desktop\KhoaLuan\project6\DoAnAdmin\DoAnAdmin\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Admin\Desktop\KhoaLuan\project6\DoAnAdmin\DoAnAdmin\bin\System.Web.WebPages.Razor.xml
+C:\Users\Admin\Desktop\KhoaLuan\project6\DoAnAdmin\DoAnAdmin\obj\Debug\DoAn_WebBanLaptop.csproj.AssemblyReference.cache
+C:\Users\Admin\Desktop\KhoaLuan\project6\DoAnAdmin\DoAnAdmin\obj\Debug\DoAn_WebBanLaptop.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Desktop\KhoaLuan\project6\DoAnAdmin\DoAnAdmin\obj\Debug\DoAn_WebBanLaptop.csproj.CopyComplete
+C:\Users\Admin\Desktop\KhoaLuan\project6\DoAnAdmin\DoAnAdmin\obj\Debug\DoAnAdmin.dll
+C:\Users\Admin\Desktop\KhoaLuan\project6\DoAnAdmin\DoAnAdmin\obj\Debug\DoAnAdmin.pdb
+E:\OneDrive\Máy tính\API\Project7\project6\DoAnAdmin\DoAnAdmin\bin\DoAnAdmin.dll.config
+E:\OneDrive\Máy tính\API\Project7\project6\DoAnAdmin\DoAnAdmin\bin\DoAnAdmin.dll
+E:\OneDrive\Máy tính\API\Project7\project6\DoAnAdmin\DoAnAdmin\bin\DoAnAdmin.pdb
+E:\OneDrive\Máy tính\API\Project7\project6\DoAnAdmin\DoAnAdmin\bin\EntityFramework.dll
+E:\OneDrive\Máy tính\API\Project7\project6\DoAnAdmin\DoAnAdmin\bin\EntityFramework.SqlServer.dll
+E:\OneDrive\Máy tính\API\Project7\project6\DoAnAdmin\DoAnAdmin\bin\LinqToExcel.dll
+E:\OneDrive\Máy tính\API\Project7\project6\DoAnAdmin\DoAnAdmin\bin\Microsoft.Web.Infrastructure.dll
+E:\OneDrive\Máy tính\API\Project7\project6\DoAnAdmin\DoAnAdmin\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+E:\OneDrive\Máy tính\API\Project7\project6\DoAnAdmin\DoAnAdmin\bin\Newtonsoft.Json.dll
+E:\OneDrive\Máy tính\API\Project7\project6\DoAnAdmin\DoAnAdmin\bin\PagedList.dll
+E:\OneDrive\Máy tính\API\Project7\project6\DoAnAdmin\DoAnAdmin\bin\PagedList.Mvc.dll
+E:\OneDrive\Máy tính\API\Project7\project6\DoAnAdmin\DoAnAdmin\bin\Remotion.Data.Linq.dll
+E:\OneDrive\Máy tính\API\Project7\project6\DoAnAdmin\DoAnAdmin\bin\Remotion.dll
+E:\OneDrive\Máy tính\API\Project7\project6\DoAnAdmin\DoAnAdmin\bin\Remotion.Interfaces.dll
+E:\OneDrive\Máy tính\API\Project7\project6\DoAnAdmin\DoAnAdmin\bin\System.Net.Http.Formatting.dll
+E:\OneDrive\Máy tính\API\Project7\project6\DoAnAdmin\DoAnAdmin\bin\System.Web.Helpers.dll
+E:\OneDrive\Máy tính\API\Project7\project6\DoAnAdmin\DoAnAdmin\bin\System.Web.Http.dll
+E:\OneDrive\Máy tính\API\Project7\project6\DoAnAdmin\DoAnAdmin\bin\System.Web.Http.WebHost.dll
+E:\OneDrive\Máy tính\API\Project7\project6\DoAnAdmin\DoAnAdmin\bin\System.Web.Mvc.dll
+E:\OneDrive\Máy tính\API\Project7\project6\DoAnAdmin\DoAnAdmin\bin\System.Web.Razor.dll
+E:\OneDrive\Máy tính\API\Project7\project6\DoAnAdmin\DoAnAdmin\bin\System.Web.WebPages.Deployment.dll
+E:\OneDrive\Máy tính\API\Project7\project6\DoAnAdmin\DoAnAdmin\bin\System.Web.WebPages.dll
+E:\OneDrive\Máy tính\API\Project7\project6\DoAnAdmin\DoAnAdmin\bin\System.Web.WebPages.Razor.dll
+E:\OneDrive\Máy tính\API\Project7\project6\DoAnAdmin\DoAnAdmin\bin\EntityFramework.xml
+E:\OneDrive\Máy tính\API\Project7\project6\DoAnAdmin\DoAnAdmin\bin\EntityFramework.SqlServer.xml
+E:\OneDrive\Máy tính\API\Project7\project6\DoAnAdmin\DoAnAdmin\bin\LinqToExcel.xml
+E:\OneDrive\Máy tính\API\Project7\project6\DoAnAdmin\DoAnAdmin\bin\PagedList.xml
+E:\OneDrive\Máy tính\API\Project7\project6\DoAnAdmin\DoAnAdmin\bin\PagedList.Mvc.xml
+E:\OneDrive\Máy tính\API\Project7\project6\DoAnAdmin\DoAnAdmin\bin\Newtonsoft.Json.xml
+E:\OneDrive\Máy tính\API\Project7\project6\DoAnAdmin\DoAnAdmin\bin\System.Net.Http.Formatting.xml
+E:\OneDrive\Máy tính\API\Project7\project6\DoAnAdmin\DoAnAdmin\bin\System.Web.Helpers.xml
+E:\OneDrive\Máy tính\API\Project7\project6\DoAnAdmin\DoAnAdmin\bin\System.Web.Http.xml
+E:\OneDrive\Máy tính\API\Project7\project6\DoAnAdmin\DoAnAdmin\bin\System.Web.Http.WebHost.xml
+E:\OneDrive\Máy tính\API\Project7\project6\DoAnAdmin\DoAnAdmin\bin\System.Web.Mvc.xml
+E:\OneDrive\Máy tính\API\Project7\project6\DoAnAdmin\DoAnAdmin\bin\System.Web.Razor.xml
+E:\OneDrive\Máy tính\API\Project7\project6\DoAnAdmin\DoAnAdmin\bin\System.Web.WebPages.xml
+E:\OneDrive\Máy tính\API\Project7\project6\DoAnAdmin\DoAnAdmin\bin\System.Web.WebPages.Deployment.xml
+E:\OneDrive\Máy tính\API\Project7\project6\DoAnAdmin\DoAnAdmin\bin\System.Web.WebPages.Razor.xml
+E:\OneDrive\Máy tính\API\Project7\project6\DoAnAdmin\DoAnAdmin\obj\Debug\DoAn_WebBanLaptop.csproj.AssemblyReference.cache
+E:\OneDrive\Máy tính\API\Project7\project6\DoAnAdmin\DoAnAdmin\obj\Debug\DoAn_WebBanLaptop.csproj.CoreCompileInputs.cache
+E:\OneDrive\Máy tính\API\Project7\project6\DoAnAdmin\DoAnAdmin\obj\Debug\DoAn_WebBanLaptop.csproj.CopyComplete
+E:\OneDrive\Máy tính\API\Project7\project6\DoAnAdmin\DoAnAdmin\obj\Debug\DoAnAdmin.dll
+E:\OneDrive\Máy tính\API\Project7\project6\DoAnAdmin\DoAnAdmin\obj\Debug\DoAnAdmin.pdb

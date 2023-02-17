@@ -19,6 +19,7 @@ namespace DoAnAdmin.Models
         {
             this.CancelOrders = new HashSet<CancelOrder>();
             this.DetailsOrders = new HashSet<DetailsOrder>();
+            this.returnProducts = new HashSet<returnProduct>();
         }
     
         public int orderID { get; set; }
@@ -32,5 +33,7 @@ namespace DoAnAdmin.Models
         public virtual Customer Customer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DetailsOrder> DetailsOrders { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<returnProduct> returnProducts { get; set; }
     }
 }

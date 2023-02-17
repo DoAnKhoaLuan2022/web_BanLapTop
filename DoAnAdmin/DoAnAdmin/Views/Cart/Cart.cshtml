@@ -1,7 +1,23 @@
 ﻿@using DoAnAdmin.Models;
 
 @{ ViewBag.Title = "Cart";
-    Layout = "~/Views/Shared/_DetailLayoutPage.cshtml"; }
+    Layout = "~/Views/Shared/_DetailLayoutPage.cshtml";
+
+    string loi = Session["NhapDayDu"] as string;
+    int i = 0;
+    if(Session["loi"]!=null)
+    {
+        i = 1;
+    }
+    if (Session["NhapDayDu"] != null)
+    {
+        i = 1;
+    }
+    //if (Session["hoanthanh"] != null)
+    //{
+    //    i = 2;
+    //}
+    }
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
@@ -24,6 +40,7 @@
         {
             string masp = item.sIdSP;
             QL_LaptopEntities db = new QL_LaptopEntities();
+           
             var pro = db.Products.FirstOrDefault(n => n.id == masp);
 <tr class="cart_tr">
     <td width="30%">@item.sNameSP</td>
@@ -91,11 +108,11 @@
                 </tr>
                 <tr>
                     <td>
-                        <input type="text" class="form-control" name="txtHoTen" placeholder="Họ và Tên" />
+                        <input type="text" id="txtHoTen" class="form-control" name="txtHoTen" placeholder="Họ và Tên" value="@ViewBag.tbHoTen" />
                         <span class="text-danger" style="font-size:13px">@ViewBag.tbHoTen</span>
                     </td>
                     <td>
-                        <input type="number" class="form-control" name="txtSdt" placeholder="Số điện thoại" />
+                        <input type="number" id="txtSo" class="form-control" name="txtSdt" placeholder="Số điện thoại" value="@ViewBag.tbSDT" />
                         <span class="text-danger" style="font-size:13px">@ViewBag.tbSDT</span>
                     </td>
                 </tr>
@@ -110,19 +127,19 @@
                     <td colspan="2">
                         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
                         <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js" integrity="sha512-bPh3uwgU5qEMipS/VOmRqynnMXGGSRv+72H/N260MQeXZIK4PG48401Bsby9Nq5P5fz7hy5UGNmC/W1Z51h2GQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-                        <form>
+                        <form style="margin-bottom:30px">
                             <div class="form-group">
                                 <label>Nhập vào địa chỉ giao hàng</label>
 
-                                <select name="" id="province" class="form-control coupon">
+                                <select name="province" id="province" class="form-control coupon">
                                     <option value="">Chọn Thành Phố</option>
                                 </select>
                                 <br />
-                                <select name="" id="district" class="form-control coupon">
+                                <select name="district" id="district" class="form-control coupon">
                                     <option value="">Chọn quận</option>
                                 </select>
                                 <br />
-                                <select name="" id="ward" class="form-control coupon">
+                                <select name="ward" id="ward" class="form-control coupon">
                                     <option value="">Chọn phường</option>
                                 </select>
                                 <br />
@@ -130,7 +147,7 @@
                                 <input oninput="setAddress()" type="text" id="txtDiaChi" class="form-control coupon mt-3" name="txtDiaChi">
                             </div>
                         </form>
-                        <input type="text" id="txtAddress" class="form-control coupon" name="txtAddress">
+                        <input type="text" id="txtAddress" class="form-control coupon" name="txtAddress" value="@ViewBag.tbDiaChi">
                         <span class="text-danger" style="font-size:13px">@ViewBag.tbDiaChi</span>
                     </td>
                 </tr>
@@ -178,8 +195,9 @@
 
                 <tr>
                     <td colspan="2" style="text-align:center">
-                        <input class="btn btn-warning text-light" type="submit" value="ĐẶT HÀNG" style="font-weight:bold; width:720px" />
+                        <input class="btn btn-warning text-light" onclick="kiemtra(@i)" type="submit" value="ĐẶT HÀNG" style="font-weight:bold; width:720px" />
                         <center class="text-muted mt-1" style="font-size:13px">Anh/Chị có thể chọn hình thức thanh toán sau khi đặt hàng</center>
+                        
                     </td>
                 </tr>
             </table>}
@@ -190,10 +208,40 @@
         </ul>
     </div>
 </div>
+<script>
 
+    function kiemtra(i) {
+        if (i == 1) {
+                Swal.fire({
+                title: 'Vui lòng nhập đúng thông tin cần điền!',
+                showClass: {
+                    popup: 'animate__animated animate__fadeInDown'
+                },
+                hideClass: {
+                    popup: 'animate__animated animate__fadeOutUp'
+                }
+                })
+           
+        }
+        //const hoten = document.getElementById("txtHoTen");
+        //const diachi = document.getElementById("txtAddress");
+        //const sdt = document.getElementById("txtSo");
+
+        //var ht = hoten.text;
+        //var dc = diachi.text;
+        ///*var sdt = sdt.text;*/
+        //if (ht.length == 0) {
+        //    alert("Vui lòng nhập thông tin đầy đủ và chính xác!");
+        //}
+        //console.log(ht, dc);
+    }
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     const quantity = document.getElementById("txt_quantity");
 
+   
 
     //function stepper(btn) {
     //    let id = btn.getAttribute("id");

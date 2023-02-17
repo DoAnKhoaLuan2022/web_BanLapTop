@@ -1,6 +1,8 @@
 ﻿@model IEnumerable<DoAnAdmin.Models.Product>
 @using DoAnAdmin.Models;
-@{ QL_LaptopEntities db = new QL_LaptopEntities();}
+@{ QL_LaptopEntities db = new QL_LaptopEntities();
+    int i = 0;
+    }
 <style>
     .sellingHome {
         margin: 50px 32px 0;
@@ -44,7 +46,7 @@
     }
 
     .sellingHome_img {
-        height: 175px !important;
+        height: 195px !important;
     }
 
     .sellingHome_card:hover {
@@ -70,90 +72,77 @@
 <div class="sellingHome">
     <div class="sellingHome_title d-flex">
         <h5>Sản phẩm bán chạy</h5>
-        <a href="#">
+        <a href="@Url.Action("ShowProductsSPbanChay", "Product")">
             Xem tất cả
             <img style="width:25px;height:25px" src="https://cdn-icons-png.flaticon.com/512/6548/6548182.png" />
         </a>
     </div>
-
     <div class="sp">
         <div class="cards-wrapper d-flex">
+            @foreach (var item in Model)
+            {
+                if (i == 4) { break; }
+                
+                promotion promotion = db.promotions.Where(n => n.product_id == item.id).FirstOrDefault();
+                int ptGiam = 0;
+                if (promotion == null)
+                {
+                    ptGiam = 0;
+                }
+                else
+                {
+                    ptGiam = (int)promotion.price * 100 / (int)item.price;
+                }
+                string[] k = item.id.Split('0');
+                string itemsau = k[0];
+                string url = "";
+                if(itemsau.Equals("PKC"))
+                {
+                    url = "DetailAccessory";
+                }
+                else
+                {
+                    url = "DetailProduct";
+                }
+
+                i++;
+                //Detail det = db.Details.Where(n => n.product_id == item.id).FirstOrDefault();
             <div class="card sellingHome_card">
                 <div class="home-product-item__sale-off">
-                    <span class="home-product-item__sale-off-percent">20%</span>
+                    <span class="home-product-item__sale-off-percent">@ptGiam<sup>%</sup></span>
                     <span class="home-product-item__sale-off-label">GIẢM</span>
                 </div>
-                <img class="card-img-top sellingHome_img" src="/Assets/Image/ImageProduct/lap000001.jpg" alt="...">
-                <div class="card-body">
+               
+                    <a href="@Url.Action(url, "Product", new {@maSP = @item.id })">
+                        <img class="card-img-top sellingHome_img" src="/Assets/Image/ImageProduct/@item.avatar" alt="">
+                    </a>
+                
 
-                    <h5 class="card-title">
-                        Laptop Asus ZenBook UX325EA i5 1135G7/8GB/512GB/OL
-                    </h5>
+
+
+                <div class="card-body" style="margin-top:30px">
+                    @if (item.Name.Length <= 30)
+                    {
+            <h5 class="card-title_name"> @item.Name</h5> }
+        else
+        {
+            <h5 class="card-title_name"> @item.Name.Substring(0, 30).ToString()</h5>}
                     <div class="pirce_asus_home row" style="padding:0 20px">
-                        <p class="card-text col-7 de_pro_p de_pro_pirce">
-                            24700000₫
-                        </p>
-                        <p class="card-text_discout col-5 de_pro_p" style="color: #3e3e3f; text-indent: 0">24700000₫</p>
+                        @if (promotion != null)
+                        {
+            <p class="card-text col-7 de_pro_p de_pro_pirce">
+                @{ @String.Format("{0:0,0}", promotion.price_after)}₫
+            </p>
+                                <p class="card-text_discout col-5 de_pro_p" style="color: #3e3e3f; text-indent: 0"> @{ @String.Format("{0:0,0}", item.price)}₫</p> }
+                            else
+                            {
+            <p class="card-text col-7 de_pro_p de_pro_pirce">
+                @{ @String.Format("{0:0,0}", item.price)}₫
+            </p>}
                     </div>
                 </div>
-            </div>
-            <div class="card sellingHome_card">
-                <div class="home-product-item__sale-off">
-                    <span class="home-product-item__sale-off-percent">20%</span>
-                    <span class="home-product-item__sale-off-label">GIẢM</span>
-                </div>
-                <img class="card-img-top sellingHome_img" src="/Assets/Image/ImageProduct/lap000001.jpg" alt="...">
-                <div class="card-body">
-
-                    <h5 class="card-title">
-                        Laptop Asus ZenBook UX325EA i5 1135G7/8GB/512GB/OL
-                    </h5>
-                    <div class="pirce_asus_home row" style="padding:0 20px">
-                        <p class="card-text col-7 de_pro_p de_pro_pirce">
-                            24700000₫
-                        </p>
-                        <p class="card-text_discout col-5 de_pro_p" style="color: #3e3e3f; text-indent: 0">24700000₫</p>
-                    </div>
-                </div>
-            </div>
-            <div class="card sellingHome_card">
-                <div class="home-product-item__sale-off">
-                    <span class="home-product-item__sale-off-percent">20%</span>
-                    <span class="home-product-item__sale-off-label">GIẢM</span>
-                </div>
-                <img class="card-img-top sellingHome_img" src="/Assets/Image/ImageProduct/lap000001.jpg" alt="...">
-                <div class="card-body">
-
-                    <h5 class="card-title">
-                        Laptop Asus ZenBook UX325EA i5 1135G7/8GB/512GB/OL
-                    </h5>
-                    <div class="pirce_asus_home row" style="padding:0 20px">
-                        <p class="card-text col-7 de_pro_p de_pro_pirce">
-                            24700000₫
-                        </p>
-                        <p class="card-text_discout col-5 de_pro_p" style="color: #3e3e3f; text-indent: 0">24700000₫</p>
-                    </div>
-                </div>
-            </div>
-            <div class="card sellingHome_card">
-                <div class="home-product-item__sale-off">
-                    <span class="home-product-item__sale-off-percent">20%</span>
-                    <span class="home-product-item__sale-off-label">GIẢM</span>
-                </div>
-                <img class="card-img-top sellingHome_img" src="/Assets/Image/ImageProduct/lap000001.jpg" alt="...">
-                <div class="card-body">
-
-                    <h5 class="card-title">
-                        Laptop Asus ZenBook UX325EA i5 1135G7/8GB/512GB/OL
-                    </h5>
-                    <div class="pirce_asus_home row" style="padding:0 20px">
-                        <p class="card-text col-7 de_pro_p de_pro_pirce">
-                            24700000₫
-                        </p>
-                        <p class="card-text_discout col-5 de_pro_p" style="color: #3e3e3f; text-indent: 0">24700000₫</p>
-                    </div>
-                </div>
-            </div>
+            </div>  
+            }
         </div>
     </div>
 </div>

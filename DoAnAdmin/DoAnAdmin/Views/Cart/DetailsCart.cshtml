@@ -90,11 +90,11 @@
                                 </td>
                                 <td data-th="Quantity" style="text-align:center;">
                                     <div class="h-100 w-100 d-flex">
-                                        <a href="@Url.Action("updateGiam","Cart",new { id=item.proID})" id="giam" onclick="stepper(this,@sl,@gia)" class="btn searchPhone_btnHuy" data-abc="true">
+                                        <a href="@Url.Action("updateGiam","Cart",new { id=item.proID})" id="giam" onclick="stepper(this)" class="btn searchPhone_btnHuy" data-abc="true">
                                             <img style="width:20px; height:20px" src="https://cdn-icons-png.flaticon.com/512/1665/1665714.png" />
                                         </a>
                                         <input min="1" max="@item.Product.quanlity" step="1" name="quantity" id="txt_quantity" class="form-control form-control-lg text-center searchPhone_btnHuy" value="@item.CartQuantity" width="50px">
-                                        <a href="@Url.Action("updateTang","Cart",new { id=item.proID})" id="tang" onclick="stepper(this,@sl,@gia)" class="btn searchPhone_btnHuy" data-abc="true">
+                                        <a href="@Url.Action("updateTang","Cart",new { id=item.proID})" id="tang" onclick="stepper(this)" class="btn searchPhone_btnHuy" data-abc="true">
                                             <img style="width:20px; height:20px" src="https://cdn-icons-png.flaticon.com/512/1665/1665680.png" />
                                         </a>
                                     </div>
@@ -143,26 +143,26 @@
     const quantity = document.getElementById("txt_quantity");
 
 
-    function stepper(btn, sl, gia) {
-        let id = btn.getAttribute("id");
-        let min = quantity.getAttribute("min");
-        let max = quantity.getAttribute("max");
-        let step = quantity.getAttribute("step");
-        let val = quantity.getAttribute("value");
-        let giaCu = parseInt(val) * gia;
-        let calcStep = (id == "tang") ? (step * 1) : (step * -1);
-        let newVal = parseInt(val) + calcStep;
-        let giaMoi = tong - giaCu + (newVal * gia);
-        if (newVal >= min && newVal <= max) {
-            quantity.setAttribute("value", newVal);
-            /*tt.setAttribute("value", giaMoi);*/
+    //function stepper(btn, sl, gia) {
+    //    let id = btn.getAttribute("id");
+    //    let min = quantity.getAttribute("min");
+    //    let max = quantity.getAttribute("max");
+    //    let step = quantity.getAttribute("step");
+    //    let val = quantity.getAttribute("value");
+    //    let giaCu = parseInt(val) * gia;
+    //    let calcStep = (id == "tang") ? (step * 1) : (step * -1);
+    //    let newVal = parseInt(val) + calcStep;
+    //    let giaMoi = tong - giaCu + (newVal * gia);
+    //    if (newVal >= min && newVal <= max) {
+    //        quantity.setAttribute("value", newVal);
+    //        /*tt.setAttribute("value", giaMoi);*/
 
-        }
-        sl = parseInt(newVal);
-        console.log(newVal, sl, giaCu, giaMoi, tong);
+    //    }
+    //    sl = parseInt(newVal);
+    //    console.log(newVal, sl, giaCu, giaMoi, tong);
 
 
-    }
+    //}
     var tong = 0;
     function clickMe(tt) {
         tong = tt;

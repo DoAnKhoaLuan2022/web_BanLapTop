@@ -1,9 +1,12 @@
 ﻿@model List<DoAnAdmin.Models.Product>
 @using DoAnAdmin.Models;
 @{ QL_LaptopEntities db = new QL_LaptopEntities();
-    int i = 0;
-    }
+    int i = 0; }
 <style>
+    .spKM_Home {
+        margin: 0px auto 40px;
+    }
+
     .promotionHome {
         margin: 0 32px;
         background-image: url(https://cdn.tgdd.vn/mwgcart/mwg-site/ContentMwg/images/newyear2023/Background/xu-huong-mua-sam.png);
@@ -28,10 +31,11 @@
         background-color: white !important;
         padding: 10px;
         margin-right: 23px !important;
+        box-shadow: 0 0 0 !important;
     }
 
     .promotionHome_img {
-        height: 175px !important;
+        height: 192px !important;
     }
 
     .promotionHome_card:hover {
@@ -55,7 +59,7 @@
 </style>
 <div class="promotionHome">
     <h5 class="title">Khuyến mãi giá sốc</h5>
-    <div class="sp">
+    <div class="sp spKM_Home">
         <div class="cards-wrapper d-flex">
             @foreach (var item in Model)
             {
@@ -64,33 +68,31 @@
                 int ptGiam = (int)promotion.price * 100 / (int)item.price;
                 i++;
                 //Detail det = db.Details.Where(n => n.product_id == item.id).FirstOrDefault();
-                <div class="card promotionHome_card">
-                    <div class="home-product-item__sale-off">
-                        <span class="home-product-item__sale-off-percent">@ptGiam<sup>%</sup></span>
-                        <span class="home-product-item__sale-off-label">GIẢM</span>
-                    </div>
-                    <a href="@Url.Action("DetailProduct", "Product", new {@maSP = @item.id })">
-                        <img class="promotionHome_img" src="/Assets/Image/ImageProduct/@item.avatar" alt="">
-                    </a>
-                    <div class="card-body" style="margin-top:30px">
-                        @if (item.Name.Length <= 30)
-                        {
-                            <h5 class="card-title"> @item.Name</h5>
-                        }
-                        else
-                        {
-                            <h5 class="card-title"> @item.Name.Substring(0,30).ToString()</h5>
-                        }
-                    <div class="pirce_asus_home row" style="padding:0 20px">
+<div class="card promotionHome_card">
+    <div class="home-product-item__sale-off">
+        <span class="home-product-item__sale-off-percent">@ptGiam<sup>%</sup></span>
+        <span class="home-product-item__sale-off-label">GIẢM</span>
+    </div>
+    <a href="@Url.Action("DetailProduct", "Product", new {@maSP = @item.id })">
+        <img class="promotionHome_img" src="/Assets/Image/ImageProduct/@item.avatar" alt="">
+    </a>
+    <div class="card-body" style="margin-top:30px">
+        @if (item.Name.Length <= 30)
+        {
+<h5 class="card-title_name"> @item.Name</h5> }
+                else
+                {
+                    <h5 class="card-title_name"> @item.Name.Substring(0, 30).ToString()</h5>
+                }
+        <div class="pirce_asus_home row" style="padding:0 20px">
 
-                        <p class="card-text col-7 de_pro_p de_pro_pirce">
-                            @{ @String.Format("{0:0,0}", item.price)}₫
-                        </p>
-                        <p class="card-text_discout col-5 de_pro_p" style="color: #3e3e3f; text-indent: 0"> @{ @String.Format("{0:0,0}", promotion.price_after)}₫</p>
-                    </div>
-                    </div>
-                </div>
-            }
+            <p class="card-text col-7 de_pro_p de_pro_pirce">
+                @{ @String.Format("{0:0,0}", promotion.price_after)}₫
+            </p>
+            <p class="card-text_discout col-5 de_pro_p" style="color: #3e3e3f; text-indent: 0"> @{ @String.Format("{0:0,0}", item.price)}₫</p>
+        </div>
+    </div>
+</div>            }
         </div>
     </div>
 </div>

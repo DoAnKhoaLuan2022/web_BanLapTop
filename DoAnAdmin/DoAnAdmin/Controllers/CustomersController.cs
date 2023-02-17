@@ -77,7 +77,11 @@ namespace DoAnAdmin.Controllers
         }
         public ActionResult Login()
         {
-
+            if(Session["user"]!= null)
+            {
+                Session["user"] = null;
+                return RedirectToAction("ShowAllProducts", "Product");
+            }    
             return View();
         }
         public ActionResult CustomersManager(int? page)
@@ -200,22 +204,34 @@ namespace DoAnAdmin.Controllers
                 }
                 else
                 {
-                    Customer c = new Customer()
+                    var item = db.Customers.FirstOrDefault(n => n.cusPhone.Trim().ToString().Equals(phone.Trim()));
+                    if(item != null)
                     {
-                        cusAddress = null,
-                        cusStatus = 1,
-                        cusType = 1,
-                        cusGender ="Nam",
-                        cusQuantityBuy = 0,
-                        cusTotal = 0,
-                        cusName = firstname + "" + lastname,
-                        cusEmail = email,
-                        cusPhone = phone,
-                        cusPassword = password
-                    };
+                        item.cusEmail = email;
+                        item.cusPassword = password;
+                        db.SaveChanges();
+                    }  
+                    else
+                    {
+                        Customer c = new Customer()
+                        {
+                            cusAddress = null,
+                            cusStatus = 1,
+                            cusType = 1,
+                            cusGender = "Nam",
+                            cusQuantityBuy = 0,
+                            cusTotal = 0,
+                            cusName = firstname + "" + lastname,
+                            cusEmail = email,
+                            cusPhone = phone,
+                            cusPassword = password
+                        };
+                        db.Customers.Add(c);
+                        db.SaveChanges();
+                    }    
+                    
                     //Session["regisInfo"] = c;
-                    db.Customers.Add(c);
-                    db.SaveChanges();
+                  
                     //guimail("nguyennhutnam112@gmail.com", c.cusEmail, "Mã xác nhận", ma);
                     //SendMailGoogleSmtp("nguyennhutnam112@gmail.com", c.cusEmail, "Mã xác nhận", ma, "nguyennhutnam112@gmail.com", "nnnnnn16122001");
                     //return RedirectToAction("RequestCodeMail");

@@ -174,6 +174,14 @@
     <Property Name="empRole" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="empRoleName" Type="nvarchar" MaxLength="10" />
   </EntityType>
+  <EntityType Name="HUI">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="itemset" Type="nvarchar(max)" />
+    <Property Name="Util" Type="int" />
+  </EntityType>
   <EntityType Name="Image">
     <Key>
       <PropertyRef Name="product_id" />
@@ -262,6 +270,32 @@
     <Property Name="date_start" Type="date" />
     <Property Name="date_end" Type="date" />
   </EntityType>
+  <EntityType Name="returnProduct">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_order" Type="int" />
+    <Property Name="reason" Type="nvarchar" MaxLength="500" />
+    <Property Name="nameImage" Type="nvarchar" MaxLength="500" />
+    <Property Name="tt" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'QL_Laptop.dbo.SupPortOfTransation' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="SupPortOfTransation">
+          <Property Name="itemset" Type="nvarchar(max)" />
+          <Property Name="sup" Type="int" />
+        </EntityType>-->
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
   <EntityType Name="TitleDetailAccessory">
     <Key>
       <PropertyRef Name="tt_id" />
@@ -302,7 +336,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="fk_add">
+  <Association Name="fk_add_pro">
     <End Role="Customers" Type="Self.Customers" Multiplicity="0..1" />
     <End Role="CustomerAddress" Type="Self.CustomerAddress" Multiplicity="*" />
     <ReferentialConstraint>
@@ -417,7 +451,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="fk_DeOrderorderID">
-    <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
+    <End Role="Orders" Type="Self.Orders" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="DetailsOrders" Type="Self.DetailsOrders" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Orders">
@@ -584,6 +620,20 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="fk_rePro_Or">
+    <End Role="Orders" Type="Self.Orders" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="returnProduct" Type="Self.returnProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Orders">
+        <PropertyRef Name="orderID" />
+      </Principal>
+      <Dependent Role="returnProduct">
+        <PropertyRef Name="id_order" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Function Name="auto_idAccessory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="id" Type="char" Mode="InOut" />
   </Function>
@@ -591,9 +641,40 @@
     <Parameter Name="id" Type="char" Mode="InOut" />
   </Function>
   <Function Name="auto_idProducts2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar" />
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
   <Function Name="LayMa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="ma" Type="varchar" Mode="InOut" />
   </Function>
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <EntityContainer Name="QL_LaptopModelStoreContainer">
     <EntitySet Name="accessory" EntityType="Self.accessory" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Banner" EntityType="Self.Banner" Schema="dbo" store:Type="Tables" />
@@ -609,6 +690,7 @@
     <EntitySet Name="DetailsOrders" EntityType="Self.DetailsOrders" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="EmployeesRole" EntityType="Self.EmployeesRole" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HUI" EntityType="Self.HUI" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Image" EntityType="Self.Image" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="NameOrderStatus" EntityType="Self.NameOrderStatus" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
@@ -618,6 +700,8 @@
     <EntitySet Name="ProductType" EntityType="Self.ProductType" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="promotions" EntityType="Self.promotions" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PromotionsGift" EntityType="Self.PromotionsGift" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="returnProduct" EntityType="Self.returnProduct" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TitleDetailAccessory" EntityType="Self.TitleDetailAccessory" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Trademark" EntityType="Self.Trademark" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="fk_ac" Association="Self.fk_ac">
@@ -628,7 +712,7 @@
       <End Role="parameter" EntitySet="parameter" />
       <End Role="accessory" EntitySet="accessory" />
     </AssociationSet>
-    <AssociationSet Name="fk_add" Association="Self.fk_add">
+    <AssociationSet Name="fk_add_pro" Association="Self.fk_add_pro">
       <End Role="Customers" EntitySet="Customers" />
       <End Role="CustomerAddress" EntitySet="CustomerAddress" />
     </AssociationSet>
@@ -715,6 +799,10 @@
     <AssociationSet Name="FK_PromotionsGift_Prod" Association="Self.FK_PromotionsGift_Prod">
       <End Role="Products" EntitySet="Products" />
       <End Role="PromotionsGift" EntitySet="PromotionsGift" />
+    </AssociationSet>
+    <AssociationSet Name="fk_rePro_Or" Association="Self.fk_rePro_Or">
+      <End Role="Orders" EntitySet="Orders" />
+      <End Role="returnProduct" EntitySet="returnProduct" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

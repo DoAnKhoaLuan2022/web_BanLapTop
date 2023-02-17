@@ -1,0 +1,92 @@
+﻿@model DoAnAdmin.Models.returnProduct
+@using DoAnAdmin.Models
+@{
+    ViewBag.Title = "AdminDetailsOrder";
+    Layout = "~/Views/Shared/_LayoutPageAdmin.cshtml";
+    QL_LaptopEntities db = new QL_LaptopEntities();
+
+}
+<style>
+    .form-group .the {
+        margin: 0 auto 10px;
+        font-size: 22px;
+    }
+
+    .save_oder {
+        background-color: #8ED6FF;
+        margin-top: 20px;
+    }
+
+    .AdOrcer_btn {
+        background-color: white;
+        border-radius: 10px !important;
+    }
+
+        .AdOrcer_btn:hover {
+            background-color: #EEF1FF;
+            border: 2px solid black;
+        }
+</style>
+<h2>Chi tiết đơn đặt hàng</h2>
+
+<div class="form-group">
+    <p>Mã đơn hàng: </p>
+    <div class="col-md-10 the">
+        @Model.id_order
+    </div>
+</div>
+
+<div class="form-group">
+    <p>Lí do trả hàng: </p>
+    <div class="col-md-10 the">
+        @Model.reason
+    </div>
+</div>
+
+<div class="form-group">
+    @*@Html.LabelFor(model => model.cusID, "cusID", htmlAttributes: new { @class = "control-label col-md-2" })*@
+    <p>Hình ảnh minh họa:</p>
+    <div class="col-md-10 the">
+        <img src="~/Assets/Image/imageProductReturn/@Model.nameImage" alt="" width="100%" height="100%" />
+    </div>
+</div>
+<div class="form-group">
+    @*@Html.LabelFor(model => model.cusID, "cusID", htmlAttributes: new { @class = "control-label col-md-2" })*@
+    <p>Trạng thái:</p>
+    <div class="col-md-10 the">
+        @using (Html.BeginForm("updateTT", "Admin", new { id = Model.id_order }))
+        {
+            if (Model.tt.Equals("Đang chờ xác nhận"))
+            {
+                <div>
+
+                    <input type="radio" name="optRadioGender" id="optionsRadiosNam" value="Đang chờ xác nhận" checked>&nbsp;Đang chờ xác nhận &nbsp;&nbsp;
+                    <input type="radio" name="optRadioGender" id="optionsRadiosNu" value="Đang giao hàng">&nbsp;Đang giao hàng &nbsp;&nbsp;
+                    <button type="submit" class="btn AdOrcer_btn" style="text-decoration:none;color:black;margin-right:20px">Cập nhật trạng thái</button>
+                </div>
+            }
+            else
+            {
+                <div>
+
+                    <input type="radio" name="optRadioGender" id="optionsRadiosNam" value="Đang chờ xác nhận">&nbsp;Đang chờ xác nhận &nbsp;&nbsp;
+                    <input type="radio" name="optRadioGender" id="optionsRadiosNu" value="Đang giao hàng" checked>&nbsp;Đang giao hàng &nbsp;&nbsp;
+                    <button type="submit" class="btn AdOrcer_btn" style="text-decoration:none;color:black;margin-right:20px">Cập nhật trạng thái</button>
+                </div>
+            }
+
+        }
+    </div>
+</div>
+<div class="form-group">
+
+    @*@Html.LabelFor(model => model.cusID, "cusID", htmlAttributes: new { @class = "control-label col-md-2" })*@
+    <div class="col-md-10 the">
+
+    </div>
+    <div class="col-md-10 the">
+        <a class="btn AdOrcer_btn" href="@Url.Action("AdminOrder", "Admin", new {or="trahang"})" style="text-decoration:none;color:black;margin-right:20px">Quay lại</a>
+        
+        <a class="btn AdOrcer_btn" href="@Url.Action("deleteReturnOrder","Admin", new { id=Model.id_order })" style="text-decoration:none;color:black">Xác nhận trả thành công</a>
+    </div>
+</div>

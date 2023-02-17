@@ -10,9 +10,16 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="https://cdn.rawgit.com/PascaleBeier/bootstrap-validate/v2.2.0/dist/bootstrap-validate.js"></script>
 
-    <link href="~/Assets/Admin/css/styleOld.css" rel="stylesheet" />
-    <link href="~/Assets/Admin/css/home.css" rel="stylesheet" />
-    <link href="~/Assets/Admin/css/trgChu.css" rel="stylesheet" />
+
+    @*Animation*@
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+    <link href="~/Assets/Admin/css/styleOld.css" rel="stylesheet" type="text/css">
+    <link href="~/Assets/Admin/css/trChu.css" rel="stylesheet" />
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" />
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 
@@ -69,7 +76,7 @@
                             </button>
                             <ul class="header_drop_menu dropdown-menu ">
                                 <li><a class="header_drop_item dropdown-item" href="@Url.Action("ShowProductsKhuyenMai", "Product")">Khuyến mãi</a></li>
-                                <li><a class="header_drop_item dropdown-item" href="@Url.Action("ShowProductsKhuyenMai", "Product")">Bán chạy</a></li>
+                                <li><a class="header_drop_item dropdown-item" href="@Url.Action("ShowProductsSPbanChay", "Product")">Bán chạy</a></li>
                             </ul>
                         </li>
                         <li class="header__nav-item"><a class="header_drop_item" style="text-decoration:none" href="@Url.Action("TakeCare","TakeCare")">Hỏi đáp</a></li>

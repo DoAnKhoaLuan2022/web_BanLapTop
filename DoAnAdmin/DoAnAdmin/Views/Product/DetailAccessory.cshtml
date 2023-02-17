@@ -6,9 +6,9 @@
     QL_LaptopEntities db = new QL_LaptopEntities();
     List<TitleDetailAccessory> lst = new List<TitleDetailAccessory>();
     List<TitleDetailAccessory> lstDet = db.TitleDetailAccessories.Where(n => n.tt_id == Model.parameter.tt_id).ToList();
-    foreach(var a in lstDet)
+    foreach (var a in lstDet)
     {
-        if(kt!=a.tt_id)
+        if (kt != a.tt_id)
         {
 
             lst.Add(a);
@@ -23,8 +23,69 @@
         i = 1;
     }
     List<accessory> lstAcc = db.accessories.Where(n => n.product_id == Model.product_id).ToList();
+    var dem = 0;
+
+    List<HUI> lstSup = db.HUIs.ToList();
+    //List<supOfTransaction> lstSup = Session["lstSup"] as List<supOfTransaction>;
+    List<Product> lstPro = new List<Product>();
+    List<HUI> lienquan = new List<HUI>();
+    foreach (var item in lstSup)
+    {
+        lienquan = lstSup.Where(n => n.itemset.Contains(Model.product_id) && n.itemset.Length != 10).ToList();
+
+        if (lienquan.Count() == 0)
+        {
+            lstPro = db.Products.Where(n => n.trademark_id == Model.Product.trademark_id && n.id != Model.product_id).ToList();
+        }
+        else
+        {
+            string str = "";
+            foreach (var item1 in lienquan)
+            {
+                string[] cat = item1.itemset.Split(',');
+
+                for (int j = 0; j < cat.Count() - 1; j++)
+                {
+                    str = str + cat[j] + ",";
+
+                }
+            }
+            string[] ut = str.Split(',');
+            List<string> lstTr = new List<string>();
+            for (int m = 0; m < ut.Count() - 1; m++)
+            {
+                string s = ut[m];
+                lstTr.Add(s);
+            }
+            List<string> distinct = lstTr.Distinct().ToList();
+            foreach (string z in distinct)
+            {
+                if (z != Model.product_id)
+                {
+                    string k = z;
+                    Product pro = db.Products.Where(n => n.id == k).FirstOrDefault();
+                    lstPro.Add(pro);
+                }
+            }
+            lstPro = lstPro.Union(db.Products.Where(n => n.trademark_id == Model.Product.trademark_id && n.id != Model.product_id).ToList()).Distinct().ToList();
+        }
+    }
+    int count = lstPro.Count();
+    }
+<style>
+
+    .para li {
+        list-style: none;
     }
 
+    .para_name {
+        width: 300px;
+    }
+
+    .para_info {
+        width: 290px;
+    }
+</style>
 <div class="container_detailPro">
     <div class="infomation d-flex">
         <div class="slider_detail row">
@@ -62,11 +123,11 @@
                     @Html.Action("PromotionPricePartial", "Product", new { @maSP = @ViewBag.maSP }) &nbsp;&nbsp;
                     @*Nếu có khuyến mãi thì gạch giá cũ đi*@
                     @*@if (ViewBag.IsKhuyenMai == 1)
-                                        {
-                            <span class="text-muted" style="text-decoration:line-through">@string.Format("{0:0,0}", Model.Product.price) đ</span> }
-                        else
-                        {
-                    <span>@string.Format("{0:0,0}", Model.Product.price) <sup>đ</sup></span>}*@
+                                            {
+                                <span class="text-muted" style="text-decoration:line-through">@string.Format("{0:0,0}", Model.Product.price) đ</span> }
+                            else
+                            {
+                        <span>@string.Format("{0:0,0}", Model.Product.price) <sup>đ</sup></span>}*@
                 </span>
                 @* Hiển thị khuyến mãi của sản phẩm *@
                 <div style="margin-top:20px">
@@ -78,18 +139,20 @@
 
                 <div class="endow row">
                     <div class="col-sm-6 col-md-6">
-                        <div class="card">
+                        <div class="card cars_detail">
                             <div class="card-header endow_card_header">
-                                <img class="endow_img" src="https://cdn.tgdd.vn/mwgcart/topzone/images/logo/vnpay.png" /><br />
+                                @*<img class="endow_img" src="https://cdn.tgdd.vn/mwgcart/topzone/images/logo/vnpay.png" />*@
+                                <img style="height:25px;width:25px" src="https://cdn-icons-png.flaticon.com/512/2981/2981297.png" />
+                                <span style="color: #674747">Thanh toán tại cửa hàng</span><br />
                                 <span class="text-primary">Giảm &nbsp;</span><span style="font-weight:bold;" class="text-primary">300.000<sup>đ</sup></span>
                                 <p class="text-muted" style="font-size:14px">Sản phẩm Laptop</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-6">
-                        <div class="card">
+                        <div class="card cars_detail">
                             <div class="card-header endow_card_header">
-                                <img class="endow_img" src="https://cdn.tgdd.vn/mwgcart/topzone/images/logo/ocb-1.png" /><br />
+                                <img class="endow_img" src="https://hoabinhairlines.vn/public/frontend/css/images/momo_icon_rectangle.png" /><br />
                                 <span class="text-primary">Giảm &nbsp;</span><span style="font-weight:bold;" class="text-primary">500.000<sup>đ</sup></span>
                                 <p class="text-muted" style="font-size:14px">Sản phẩm từ 5Tr</p>
                             </div>
@@ -98,29 +161,41 @@
                 </div>
             </div>
             <div class="row d-flex" style="margin-bottom:15px">
+                @{ var info = Session["user"] as DoAnAdmin.Models.Customer;}
+                @if (info != null)
+                {
+            <div class="col-sm-6 col-md-10">
+                <a class="buy btn" href="@Url.Action("PaymentOne", "Payment", new { @id = Model.product_id })">
+                    MUA NGAY
+                </a>
+            </div>
+            <div class="col-6 col-md-2">
+                <a class="add_card btn" onclick="clickCart()" style="font-size:10px" href="@Url.Action("AddCart", "Cart", new { @id = Model.product_id, @strURL = Request.Url.ToString() })">
+                    <i class="fas fa-cart-plus" style="font-size:20px"></i><br />
+                    THÊM VÀO GIỎ HÀNG
+                </a>
+            </div> 
+                }
+                else
+                {
                 <div class="col-sm-6 col-md-10">
-                    <a class="buy btn" href="@Url.Action("PaymentOne", "Payment", new {@id = Model.product_id})">
-                        MUA NGAY
-                    </a>
-                </div>
-                <div class="col-6 col-md-2">
-                    <a class="add_card btn" onclick="clickCart(@i)" style="font-size:10px" href="@Url.Action("AddCart", "Cart", new { @id = Model.product_id})">
-                        <i class="fas fa-cart-plus" style="font-size:20px"></i><br />
+                    <a class="buy btn" onclick="clickCart()" style="background:#B2B2B2!important;width:120%" href="@Url.Action("AddCart", "Cart", new { @id = Model.product_id, @strURL = Request.Url.ToString() })">
                         THÊM VÀO GIỎ HÀNG
                     </a>
                 </div>
+                }
             </div>
             <div class="row pay">
                 <div class="col-sm-6 col-md-6">
                     <a class="btn pay_taiChinh">
-                        MUA TRẢ GÓP<br />
-                        <span>Duyệt hồ sơ trong 5 phút</span>
+                        GIAO HÀNG<br />
+                        <span>Freeship 100%</span>
                     </a>
                 </div>
                 <div class="col-sm-6 col-md-6">
                     <a class="btn pay_the">
-                        MUA TRẢ GÓP QUA THẺ<br />
-                        <span>Visa, Mastercard, JCB, Amex</span>
+                        ĐỔI TRẢ<br />
+                        <span>Đổi trả mới 100% khi hàng bị lỗi</span>
                     </a>
                 </div>
             </div>
@@ -191,202 +266,289 @@
                     @Html.Action("BaiVietPartial", "Product", new { @maSP = @ViewBag.maSP })
                 </div>
             </div>
-            <div class="col-5">
-                <div class="">
+            <div class="col-5 pt-3">
+                <div class="d-flex" style="margin-top:25px">
+                    <h5 style="font-size:20px;padding-top:9px">Đánh giá</h5>
+                    <p class="rate_num">4.8</p>
+                    <!-- RATE -->
+                    <section id="rate" class="rating">
+                        <!-- FIFTH STAR -->
+                        <input type="radio" id="star_5" name="rate" value="5" />
+                        <label for="star_5" title="Five">&#9733;</label>
+                        <!-- FOURTH STAR -->
+                        <input type="radio" id="star_4" name="rate" value="4" />
+                        <label for="star_4" title="Four">&#9733;</label>
+                        <!-- THIRD STAR -->
+                        <input type="radio" id="star_3" name="rate" value="3" />
+                        <label for="star_3" title="Three">&#9733;</label>
+                        <!-- SECOND STAR -->
+                        <input type="radio" id="star_2" name="rate" value="2" />
+                        <label for="star_2" title="Two">&#9733;</label>
+                        <!-- FIRST STAR -->
+                        <input type="radio" id="star_1" name="rate" value="1" />
+                        <label for="star_1" title="One">&#9733;</label>
+                    </section>
+                </div>
+                <div>
+                    <ul class="rating-list">
+                        <li>
+                            <div class="number-star">
+                                5
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="timeline-star">
+                                <p class="timing" style="width: 55%"></p>
+                            </div>
+                            <p class="number-percent">55%</p>
+                        </li>
+                        <li>
+                            <div class="number-star">
+                                4
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="timeline-star">
+                                <p class="timing" style="width: 35%"></p>
+                            </div>
+                            <p class="number-percent">35%</p>
+                        </li>
+                        <li>
+                            <div class="number-star">
+                                3
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="timeline-star">
+                                <p class="timing" style="width: 5%"></p>
+                            </div>
+                            <p class="number-percent">5%</p>
+                        </li>
+                        <li>
+                            <div class="number-star">
+                                2
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="timeline-star">
+                                <p class="timing" style="width: 5%"></p>
+                            </div>
+                            <p class="number-percent">5%</p>
+                        </li>
+                        <li>
+                            <div class="number-star">
+                                1
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="timeline-star">
+                                <p class="timing" style="width: 0%"></p>
+                            </div>
+                            <p class="number-percent dsp">0%</p>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="w-100">
                     <div>
                         @Html.Action("LoadComment", "Comment", new { @id = Model.product_id })
                     </div>
                 </div>
+
+            </div>
+        </div>
+        @*//scroll*@
+
+        <div class="sp">
+            <div class="row suggestions">
+                <h5 class="col-8" style="font-weight:600">Phụ kiện mua cùng</h5>
+                <a class="col-4" href="#">
+                    Xem tất cả
+                    <img src="https://cdn-icons-png.flaticon.com/512/9115/9115666.png" />
+                </a>
+            </div>
+            <div id="carouselExampleControls2" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    @for (int j = 0; j < count; j = j + 4)
+                    {
+                        if (j >= 0 && j < 4)
+                        {
+        <div class="carousel-item active">
+            <div class="cards-wrapper d-flex">
+                @{ foreach (var item in lstPro)
+                    {
+                        String box = "";
+                        int tienKK = 0;
+                        string[] k = item.id.Split('0');
+                        string itemsau = k[0];
+                        string url = "";
+                        if (itemsau.Equals("PKC"))
+                        {
+                            url = "DetailAccessory";
+                        }
+                        else
+                        {
+                            url = "DetailProduct";
+                        }
+                        promotion promotion = db.promotions.Where(n => n.product_id == item.id && n.date_end <= DateTime.Now).FirstOrDefault();
+                        Detail det = db.Details.Where(n => n.product_id == item.id).FirstOrDefault();
+                        if (det != null)
+                        {
+                            box = "CPU : " + det.CPU + "\n" +
+                                    "RAM : " + det.RAM + "\n" +
+                                    "Bộ nhớ đệm : " + det.Cache + "\n" +
+                                    "Tốc độ CPU : " + det.Speed + "\n" +
+                                    "Tần số quét : " + det.TanSoQuet + "\n" +
+                                    "Số luồng : " + det.SoLuong + "\n" +
+                                    "Số nhân : " + det.SoNhan + "\n" +
+                                    "Ổ cứng : " + det.OCung + "\n";
+                        }
+                        if (promotion != null)
+                        {
+                            tienKK = (int)promotion.price_after;
+                        }
+                        if (dem == 4) { break; }
+
+    <a style="text-decoration: none" href="@Url.Action(url, "Product", new {@maSP = @item.id})" class="xd" tooltip-position='bottom' data-c-tooltip="@box">
+        <div class="card de_pro">
+            <img style="height: 55%;" class="card-img-top" src="~/Assets/Image/ImageProduct/@item.avatar" alt="..." />
+            <div class="card-body" style="background-color: white;">
+
+                @{ if (item.Name.Length <= 50)
+                    {
+    <h5 class="card-title_name">@item.Name</h5> }
+else
+{
+    <h5 class="card-title_name">@item.Name.Substring(0, 35).ToString()</h5> } }
+                <div class="d-flex pirce_asus_home" style="margin-top:20px">
+                    <p class="card-text">
+                        @{ @String.Format("{0:0,0}", item.price)}₫
+                    </p>
+                    @{ if (tienKK != 0)
+                        {
+    <p class="card-text_discout"> @{ @String.Format("{0:0,0}", tienKK)}₫</p> } }
+                </div>
+                <div style="margin-top:20px">
+                    <div class="ratingStar_home d-flex">
+                        <span>4.5</span>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half"></i>
+                    </div>
+
+                    @{ int ptGiam = 0;
+                        if (promotion == null)
+                        {
+                            ptGiam = 0;
+                        }
+                        else
+                        {
+                            ptGiam = (int)promotion.price * 100 / (int)@item.price;
+                        } }
+                    <span class="discout_asushome">@ptGiam%</span>
+                </div>
+            </div>
+        </div>
+    </a> dem++;
+} }
+            </div>
+        </div> }
+                        else
+                        {
+
+        <div class="carousel-item">
+            <div class="cards-wrapper d-flex">
+                @{ foreach (var item in lstPro.Skip(dem))
+                    {
+                        String box = "";
+                        int tienKK = 0;
+                        string[] k = item.id.Split('0');
+                        string itemsau = k[0];
+                        string url = "";
+                        if (itemsau.Equals("PKC"))
+                        {
+                            url = "DetailAccessory";
+                        }
+                        else
+                        {
+                            url = "DetailProduct";
+                        }
+                        promotion promotion = db.promotions.Where(n => n.product_id == item.id).FirstOrDefault();
+                        Detail det = db.Details.Where(n => n.product_id == item.id).FirstOrDefault();
+                        if (promotion != null)
+                        {
+                            tienKK = (int)promotion.price_after;
+                        }
+            <a style="text-decoration: none" href="@Url.Action(url, "Product", new {@maSP = @item.id})" class="xd" tooltip-position='bottom' data-c-tooltip="@box">
+                <div class="card de_pro">
+                    <img style="height: 55%;" class="card-img-top" src="~/Assets/Image/ImageProduct/@item.avatar" alt="..." />
+                    <div class="card-body" style="background-color: white;">
+
+                        @{ if (item.Name.Length <= 50)
+                            {
+            <h5 class="card-title_name">@item.Name</h5> }
+        else
+        {
+            <h5 class="card-title_name">@item.Name.Substring(0, 35).ToString()</h5> } }
+                        <div class="d-flex pirce_asus_home" style="margin-top:20px">
+                            <p class="card-text">
+                                @{ @String.Format("{0:0,0}", item.price)}₫
+                            </p>
+                            @{ if (tienKK != 0)
+                                {
+            <p class="card-text_discout"> @{ @String.Format("{0:0,0}", tienKK)}₫</p> } }
+                        </div>
+                        <div style="margin-top:20px">
+                            <div class="ratingStar_home d-flex">
+                                <span>4.5</span>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half"></i>
+                            </div>
+
+                            @{ int ptGiam = 0;
+                                if (promotion == null)
+                                {
+                                    ptGiam = 0;
+                                }
+                                else
+                                {
+                                    ptGiam = (int)promotion.price * 100 / (int)@item.price;
+                                } }
+                            <span class="discout_asushome">@ptGiam%</span>
+                        </div>
+                    </div>
+                </div>
+            </a> dem++;
+            if (dem % 4 == 0)
+            {
+                break;
+            }
+        } }
+            </div>
+        </div>}
+}
+                </div>
+                <button class="prev carousel-control-prev dePro_next_prev" type="button" data-bs-target="#carouselExampleControls2" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true" style="background-image: none">
+                        <img class="prev_img" src="https://cdn-icons-png.flaticon.com/512/130/130882.png">
+                    </span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="next carousel-control-next dePro_next_prev" type="button" data-bs-target="#carouselExampleControls2" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true" style="background-image: none">
+                        <img class="next_img" src="https://cdn-icons-png.flaticon.com/512/130/130884.png">
+                    </span>
+                    <span class="visually-hidden">Next</span>
+                </button>
             </div>
         </div>
     </div>
-    @*//scroll*@
-
-    <div class="sp">
-        <div class="row suggestions">
-            <h5 class="col-8" style="font-weight:600">Phụ kiện mua cùng</h5>
-            <a class="col-4" href="#">
-                Xem tất cả
-                <img src="https://cdn-icons-png.flaticon.com/512/9115/9115666.png" />
-            </a>
-        </div>
-        <div id="carouselExampleControls2" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item">
-                    <div class="cards-wrapper d-flex">
-                        <a style="text-decoration: none" href="/Product/DetailProduct?maSP=LAP000001">
-                            <div class="card de_pro">
-                                <img class="card-img-top" style="height:60%" src="/Assets/Image/ImageProduct/lap000001.jpg" alt="...">
-                                <div class="card-body">
-
-                                    <h5 class="card-title">
-                                        Laptop Asus ZenBook UX325EA i5 1135G7/8GB/512GB/OL
-                                    </h5>
-                                    <div class="pirce_asus_home row" style="padding:0 20px">
-                                        <p class="card-text col-6 de_pro_p de_pro_pirce">
-                                            24700000₫
-                                        </p>
-                                        <p class="card-text_discout col-4 de_pro_p" style="color: #3e3e3f; text-indent: 0">24700000₫</p>
-                                        <p class="col-2 de_pro_p de_pro_pesent_dis">- 10%</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                        <a style="text-decoration: none" href="/Product/DetailProduct?maSP=LAP000002">
-                            <div class="card de_pro">
-                                <img class="card-img-top" style="height:60%" src="/Assets/Image/ImageProduct/lap000001.jpg" alt="...">
-                                <div class="card-body">
-
-                                    <h5 class="card-title">
-                                        Laptop Asus ZenBook UX325EA i5 1135G7/8GB/512GB/OL
-                                    </h5>
-                                    <div class="pirce_asus_home row" style="padding:0 20px">
-                                        <p class="card-text col-6 de_pro_p de_pro_pirce">
-                                            24700000₫
-                                        </p>
-                                        <p class="card-text_discout col-4 de_pro_p" style="color: #3e3e3f; text-indent: 0">24700000₫</p>
-                                        <p class="col-2 de_pro_p de_pro_pesent_dis">- 10%</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                        <a style="text-decoration: none" href="/Product/DetailProduct?maSP=LAP000003">
-                            <div class="card de_pro">
-                                <img class="card-img-top" style="height:60%" src="/Assets/Image/ImageProduct/lap000001.jpg" alt="...">
-                                <div class="card-body">
-
-                                    <h5 class="card-title">
-                                        Laptop Asus ZenBook UX325EA i5 1135G7/8GB/512GB/OL
-                                    </h5>
-                                    <div class="pirce_asus_home row" style="padding:0 20px">
-                                        <p class="card-text col-6 de_pro_p de_pro_pirce">
-                                            24700000₫
-                                        </p>
-                                        <p class="card-text_discout col-4 de_pro_p" style="color: #3e3e3f; text-indent: 0">24700000₫</p>
-                                        <p class="col-2 de_pro_p de_pro_pesent_dis">- 10%</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                        <a style="text-decoration: none" href="/Product/DetailProduct?maSP=LAP000004">
-                            <div class="card de_pro">
-                                <img class="card-img-top" style="height:60%" src="/Assets/Image/ImageProduct/lap000001.jpg" alt="...">
-                                <div class="card-body">
-
-                                    <h5 class="card-title">
-                                        Laptop Asus ZenBook UX325EA i5 1135G7/8GB/512GB/OL
-                                    </h5>
-                                    <div class="pirce_asus_home row" style="padding:0 20px">
-                                        <p class="card-text col-6 de_pro_p de_pro_pirce">
-                                            24700000₫
-                                        </p>
-                                        <p class="card-text_discout col-4 de_pro_p" style="color: #3e3e3f; text-indent: 0">24700000₫</p>
-                                        <p class="col-2 de_pro_p de_pro_pesent_dis">- 10%</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="carousel-item active">
-                    <div class="cards-wrapper d-flex">
-                        <a style="text-decoration: none" href="/Product/DetailProduct?maSP=LAP000005">
-                            <div class="card de_pro">
-                                <img class="card-img-top" style="height:60%" src="/Assets/Image/ImageProduct/lap000001.jpg" alt="...">
-                                <div class="card-body">
-
-                                    <h5 class="card-title">
-                                        Laptop Asus ZenBook UX325EA i5 1135G7/8GB/512GB/OL
-                                    </h5>
-                                    <div class="pirce_asus_home row" style="padding:0 20px">
-                                        <p class="card-text col-6 de_pro_p de_pro_pirce">
-                                            24700000₫
-                                        </p>
-                                        <p class="card-text_discout col-4 de_pro_p" style="color: #3e3e3f; text-indent: 0">24700000₫</p>
-                                        <p class="col-2 de_pro_p de_pro_pesent_dis">- 10%</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                        <a style="text-decoration: none" href="/Product/DetailProduct?maSP=LAP000006">
-                            <div class="card de_pro">
-                                <img class="card-img-top" style="height:60%" src="/Assets/Image/ImageProduct/lap000001.jpg" alt="...">
-                                <div class="card-body">
-
-                                    <h5 class="card-title">
-                                        Laptop Asus ZenBook UX325EA i5 1135G7/8GB/512GB/OL
-                                    </h5>
-                                    <div class="pirce_asus_home row" style="padding:0 20px">
-                                        <p class="card-text col-6 de_pro_p de_pro_pirce">
-                                            24700000₫
-                                        </p>
-                                        <p class="card-text_discout col-4 de_pro_p" style="color: #3e3e3f; text-indent: 0">24700000₫</p>
-                                        <p class="col-2 de_pro_p de_pro_pesent_dis">- 10%</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                        <a style="text-decoration: none" href="/Product/DetailProduct?maSP=LAP000007">
-                            <div class="card de_pro">
-                                <img class="card-img-top" style="height:60%" src="/Assets/Image/ImageProduct/lap000001.jpg" alt="...">
-                                <div class="card-body">
-
-                                    <h5 class="card-title">
-                                        Laptop Asus ZenBook UX325EA i5 1135G7/8GB/512GB/OL
-                                    </h5>
-                                    <div class="pirce_asus_home row" style="padding:0 20px">
-                                        <p class="card-text col-6 de_pro_p de_pro_pirce">
-                                            24700000₫
-                                        </p>
-                                        <p class="card-text_discout col-4 de_pro_p" style="color: #3e3e3f; text-indent: 0">24700000₫</p>
-                                        <p class="col-2 de_pro_p de_pro_pesent_dis">- 10%</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                        <a style="text-decoration: none" href="/Product/DetailProduct?maSP=LAP000008">
-                            <div class="card de_pro">
-                                <img class="card-img-top" style="height:60%" src="/Assets/Image/ImageProduct/lap000001.jpg" alt="...">
-                                <div class="card-body">
-
-                                    <h5 class="card-title">
-                                        Laptop Asus ZenBook UX325EA i5 1135G7/8GB/512GB/OL
-                                    </h5>
-                                    <div class="pirce_asus_home row" style="padding:0 20px">
-                                        <p class="card-text col-6 de_pro_p de_pro_pirce">
-                                            24700000₫
-                                        </p>
-                                        <p class="card-text_discout col-4 de_pro_p" style="color: #3e3e3f; text-indent: 0">24700000₫</p>
-                                        <p class="col-2 de_pro_p de_pro_pesent_dis">- 10%</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-
-            </div>
-            <button class="prev carousel-control-prev dePro_next_prev" type="button" data-bs-target="#carouselExampleControls2" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true" style="background-image: none">
-                    <img class="prev_img" src="https://cdn-icons-png.flaticon.com/512/130/130882.png">
-                </span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="next carousel-control-next dePro_next_prev" type="button" data-bs-target="#carouselExampleControls2" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true" style="background-image: none">
-                    <img class="next_img" src="https://cdn-icons-png.flaticon.com/512/130/130884.png">
-                </span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
-    </div>
- </div>
+</div>
 <script>
     function click() {
         location.reload();
     }
-    function clickCart(i) {
-        if (i == 1) {
+    function clickCart() {
             Swal.fire({
                 position: 'center',
                 icon: 'success',
@@ -394,7 +556,6 @@
                 showConfirmButton: false,
                 timer: 3500
             })
-        }
     }
 </script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

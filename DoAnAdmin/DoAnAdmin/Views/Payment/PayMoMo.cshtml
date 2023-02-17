@@ -134,11 +134,11 @@
             </div>
             <div>
                 <p>Số tiền</p>
-                <p style=" border-bottom: 1px solid #ccc; font-weight: 500; font-size:25px">@Session["tongtien"]</p>
+                <p style=" border-bottom: 1px solid #ccc; font-weight: 500; font-size:25px">@String.Format("{0:0,0}", @Session["tongtien"]) VND</p>
             </div>
-            <div style="text-align:center">
-                <a href="#" style=" color: #a50164; font-size: 18px; font-weight: 500;">Hủy thanh toán</a>
-            </div>
+            @*<div style="text-align:center">
+                <a href="@Url.Action("PaymentOne", "Payment",new { id = @Session["idPro"]})" style=" color: #a50164; font-size: 18px; font-weight: 500;">Hủy thanh toán</a>
+            </div>*@
             <div style="padding:5px 0">
                 <p style="color:red">Lưu ý: Khi quý khách thanh toán xong vui lòng chụp màng hình và gửi về Zalo: 0397495029 để xác nhận đơn hàng</p>
             </div>

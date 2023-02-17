@@ -201,8 +201,12 @@
     <Compile Include="Models\EmployeesRole.cs">
       <DependentUpon>QL_Laptop.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\GiaoDich.cs" />
     <Compile Include="Models\GioHang.cs" />
     <Compile Include="Models\HamXuLy.cs" />
+    <Compile Include="Models\HUI.cs">
+      <DependentUpon>QL_Laptop.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Image.cs">
       <DependentUpon>QL_Laptop.tt</DependentUpon>
     </Compile>
@@ -213,6 +217,7 @@
     <Compile Include="Models\NameOrderStatu.cs">
       <DependentUpon>QL_Laptop.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\OneGiaoDich.cs" />
     <Compile Include="Models\Order.cs">
       <DependentUpon>QL_Laptop.tt</DependentUpon>
     </Compile>
@@ -249,9 +254,23 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>QL_Laptop.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\returnProduct.cs">
+      <DependentUpon>QL_Laptop.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>QL_Laptop.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_helpdiagrams_Result.cs">
+      <DependentUpon>QL_Laptop.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\supOfTransaction.cs" />
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>QL_Laptop.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\TitleDetailAccessory.cs">
       <DependentUpon>QL_Laptop.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\top10SPBanChay.cs" />
     <Compile Include="Models\Trademark.cs">
       <DependentUpon>QL_Laptop.tt</DependentUpon>
     </Compile>
@@ -280,7 +299,7 @@
     <Content Include="Assets\Admin\css\Style2.css" />
     <Content Include="Assets\Admin\css\styleOld.css" />
     <Content Include="Assets\Admin\css\styles.css" />
-    <Content Include="Assets\Admin\css\trgChu.css" />
+    <Content Include="Assets\Admin\css\trChu.css" />
     <Content Include="Assets\Admin\images\facebook.png" />
     <Content Include="Assets\Admin\img\undraw_posting_photo.svg" />
     <Content Include="Assets\Admin\img\undraw_profile.svg" />
@@ -2924,6 +2943,7 @@
     <Content Include="Assets\Image\ImageLogo\lap_Acer.png" />
     <Content Include="Assets\Image\ImageLogo\Logo.png" />
     <Content Include="Assets\Image\ImageLogo\momo.jpg" />
+    <Content Include="Assets\Image\imageProductReturn\lap000000.jpg" />
     <Content Include="Assets\Image\ImageProduct\banphim-mk2c3.png" />
     <Content Include="Assets\Image\ImageProduct\banphim-mk2c3_2.png" />
     <Content Include="Assets\Image\ImageProduct\banphim-mk2c3_3.jpg" />
@@ -4430,6 +4450,8 @@
     <Content Include="Views\Payment\orderPhone.cshtml" />
     <Content Include="Views\Product\allListProductEmpty.cshtml" />
     <Content Include="Views\Payment\cancelOrder.cshtml" />
+    <Content Include="Views\Admin\detailReturnProduct.cshtml" />
+    <Content Include="Views\Product\ShowProductsSPbanChay.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

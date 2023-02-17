@@ -82,9 +82,49 @@ namespace DoAnAdmin.Controllers
                 return View(newor);
             }
             else
+                if (or.Equals("dagiao"))
+            {
+                var newor = db.Orders.Where(n => n.orderStatus.Equals("Đã giao hàng")).ToList();
+                return View(newor);
+            }
+            else
                 if (or.Equals("giaothanhcong"))
             {
                 var newor = db.Orders.Where(n => n.orderStatus.Equals("Giao hàng thành công")).ToList();
+                return View(newor);
+            }
+            else
+                if (or.Equals("trahang"))
+            {
+                var rPro = db.returnProducts;
+                List<Order> newor = new List<Order>();
+                foreach (var item in rPro)
+                {
+                    if (item.tt.Equals("Đang chờ xác nhận"))
+                    {
+                        Order order = db.Orders.Where(n => n.orderID == item.id_order).FirstOrDefault();
+                        newor.Add(order);
+                    }
+                }
+
+                //var newor = db.Orders.Where(n => n.orderStatus.Equals("Trả hàng")).ToList();
+                return View(newor);
+            }
+            else
+                if (or.Equals("trahangdanggiao"))
+            {
+                var rPro = db.returnProducts;
+                List<Order> newor = new List<Order>();
+                foreach(var item in rPro)
+                {
+                    if(item.tt.Equals("Đang giao hàng"))
+                    {
+                        Order order = db.Orders.Where(n => n.orderID == item.id_order).FirstOrDefault();
+                        newor.Add(order);
+                    }
+                }
+                    
+                //var newor = db.Orders.Where(n => n.orderStatus.Equals("Trả hàng")).ToList();
                 return View(newor);
             }
             else
@@ -100,6 +140,11 @@ namespace DoAnAdmin.Controllers
             var item = db.DetailsOrders.Where(n => n.orderID == id).ToList();
             return View(item);
         }
+        public ActionResult detailReturnProduct(int id)
+        {
+            var item = db.returnProducts.Where(n => n.id_order == id).FirstOrDefault();
+            return View(item);
+        }
         public ActionResult AdminUpdateStatusOrder(int id,string tt)
         {
             string tt2 = "";
@@ -110,7 +155,12 @@ namespace DoAnAdmin.Controllers
             }
             else if(tt.Equals("Đang giao hàng"))
             {
+                tt = "Đã giao hàng";
+            }
+            else if (tt.Equals("Đã giao hàng"))
+            {
                 tt = "Giao hàng thành công";
+                tt2 = "Đã hủy";
             }
             else if (tt.Equals("Đã hủy"))
             {
@@ -143,8 +193,33 @@ namespace DoAnAdmin.Controllers
             db.SaveChanges();
             return RedirectToAction("AdminOrder");
         }
+        public ActionResult deleteReturnOrder(int id)
+        {
+           
+            var oneitem = db.Orders.Where(n => n.orderID == id).FirstOrDefault();
 
+            if (oneitem != null)
+            {
+                db.Orders.Remove(oneitem);
+                db.SaveChanges();
+                return RedirectToAction("AdminOrder", "Admin", new { or = "trahang" });
+            }
+            return RedirectToAction("AdminOrder", "Admin", new { or = "trahang" });
 
+        }
+        [HttpPost]
+        public ActionResult updateTT(int id, FormCollection f)
+        {
+            string gender = f["optRadioGender"].ToString();
+            var oneitem = db.returnProducts.Where(n => n.id_order == id).FirstOrDefault();
+            oneitem.tt = gender;
+            db.SaveChanges();
+            if(oneitem.tt.Equals("Đang chờ xác nhận"))
+            {
+                return RedirectToAction("AdminOrder", "Admin", new { or = "trahangdanggiao" });
+            }    
+            return RedirectToAction("AdminOrder", "Admin", new { or = "trahang" });
+        }
         //---------------------------------------------------------quan ly nhan vien ---------------------------------------
         public ActionResult Employees()
         {
@@ -223,6 +298,54 @@ namespace DoAnAdmin.Controllers
             db.Entry(e).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Customers");
+        }
+        [HttpPost]
+        public ActionResult thongKeTheoNgay(FormCollection f)
+        {
+            string bd = f["txtBD"];
+            string kt = f["txtKT"];
+            string[] datedb = bd.Split('-');
+            string[] datekt = kt.Split('-');
+            bd = datedb[1] + "-" + datedb[0] + "-" + datedb[2];
+            kt = datekt[1] + "-" + datekt[0] + "-" + datekt[2];
+            Session["listTopSP"] = null;
+            if (bd.Length==0 || kt.Length ==0)
+            {
+                return RedirectToAction("pageAdmin");
+            }
+            DateTime dateBD = DateTime.Parse(bd);
+            DateTime dateKT = DateTime.Parse(kt);
+            int DayBD = dateBD.Day;
+            int DayKT = dateKT.Day;
+            int MBD = dateBD.Month;
+            int MKT = dateKT.Month;
+            int NBD = dateBD.Year;
+            int NKT = dateKT.Year;
+
+            List<top10SPBanChay> lstSP = new List<top10SPBanChay>();
+            var detail = db.DetailsOrders.Where(n => n.Order.orderDate >= dateBD && n.Order.orderDate <= dateKT).Distinct();
+            var detail1 = db.DetailsOrders.Where(n => n.Order.orderDate >= dateBD && n.Order.orderDate <= dateKT);
+           
+            foreach (var item in detail)
+            {
+                int ptD = 0;
+                int i = 0;
+                foreach(var item1 in detail1)
+                {
+                    if(item1.proID.Equals(item.proID))
+                    {
+                        i++;
+                    }    
+                }
+                ptD ++;
+                if(ptD != 1 || ptD != detail.Count())
+                {
+                    top10SPBanChay a = new top10SPBanChay(item.Product.Name, i, (int)item.proPrice * i);
+                    lstSP.Add(a);
+                }    
+            }
+            Session["listTopSP"] = lstSP;
+            return RedirectToAction("pageAdmin");
         }
     }
 }

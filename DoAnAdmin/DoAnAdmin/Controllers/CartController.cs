@@ -111,6 +111,7 @@ namespace DoAnAdmin.Controllers
                 }
                 c.CartQuantity = 1;
                 c.CartMoney = (int)a.price;
+                c.tt = 1;
                 mydb.Carts.Add(c);
                 mydb.SaveChanges();
                 ViewBag.Message = "Thêm giỏ hàng thành công";
@@ -169,50 +170,66 @@ namespace DoAnAdmin.Controllers
         }
         public ActionResult updateTang(string id)
         {
-            var item = Session["user"] as DoAnAdmin.Models.Customer;
-            if (item != null)
+            try
             {
-                var cart = mydb.Carts.Where(n => n.proID == id && n.cusID == item.cusID).FirstOrDefault();
-                int slTon = (int)cart.Product.quanlity;
-                if(cart.CartQuantity >= slTon)
+                var item = Session["user"] as DoAnAdmin.Models.Customer;
+                if (item != null)
                 {
-                    return RedirectToAction("DetailsCart");
-                }    
+                    var cart = mydb.Carts.Where(n => n.proID == id && n.cusID == item.cusID).FirstOrDefault();
+                    int slTon = (int)cart.Product.quanlity;
+                    if (cart.CartQuantity >= slTon)
+                    {
+                        return RedirectToAction("DetailsCart");
+                    }
+                    else
+                    {
+                        cart.CartQuantity = cart.CartQuantity + 1;
+                        mydb.SaveChanges();
+                        return RedirectToAction("DetailsCart");
+                    }
+                }
                 else
                 {
-                    cart.CartQuantity = cart.CartQuantity + 1;
-                    mydb.SaveChanges();
                     return RedirectToAction("DetailsCart");
-                }    
+                }
             }
-            else
+            catch
             {
                 return RedirectToAction("DetailsCart");
             }
+           
         }
         public ActionResult updateGiam(string id)
         {
-            var item = Session["user"] as DoAnAdmin.Models.Customer;
-            if (item != null)
+            try
             {
-                var cart = mydb.Carts.Where(n => n.proID == id && n.cusID == item.cusID).FirstOrDefault();
-                if (cart.CartQuantity <= 1)
+                var item = Session["user"] as DoAnAdmin.Models.Customer;
+                if (item != null)
                 {
-                    mydb.Carts.Remove(cart);
-                    mydb.SaveChanges();
-                    return RedirectToAction("DetailsCart");
+                    var cart = mydb.Carts.Where(n => n.proID == id && n.cusID == item.cusID).FirstOrDefault();
+                    if (cart.CartQuantity <= 1)
+                    {
+                        mydb.Carts.Remove(cart);
+                        mydb.SaveChanges();
+                        return RedirectToAction("DetailsCart");
+                    }
+                    else
+                    {
+                        cart.CartQuantity = cart.CartQuantity - 1;
+                        mydb.SaveChanges();
+                        return RedirectToAction("DetailsCart");
+                    }
                 }
                 else
                 {
-                    cart.CartQuantity = cart.CartQuantity - 1;
-                    mydb.SaveChanges();
                     return RedirectToAction("DetailsCart");
                 }
             }
-            else
+            catch
             {
                 return RedirectToAction("DetailsCart");
             }
+           
         }
         public ActionResult Update(int id)
         {
@@ -371,7 +388,7 @@ namespace DoAnAdmin.Controllers
             {
                 return RedirectToAction("EmptyCart", "Cart");
             }
-
+            Session["NhapDayDu"] = "1";
             ViewBag.TongSoLuong = TongSoLuong();
             ViewBag.TongThanhTien = TongThanhTien();
 
@@ -380,24 +397,28 @@ namespace DoAnAdmin.Controllers
         [HttpPost]//Khi KH Đặt hàng
         public ActionResult Cart(FormCollection f)
         {
+
             try
             {
                 //Kiểm tra Input
-                if (string.IsNullOrEmpty(f["txtHoTen"]))
-                {
-                    ViewBag.tbHoTen = "Vui lòng cho biết họ tên của bạn";
-                    return RedirectToAction("Cart", "Cart");
-                }
-                if (string.IsNullOrEmpty(f["txtSdt"]))
-                {
-                    ViewBag.tbSDT = "Vui lòng nhập số điện thoại";
-                    return RedirectToAction("Cart", "Cart");
-                }
-                if (string.IsNullOrEmpty(f["txtAddress"]))
-                {
-                    ViewBag.tbDiaChi = "Vui lòng nhập địa chỉ khi nhận hàng";
-                    return RedirectToAction("Cart", "Cart");
-                }
+                //if (string.IsNullOrEmpty(f["txtHoTen"]))
+                //{
+                //    ViewBag.tbHoTen = "Vui lòng cho biết họ tên của bạn";
+                    
+                //    return RedirectToAction("Cart", "Cart");
+                //}
+                //if (string.IsNullOrEmpty(f["txtSdt"]))
+                //{
+                //    ViewBag.tbSDT = "Vui lòng nhập số điện thoại";
+                    
+                //    return RedirectToAction("Cart", "Cart");
+                //}
+                //if (string.IsNullOrEmpty(f["txtAddress"]))
+                //{
+                //    ViewBag.tbDiaChi = "Vui lòng nhập địa chỉ khi nhận hàng";
+                    
+                //    return RedirectToAction("Cart", "Cart");
+                //}
 
                 if (Session["GioHang"] != null)
                 {
@@ -405,7 +426,16 @@ namespace DoAnAdmin.Controllers
                     string phone = f["txtSdt"].ToString();
                     string name = f["txtHoTen"].ToString();
                     string address = f["txtAddress"].ToString();
-
+                    string province = f["province"].ToString();
+                    string district = f["district"].ToString();
+                    string ward = f["ward"].ToString();
+                    string txtDiaChi = f["txtDiaChi"].ToString();
+                    if (txtDiaChi.Length==0||ward.Length == 0 || district.Length==0||phone.Length == 0 || name.Length == 0 || address.Length == 0 || phone.Length != 10|| province.Length==0)
+                    {
+                        Session["loi"] = "1";
+                        return RedirectToAction("Cart", "Cart");
+                    }
+                    Session["hoanthanh"] = "1";
                     Order px = new Order();
                     px.empID = null;
                     px.orderDate = DateTime.Now;
@@ -432,10 +462,10 @@ namespace DoAnAdmin.Controllers
                         mydb.Customers.Add(cus);
                         mydb.SaveChanges();
                     }
-                    else//
-                    {
-                        return RedirectToAction("Login", "Customers");
-                    }
+                    //else//
+                    //{
+                    //    return RedirectToAction("Login", "Customers");
+                    //}
                     int maKH = mydb.Customers.Where(n => n.cusPhone == phone).FirstOrDefault().cusID;
                     //Thêm Phiếu xuất
                     px.cusID = maKH;
@@ -450,6 +480,7 @@ namespace DoAnAdmin.Controllers
                         ctpx.orderID = maPX;
                         ctpx.cusID = maKH;
                         ctpx.proID = c.sIdSP;
+                        ctpx.orderAddress = address;
                         ctpx.orderQuantity = c.iSoLuong;
                         ctpx.proPrice = (int)c.dDetailPrice;
                         ctpx.orderMoney = (int)c.dThanhTien;
